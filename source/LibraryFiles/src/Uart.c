@@ -97,7 +97,7 @@ Uart1_init( void ) {
 #ifdef DEBUG
     //@fixme Can't print anything directly after this initialisation.
     Uart1_printf(" DEBUG: %s(): Initialize complete...\n" 
-            " DEBUG: %s(): Baud Rate Error (must be beolw 5%%): %.2f%%\n",
+            " DEBUG: %s(): Baud Rate Error (must be below 5%%): %.2f%%\n",
             __FUNCTION__, __FUNCTION__, (UART1_BAUD_ERROR / 100.0) );
 #endif
     
