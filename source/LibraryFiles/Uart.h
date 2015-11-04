@@ -31,37 +31,17 @@ extern "C" {
 #define UART_USE_PRINTF_YES
 #define UART_INIT_COMPLETE_MSG_NO
     
-#ifdef DEBUG
-  #define DEBUG_FLAG 1
-  #ifndef UART_USE_PRINTF_YES
-    #define UART_USE_PRINTF_YES
-  #endif
-#else
-  #define DEBUG_FLAG 0
-#endif
-
-#define DEBUG_PR(intend, fmt, args...) do{ if(DEBUG_FLAG) \
-                Uart1_printf("%*c DEBUG: %s:%d:%s(): " fmt "\n", intend, ' ', __FILE__, __LINE__, \
-                __func__, ##args); }while(0)
-
-#define DEBUG_PRINTF(fmt, args...) do{ if(DEBUG_FLAG) \
-                Uart1_printf(" DEBUG: %s:%d:%s(): " fmt "\n", __FILE__, __LINE__, \
-                __func__, ##args); }while(0)
-#define DEBUG_PRINTF_FUNCTION_CALL(fmt, args...) do{ if(DEBUG_FLAG) \
-                Uart1_printf(" DEBUG: %s(" fmt ")\n", __FUNCTION__ , ##args); }while(0)  
-    // @todo Move debug printf to debug.h or debug.c file...
-    
 /*******************************************************************************
  * Includes
  ******************************************************************************/
 #include <xc.h>
 #include <stdint.h>
 #include <stdbool.h>
-#ifdef UART_USE_PRINTF_YES
-#include <stdio.h>              // For vsprintf() in Uart_printf()
-#include <stdarg.h>             // For Uart_printf()
-#include <string.h>             // For memset()
-#endif /* UART_USE_PRINTF_YES */
+#if defined(UART_USE_PRINTF_YES) || defined(DEBUG)
+#   include <stdio.h>           // For vsprintf() in Uartx_printf()
+#   include <stdarg.h>          // For Uartx_printf()
+#   include <string.h>          // For memset()
+#endif /* UART_USE_PRINTF_YES or DEBUG */
 #include "System.h"             // For definition of FCY (must be before libpic30.h)
 #include <libpic30.h>           // for __delay_ms()
 #include "Interrupts.h"
@@ -172,7 +152,7 @@ Uart1_putNum( int32_t _num, uint8_t _base );
 void
 Uart1_putBits( const uint64_t _v, uint8_t _nBits );
 
-#ifdef UART_USE_PRINTF_YES
+#if defined(UART_USE_PRINTF_YES) || defined(DEBUG)
 /**
  * Print formatted data to UARTx.
  * Writes the C string pointed by format to the UARTx. If format includes format
@@ -289,7 +269,7 @@ Uart1_putBits( const uint64_t _v, uint8_t _nBits );
  */
 uint16_t
 Uart1_printf( const char *format, ... );
-#endif /* UART_USE_PRINTF_YES */
+#endif /* UART_USE_PRINTF_YES or DEBUG */
 
 /**
  * Receive a string using the UARTx module.

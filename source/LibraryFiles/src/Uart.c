@@ -211,7 +211,7 @@ Uart1_putBits( const uint64_t _v, uint8_t _nBits ) {
     return;
 }
 
-#ifdef UART_USE_PRINTF_YES
+#if defined(UART_USE_PRINTF_YES) || defined(DEBUG)
 /**
  * Use the same method as printf to create a formatted string. The formatted
  * string is then printed using Uartx_puts().
@@ -237,7 +237,7 @@ Uart1_printf( const char *format, ... ) {
     
     return len;
 }
-#endif /* UART_USE_PRINTF_YES */
+#endif /* UART_USE_PRINTF_YES or DEBUG */
 
 /**
  * Use the software FIFO buffer to receive data.
