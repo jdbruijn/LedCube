@@ -29,6 +29,7 @@ void
 PanelControl_init( void ) {
     LedDriver_init();
     
+    DEBUG_PRINTF_FUNCTION_INITIALIZE_COMPLETE();
     return;
 }
 

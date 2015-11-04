@@ -77,10 +77,10 @@
 #include <stdint.h>
 #include "System.h"
 #include <libpic30.h>
-#include "IOPorts.h"
 #include "Buzzer.h"
-#include "Uart.h"
+#include "IOPorts.h"
 #include "LedCube.h"
+#include "Uart.h"
 
 /*******************************************************************************
  * Main function
@@ -96,16 +96,15 @@ int
 main(int argc, char** argv) {
     ConfigureOscillator();
     
-    // User code initialisation 
+    // User code initialisation
     IOPorts_init();
-    Buzzer_init();
     Uart1_init();
+    Buzzer_init();
     Buzzer_shortBeep();
     
-    LayerControl_init();
+    LedCube_init();
     Port_ClearPin(OE);    
     
-    pCubeControlData->pCubeDataBase = pCubeData1Base;
     
     // Infinite loop for user code.
     while(1)

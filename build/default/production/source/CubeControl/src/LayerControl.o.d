@@ -9,9 +9,10 @@ source/LibraryFiles/Ports.h  \
 source/LibraryFiles/Ports.h  \
  source/LibraryFiles/PeripheralPinSelect.h  \
  source/LibraryFiles/BitOperations.h  \
-source/LibraryFiles/Uart.h  \
- source/LibraryFiles/System.h  \
+source/LibraryFiles/Debug.h  \
+ source/CubeControl/CubeData.h  \
 source/LibraryFiles/Interrupts.h  \
- source/LibraryFiles/SwFifoBuffer.h  \
-source/CubeControl/CubeData.h  \
- source/LibraryFiles/Interrupts.h 
+ source/LibraryFiles/Uart.h  \
+source/LibraryFiles/System.h  \
+ source/LibraryFiles/Interrupts.h  \
+source/LibraryFiles/SwFifoBuffer.h 

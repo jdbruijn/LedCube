@@ -29,8 +29,8 @@ extern "C" {
  * Includes
  ******************************************************************************/
 #include <xc.h>
-#include "Ports.h"
 #include "PeripheralPinSelect.h"
+#include "Ports.h"
 
 /*******************************************************************************
  * Defines

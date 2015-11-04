@@ -15,5 +15,6 @@ source/CubeControl/PanelControl.h  \
  source/CubeControl/LedDriver.h  \
 source/LibraryFiles/Ports.h  \
  source/LibraryFiles/BitOperations.h  \
-source/CubeControl/CubeData.h  \
- source/LibraryFiles/Interrupts.h 
+source/LibraryFiles/Debug.h  \
+ source/CubeControl/CubeData.h  \
+source/LibraryFiles/Interrupts.h 

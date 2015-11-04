@@ -51,6 +51,7 @@ Buzzer_init( void ) {
     T2CONbits.T32 = 0;          // Form 2 seperate 16-bit timers
     T2CONbits.TON = 1;          // Enable timer
     
+    DEBUG_PRINTF_FUNCTION_INITIALIZE_COMPLETE();
     return;
 }
 

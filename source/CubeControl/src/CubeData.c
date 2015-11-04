@@ -93,8 +93,8 @@ pCubeData_t const pCubeData1Base = &CubeControlData.CubeData1[0][0];
 void
 CubeData_init( const pCubeControlData_t _pCubeControlData ) {
     _pCubeControlData->pCubeDataBase = &_pCubeControlData->CubeData0[0][0];
-    pCubeControlData->pCubeDataBase = &pCubeControlData->CubeData0[0][0];
     
+    DEBUG_PRINTF_FUNCTION_INITIALIZE_COMPLETE();
     return;
 }
 

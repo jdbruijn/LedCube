@@ -21,21 +21,16 @@
 #ifndef CUBEDATA_H
 #define	CUBEDATA_H
 
-//#ifdef __cplusplus
-//extern "C" {
-//#endif
-
-/*******************************************************************************
- * Switches
- ******************************************************************************/
-// @todo New File: Add switches, for example NAME_ENABLE_SELFTEST_YES or remove this block
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*******************************************************************************
  * Includes
  ******************************************************************************/
-#include <xc.h>
 #include <stdint.h>
 #include <stddef.h>
+#include "Debug.h"
 
 /*******************************************************************************
  * Defines
@@ -43,9 +38,9 @@
 // @todo New File: Add defines or remove this block
 
 /*******************************************************************************
- * Macro's
+ * Macros
  ******************************************************************************/
-// @todo New File: Add macro's or remove this block
+// @todo New File: Add macros or remove this block
 typedef enum {
     PANEL_0 = 0,
     PANEL_1 = 2,

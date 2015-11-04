@@ -144,13 +144,13 @@ extern "C" {
 
 
 /*******************************************************************************
- * Macro's
+ * Macros
  ******************************************************************************/
 /**
- * Macro's and helper macro's to join defines and arguments. The functions below
- * will use the macro's to join defines.
+ * Macros and helper macros to join defines and arguments. The functions below
+ * will use the macros to join defines.
  * 
- * @Note	The macro's need a second helper macro in order to expand multiple
+ * @Note	The macros need a second helper macro in order to expand multiple
  * defines.
  * 
  * For details about macro replacement and argument substitution

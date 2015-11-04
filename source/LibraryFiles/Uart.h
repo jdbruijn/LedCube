@@ -29,8 +29,7 @@ extern "C" {
  * Switches
  ******************************************************************************/
 #define UART_USE_PRINTF_YES
-#define UART_INIT_COMPLETE_MSG_NO
-    
+
 /*******************************************************************************
  * Includes
  ******************************************************************************/
@@ -91,6 +90,9 @@ extern "C" {
 /**
  * Initialize the UARTx module with the given baud rate.
  * 
+ * @Note    If debug is enabled this function should be called before
+ * initializing all other initialize functions. But obviously I/O ports should
+ * be configured fist.
  * @Note    Make sure the analog functionality of the RX pin, if it has an
  * analog functionality, is disabled.
  * @param   void

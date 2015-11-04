@@ -71,6 +71,7 @@ LedDriver_init( void ) {
     SPI1STATbits.SPIEN = 1;     // Enable SPIx module
     Nop();
     
+    DEBUG_PRINTF_FUNCTION_INITIALIZE_COMPLETE();
     return;
 }
 

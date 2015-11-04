@@ -37,8 +37,9 @@ extern "C" {
 #include <stdint.h>
 #include <stdlib.h>
 #include <assert.h>
-#include "LayerControl.h"
 #include "Uart.h"
+#include "Debug.h"
+#include "LayerControl.h"
 #include "CubeData.h"
 
 /*******************************************************************************
@@ -68,8 +69,10 @@ extern "C" {
  * Function prototypes
  ******************************************************************************/
 /**
- * Initialize the LedCube, including the LayerControl.
+ * Initialize everything needed for controlling the LED cube.
  * 
+ * @Note    This also initializes everything needed for controlling the layers
+ * and a PanelControl PCB.
  * @param   void
  * @return  void
  * @Example <code>LedCube_init();</code>

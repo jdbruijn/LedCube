@@ -25,7 +25,7 @@
 // Used for keeping track of the current layer in the ISR.
 volatile uint8_t layer = 0;
 volatile uint8_t bamRound = 0;
-const uint8_t layerArray[8] = { 1, 2, 4, 8, 16, 32, 64, 128 };
+const uint8_t layerArray[8] = { 1, 2, 4, 8, 16, 32, 64, 128 }; // @todo remove this when it is not needed anymore
 /*******************************************************************************
  * Functions
  ******************************************************************************/
@@ -136,6 +136,7 @@ LayerControl_init( void ) {
     T3CONbits.TCKPS = 0b11;
     T3CONbits.TON = 1;              // Enable Timer x
     
+    DEBUG_PRINTF_FUNCTION_INITIALIZE_COMPLETE();
     return;
 }
 

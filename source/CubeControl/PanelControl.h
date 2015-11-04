@@ -35,6 +35,7 @@ extern "C" {
  * Includes
  ******************************************************************************/
 #include <xc.h>
+#include "Debug.h"
 #include "LedDriver.h"
 #include "CubeData.h"
 #ifdef PC_ENABLE_SELF_TEST_YES
@@ -42,8 +43,7 @@ extern "C" {
 #include "System.h"
 #include <libpic30.h>           // for __delay_ms()
 #endif /* PC_ENABLE_SELF_TEST_YES */
-#include "Uart.h"
-    
+
 /*******************************************************************************
  * Defines
  ******************************************************************************/

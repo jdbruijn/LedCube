@@ -90,12 +90,17 @@ uint8_t _pArray[8][3] = {
  * Functions
  ******************************************************************************/
 /**
- * Call the LayerControl's init function.
+ * Initialize everything needed for controlling the layers using the the
+ * LayerControl_init function and initialize the CubeData using the
+ * CubeData_init function.
  * 
  */
 void
 LedCube_init( void ) {
     LayerControl_init();
+    CubeData_init(pCubeControlData);
+    
+    DEBUG_PRINTF_FUNCTION_INITIALIZE_COMPLETE();
     return;
 }
 

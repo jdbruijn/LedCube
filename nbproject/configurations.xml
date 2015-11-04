@@ -27,6 +27,7 @@
         <itemPath>source/LibraryFiles/src/IOPorts.c</itemPath>
         <itemPath>source/LibraryFiles/src/SwFifoBuffer.c</itemPath>
         <itemPath>source/LibraryFiles/src/System.c</itemPath>
+        <itemPath>source/LibraryFiles/src/Debug.c</itemPath>
       </logicalFolder>
       <itemPath>source/LibraryFiles/BitOperations.h</itemPath>
       <itemPath>source/LibraryFiles/Buzzer.h</itemPath>
@@ -37,6 +38,7 @@
       <itemPath>source/LibraryFiles/SwFifoBuffer.h</itemPath>
       <itemPath>source/LibraryFiles/System.h</itemPath>
       <itemPath>source/LibraryFiles/Uart.h</itemPath>
+      <itemPath>source/LibraryFiles/Debug.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -52,6 +54,8 @@
                    displayName="Important Files"
                    projectFiles="false">
       <itemPath>Makefile</itemPath>
+      <itemPath>README.md</itemPath>
+      <itemPath>LICENSE.md</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
@@ -244,6 +248,7 @@
         <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
         <property key="UART 1" value="true"/>
         <property key="UART 2" value="true"/>
+        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>
@@ -474,6 +479,7 @@
         <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
         <property key="UART 1" value="true"/>
         <property key="UART 2" value="true"/>
+        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>

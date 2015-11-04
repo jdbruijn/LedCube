@@ -37,10 +37,10 @@ extern "C" {
 #include <xc.h>
 #include <stdint.h>
 #include "System.h"             // For calculating the SPI Clock (FCY)
+#include "Debug.h"
 #include "Ports.h"
 #include "IOPorts.h"
 #include "BitOperations.h"
-#include "Uart.h"
 
 /*******************************************************************************
  * Defines
@@ -50,7 +50,7 @@ extern "C" {
 #define SPI1_FSCK               FCY / (SPI1_PPRE * SPI1_SPRE)
 
 /*******************************************************************************
- * Macro's
+ * Macros
  ******************************************************************************/
 #define LED_DRIVER_LeLow()      Port_ClearPin(LD_LE)
 #define LED_DRIVER_LeHigh()     Port_SetPin(LD_LE)

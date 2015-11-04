@@ -55,6 +55,7 @@ extern "C" {
 #include <xc.h>
 #include <stdint.h>
 #include "System.h"             // For calculating the SPI Clock (FCY)
+#include "Debug.h"
 #include "PanelControl.h"
 #include "Interrupts.h"
 #include "BitOperations.h"
@@ -69,7 +70,7 @@ extern "C" {
 #define SPI2_FSCK           FCY / (SPI2_PPRE * SPI2_SPRE)
 
 /*******************************************************************************
- * Macro's
+ * Macros
  ******************************************************************************/
 #define LayerControl_pulseLatch() Port_PulsePin(ANODE_LATCH)
 #define SPI2_WaitTillTxBufferEmpty() while( SPI2STATbits.SPITBF == 1 )
