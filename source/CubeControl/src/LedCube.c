@@ -118,18 +118,18 @@ LedCube_setPixel( const pCubeData_t _pCubeData[],
     
     /********** Check conditions **********************************************/
     /* X, y, z positions within range */
-    assert( LEDCUBE_MIN_XYZ <= _x && \
+    ASSERT( LEDCUBE_MIN_XYZ <= _x && \
             LEDCUBE_MAX_XYZ >= _x );
-    assert( LEDCUBE_MIN_XYZ <= _y && \
+    ASSERT( LEDCUBE_MIN_XYZ <= _y && \
             LEDCUBE_MAX_XYZ >= _y );
-    assert( LEDCUBE_MIN_XYZ <= _z && \
+    ASSERT( LEDCUBE_MIN_XYZ <= _z && \
             LEDCUBE_MAX_XYZ >= _z );
     /* Intensities within range */
-    assert( LEDCUBE_MIN_INTENSITY <= _red && \
+    ASSERT( LEDCUBE_MIN_INTENSITY <= _red && \
             LEDCUBE_MAX_INTENSITY >= _red );
-    assert( LEDCUBE_MIN_INTENSITY <= _green && \
+    ASSERT( LEDCUBE_MIN_INTENSITY <= _green && \
             LEDCUBE_MAX_INTENSITY >= _green );
-    assert( LEDCUBE_MIN_INTENSITY <= _blue && \
+    ASSERT( LEDCUBE_MIN_INTENSITY <= _blue && \
             LEDCUBE_MAX_INTENSITY >= _blue );
     
     /********** Calculate position ********************************************/

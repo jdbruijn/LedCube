@@ -103,13 +103,13 @@ main(int argc, char** argv) {
     Buzzer_shortBeep();
     
     LedCube_init();
-    Port_ClearPin(OE);    
+    Port_ClearPin(OE);
     
     
     // Infinite loop for user code.
     while(1)
     {
-        
+        LedCube_setPixel(&pCubeControlData->pCubeDataBase, 8,0,0, 0,0,1);
         uint8_t i = 0;
         for(i = 0; i < 16; i++) {
             LedCube_setPixel(&pCubeControlData->pCubeDataBase, 0,0,0,  0, 0, i);

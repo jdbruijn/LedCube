@@ -36,11 +36,11 @@ extern "C" {
 #include <xc.h>
 #include <stdint.h>
 #include <stdlib.h>
-#include <assert.h>
 #include "Uart.h"
 #include "Debug.h"
 #include "LayerControl.h"
 #include "CubeData.h"
+#include "MyAssert.h"
 
 /*******************************************************************************
  * Defines

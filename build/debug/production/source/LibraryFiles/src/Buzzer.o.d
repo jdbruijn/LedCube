@@ -5,4 +5,5 @@ source/LibraryFiles/Buzzer.h  \
 source/LibraryFiles/Debug.h  \
  source/LibraryFiles/Uart.h  \
 source/LibraryFiles/Interrupts.h  \
- source/LibraryFiles/SwFifoBuffer.h 
+ source/LibraryFiles/SwFifoBuffer.h  \
+source/LibraryFiles/MyAssert.h 

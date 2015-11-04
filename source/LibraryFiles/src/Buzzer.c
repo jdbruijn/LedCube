@@ -90,9 +90,9 @@ Buzzer_shortBeep( void ) {
 void
 Buzzer_set( uint16_t _frequency, uint32_t _time ) {
     /********** Check conditions **********************************************/
-    assert( _frequency >= BUZZER_MIN_FREQUENCY && \
+    ASSERT( _frequency >= BUZZER_MIN_FREQUENCY && \
             _frequency <= BUZZER_MAX_FREQUENCY );
-    assert( _time >= BUZZER_MIN_TIME && \
+    ASSERT( _time >= BUZZER_MIN_TIME && \
             _time <= BUZZER_MAX_TIME );
     
     /********** Set frequency *************************************************/

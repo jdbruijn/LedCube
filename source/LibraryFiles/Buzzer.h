@@ -35,11 +35,11 @@ extern "C" {
  ******************************************************************************/
 #include <xc.h>
 #include <stdint.h>
-#include <assert.h>
 // System.h must be included before libpic32.h because usage of FCY in libpic32.h
 #include "System.h"
 #include <libpic30.h>           // for __delay_ms()
 #include "Debug.h"
+#include "MyAssert.h"
 
 /*******************************************************************************
  * Defines

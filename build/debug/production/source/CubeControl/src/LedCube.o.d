@@ -17,4 +17,5 @@ source/LibraryFiles/IOPorts.h  \
 source/LibraryFiles/Ports.h  \
  source/LibraryFiles/BitOperations.h  \
 source/CubeControl/CubeData.h  \
- source/LibraryFiles/Interrupts.h 
+ source/LibraryFiles/Interrupts.h  \
+source/LibraryFiles/MyAssert.h 

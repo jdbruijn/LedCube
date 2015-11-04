@@ -39,6 +39,7 @@
       <itemPath>source/LibraryFiles/System.h</itemPath>
       <itemPath>source/LibraryFiles/Uart.h</itemPath>
       <itemPath>source/LibraryFiles/Debug.h</itemPath>
+      <itemPath>source/LibraryFiles/MyAssert.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -526,6 +527,8 @@
         </C30-LD>
         <C30Global>
         </C30Global>
+      </item>
+      <item path="source/LibraryFiles/MyAssert.h" ex="true" overriding="false">
       </item>
     </conf>
   </confs>
