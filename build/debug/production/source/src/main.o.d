@@ -19,6 +19,6 @@ source/CubeControl/PanelControl.h  \
  source/CubeControl/LedDriver.h  \
 source/LibraryFiles/Ports.h  \
  source/LibraryFiles/BitOperations.h  \
-source/CubeControl/CubeData.h  \
+source/CubeControl/CubeControlData.h  \
  source/LibraryFiles/Interrupts.h  \
 source/LibraryFiles/MyAssert.h 

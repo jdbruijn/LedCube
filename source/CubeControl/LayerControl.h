@@ -59,7 +59,7 @@ extern "C" {
 #include "PanelControl.h"
 #include "Interrupts.h"
 #include "BitOperations.h"
-#include "CubeData.h"
+#include "CubeControlData.h"
     
 /*******************************************************************************
  * Defines

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Begin of file CubeData.h
+ * Begin of file CubeControlData.h
  * Author: jdebruijn
  * Created on October 31, 2015, 11:34 AM
  * 
@@ -18,13 +18,13 @@
  * 
  ******************************************************************************/
 
-#ifndef CUBEDATA_H
-#define	CUBEDATA_H
+#ifndef CUBECONTROLDATA_H
+#define	CUBECONTROLDATA_H
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-// @todo Rename to CubeControlData
+
 /*******************************************************************************
  * Includes
  ******************************************************************************/
@@ -102,7 +102,7 @@ extern pCubeData_t const pCubeData1Base;
  * @Example <code>CubeControlData_init(pCubeControlData);</code>
  */
 void
-CubeData_init( pCubeControlData_t const _pCubeControlData );
+CubeControlData_init( pCubeControlData_t const _pCubeControlData );
 
 /**
  * Switch the CubeData read- and write pointers.
@@ -112,7 +112,7 @@ CubeData_init( pCubeControlData_t const _pCubeControlData );
  * @Example <code>CubeControlData_switchCubeData(pCubeControlData);</code>
  */
 void
-CubeData_switchCubeData( pCubeControlData_t const _pCubeControlData );
+CubeControlData_switchCubeData( pCubeControlData_t const _pCubeControlData );
 
 /**
  * Reset a CubeData structure array.
@@ -123,7 +123,7 @@ CubeData_switchCubeData( pCubeControlData_t const _pCubeControlData );
  * CubeControlData_resetCubeData(pCubeControlData->pCubeDataWrite);</code>
  */
 void
-CubeData_resetData( pCubeData_t const _pCubeData );
+CubeControlData_resetData( pCubeData_t const _pCubeData );
 
 /**
  * Print the contents of a CubeData structure array hexadecimal.
@@ -140,5 +140,5 @@ CubeControlData_printHexCubeData( pCubeData_t const _pCubeData );
 }
 #endif
 
-#endif	/* CUBEDATA_H */
-/* End of file CubeData.h */
+#endif	/* CUBECONTROLDATA_H */
+/* End of file CubeControlData.h */

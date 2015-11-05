@@ -37,7 +37,7 @@ extern "C" {
 #include <xc.h>
 #include "Debug.h"
 #include "LedDriver.h"
-#include "CubeData.h"
+#include "CubeControlData.h"
 #ifdef PC_ENABLE_SELF_TEST_YES
 // System.h must be included before libpic32.h because of usage of FCY
 #include "System.h"

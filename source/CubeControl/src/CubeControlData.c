@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Begin of file CubeData.c
+ * Begin of file CubeControlData.c
  * Author: jdebruijn
  * Created on October 31, 2015, 11:34 AM
  * 
@@ -16,7 +16,7 @@
 /*******************************************************************************
  * Includes
  ******************************************************************************/
-#include "CubeData.h"
+#include "CubeControlData.h"
 
 /*******************************************************************************
  * Global variables
@@ -106,7 +106,7 @@ pCubeData_t const pCubeData1Base = &CubeControlData.CubeData1[0][0];
  * 
  */
 void
-CubeData_init( pCubeControlData_t const _pCubeControlData ) {
+CubeControlData_init( pCubeControlData_t const _pCubeControlData ) {
     _pCubeControlData->pCubeDataRead = pCubeData0Base;
     _pCubeControlData->pCubeDataWrite = pCubeData1Base;
         
@@ -122,7 +122,7 @@ CubeData_init( pCubeControlData_t const _pCubeControlData ) {
  * 
  */
 void
-CubeData_switchCubeData( pCubeControlData_t const _pCubeControlData ) {
+CubeControlData_switchCubeData( pCubeControlData_t const _pCubeControlData ) {
     INTERRUPTS_DISSABLE_AND_SAVE_CPU_IPL();
     
     if(_pCubeControlData->pCubeDataRead == pCubeData0Base) {
@@ -149,7 +149,7 @@ CubeData_switchCubeData( pCubeControlData_t const _pCubeControlData ) {
  * 
  */
 void
-CubeData_resetData( pCubeData_t const _pCubeData ) {
+CubeControlData_resetData( pCubeData_t const _pCubeData ) {
     DEBUG_PRINTF_FUNCTION("     Resetting: %p", _pCubeData);
     
     uint8_t x, z;
@@ -184,4 +184,4 @@ CubeControlData_printHexCubeData( pCubeData_t const _pCubeData ) {
     
     return;
 }
-/* End of file CubeData.c */
+/* End of file CubeControlData.c */

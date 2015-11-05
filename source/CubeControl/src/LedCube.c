@@ -50,14 +50,14 @@ uint8_t _pArray[8][3] = {
  ******************************************************************************/
 /**
  * Initialize everything needed for controlling the layers using the the
- * LayerControl_init function and initialize the CubeData using the
- * CubeData_init function.
+ * LayerControl_init function and initialize the CubeControlData using the
+ * CubeControlData_init function.
  * 
  */
 void
 LedCube_init( void ) {
     LayerControl_init();
-    CubeData_init(pCubeControlData);
+    CubeControlData_init(pCubeControlData);
     
     DEBUG_PRINTF_FUNCTION_INITIALIZE_COMPLETE();
     return;
@@ -153,13 +153,12 @@ LedCube_setPixel( uint8_t const _x, uint8_t const _y, uint8_t const _z,
  */
 void
 LedCube_update( void ) {
-    CubeData_switchCubeData(pCubeControlData);
+    CubeControlData_switchCubeData(pCubeControlData);
     Nop();
     
     return;
 }
-void
-LedCube_printHexData( void );
+
 /**
  * Set all the data in the LedCube's LED data array to zero using the
  * CubeControlData_resetCubeData function.
@@ -167,21 +166,20 @@ LedCube_printHexData( void );
  */
 void
 LedCube_resetData( void ) {
-    LedCube_printHexData();
-    DEBUG_PRINTF_FUNCTION("Resetting data...");
-    CubeData_resetData(pCubeControlData->pCubeDataWrite);
-    LedCube_printHexData();
+    CubeControlData_resetData(pCubeControlData->pCubeDataWrite);
+    
     return;
 }
 
 /**
  * Print all the data in the LedCube's LED data array using the
  * CubeControlData_printHexCubeData function.
+ * 
  */
 void
 LedCube_printHexData( void ) {
     CubeControlData_printHexCubeData(pCubeControlData->pCubeDataWrite);
-        
+    
     return;
 }
 

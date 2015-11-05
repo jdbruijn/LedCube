@@ -39,7 +39,7 @@ extern "C" {
 #include "Uart.h"
 #include "Debug.h"
 #include "LayerControl.h"
-#include "CubeData.h"
+#include "CubeControlData.h"
 #include "MyAssert.h"
 
 /*******************************************************************************
