@@ -26,40 +26,33 @@
 extern "C" {
 #endif
 
+#ifndef NDEBUG
+
 /*******************************************************************************
  * Includes
  ******************************************************************************/
+#ifdef DEBUG
 #include <xc.h>
-#if defined(DEBUG) && !defined(NDEBUG)
 #   ifndef UART_H
 #     include "Uart.h"
 #   endif
-#else /* DEBUG and not NDEBUG */
+#else
 #   include <assert.h>
 #endif
 
 /*******************************************************************************
  * Defines
  ******************************************************************************/
-#ifndef PRINTF
+#ifdef DEBUG
+#   ifndef PRINTF
 /* Wrapper for PRINTF to an actual printf function, in this case Uart1_printf */
-#   define PRINTF Uart1_printf
-#endif
-#if defined(DEBUG) && !defined(NDEBUG)
+#     define PRINTF Uart1_printf
+#   endif
 #   define _ASSERTION_FAILED_MSG " -- assertion failed, program halted..."
-#endif
-
-/*******************************************************************************
- * Condition checks
- ******************************************************************************/
-#if defined(DEBUG) && defined(NDEBUG)
-#   warning Both DEBUG and NDEBUG are defined
-#endif
 
 /*******************************************************************************
  * Macros
  ******************************************************************************/
-#if defined(DEBUG) && !defined(NDEBUG)
 /**
  * Helper macro to print a debugging message to the standard device.
  * 
@@ -92,15 +85,27 @@ extern "C" {
  * 
  */
 #   define ASSERT(expression) {                     \
-                if(expression) {                    \
+                if(!(expression)) {                    \
                     _HELPER_ASSERT(#expression);    \
                     SET_CPU_IPL(7);                 \
                     while(1);                       \
                 } }(void) 0
 
-#else /* DEBUG and not NDEBUG */
+#else /* DEBUG */
+/* Wrapper for ASSERT to the standard assert (from assert.h). */
 #   define ASSERT(expr) assert(expr)
-#endif /* DEBUG and not NDEBUG */
+#endif /* DEBUG */
+
+#else /* NDEBUG is defined */
+#   ifdef DEBUG
+#     warning Both DEBUG and NDEBUG are defined!
+#   endif
+/**
+ * The ASSERT macro does not do anything, the device proceeds program execution
+ * as normal.
+ */
+#   define ASSERT(expr) ((void)0)
+#endif /* NDEBUG */
 
 #ifdef	__cplusplus
 }
