@@ -51,21 +51,6 @@ extern "C" {
 #define LEDCUBE_MAX_INTENSITY   15
 
 /*******************************************************************************
- * Structures
- ******************************************************************************/
-//typedef struct {
-//    LayerControlData_t LayerData0;
-//    LayerControlData_t LayerData1;
-//    LayerControlData_t LayerData2;
-//    LayerControlData_t LayerData3;
-//    LayerControlData_t LayerData4;
-//    LayerControlData_t LayerData5;
-//    LayerControlData_t LayerData6;
-//    LayerControlData_t LayerData7;
-//    uint32_t CubeData[8][8][3];
-//}CubeControlData_t, *pCubeControlData_t;
-
-/*******************************************************************************
  * Function prototypes
  ******************************************************************************/
 /**
@@ -85,8 +70,6 @@ LedCube_init( void );
  * 
  * @todo Add an image or diagram of how the LedCube's axis are set.
  * 
- * @param   _pCubeData[], pointer to the first element of a CubeData structure
- * array.
  * @param   _x Ranges from 0 to 7 and selects the row, 0 for the back row and
  * 8 for the front row.
  * @param   _y Ranges from 0 to 7 and selects the column, 0 for the left column
@@ -104,13 +87,12 @@ LedCube_init( void );
  * back, left and lowest LED to 100% red.</code>
  */
 void
-LedCube_setPixel( const pCubeData_t _pCubeData[],
-        const uint8_t _x, const uint8_t _y, const uint8_t _z,
-        const uint8_t _red, const uint8_t _green, const uint8_t _blue );
+LedCube_setPixel( uint8_t const _x, uint8_t const _y, uint8_t const _z,
+        uint8_t const _red, uint8_t const _green, uint8_t const _blue );
 
 /**
  * Update the outputs of the LedCube with the data that is currently set in the
- * LedCube's LED data.
+ * CubeData structure array.
  * 
  * @param   void
  * @return  void

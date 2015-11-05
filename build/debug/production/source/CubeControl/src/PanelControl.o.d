@@ -13,4 +13,5 @@ source/LibraryFiles/Ports.h  \
 source/LibraryFiles/PeripheralPinSelect.h  \
  source/LibraryFiles/Ports.h  \
 source/LibraryFiles/BitOperations.h  \
- source/CubeControl/CubeData.h 
+ source/CubeControl/CubeData.h  \
+source/LibraryFiles/Interrupts.h 

@@ -109,17 +109,14 @@ main(int argc, char** argv) {
     // Infinite loop for user code.
     while(1)
     {
-        LedCube_setPixel(&pCubeControlData->pCubeDataBase, 8,0,0, 0,0,1);
+        LedCube_setPixel(1,0,0, 0,0,1);
         uint8_t i = 0;
         for(i = 0; i < 16; i++) {
-            LedCube_setPixel(&pCubeControlData->pCubeDataBase, 0,0,0,  0, 0, i);
+            LedCube_setPixel(3,4,2,  0, 0, 14);
             __delay_ms(500);
         }
-        if(pCubeControlData->pCubeDataBase == pCubeData1Base) {
-            pCubeControlData->pCubeDataBase = pCubeData0Base;
-        } else {
-            pCubeControlData->pCubeDataBase = pCubeData1Base;
-        }
+        LedCube_update();
+        LedCube_resetData();
         __delay_ms(5000);
         
     }

@@ -14,7 +14,7 @@
  *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
  * 
  * Description:
- *  Control the data of the Whole LedCube.
+ *  Declare and control the data of the whole LED cube.
  * 
  ******************************************************************************/
 
@@ -24,23 +24,31 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
+// @todo Rename to CubeControlData
 /*******************************************************************************
  * Includes
  ******************************************************************************/
+#include <xc.h>
 #include <stdint.h>
 #include <stddef.h>
 #include "Debug.h"
+#include "Interrupts.h"
 
 /*******************************************************************************
  * Defines
  ******************************************************************************/
-// @todo New File: Add defines or remove this block
+/* Max coordinate for the x-axis */
+#define CUBEDATA_MAX_X_C    8
+/* Max coordinate for the y-axis */
+#define CUBEDATA_MAX_Z_C    CUBEDATA_MAX_X_C
+/* Max coordinate for the z-axis */
+#define CUBEDATA_MAX_Z_C    CUBEDATA_MAX_X_C
+/* Number of bits used for bit angle modulation (BAM) */
+#define CUBEDATA_N_BAM_BITS 4
 
 /*******************************************************************************
- * Macros
+ * Enumerators
  ******************************************************************************/
-// @todo New File: Add macros or remove this block
 typedef enum {
     PANEL_0 = 0,
     PANEL_1 = 2,
@@ -62,27 +70,71 @@ typedef struct {
     uint32_t red;
     uint32_t green;
     uint32_t blue;
-}RowControlData_t, *pRowControlData_t, *pCubeData_t;
+}RowData_t, *pCubeData_t;
 
 typedef struct {
-    RowControlData_t CubeData0[8][8];
-    RowControlData_t CubeData1[8][8];
-    pCubeData_t pCubeDataBase;
-    const BamRoundMasks_t BamRoundMask[4];
-    const uint8_t BamRoundShift[4];
+    RowData_t               CubeData0[CUBEDATA_MAX_Z_C][CUBEDATA_MAX_X_C];
+    RowData_t               CubeData1[CUBEDATA_MAX_Z_C][CUBEDATA_MAX_X_C];
+    pCubeData_t             pCubeDataRead;
+    pCubeData_t             pCubeDataWrite;
+    BamRoundMasks_t const   BamRoundMask[CUBEDATA_N_BAM_BITS];
+    uint8_t                 BamRoundShift[CUBEDATA_N_BAM_BITS];
 }CubeControlData_t, *pCubeControlData_t;
-extern pCubeControlData_t pCubeControlData;
+
+/*******************************************************************************
+ * Global variables
+ ******************************************************************************/
+/* Constant pointer to the CubeControlData structure */
+extern pCubeControlData_t const pCubeControlData;
+/* Constant pointer to the CubeData0 structure array */
 extern pCubeData_t const pCubeData0Base;
+/* Constant pointer to the CubeData1 structure array */
 extern pCubeData_t const pCubeData1Base;
 
 /*******************************************************************************
  * Function prototypes
  ******************************************************************************/
+/**
+ * Initialize the CubeControlData structure.
+ * 
+ * @param   _pCubeControlData, pointer to the CubeControlData structure.
+ * @return  void
+ * @Example <code>CubeControlData_init(pCubeControlData);</code>
+ */
 void
-CubeData_init( const pCubeControlData_t _pCubeControlData );
+CubeData_init( pCubeControlData_t const _pCubeControlData );
 
+/**
+ * Switch the CubeData read- and write pointers.
+ * 
+ * @param   _pCubeControlData, pointer to the CubeControlData structure.
+ * @return  void
+ * @Example <code>CubeControlData_switchCubeData(pCubeControlData);</code>
+ */
 void
-resetData( const pCubeData_t _pCubeData[] );
+CubeData_switchCubeData( pCubeControlData_t const _pCubeControlData );
+
+/**
+ * Reset a CubeData structure array.
+ * 
+ * @param   _pCubeData, pointer to a CubeData structure array.
+ * @return  void
+ * @Example <code>
+ * CubeControlData_resetCubeData(pCubeControlData->pCubeDataWrite);</code>
+ */
+void
+CubeData_resetData( pCubeData_t const _pCubeData );
+
+/**
+ * Print the contents of a CubeData structure array hexadecimal.
+ * 
+ * @param   _pCubeData, pointer to a CubeData structure array.
+ * @return  void
+ * @Example <code>
+ * CubeControlData_printCubeData(pCubeControlData->pCubeDataRead);</code>
+ */
+void
+CubeControlData_printHexCubeData( pCubeData_t const _pCubeData );
 
 #ifdef	__cplusplus
 }

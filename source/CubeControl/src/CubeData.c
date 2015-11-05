@@ -6,8 +6,11 @@
  *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
  * 
  * Copyright (c) 2015 Jeroen de Bruijn <vidavidorra@gmail.com>
- * @todo New File: Enter license like The MIT License or remove this line.
- *
+ * 
+ * This file is part of LedCube which is released under The MIT License (MIT).
+ * For full license details see file "main.c" or "LICENSE.md" or go to
+ * https://opensource.org/licenses/MIT
+ * 
  ******************************************************************************/
 
 /*******************************************************************************
@@ -16,7 +19,7 @@
 #include "CubeData.h"
 
 /*******************************************************************************
- * Functions
+ * Global variables
  ******************************************************************************/
 CubeControlData_t CubeControlData = {
     { /* CubeData0 */
@@ -71,7 +74,8 @@ CubeControlData_t CubeControlData = {
         { /* Layer 7 */
             {0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0},{0,0,0}, }
     },
-    NULL, /* pCubeDataBase */
+    NULL, /* pCubeDataRead */
+    NULL, /* pCubeDataWrite */
     { /* BamRoundMask */
         BAM_MASK_ROUND_0,
         BAM_MASK_ROUND_1,
@@ -86,30 +90,98 @@ CubeControlData_t CubeControlData = {
     }
     
 };
-pCubeControlData_t pCubeControlData = &CubeControlData;
+/* Constant pointer to the CubeControlData structure */
+pCubeControlData_t const pCubeControlData = &CubeControlData;
+/* Constant pointer to the CubeData0 structure array */
 pCubeData_t const pCubeData0Base = &CubeControlData.CubeData0[0][0];
+/* Constant pointer to the CubeData1 structure array */
 pCubeData_t const pCubeData1Base = &CubeControlData.CubeData1[0][0];
 
+/*******************************************************************************
+ * Functions
+ ******************************************************************************/
+/**
+ * Initialize the CubeControlData structure by pointing the CubeData read- and
+ * write pointers to respectively the first and second CubeData structure array.
+ * 
+ */
 void
-CubeData_init( const pCubeControlData_t _pCubeControlData ) {
-    _pCubeControlData->pCubeDataBase = &_pCubeControlData->CubeData0[0][0];
-    
+CubeData_init( pCubeControlData_t const _pCubeControlData ) {
+    _pCubeControlData->pCubeDataRead = pCubeData0Base;
+    _pCubeControlData->pCubeDataWrite = pCubeData1Base;
+        
     DEBUG_PRINTF_FUNCTION_INITIALIZE_COMPLETE();
     return;
 }
 
+/**
+ * Switch the CubeData read- and write pointers by checking where the read
+ * pointer is currently pointing to and switching the read- and write pointers
+ * accordingly. All performed with interrupts disabled because the CubeData read
+ * takes place in an interrupt service routine.
+ * 
+ */
 void
-resetData( const pCubeData_t _pCubeData[] ) {
+CubeData_switchCubeData( pCubeControlData_t const _pCubeControlData ) {
+    INTERRUPTS_DISSABLE_AND_SAVE_CPU_IPL();
+    
+    if(_pCubeControlData->pCubeDataRead == pCubeData0Base) {
+        _pCubeControlData->pCubeDataRead = pCubeData1Base;
+        _pCubeControlData->pCubeDataWrite = pCubeData0Base;
+        DEBUG_PRINTF_FUNCTION("pCubeDataRead: %p, pCubeDataWrite: %p",
+                _pCubeControlData->pCubeDataRead,
+                _pCubeControlData->pCubeDataWrite);
+    } else {
+        _pCubeControlData->pCubeDataRead = pCubeData0Base;
+        _pCubeControlData->pCubeDataWrite = pCubeData1Base;
+        DEBUG_PRINTF_FUNCTION("pCubeDataRead: %p, pCubeDataWrite: %p",
+                _pCubeControlData->pCubeDataRead,
+                _pCubeControlData->pCubeDataWrite);
+    }
+    
+    INTERRUPTS_RESTORE_CPU_IPL();
+    
+    return;
+}
+
+/**
+ * Reset a CubeData structure array by looping through the z and x coordinates.
+ * 
+ */
+void
+CubeData_resetData( pCubeData_t const _pCubeData ) {
+    DEBUG_PRINTF_FUNCTION("     Resetting: %p", _pCubeData);
+    
     uint8_t x, z;
-    for(z = 0; z < 8; z++) {
-        for(x = 0; x < 8; x++) {
-            _pCubeData[z][x].red = 0x00000000;
-            _pCubeData[z][x].green = 0x00000000;
-            _pCubeData[z][x].blue = 0x00000000;
+    for(z = 0; z < CUBEDATA_MAX_Z_C; z++) {
+        for(x = 0; x < CUBEDATA_MAX_X_C; x++) {
+            (_pCubeData + z * CUBEDATA_MAX_Z_C + x)->red   = 0x00000000;
+            (_pCubeData + z * CUBEDATA_MAX_Z_C + x)->green = 0x00000000;
+            (_pCubeData + z * CUBEDATA_MAX_Z_C + x)->blue  = 0x00000000;
         }
     }
     
     return;
 }
 
+/**
+ * Print a CubeData structure array by looping through the z and x coordinates.
+ * 
+ */
+void
+CubeControlData_printHexCubeData( pCubeData_t const _pCubeData ) {
+    uint8_t x, z;
+    for(z = 0; z < 8; z++) {
+        for(x = 0; x < 8; x++) {
+            PRINTF("pCubeData[%u][%u].red  : 0x%.8lX\n", z, x,
+                    (_pCubeData + z * CUBEDATA_MAX_Z_C + x)->red);
+            PRINTF("pCubeData[%u][%u].green: 0x%.8lX\n", z, x,
+                    (_pCubeData + z * CUBEDATA_MAX_Z_C + x)->green);
+            PRINTF("pCubeData[%u][%u].blue : 0x%.8lX\n", z, x,
+                    (_pCubeData + z * CUBEDATA_MAX_Z_C + x)->blue);
+        }
+    }
+    
+    return;
+}
 /* End of file CubeData.c */

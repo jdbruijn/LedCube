@@ -45,47 +45,6 @@ uint8_t _pArray[8][3] = {
 #endif
 };
 
-//CubeControlData_t CubeData = {
-//     /*               |  Panel 1  | |  panel 2  | |  panel 3  | |  panel 4  | */
-//    {/* LayerData0 */ {0,0,0,0,0,0},{0,0,0,0,0,0},{0,0,0,0,0,0},{0,0,0,0,0,0} },
-//    {/* LayerData1 */ {0,0,0,0,0,0},{0,0,0,0,0,0},{0,0,0,0,0,0},{0,0,0,0,0,0} },
-//    {/* LayerData2 */ {0,0,0,0,0,0},{0,0,0,0,0,0},{0,0,0,0,0,0},{0,0,0,0,0,0} },
-//    {/* LayerData3 */ {0,0,0,0,0,0},{0,0,0,0,0,0},{0,0,0,0,0,0},{0,0,0,0,0,0} },
-//    {/* LayerData4 */ {0,0,0,0,0,0},{0,0,0,0,0,0},{0,0,0,0,0,0},{0,0,0,0,0,0} },
-//    {/* LayerData5 */ {0,0,0,0,0,0},{0,0,0,0,0,0},{0,0,0,0,0,0},{0,0,0,0,0,0} },
-//    {/* LayerData6 */ {0,0,0,0,0,0},{0,0,0,0,0,0},{0,0,0,0,0,0},{0,0,0,0,0,0} },
-//    {/* LayerData7 */ {0,0,0,0,0,0},{0,0,0,0,0,0},{0,0,0,0,0,0},{0,0,0,0,0,0} },
-//    {/* CubeData */
-//        /*            | row 0 | | row 1 | | row 2 | | row 3 | (x-value) */
-//      { /* Layer 0 */ { 0,0,0 },{ 0,0,0 },{ 0,0,0 },{ 0,0,0 },
-//        /*            | row 4 | | row 5 | | row 6 | | row 7 | (x-value) */
-//                      { 0,0,0 },{ 0,0,0 },{ 0,0,0 },{ 0,0,0 },
-//      },
-//        /*             |  red   | |  green | |  blue  | */
-//      { /* Layer 1 */ {0x00000000,0x00000000,0x00000000},
-//        /*    BAM round: |  0   ||  1   ||  2   ||  3   | */
-//                      {0b00000000000000000000000000000000, 0,0},
-//        /*               |      ||      ||      ||      | */
-//        /*    Column:    76543210765432107654321076543210 (y-value) */
-//                      {0b00000000000000000000000000000000, 0,0},{0,0,0},
-//                      {0,0,0},{0,0,0},{0,0,0},{0,0,0},
-//      },
-//      { /* Layer 2 */ {0,0,0},{0,0,0},{0,0,0},{0,0,0},
-//            {0,0,0},{0,0,0},{0,0,0},{0,0,0} },
-//      { /* Layer 3 */ {0,0,0},{0,0,0},{0,0,0},{0,0,0},
-//            {0,0,0},{0,0,0},{0,0,0},{0,0,0} },
-//      { /* Layer 4 */ {0,0,0},{0,0,0},{0,0,0},{0,0,0},
-//            {0,0,0},{0,0,0},{0,0,0},{0,0,0} },
-//      { /* Layer 5 */ {0,0,0},{0,0,0},{0,0,0},{0,0,0},
-//            {0,0,0},{0,0,0},{0,0,0},{0,0,0} },
-//      { /* Layer 6 */ {0,0,0},{0,0,0},{0,0,0},{0,0,0},
-//            {0,0,0},{0,0,0},{0,0,0},{0,0,0} },
-//      { /* Layer 7 */ {0,0,0},{0,0,0},{0,0,0},{0,0,0},
-//            {0,0,0},{0,0,0},{0,0,0},{0,0,0} }
-//    }
-//};
-//const pCubeControlData_t pCubeData = &CubeData;
-
 /*******************************************************************************
  * Functions
  ******************************************************************************/
@@ -110,11 +69,12 @@ LedCube_init( void ) {
  * 
  */
 void
-LedCube_setPixel( const pCubeData_t _pCubeData[],
-        const uint8_t _x, const uint8_t _y, const uint8_t _z,
-        const uint8_t _red, const uint8_t _green, const uint8_t _blue ) {
-    DEBUG_PRINTF_FUNCTION_CALL("%p, %u, %u, %u, %u, %u, %u", *_pCubeData, \
+LedCube_setPixel( uint8_t const _x, uint8_t const _y, uint8_t const _z,
+        uint8_t const _red, uint8_t const _green, uint8_t const _blue ) {
+    DEBUG_PRINTF_FUNCTION_CALL("%u, %u, %u, %u, %u, %u", \
             _x, _y, _z, _red, _green, _blue);
+    
+    pCubeData_t const pCubeDataWrite = pCubeControlData->pCubeDataWrite;
     
     /********** Check conditions **********************************************/
     /* X, y, z positions within range */
@@ -165,351 +125,63 @@ LedCube_setPixel( const pCubeData_t _pCubeData[],
      *                            |             1   (14 positions to the left)
      *                    |                    1    (21 positions to the left)
      */
-    _pCubeData[_z][_x].red = ((_red & 0x01UL) << _y) |
+    (pCubeDataWrite + _z * CUBEDATA_MAX_Z_C + _x)->red = \
+            ((_red   & 0x01UL) << _y)        |
             ((_red   & 0x02UL) << (_y + 7))  |
             ((_red   & 0x04UL) << (_y + 14)) |
             ((_red   & 0x08UL) << (_y + 21));
-    _pCubeData[_z][_x].green = ((_green & 0x01UL) << _y) |
+    (pCubeDataWrite + _z * CUBEDATA_MAX_Z_C + _x)->green = \
+            ((_green & 0x01UL) << _y)        |
             ((_green & 0x02UL) << (_y + 7))  |
             ((_green & 0x04UL) << (_y + 14)) |
             ((_green & 0x08UL) << (_y + 21));
-    _pCubeData[_z][_x].blue = ((_blue & 0x01UL) << _y) |
+    (pCubeDataWrite + _z * CUBEDATA_MAX_Z_C + _x)->blue = \
+            ((_blue  & 0x01UL) << _y)        |
             ((_blue  & 0x02UL) << (_y + 7))  |
             ((_blue  & 0x04UL) << (_y + 14)) |
             ((_blue  & 0x08UL) << (_y + 21));
-    
-    Uart1_printf("LedCube_setPixel(%u, %u, %u,  %u, %u, %u)\n", _x, _y, _z, _red, _green, _blue);
-//    Uart1_putBits(pCubeData2->CubeData[_z][_x].blue, 32); Uart1_putc('\n');
-     
+         
 //    LedCube_printLayerDataVF( &pCubeData->LayerData0, 0);
     
     return;
 }
 
 /**
- * Move the LedCube's LED data from the array to a structure which is used for
- * refreshing the LedCube's output.
+ * Switch the CubeData structure array pointer so the data previously written
+ * in this array becomes the LedCube's output.
  * 
  */
 void
 LedCube_update( void ) {
-    // <editor-fold defaultstate="collapsed" desc="Layer 0 array to struct">
-//    /********** Layer 0 *******************************************************/
-//#if 0
-//    /* Layer 0, row 0 */
-//    pCubeData->LayerData0.PanelData1.red_1      = _pArray[0][0];
-//    pCubeData->LayerData0.PanelData1.green_1    = _pArray[0][1];
-//    pCubeData->LayerData0.PanelData1.blue_1     = _pArray[0][2];
-//    /* Layer 0, row 1 */
-//    pCubeData->LayerData0.PanelData1.red_2      = _pArray[1][0];
-//    pCubeData->LayerData0.PanelData1.green_2    = _pArray[1][1];
-//    pCubeData->LayerData0.PanelData1.blue_2     = _pArray[1][2];
-//    /* Layer 0, row 2 */
-//    pCubeData->LayerData0.PanelData2.red_1      = _pArray[2][0];
-//    pCubeData->LayerData0.PanelData2.green_1    = _pArray[2][1];
-//    pCubeData->LayerData0.PanelData2.blue_1     = _pArray[2][2];
-//    /* Layer 0, row 3 */
-//    pCubeData->LayerData0.PanelData2.red_2      = _pArray[3][0];
-//    pCubeData->LayerData0.PanelData2.green_2    = _pArray[3][1];
-//    pCubeData->LayerData0.PanelData2.blue_2     = _pArray[3][2];
-//    /* Layer 0, row 4 */
-//    pCubeData->LayerData0.PanelData3.red_1      = _pArray[4][0];
-//    pCubeData->LayerData0.PanelData3.green_1    = _pArray[4][1];
-//    pCubeData->LayerData0.PanelData3.blue_1     = _pArray[4][2];
-//    /* Layer 0, row 5 */
-//    pCubeData->LayerData0.PanelData3.red_2      = _pArray[5][0];
-//    pCubeData->LayerData0.PanelData3.green_2    = _pArray[5][1];
-//    pCubeData->LayerData0.PanelData3.blue_2     = _pArray[5][2];
-//    /* Layer 0, row 6 */
-//    pCubeData->LayerData0.PanelData4.red_1      = _pArray[6][0];
-//    pCubeData->LayerData0.PanelData4.green_1    = _pArray[6][1];
-//    pCubeData->LayerData0.PanelData4.blue_1     = _pArray[6][2];
-//    /* Layer 0, row 7 */
-//    pCubeData->LayerData0.PanelData4.red_2      = _pArray[7][0];
-//    pCubeData->LayerData0.PanelData4.green_2    = _pArray[7][1];
-//    pCubeData->LayerData0.PanelData4.blue_2     = _pArray[7][2];
-//#else
-//    pCubeData->LayerData0.PanelData1.red_1      = (pCubeData->CubeData[0][0][0] & 0x000000FF);
-////    pCubeData->LayerData0.PanelData1_1.red_1    = (pCubeData->CubeData[0][0][0] & 0x0000FF00) >> 8;
-////    pCubeData->LayerData0.PanelData1_2.red_1    = (pCubeData->CubeData[0][0][0] & 0x00FF0000) >> 16;
-////    pCubeData->LayerData0.PanelData1_3.red_1    = (pCubeData->CubeData[0][0][0] & 0xFF000000) >> 24;
-//#endif
-//    // </editor-fold>
-//    
-//    // <editor-fold defaultstate="collapsed" desc="Layer 1 array to struct">
-//    /********** Layer 1 *******************************************************/
-//    /* Layer 1, row 0 */
-//    pCubeData->LayerData1.PanelData1.red_1      = _pArray[0][0];
-//    pCubeData->LayerData1.PanelData1.green_1    = _pArray[0][1];
-//    pCubeData->LayerData1.PanelData1.blue_1     = _pArray[0][2];
-//    /* Layer 1, row 1 */
-//    pCubeData->LayerData1.PanelData1.red_2      = _pArray[1][0];
-//    pCubeData->LayerData1.PanelData1.green_2    = _pArray[1][1];
-//    pCubeData->LayerData1.PanelData1.blue_2     = _pArray[1][2];
-//    /* Layer 1, row 2 */
-//    pCubeData->LayerData1.PanelData2.red_1      = _pArray[2][0];
-//    pCubeData->LayerData1.PanelData2.green_1    = _pArray[2][1];
-//    pCubeData->LayerData1.PanelData2.blue_1     = _pArray[2][2];
-//    /* Layer 1, row 3 */
-//    pCubeData->LayerData1.PanelData2.red_2      = _pArray[3][0];
-//    pCubeData->LayerData1.PanelData2.green_2    = _pArray[3][1];
-//    pCubeData->LayerData1.PanelData2.blue_2     = _pArray[3][2];
-//    /* Layer 1, row 4 */
-//    pCubeData->LayerData1.PanelData3.red_1      = _pArray[4][0];
-//    pCubeData->LayerData1.PanelData3.green_1    = _pArray[4][1];
-//    pCubeData->LayerData1.PanelData3.blue_1     = _pArray[4][2];
-//    /* Layer 1, row 5 */
-//    pCubeData->LayerData1.PanelData3.red_2      = _pArray[5][0];
-//    pCubeData->LayerData1.PanelData3.green_2    = _pArray[5][1];
-//    pCubeData->LayerData1.PanelData3.blue_2     = _pArray[5][2];
-//    /* Layer 1, row 6 */
-////    pCubeData->LayerData1.PanelData4.red_1      = _pArray[6][0];
-////    pCubeData->LayerData1.PanelData4.green_1    = _pArray[6][1];
-////    pCubeData->LayerData1.PanelData4.blue_1     = _pArray[6][2];
-////    /* Layer 1, row 7 */
-////    pCubeData->LayerData1.PanelData4.red_2      = _pArray[7][0];
-////    pCubeData->LayerData1.PanelData4.green_2    = _pArray[7][1];
-////    pCubeData->LayerData1.PanelData4.blue_2     = _pArray[7][2];
-//    // </editor-fold>
-//    
-//    // <editor-fold defaultstate="collapsed" desc="Layer 2 array to struct">
-//    /********** Layer 2 *******************************************************/
-//    /* Layer 2, row 0 */
-//    pCubeData->LayerData2.PanelData1.red_1      = _pArray[0][0];
-//    pCubeData->LayerData2.PanelData1.green_1    = _pArray[0][1];
-//    pCubeData->LayerData2.PanelData1.blue_1     = _pArray[0][2];
-//    /* Layer 2, row 1 */
-//    pCubeData->LayerData2.PanelData1.red_2      = _pArray[1][0];
-//    pCubeData->LayerData2.PanelData1.green_2    = _pArray[1][1];
-//    pCubeData->LayerData2.PanelData1.blue_2     = _pArray[1][2];
-//    /* Layer 2, row 2 */
-//    pCubeData->LayerData2.PanelData2.red_1      = _pArray[2][0];
-//    pCubeData->LayerData2.PanelData2.green_1    = _pArray[2][1];
-//    pCubeData->LayerData2.PanelData2.blue_1     = _pArray[2][2];
-//    /* Layer 2, row 3 */
-//    pCubeData->LayerData2.PanelData2.red_2      = _pArray[3][0];
-//    pCubeData->LayerData2.PanelData2.green_2    = _pArray[3][1];
-//    pCubeData->LayerData2.PanelData2.blue_2     = _pArray[3][2];
-//    /* Layer 2, row 4 */
-//    pCubeData->LayerData2.PanelData3.red_1      = _pArray[4][0];
-//    pCubeData->LayerData2.PanelData3.green_1    = _pArray[4][1];
-//    pCubeData->LayerData2.PanelData3.blue_1     = _pArray[4][2];
-//    /* Layer 2, row 5 */
-//    pCubeData->LayerData2.PanelData3.red_2      = _pArray[5][0];
-//    pCubeData->LayerData2.PanelData3.green_2    = _pArray[5][1];
-//    pCubeData->LayerData2.PanelData3.blue_2     = _pArray[5][2];
-//    /* Layer 2, row 6 */
-////    pCubeData->LayerData2.PanelData4.red_1      = _pArray[6][0];
-////    pCubeData->LayerData2.PanelData4.green_1    = _pArray[6][1];
-////    pCubeData->LayerData2.PanelData4.blue_1     = _pArray[6][2];
-////    /* Layer 2, row 7 */
-////    pCubeData->LayerData2.PanelData4.red_2       = _pArray[7][0];
-////    pCubeData->LayerData2.PanelData4.green_2    = _pArray[7][1];
-////    pCubeData->LayerData2.PanelData4.blue_2     = _pArray[7][2];
-//    // </editor-fold>
-//    
-//    // <editor-fold defaultstate="collapsed" desc="Layer 3 array to struct">
-//    /********** Layer 3 *******************************************************/
-//    /* Layer 3, row 0 */
-//    pCubeData->LayerData3.PanelData1.red_1      = _pArray[0][0];
-//    pCubeData->LayerData3.PanelData1.green_1    = _pArray[0][1];
-//    pCubeData->LayerData3.PanelData1.blue_1     = _pArray[0][2];
-//    /* Layer 3, row 1 */
-//    pCubeData->LayerData3.PanelData1.red_2      = _pArray[1][0];
-//    pCubeData->LayerData3.PanelData1.green_2    = _pArray[1][1];
-//    pCubeData->LayerData3.PanelData1.blue_2     = _pArray[1][2];
-//    /* Layer 3, row 2 */
-//    pCubeData->LayerData3.PanelData2.red_1      = _pArray[2][0];
-//    pCubeData->LayerData3.PanelData2.green_1    = _pArray[2][1];
-//    pCubeData->LayerData3.PanelData2.blue_1     = _pArray[2][2];
-//    /* Layer 3, row 3 */
-//    pCubeData->LayerData3.PanelData2.red_2      = _pArray[3][0];
-//    pCubeData->LayerData3.PanelData2.green_2    = _pArray[3][1];
-//    pCubeData->LayerData3.PanelData2.blue_2     = _pArray[3][2];
-//    /* Layer 3, row 4 */
-//    pCubeData->LayerData3.PanelData3.red_1      = _pArray[4][0];
-//    pCubeData->LayerData3.PanelData3.green_1    = _pArray[4][1];
-//    pCubeData->LayerData3.PanelData3.blue_1     = _pArray[4][2];
-//    /* Layer 3, row 5 */
-//    pCubeData->LayerData3.PanelData3.red_2      = _pArray[5][0];
-//    pCubeData->LayerData3.PanelData3.green_2    = _pArray[5][1];
-//    pCubeData->LayerData3.PanelData3.blue_2     = _pArray[5][2];
-//    /* Layer 3, row 6 */
-////    pCubeData->LayerData3.PanelData4.red_1      = _pArray[6][0];
-////    pCubeData->LayerData3.PanelData4.green_1    = _pArray[6][1];
-////    pCubeData->LayerData3.PanelData4.blue_1     = _pArray[6][2];
-////    /* Layer 3, row 7 */
-////    pCubeData->LayerData3.PanelData4.red_2      = _pArray[7][0];
-////    pCubeData->LayerData3.PanelData4.green_2    = _pArray[7][1];
-////    pCubeData->LayerData3.PanelData4.blue_2     = _pArray[7][2];
-//    // </editor-fold>
-//    
-//    // <editor-fold defaultstate="collapsed" desc="Layer 4 array to struct">
-//    /********** Layer 4 *******************************************************/
-//    /* Layer 4, row 0 */
-//    pCubeData->LayerData4.PanelData1.red_1      = _pArray[0][0];
-//    pCubeData->LayerData4.PanelData1.green_1    = _pArray[0][1];
-//    pCubeData->LayerData4.PanelData1.blue_1     = _pArray[0][2];
-//    /* Layer 4, row 1 */
-//    pCubeData->LayerData4.PanelData1.red_2      = _pArray[1][0];
-//    pCubeData->LayerData4.PanelData1.green_2    = _pArray[1][1];
-//    pCubeData->LayerData4.PanelData1.blue_2     = _pArray[1][2];
-//    /* Layer 4, row 2 */
-//    pCubeData->LayerData4.PanelData2.red_1      = _pArray[2][0];
-//    pCubeData->LayerData4.PanelData2.green_1    = _pArray[2][1];
-//    pCubeData->LayerData4.PanelData2.blue_1     = _pArray[2][2];
-//    /* Layer 4, row 3 */
-//    pCubeData->LayerData4.PanelData2.red_2      = _pArray[3][0];
-//    pCubeData->LayerData4.PanelData2.green_2    = _pArray[3][1];
-//    pCubeData->LayerData4.PanelData2.blue_2     = _pArray[3][2];
-//    /* Layer 4, row 4 */
-//    pCubeData->LayerData4.PanelData3.red_1      = _pArray[4][0];
-//    pCubeData->LayerData4.PanelData3.green_1    = _pArray[4][1];
-//    pCubeData->LayerData4.PanelData3.blue_1     = _pArray[4][2];
-//    /* Layer 4, row 5 */
-//    pCubeData->LayerData4.PanelData3.red_2      = _pArray[5][0];
-//    pCubeData->LayerData4.PanelData3.green_2    = _pArray[5][1];
-//    pCubeData->LayerData4.PanelData3.blue_2     = _pArray[5][2];
-//    /* Layer 4, row 6 */
-////    pCubeData->LayerData4.PanelData4.red_1      = _pArray[6][0];
-////    pCubeData->LayerData4.PanelData4.green_1    = _pArray[6][1];
-////    pCubeData->LayerData4.PanelData4.blue_1     = _pArray[6][2];
-////    /* Layer 4, row 7 */
-////    pCubeData->LayerData4.PanelData4.red_2      = _pArray[7][0];
-////    pCubeData->LayerData4.PanelData4.green_2    = _pArray[7][1];
-////    pCubeData->LayerData4.PanelData4.blue_2     = _pArray[7][2];
-//    // </editor-fold>
-//    
-//    // <editor-fold defaultstate="collapsed" desc="Layer 5 array to struct">
-//    /********** Layer 5 *******************************************************/
-//    /* Layer 5, row 0 */
-//    pCubeData->LayerData5.PanelData1.red_1      = _pArray[0][0];
-//    pCubeData->LayerData5.PanelData1.green_1    = _pArray[0][1];
-//    pCubeData->LayerData5.PanelData1.blue_1     = _pArray[0][2];
-//    /* Layer 5, row 1 */
-//    pCubeData->LayerData5.PanelData1.red_2      = _pArray[1][0];
-//    pCubeData->LayerData5.PanelData1.green_2    = _pArray[1][1];
-//    pCubeData->LayerData5.PanelData1.blue_2     = _pArray[1][2];
-//    /* Layer 5, row 2 */
-//    pCubeData->LayerData5.PanelData2.red_1      = _pArray[2][0];
-//    pCubeData->LayerData5.PanelData2.green_1    = _pArray[2][1];
-//    pCubeData->LayerData5.PanelData2.blue_1     = _pArray[2][2];
-//    /* Layer 5, row 3 */
-//    pCubeData->LayerData5.PanelData2.red_2      = _pArray[3][0];
-//    pCubeData->LayerData5.PanelData2.green_2    = _pArray[3][1];
-//    pCubeData->LayerData5.PanelData2.blue_2     = _pArray[3][2];
-//    /* Layer 5, row 4 */
-//    pCubeData->LayerData5.PanelData3.red_1      = _pArray[4][0];
-//    pCubeData->LayerData5.PanelData3.green_1    = _pArray[4][1];
-//    pCubeData->LayerData5.PanelData3.blue_1     = _pArray[4][2];
-//    /* Layer 5, row 5 */
-//    pCubeData->LayerData5.PanelData3.red_2      = _pArray[5][0];
-//    pCubeData->LayerData5.PanelData3.green_2    = _pArray[5][1];
-//    pCubeData->LayerData5.PanelData3.blue_2     = _pArray[5][2];
-//    /* Layer 5, row 6 */
-////    pCubeData->LayerData5.PanelData4.red_1      = _pArray[6][0];
-////    pCubeData->LayerData5.PanelData4.green_1    = _pArray[6][1];
-////    pCubeData->LayerData5.PanelData4.blue_1     = _pArray[6][2];
-////    /* Layer 5, row 7 */
-////    pCubeData->LayerData5.PanelData4.red_2      = _pArray[7][0];
-////    pCubeData->LayerData5.PanelData4.green_2    = _pArray[7][1];
-////    pCubeData->LayerData5.PanelData4.blue_2     = _pArray[7][2];
-//    // </editor-fold>
-//    
-//    // <editor-fold defaultstate="collapsed" desc="Layer 6 array to struct">
-//    /********** Layer 6 *******************************************************/
-//    /* Layer 6, row 0 */
-//    pCubeData->LayerData6.PanelData1.red_1      = _pArray[0][0];
-//    pCubeData->LayerData6.PanelData1.green_1    = _pArray[0][1];
-//    pCubeData->LayerData6.PanelData1.blue_1     = _pArray[0][2];
-//    /* Layer 6, row 1 */
-//    pCubeData->LayerData6.PanelData1.red_2      = _pArray[1][0];
-//    pCubeData->LayerData6.PanelData1.green_2    = _pArray[1][1];
-//    pCubeData->LayerData6.PanelData1.blue_2     = _pArray[1][2];
-//    /* Layer 6, row 2 */
-//    pCubeData->LayerData6.PanelData2.red_1      = _pArray[2][0];
-//    pCubeData->LayerData6.PanelData2.green_1    = _pArray[2][1];
-//    pCubeData->LayerData6.PanelData2.blue_1     = _pArray[2][2];
-//    /* Layer 6, row 3 */
-//    pCubeData->LayerData6.PanelData2.red_2      = _pArray[3][0];
-//    pCubeData->LayerData6.PanelData2.green_2    = _pArray[3][1];
-//    pCubeData->LayerData6.PanelData2.blue_2     = _pArray[3][2];
-//    /* Layer 6, row 4 */
-//    pCubeData->LayerData6.PanelData3.red_1      = _pArray[4][0];
-//    pCubeData->LayerData6.PanelData3.green_1    = _pArray[4][1];
-//    pCubeData->LayerData6.PanelData3.blue_1     = _pArray[4][2];
-//    /* Layer 6, row 5 */
-//    pCubeData->LayerData6.PanelData3.red_2      = _pArray[5][0];
-//    pCubeData->LayerData6.PanelData3.green_2    = _pArray[5][1];
-//    pCubeData->LayerData6.PanelData3.blue_2     = _pArray[5][2];
-//    /* Layer 6, row 6 */
-////    pCubeData->LayerData6.PanelData4.red_1      = _pArray[6][0];
-////    pCubeData->LayerData6.PanelData4.green_1    = _pArray[6][1];
-////    pCubeData->LayerData6.PanelData4.blue_1     = _pArray[6][2];
-////    /* Layer 6, row 7 */
-////    pCubeData->LayerData6.PanelData4.red_2      = _pArray[7][0];
-////    pCubeData->LayerData6.PanelData4.green_2    = _pArray[7][1];
-////    pCubeData->LayerData6.PanelData4.blue_2     = _pArray[7][2];
-//    // </editor-fold>
-//    
-//    // <editor-fold defaultstate="collapsed" desc="Layer 7 array to struct">
-//    /********** Layer 7 *******************************************************/
-//    /* Layer 7, row 0 */
-//    pCubeData->LayerData7.PanelData1.red_1      = _pArray[0][0];
-//    pCubeData->LayerData7.PanelData1.green_1    = _pArray[0][1];
-//    pCubeData->LayerData7.PanelData1.blue_1     = _pArray[0][2];
-//    /* Layer 7, row 1 */
-//    pCubeData->LayerData7.PanelData1.red_2      = _pArray[1][0];
-//    pCubeData->LayerData7.PanelData1.green_2    = _pArray[1][1];
-//    pCubeData->LayerData7.PanelData1.blue_2     = _pArray[1][2];
-//    /* Layer 7, row 2 */
-//    pCubeData->LayerData7.PanelData2.red_1      = _pArray[2][0];
-//    pCubeData->LayerData7.PanelData2.green_1    = _pArray[2][1];
-//    pCubeData->LayerData7.PanelData2.blue_1     = _pArray[2][2];
-//    /* Layer 7, row 3 */
-//    pCubeData->LayerData7.PanelData2.red_2      = _pArray[3][0];
-//    pCubeData->LayerData7.PanelData2.green_2    = _pArray[3][1];
-//    pCubeData->LayerData7.PanelData2.blue_2     = _pArray[3][2];
-//    /* Layer 7, row 4 */
-//    pCubeData->LayerData7.PanelData3.red_1      = _pArray[4][0];
-//    pCubeData->LayerData7.PanelData3.green_1    = _pArray[4][1];
-//    pCubeData->LayerData7.PanelData3.blue_1     = _pArray[4][2];
-//    /* Layer 7, row 5 */
-//    pCubeData->LayerData7.PanelData3.red_2      = _pArray[5][0];
-//    pCubeData->LayerData7.PanelData3.green_2    = _pArray[5][1];
-//    pCubeData->LayerData7.PanelData3.blue_2     = _pArray[5][2];
-//    /* Layer 7, row 6 */
-////    pCubeData->LayerData7.PanelData4.red_1      = _pArray[6][0];
-////    pCubeData->LayerData7.PanelData4.green_1    = _pArray[6][1];
-////    pCubeData->LayerData7.PanelData4.blue_1     = _pArray[6][2];
-////    /* Layer 7, row 7 */
-////    pCubeData->LayerData7.PanelData4.red_2      = _pArray[7][0];
-////    pCubeData->LayerData7.PanelData4.green_2    = _pArray[7][1];
-////    pCubeData->LayerData7.PanelData4.blue_2     = _pArray[7][2];
-//    // </editor-fold>
-//    
+    CubeData_switchCubeData(pCubeControlData);
+    Nop();
+    
     return;
 }
-
+void
+LedCube_printHexData( void );
 /**
- * Set all the data in the LedCube's LED data array to zero;
+ * Set all the data in the LedCube's LED data array to zero using the
+ * CubeControlData_resetCubeData function.
  * 
  */
 void
 LedCube_resetData( void ) {
-#if 1
-    uint8_t x, y;
-    for(y=0;y<8;y++)
-        for(x=0; x<3; x++)
-            _pArray[y][x] = 0;
-#else
-    uint8_t x, z, colour;
-    for( z = 0; z <= LEDCUBE_MAX_XYZ; z++ )
-        for( x = 0; x <= LEDCUBE_MAX_XYZ; x++ )
-            for( colour = 0; colour < 3; colour++ )
-                pCubeData->CubeData[z][x][colour] = 0x00000000;
-#endif
-    
+    LedCube_printHexData();
+    DEBUG_PRINTF_FUNCTION("Resetting data...");
+    CubeData_resetData(pCubeControlData->pCubeDataWrite);
+    LedCube_printHexData();
+    return;
+}
+
+/**
+ * Print all the data in the LedCube's LED data array using the
+ * CubeControlData_printHexCubeData function.
+ */
+void
+LedCube_printHexData( void ) {
+    CubeControlData_printHexCubeData(pCubeControlData->pCubeDataWrite);
+        
     return;
 }
 

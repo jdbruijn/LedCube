@@ -232,7 +232,9 @@ __attribute__((interrupt,auto_psv)) _T3Interrupt(void) {
     LayerControl_setLayer(0);
 //    Uart1_printf("called from IR: \nLayer: %u, bamRound: %u\n", layer, bamRound);
     
-    LayerControl_update( pCubeControlData, pCubeControlData->pCubeDataBase,
+    DEBUG_PRINTF_FUNCTION("     Reading: %p", pCubeControlData->pCubeDataRead);
+    
+    LayerControl_update( pCubeControlData, pCubeControlData->pCubeDataRead,
             /* layer */0, /* bamRound */ 0 );
     
     

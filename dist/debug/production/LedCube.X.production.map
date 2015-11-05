@@ -176,24 +176,23 @@ Program Memory  [Origin = 0x200, Length = 0xa9fc]
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x200              0x1cbe          0x2b1d  (11037)
-.const                      0x1ebe               0x6ce           0xa35  (2613)
-.text                       0x258c               0xa58           0xf84  (3972)
-.dinit                      0x2fe4               0x4d0           0x738  (1848)
-.text                       0x34b4               0xc1c          0x122a  (4650)
-.init.delay32               0x40d0                0x1c            0x2a  (42)
-.text                       0x40ec                 0x6             0x9  (9)
+.const                      0x1ebe               0x7ea           0xbdf  (3039)
+.text                       0x26a8               0xa22           0xf33  (3891)
+.dinit                      0x30ca               0x4c8           0x72c  (1836)
+.text                       0x3592               0xd82          0x1443  (5187)
+.init.delay32               0x4314                0x1c            0x2a  (42)
+.text                       0x4330                 0x6             0x9  (9)
 
-                     Total program memory used (bytes):         0x5e6b  (24171) 37%
+                     Total program memory used (bytes):         0x61d1  (25041) 38%
 
 
 Data Memory  [Origin = 0x800, Length = 0x2000]
 
 section                    address      alignment gaps    total length  (dec)
 -------                    -------      --------------    -------------------
-.ndata                       0x800                   0             0x2  (2)
-.nbss                        0x802                   0             0x2  (2)
-.ndata                       0x804                   0             0x2  (2)
-.data                        0x806                   0           0x616  (1558)
+.nbss                        0x800                   0             0x2  (2)
+.ndata                       0x802                   0             0x2  (2)
+.data                        0x804                   0           0x618  (1560)
 .bss                         0xe1c                   0           0x108  (264)
 .data                        0xf24                   0            0xb6  (182)
 .bss                         0xfda                   0            0x18  (24)
@@ -214,30 +213,28 @@ stack                        0xff4                              0x180c  (6156)
 
 External Symbols in Data Memory (by address):
 
-                    0x0800                  _pCubeControlData
-                    0x0802                  _layer
-                    0x0803                  _bamRound
-                    0x0804                  _pRxBuffer
-                    0x0806                  _CubeControlData
+                    0x0800                  _layer
+                    0x0801                  _bamRound
+                    0x0802                  _pRxBuffer
+                    0x0804                  _CubeControlData
                     0x0e1c                  _rxBuffer
                     0x0fda                  __pArray
 
 External Symbols in Data Memory (by name):
 
-                    0x0806                  _CubeControlData
+                    0x0804                  _CubeControlData
                     0x0fda                  __pArray
-                    0x0803                  _bamRound
-                    0x0802                  _layer
-                    0x0800                  _pCubeControlData
-                    0x0804                  _pRxBuffer
+                    0x0801                  _bamRound
+                    0x0800                  _layer
+                    0x0802                  _pRxBuffer
                     0x0e1c                  _rxBuffer
 
 External Symbols in Program Memory (by address):
 
                   0x000200                  __resetPRI
                   0x00022c                  __psv_init
-                  0x00023c                  __data_init_standard
                   0x00023c                  __data_init
+                  0x00023c                  __data_init_standard
                   0x00029e                  __DefaultInterrupt
                   0x0002a2                  ___subsf3
                   0x0002a4                  ___addsf3
@@ -282,11 +279,11 @@ External Symbols in Program Memory (by address):
                   0x001616                  __LDscale
                   0x00170c                  __Genld
                   0x001970                  _div
-                  0x001986                  ___ltdf2
                   0x001986                  ___ledf2
+                  0x001986                  ___ltdf2
                   0x001986                  ___eqdf2
-                  0x001990                  ___gtdf2
                   0x001990                  ___gedf2
+                  0x001990                  ___gtdf2
                   0x00199a                  ___divdf3
                   0x001a4e                  __dpack
                   0x001aa6                  __dunpack2
@@ -297,9 +294,9 @@ External Symbols in Program Memory (by address):
                   0x001b6e                  ___floatsidf
                   0x001b74                  ___muldf3
                   0x001c5e                  ___subdf3
-                  0x001c62                  ___mulp32eds3
                   0x001c62                  ___mulsi3
                   0x001c62                  ___mulp32peds3
+                  0x001c62                  ___mulp32eds3
                   0x001c6e                  ___adddf3
                   0x001d68                  __dcompare
                   0x001dba                  __dPropagateNaN
@@ -307,96 +304,104 @@ External Symbols in Program Memory (by address):
                   0x001dfa                  __dunpack
                   0x001e48                  ___floatdidf
                   0x001e68                  ___floatundidf
-                  0x00241e                  _layerArray
-                  0x002554                  _pCubeData0Base
-                  0x002556                  _pCubeData1Base
-                  0x00258c                  _LedCube_init
-                  0x0025a4                  _LedCube_setPixel
-                  0x002a66                  _LedCube_update
-                  0x002a6c                  _LedCube_resetData
-                  0x002aa6                  __helperPrintByte
-                  0x002ad2                  _isPositive
-                  0x002aea                  _haveOppositeSigns
-                  0x002b04                  _min
-                  0x002b50                  _max
-                  0x002b98                  _isPowerOf2
-                  0x002bda                  _modifyBits
-                  0x002c22                  _mergeBits
-                  0x002c5e                  _nBitsSet
-                  0x002d38                  _isEven
-                  0x002dce                  _ByteReverseBits
-                  0x002e0c                  _reverseBitOrder
-                  0x002f8c                  _roundUpToPowerOf2
-                  0x0034b4                  _PanelControl_init
-                  0x0034c8                  _PanelControl_update
-                  0x003768                  _PanelControl_allOff
-                  0x00377e                  _PanelControl_allOn
-                  0x003794                  _Uart1_init
-                  0x0037ea                  _Uart1_putc
-                  0x003802                  _Uart1_puts
-                  0x00381c                  _Uart1_putNum
-                  0x0038f0                  _Uart1_putBits
-                  0x003932                  _Uart1_printf
-                  0x003974                  _Uart1_gets
-                  0x0039b8                  __U1RXInterrupt
-                  0x003a0c                  _LayerControl_init
-                  0x003a70                  _LayerControl_setLayer
-                  0x003a90                  _LayerControl_update
-                  0x003af4                  _LayerControl_allOff
-                  0x003b0a                  _LayerControl_allOn
-                  0x003b20                  __T3Interrupt
-                  0x003b7e                  _swFifoBufferPut
-                  0x003c30                  _swFifoBufferGet
-                  0x003cd6                  _Buzzer_init
-                  0x003d0e                  _Buzzer_beep
-                  0x003d26                  _Buzzer_shortBeep
-                  0x003d3e                  _Buzzer_set
-                  0x003e10                  _IOPorts_init
-                  0x003ef0                  _LedDriver_init
-                  0x003f2e                  _LedDriver_update
-                  0x003f88                  _LedDriver_allOff
-                  0x003f92                  _LedDriver_allOn
-                  0x003f9c                  _CubeData_init
-                  0x003fbc                  _resetData
-                  0x004030                  _main
-                  0x0040b0                  _ConfigureOscillator
-                  0x0040d0                  ___delay32
-                  0x0040ec                  __dummy_printf
+                  0x002382                  _pCubeControlData
+                  0x002384                  _pCubeData0Base
+                  0x002386                  _pCubeData1Base
+                  0x002544                  _layerArray
+                  0x0026a8                  _isPositive
+                  0x0026c0                  _haveOppositeSigns
+                  0x0026da                  _min
+                  0x002726                  _max
+                  0x00276e                  _isPowerOf2
+                  0x0027b0                  _modifyBits
+                  0x0027f8                  _mergeBits
+                  0x002834                  _nBitsSet
+                  0x00290e                  _isEven
+                  0x0029a4                  _ByteReverseBits
+                  0x0029e2                  _reverseBitOrder
+                  0x002b62                  _roundUpToPowerOf2
+                  0x002bba                  _LedCube_init
+                  0x002bd2                  _LedCube_setPixel
+                  0x003062                  _LedCube_update
+                  0x00306e                  _LedCube_resetData
+                  0x00308e                  _LedCube_printHexData
+                  0x00309e                  __helperPrintByte
+                  0x003592                  _PanelControl_init
+                  0x0035a6                  _PanelControl_update
+                  0x00383a                  _PanelControl_allOff
+                  0x003850                  _PanelControl_allOn
+                  0x003866                  _Uart1_init
+                  0x0038bc                  _Uart1_putc
+                  0x0038d4                  _Uart1_puts
+                  0x0038ee                  _Uart1_putNum
+                  0x0039c2                  _Uart1_putBits
+                  0x003a04                  _Uart1_printf
+                  0x003a46                  _Uart1_gets
+                  0x003a8a                  __U1RXInterrupt
+                  0x003ade                  _CubeData_init
+                  0x003b06                  _CubeData_switchCubeData
+                  0x003bcc                  _CubeData_resetData
+                  0x003c50                  _CubeControlData_printHexCubeData
+                  0x003cfa                  _LayerControl_init
+                  0x003d5e                  _LayerControl_setLayer
+                  0x003d7e                  _LayerControl_update
+                  0x003de2                  _LayerControl_allOff
+                  0x003df8                  _LayerControl_allOn
+                  0x003e0e                  __T3Interrupt
+                  0x003e82                  _swFifoBufferPut
+                  0x003f34                  _swFifoBufferGet
+                  0x003fda                  _Buzzer_init
+                  0x004012                  _Buzzer_beep
+                  0x00402a                  _Buzzer_shortBeep
+                  0x004042                  _Buzzer_set
+                  0x004114                  _IOPorts_init
+                  0x0041f4                  _LedDriver_init
+                  0x004232                  _LedDriver_update
+                  0x00428c                  _LedDriver_allOff
+                  0x004296                  _LedDriver_allOn
+                  0x0042a0                  _main
+                  0x0042f4                  _ConfigureOscillator
+                  0x004314                  ___delay32
+                  0x004330                  __dummy_printf
 
 External Symbols in Program Memory (by name):
 
-                  0x003d0e                  _Buzzer_beep
-                  0x003cd6                  _Buzzer_init
-                  0x003d3e                  _Buzzer_set
-                  0x003d26                  _Buzzer_shortBeep
-                  0x002dce                  _ByteReverseBits
-                  0x0040b0                  _ConfigureOscillator
-                  0x003f9c                  _CubeData_init
-                  0x003e10                  _IOPorts_init
-                  0x003af4                  _LayerControl_allOff
-                  0x003b0a                  _LayerControl_allOn
-                  0x003a0c                  _LayerControl_init
-                  0x003a70                  _LayerControl_setLayer
-                  0x003a90                  _LayerControl_update
-                  0x00258c                  _LedCube_init
-                  0x002a6c                  _LedCube_resetData
-                  0x0025a4                  _LedCube_setPixel
-                  0x002a66                  _LedCube_update
-                  0x003f88                  _LedDriver_allOff
-                  0x003f92                  _LedDriver_allOn
-                  0x003ef0                  _LedDriver_init
-                  0x003f2e                  _LedDriver_update
-                  0x003768                  _PanelControl_allOff
-                  0x00377e                  _PanelControl_allOn
-                  0x0034b4                  _PanelControl_init
-                  0x0034c8                  _PanelControl_update
-                  0x003974                  _Uart1_gets
-                  0x003794                  _Uart1_init
-                  0x003932                  _Uart1_printf
-                  0x0038f0                  _Uart1_putBits
-                  0x00381c                  _Uart1_putNum
-                  0x0037ea                  _Uart1_putc
-                  0x003802                  _Uart1_puts
+                  0x004012                  _Buzzer_beep
+                  0x003fda                  _Buzzer_init
+                  0x004042                  _Buzzer_set
+                  0x00402a                  _Buzzer_shortBeep
+                  0x0029a4                  _ByteReverseBits
+                  0x0042f4                  _ConfigureOscillator
+                  0x003c50                  _CubeControlData_printHexCubeData
+                  0x003ade                  _CubeData_init
+                  0x003bcc                  _CubeData_resetData
+                  0x003b06                  _CubeData_switchCubeData
+                  0x004114                  _IOPorts_init
+                  0x003de2                  _LayerControl_allOff
+                  0x003df8                  _LayerControl_allOn
+                  0x003cfa                  _LayerControl_init
+                  0x003d5e                  _LayerControl_setLayer
+                  0x003d7e                  _LayerControl_update
+                  0x002bba                  _LedCube_init
+                  0x00308e                  _LedCube_printHexData
+                  0x00306e                  _LedCube_resetData
+                  0x002bd2                  _LedCube_setPixel
+                  0x003062                  _LedCube_update
+                  0x00428c                  _LedDriver_allOff
+                  0x004296                  _LedDriver_allOn
+                  0x0041f4                  _LedDriver_init
+                  0x004232                  _LedDriver_update
+                  0x00383a                  _PanelControl_allOff
+                  0x003850                  _PanelControl_allOn
+                  0x003592                  _PanelControl_init
+                  0x0035a6                  _PanelControl_update
+                  0x003a46                  _Uart1_gets
+                  0x003866                  _Uart1_init
+                  0x003a04                  _Uart1_printf
+                  0x0039c2                  _Uart1_putBits
+                  0x0038ee                  _Uart1_putNum
+                  0x0038bc                  _Uart1_putc
+                  0x0038d4                  _Uart1_puts
                   0x00029e                  __DefaultInterrupt
                   0x00157e                  __Dnorm
                   0x00170c                  __Genld
@@ -407,12 +412,12 @@ External Symbols in Program Memory (by name):
                   0x0008ba                  __Printf
                   0x000a1e                  __Putfld
                   0x0013dc                  __Puttxt
-                  0x003b20                  __T3Interrupt
-                  0x0039b8                  __U1RXInterrupt
+                  0x003e0e                  __T3Interrupt
+                  0x003a8a                  __U1RXInterrupt
                   0x000d06                  __Vacopy
                   0x001c6e                  ___adddf3
                   0x0002a4                  ___addsf3
-                  0x0040d0                  ___delay32
+                  0x004314                  ___delay32
                   0x00199a                  ___divdf3
                   0x0006d4                  ___divdi3
                   0x00035e                  ___divsf3
@@ -453,7 +458,7 @@ External Symbols in Program Memory (by name):
                   0x001a4e                  __dpack
                   0x001ac8                  __dreturnNaN
                   0x001dd6                  __dtype
-                  0x0040ec                  __dummy_printf
+                  0x004330                  __dummy_printf
                   0x001dfa                  __dunpack
                   0x001aa6                  __dunpack2
                   0x001ace                  __dunpack2exit
@@ -463,34 +468,34 @@ External Symbols in Program Memory (by name):
                   0x00043a                  __fpack
                   0x000486                  __funpack
                   0x0004b0                  __funpack2
-                  0x002aa6                  __helperPrintByte
+                  0x00309e                  __helperPrintByte
                   0x00022c                  __psv_init
                   0x000200                  __resetPRI
                   0x001970                  _div
-                  0x002aea                  _haveOppositeSigns
-                  0x002d38                  _isEven
-                  0x002ad2                  _isPositive
-                  0x002b98                  _isPowerOf2
-                  0x00241e                  _layerArray
+                  0x0026c0                  _haveOppositeSigns
+                  0x00290e                  _isEven
+                  0x0026a8                  _isPositive
+                  0x00276e                  _isPowerOf2
+                  0x002544                  _layerArray
                   0x001554                  _ldiv
-                  0x004030                  _main
-                  0x002b50                  _max
+                  0x0042a0                  _main
+                  0x002726                  _max
                   0x000d0a                  _memchr
                   0x000d1e                  _memcpy
                   0x000884                  _memset
-                  0x002c22                  _mergeBits
-                  0x002b04                  _min
-                  0x002bda                  _modifyBits
-                  0x002c5e                  _nBitsSet
-                  0x002554                  _pCubeData0Base
-                  0x002556                  _pCubeData1Base
-                  0x003fbc                  _resetData
-                  0x002e0c                  _reverseBitOrder
-                  0x002f8c                  _roundUpToPowerOf2
+                  0x0027f8                  _mergeBits
+                  0x0026da                  _min
+                  0x0027b0                  _modifyBits
+                  0x002834                  _nBitsSet
+                  0x002382                  _pCubeControlData
+                  0x002384                  _pCubeData0Base
+                  0x002386                  _pCubeData1Base
+                  0x0029e2                  _reverseBitOrder
+                  0x002b62                  _roundUpToPowerOf2
                   0x000ce8                  _strchr
                   0x000d2c                  _strlen
-                  0x003c30                  _swFifoBufferGet
-                  0x003b7e                  _swFifoBufferPut
+                  0x003f34                  _swFifoBufferGet
+                  0x003e82                  _swFifoBufferPut
                   0x0008a0                  _vsprintf
                   0x000892                  vsprintf.XXeo:_prout
 
@@ -727,84 +732,84 @@ __CONFIG1
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x62f9
+.debug_info       0x000000       0x63a5
  *(.debug_info)
- .debug_info      0x000000        0x483 build/debug/production/source/CubeControl/src/CubeData.o
- .debug_info      0x000483       0x1219 build/debug/production/source/CubeControl/src/LayerControl.o
- .debug_info      0x00169c        0x70f build/debug/production/source/CubeControl/src/LedCube.o
- .debug_info      0x001dab        0x8d6 build/debug/production/source/CubeControl/src/LedDriver.o
- .debug_info      0x002681        0x7bc build/debug/production/source/CubeControl/src/PanelControl.o
- .debug_info      0x002e3d        0xdb3 build/debug/production/source/LibraryFiles/src/Uart.o
- .debug_info      0x003bf0        0x471 build/debug/production/source/LibraryFiles/src/BitOperations.o
- .debug_info      0x004061        0x664 build/debug/production/source/LibraryFiles/src/Buzzer.o
- .debug_info      0x0046c5        0xd8b build/debug/production/source/LibraryFiles/src/IOPorts.o
- .debug_info      0x005450        0x484 build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
- .debug_info      0x0058d4        0x3ba build/debug/production/source/LibraryFiles/src/System.o
- .debug_info      0x005c8e        0x190 build/debug/production/source/LibraryFiles/src/Debug.o
- .debug_info      0x005e1e        0x4db build/debug/production/source/src/main.o
+ .debug_info      0x000000        0x6f0 build/debug/production/source/CubeControl/src/CubeData.o
+ .debug_info      0x0006f0       0x1251 build/debug/production/source/CubeControl/src/LayerControl.o
+ .debug_info      0x001941        0x724 build/debug/production/source/CubeControl/src/LedCube.o
+ .debug_info      0x002065        0x8d6 build/debug/production/source/CubeControl/src/LedDriver.o
+ .debug_info      0x00293b        0x7ca build/debug/production/source/CubeControl/src/PanelControl.o
+ .debug_info      0x003105        0xdb3 build/debug/production/source/LibraryFiles/src/Uart.o
+ .debug_info      0x003eb8        0x471 build/debug/production/source/LibraryFiles/src/BitOperations.o
+ .debug_info      0x004329        0x664 build/debug/production/source/LibraryFiles/src/Buzzer.o
+ .debug_info      0x00498d        0xd8b build/debug/production/source/LibraryFiles/src/IOPorts.o
+ .debug_info      0x005718        0x484 build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
+ .debug_info      0x005b9c        0x3ba build/debug/production/source/LibraryFiles/src/System.o
+ .debug_info      0x005f56        0x190 build/debug/production/source/LibraryFiles/src/Debug.o
+ .debug_info      0x0060e6        0x2bf build/debug/production/source/src/main.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000        0xf08
+.debug_abbrev     0x000000        0xeef
  *(.debug_abbrev)
- .debug_abbrev    0x000000        0x102 build/debug/production/source/CubeControl/src/CubeData.o
- .debug_abbrev    0x000102        0x1d9 build/debug/production/source/CubeControl/src/LayerControl.o
- .debug_abbrev    0x0002db        0x1a8 build/debug/production/source/CubeControl/src/LedCube.o
- .debug_abbrev    0x000483        0x14d build/debug/production/source/CubeControl/src/LedDriver.o
- .debug_abbrev    0x0005d0        0x142 build/debug/production/source/CubeControl/src/PanelControl.o
- .debug_abbrev    0x000712        0x1b0 build/debug/production/source/LibraryFiles/src/Uart.o
- .debug_abbrev    0x0008c2         0x93 build/debug/production/source/LibraryFiles/src/BitOperations.o
- .debug_abbrev    0x000955        0x183 build/debug/production/source/LibraryFiles/src/Buzzer.o
- .debug_abbrev    0x000ad8         0xb8 build/debug/production/source/LibraryFiles/src/IOPorts.o
- .debug_abbrev    0x000b90        0x150 build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
- .debug_abbrev    0x000ce0         0xa7 build/debug/production/source/LibraryFiles/src/System.o
- .debug_abbrev    0x000d87         0x5a build/debug/production/source/LibraryFiles/src/Debug.o
- .debug_abbrev    0x000de1        0x127 build/debug/production/source/src/main.o
+ .debug_abbrev    0x000000        0x17e build/debug/production/source/CubeControl/src/CubeData.o
+ .debug_abbrev    0x00017e        0x1c4 build/debug/production/source/CubeControl/src/LayerControl.o
+ .debug_abbrev    0x000342        0x191 build/debug/production/source/CubeControl/src/LedCube.o
+ .debug_abbrev    0x0004d3        0x14d build/debug/production/source/CubeControl/src/LedDriver.o
+ .debug_abbrev    0x000620        0x142 build/debug/production/source/CubeControl/src/PanelControl.o
+ .debug_abbrev    0x000762        0x1b0 build/debug/production/source/LibraryFiles/src/Uart.o
+ .debug_abbrev    0x000912         0x93 build/debug/production/source/LibraryFiles/src/BitOperations.o
+ .debug_abbrev    0x0009a5        0x183 build/debug/production/source/LibraryFiles/src/Buzzer.o
+ .debug_abbrev    0x000b28         0xb8 build/debug/production/source/LibraryFiles/src/IOPorts.o
+ .debug_abbrev    0x000be0        0x150 build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
+ .debug_abbrev    0x000d30         0xa7 build/debug/production/source/LibraryFiles/src/System.o
+ .debug_abbrev    0x000dd7         0x5a build/debug/production/source/LibraryFiles/src/Debug.o
+ .debug_abbrev    0x000e31         0xbe build/debug/production/source/src/main.o
 
-.debug_line       0x000000       0x1c66
+.debug_line       0x000000       0x1db7
  *(.debug_line)
- .debug_line      0x000000        0x13f build/debug/production/source/CubeControl/src/CubeData.o
- .debug_line      0x00013f        0x330 build/debug/production/source/CubeControl/src/LayerControl.o
- .debug_line      0x00046f        0x302 build/debug/production/source/CubeControl/src/LedCube.o
- .debug_line      0x000771        0x20c build/debug/production/source/CubeControl/src/LedDriver.o
- .debug_line      0x00097d        0x30c build/debug/production/source/CubeControl/src/PanelControl.o
- .debug_line      0x000c89        0x433 build/debug/production/source/LibraryFiles/src/Uart.o
- .debug_line      0x0010bc        0x2c4 build/debug/production/source/LibraryFiles/src/BitOperations.o
- .debug_line      0x001380        0x232 build/debug/production/source/LibraryFiles/src/Buzzer.o
- .debug_line      0x0015b2        0x180 build/debug/production/source/LibraryFiles/src/IOPorts.o
- .debug_line      0x001732        0x23e build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
- .debug_line      0x001970         0xe7 build/debug/production/source/LibraryFiles/src/System.o
- .debug_line      0x001a57         0x61 build/debug/production/source/LibraryFiles/src/Debug.o
- .debug_line      0x001ab8        0x1ae build/debug/production/source/src/main.o
+ .debug_line      0x000000        0x278 build/debug/production/source/CubeControl/src/CubeData.o
+ .debug_line      0x000278        0x338 build/debug/production/source/CubeControl/src/LayerControl.o
+ .debug_line      0x0005b0        0x33b build/debug/production/source/CubeControl/src/LedCube.o
+ .debug_line      0x0008eb        0x20c build/debug/production/source/CubeControl/src/LedDriver.o
+ .debug_line      0x000af7        0x30c build/debug/production/source/CubeControl/src/PanelControl.o
+ .debug_line      0x000e03        0x433 build/debug/production/source/LibraryFiles/src/Uart.o
+ .debug_line      0x001236        0x2c4 build/debug/production/source/LibraryFiles/src/BitOperations.o
+ .debug_line      0x0014fa        0x232 build/debug/production/source/LibraryFiles/src/Buzzer.o
+ .debug_line      0x00172c        0x180 build/debug/production/source/LibraryFiles/src/IOPorts.o
+ .debug_line      0x0018ac        0x23e build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
+ .debug_line      0x001aea         0xe7 build/debug/production/source/LibraryFiles/src/System.o
+ .debug_line      0x001bd1         0x61 build/debug/production/source/LibraryFiles/src/Debug.o
+ .debug_line      0x001c32        0x185 build/debug/production/source/src/main.o
 
-.debug_frame      0x000000        0x770
+.debug_frame      0x000000        0x88c
  *(.debug_frame)
- .debug_frame     0x000000         0x50 build/debug/production/source/CubeControl/src/CubeData.o
- .debug_frame     0x000050         0xd0 build/debug/production/source/CubeControl/src/LayerControl.o
- .debug_frame     0x000120        0x1e8 build/debug/production/source/CubeControl/src/LedCube.o
- .debug_frame     0x000308         0x94 build/debug/production/source/CubeControl/src/LedDriver.o
- .debug_frame     0x00039c         0xb8 build/debug/production/source/CubeControl/src/PanelControl.o
- .debug_frame     0x000454         0xc0 build/debug/production/source/LibraryFiles/src/Uart.o
- .debug_frame     0x000514         0xd4 build/debug/production/source/LibraryFiles/src/BitOperations.o
- .debug_frame     0x0005e8         0xc4 build/debug/production/source/LibraryFiles/src/Buzzer.o
- .debug_frame     0x0006ac         0x24 build/debug/production/source/LibraryFiles/src/IOPorts.o
- .debug_frame     0x0006d0         0x34 build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
- .debug_frame     0x000704         0x24 build/debug/production/source/LibraryFiles/src/System.o
- .debug_frame     0x000728         0x24 build/debug/production/source/LibraryFiles/src/Debug.o
- .debug_frame     0x00074c         0x24 build/debug/production/source/src/main.o
+ .debug_frame     0x000000        0x154 build/debug/production/source/CubeControl/src/CubeData.o
+ .debug_frame     0x000154         0xfc build/debug/production/source/CubeControl/src/LayerControl.o
+ .debug_frame     0x000250        0x1d4 build/debug/production/source/CubeControl/src/LedCube.o
+ .debug_frame     0x000424         0x94 build/debug/production/source/CubeControl/src/LedDriver.o
+ .debug_frame     0x0004b8         0xb8 build/debug/production/source/CubeControl/src/PanelControl.o
+ .debug_frame     0x000570         0xc0 build/debug/production/source/LibraryFiles/src/Uart.o
+ .debug_frame     0x000630         0xd4 build/debug/production/source/LibraryFiles/src/BitOperations.o
+ .debug_frame     0x000704         0xc4 build/debug/production/source/LibraryFiles/src/Buzzer.o
+ .debug_frame     0x0007c8         0x24 build/debug/production/source/LibraryFiles/src/IOPorts.o
+ .debug_frame     0x0007ec         0x34 build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
+ .debug_frame     0x000820         0x24 build/debug/production/source/LibraryFiles/src/System.o
+ .debug_frame     0x000844         0x24 build/debug/production/source/LibraryFiles/src/Debug.o
+ .debug_frame     0x000868         0x24 build/debug/production/source/src/main.o
 
-.debug_str        0x000000        0x281
+.debug_str        0x000000        0x2b3
  *(.debug_str)
- .debug_str       0x000000         0x10 build/debug/production/source/CubeControl/src/CubeData.o
- .debug_str       0x000010         0x9c build/debug/production/source/CubeControl/src/LayerControl.o
- .debug_str       0x0000ac         0x28 build/debug/production/source/CubeControl/src/LedCube.o
- .debug_str       0x0000d4         0x54 build/debug/production/source/CubeControl/src/LedDriver.o
- .debug_str       0x000128         0x23 build/debug/production/source/CubeControl/src/PanelControl.o
- .debug_str       0x00014b         0x43 build/debug/production/source/LibraryFiles/src/Uart.o
- .debug_str       0x00018e         0x2c build/debug/production/source/LibraryFiles/src/Buzzer.o
- .debug_str       0x0001ba         0x5b build/debug/production/source/LibraryFiles/src/IOPorts.o
- .debug_str       0x000215         0x1e build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
- .debug_str       0x000233         0x16 build/debug/production/source/LibraryFiles/src/System.o
- .debug_str       0x000249         0x38 build/debug/production/source/src/main.o
+ .debug_str       0x000000         0x62 build/debug/production/source/CubeControl/src/CubeData.o
+ .debug_str       0x000062         0x9c build/debug/production/source/CubeControl/src/LayerControl.o
+ .debug_str       0x0000fe         0x37 build/debug/production/source/CubeControl/src/LedCube.o
+ .debug_str       0x000135         0x54 build/debug/production/source/CubeControl/src/LedDriver.o
+ .debug_str       0x000189         0x23 build/debug/production/source/CubeControl/src/PanelControl.o
+ .debug_str       0x0001ac         0x43 build/debug/production/source/LibraryFiles/src/Uart.o
+ .debug_str       0x0001ef         0x2c build/debug/production/source/LibraryFiles/src/Buzzer.o
+ .debug_str       0x00021b         0x5b build/debug/production/source/LibraryFiles/src/IOPorts.o
+ .debug_str       0x000276         0x1e build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
+ .debug_str       0x000294         0x16 build/debug/production/source/LibraryFiles/src/System.o
+ .debug_str       0x0002aa          0x9 build/debug/production/source/src/main.o
 
 .debug_loc
  *(.debug_loc)
@@ -813,34 +818,34 @@ __CONFIG1
  *(.debug_macinfo)
 
 .debug_pubnames
-                  0x000000        0x52a
+                  0x000000        0x58d
  *(.debug_pubnames)
  .debug_pubnames
-                  0x000000         0x81 build/debug/production/source/CubeControl/src/CubeData.o
+                  0x000000         0xcb build/debug/production/source/CubeControl/src/CubeData.o
  .debug_pubnames
-                  0x000081         0xc0 build/debug/production/source/CubeControl/src/LayerControl.o
+                  0x0000cb         0xc0 build/debug/production/source/CubeControl/src/LayerControl.o
  .debug_pubnames
-                  0x000141         0x82 build/debug/production/source/CubeControl/src/LedCube.o
+                  0x00018b         0x9b build/debug/production/source/CubeControl/src/LedCube.o
  .debug_pubnames
-                  0x0001c3         0x63 build/debug/production/source/CubeControl/src/LedDriver.o
+                  0x000226         0x63 build/debug/production/source/CubeControl/src/LedDriver.o
  .debug_pubnames
-                  0x000226         0x6f build/debug/production/source/CubeControl/src/PanelControl.o
+                  0x000289         0x6f build/debug/production/source/CubeControl/src/PanelControl.o
  .debug_pubnames
-                  0x000295         0xb0 build/debug/production/source/LibraryFiles/src/Uart.o
+                  0x0002f8         0xb0 build/debug/production/source/LibraryFiles/src/Uart.o
  .debug_pubnames
-                  0x000345         0xc9 build/debug/production/source/LibraryFiles/src/BitOperations.o
+                  0x0003a8         0xc9 build/debug/production/source/LibraryFiles/src/BitOperations.o
  .debug_pubnames
-                  0x00040e         0x56 build/debug/production/source/LibraryFiles/src/Buzzer.o
+                  0x000471         0x56 build/debug/production/source/LibraryFiles/src/Buzzer.o
  .debug_pubnames
-                  0x000464         0x23 build/debug/production/source/LibraryFiles/src/IOPorts.o
+                  0x0004c7         0x23 build/debug/production/source/LibraryFiles/src/IOPorts.o
  .debug_pubnames
-                  0x000487         0x3a build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
+                  0x0004ea         0x3a build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
  .debug_pubnames
-                  0x0004c1         0x2a build/debug/production/source/LibraryFiles/src/System.o
+                  0x000524         0x2a build/debug/production/source/LibraryFiles/src/System.o
  .debug_pubnames
-                  0x0004eb         0x24 build/debug/production/source/LibraryFiles/src/Debug.o
+                  0x00054e         0x24 build/debug/production/source/LibraryFiles/src/Debug.o
  .debug_pubnames
-                  0x00050f         0x1b build/debug/production/source/src/main.o
+                  0x000572         0x1b build/debug/production/source/src/main.o
 
 .debug_ranges
  *(.debug_ranges)
@@ -891,10 +896,10 @@ __CONFIG1
                   0x00001e          0x4 LONG 0x29e DEFINED (__IC2Interrupt)?ABSOLUTE (__IC2Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000020          0x4 LONG 0x29e DEFINED (__OC2Interrupt)?ABSOLUTE (__OC2Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000022          0x4 LONG 0x29e DEFINED (__T2Interrupt)?ABSOLUTE (__T2Interrupt):ABSOLUTE (__DefaultInterrupt)
-                  0x000024          0x4 LONG 0x3b20 DEFINED (__T3Interrupt)?ABSOLUTE (__T3Interrupt):ABSOLUTE (__DefaultInterrupt)
+                  0x000024          0x4 LONG 0x3e0e DEFINED (__T3Interrupt)?ABSOLUTE (__T3Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000026          0x4 LONG 0x29e DEFINED (__SPI1ErrInterrupt)?ABSOLUTE (__SPI1ErrInterrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000028          0x4 LONG 0x29e DEFINED (__SPI1Interrupt)?ABSOLUTE (__SPI1Interrupt):ABSOLUTE (__DefaultInterrupt)
-                  0x00002a          0x4 LONG 0x39b8 DEFINED (__U1RXInterrupt)?ABSOLUTE (__U1RXInterrupt):ABSOLUTE (__DefaultInterrupt)
+                  0x00002a          0x4 LONG 0x3a8a DEFINED (__U1RXInterrupt)?ABSOLUTE (__U1RXInterrupt):ABSOLUTE (__DefaultInterrupt)
                   0x00002c          0x4 LONG 0x29e DEFINED (__U1TXInterrupt)?ABSOLUTE (__U1TXInterrupt):ABSOLUTE (__DefaultInterrupt)
                   0x00002e          0x4 LONG 0x29e DEFINED (__ADC1Interrupt)?ABSOLUTE (__ADC1Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000030          0x4 LONG 0x29e DEFINED (__Interrupt14)?ABSOLUTE (__Interrupt14):ABSOLUTE (__DefaultInterrupt)
@@ -1019,10 +1024,10 @@ __CONFIG1
                   0x00011e          0x4 LONG 0x29e DEFINED (__AltIC2Interrupt)?ABSOLUTE (__AltIC2Interrupt):DEFINED (__IC2Interrupt)?ABSOLUTE (__IC2Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000120          0x4 LONG 0x29e DEFINED (__AltOC2Interrupt)?ABSOLUTE (__AltOC2Interrupt):DEFINED (__OC2Interrupt)?ABSOLUTE (__OC2Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000122          0x4 LONG 0x29e DEFINED (__AltT2Interrupt)?ABSOLUTE (__AltT2Interrupt):DEFINED (__T2Interrupt)?ABSOLUTE (__T2Interrupt):ABSOLUTE (__DefaultInterrupt)
-                  0x000124          0x4 LONG 0x3b20 DEFINED (__AltT3Interrupt)?ABSOLUTE (__AltT3Interrupt):DEFINED (__T3Interrupt)?ABSOLUTE (__T3Interrupt):ABSOLUTE (__DefaultInterrupt)
+                  0x000124          0x4 LONG 0x3e0e DEFINED (__AltT3Interrupt)?ABSOLUTE (__AltT3Interrupt):DEFINED (__T3Interrupt)?ABSOLUTE (__T3Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000126          0x4 LONG 0x29e DEFINED (__AltSPI1ErrInterrupt)?ABSOLUTE (__AltSPI1ErrInterrupt):DEFINED (__SPI1ErrInterrupt)?ABSOLUTE (__SPI1ErrInterrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000128          0x4 LONG 0x29e DEFINED (__AltSPI1Interrupt)?ABSOLUTE (__AltSPI1Interrupt):DEFINED (__SPI1Interrupt)?ABSOLUTE (__SPI1Interrupt):ABSOLUTE (__DefaultInterrupt)
-                  0x00012a          0x4 LONG 0x39b8 DEFINED (__AltU1RXInterrupt)?ABSOLUTE (__AltU1RXInterrupt):DEFINED (__U1RXInterrupt)?ABSOLUTE (__U1RXInterrupt):ABSOLUTE (__DefaultInterrupt)
+                  0x00012a          0x4 LONG 0x3a8a DEFINED (__AltU1RXInterrupt)?ABSOLUTE (__AltU1RXInterrupt):DEFINED (__U1RXInterrupt)?ABSOLUTE (__U1RXInterrupt):ABSOLUTE (__DefaultInterrupt)
                   0x00012c          0x4 LONG 0x29e DEFINED (__AltU1TXInterrupt)?ABSOLUTE (__AltU1TXInterrupt):DEFINED (__U1TXInterrupt)?ABSOLUTE (__U1TXInterrupt):ABSOLUTE (__DefaultInterrupt)
                   0x00012e          0x4 LONG 0x29e DEFINED (__AltADC1Interrupt)?ABSOLUTE (__AltADC1Interrupt):DEFINED (__ADC1Interrupt)?ABSOLUTE (__ADC1Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000130          0x4 LONG 0x29e DEFINED (__AltInterrupt14)?ABSOLUTE (__AltInterrupt14):DEFINED (__Interrupt14)?ABSOLUTE (__Interrupt14):ABSOLUTE (__DefaultInterrupt)
@@ -1743,191 +1748,187 @@ LOAD default_isr
 LOAD data_init
 
 .debug_pubtypes
-                  0x000138        0x87c
+                  0x000138        0x829
  .debug_pubtypes
-                  0x000138         0x91 build/debug/production/source/CubeControl/src/CubeData.o
+                  0x000138         0xb0 build/debug/production/source/CubeControl/src/CubeData.o
  .debug_pubtypes
-                  0x0001c9        0x192 build/debug/production/source/CubeControl/src/LayerControl.o
+                  0x0001e8        0x18b build/debug/production/source/CubeControl/src/LayerControl.o
  .debug_pubtypes
-                  0x00035b         0x94 build/debug/production/source/CubeControl/src/LedCube.o
+                  0x000373         0x8d build/debug/production/source/CubeControl/src/LedCube.o
  .debug_pubtypes
-                  0x0003ef         0xa3 build/debug/production/source/CubeControl/src/LedDriver.o
+                  0x000400         0xa3 build/debug/production/source/CubeControl/src/LedDriver.o
  .debug_pubtypes
-                  0x000492         0xca build/debug/production/source/CubeControl/src/PanelControl.o
+                  0x0004a3         0xc3 build/debug/production/source/CubeControl/src/PanelControl.o
  .debug_pubtypes
-                  0x00055c        0x11b build/debug/production/source/LibraryFiles/src/Uart.o
+                  0x000566        0x11b build/debug/production/source/LibraryFiles/src/Uart.o
  .debug_pubtypes
-                  0x000677         0x37 build/debug/production/source/LibraryFiles/src/BitOperations.o
+                  0x000681         0x37 build/debug/production/source/LibraryFiles/src/BitOperations.o
  .debug_pubtypes
-                  0x0006ae         0x85 build/debug/production/source/LibraryFiles/src/Buzzer.o
+                  0x0006b8         0x85 build/debug/production/source/LibraryFiles/src/Buzzer.o
  .debug_pubtypes
-                  0x000733        0x12b build/debug/production/source/LibraryFiles/src/IOPorts.o
+                  0x00073d        0x12b build/debug/production/source/LibraryFiles/src/IOPorts.o
  .debug_pubtypes
-                  0x00085e         0x58 build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
+                  0x000868         0x58 build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
  .debug_pubtypes
-                  0x0008b6         0x54 build/debug/production/source/LibraryFiles/src/System.o
+                  0x0008c0         0x54 build/debug/production/source/LibraryFiles/src/System.o
  .debug_pubtypes
-                  0x00090a         0x12 build/debug/production/source/LibraryFiles/src/Debug.o
+                  0x000914         0x12 build/debug/production/source/LibraryFiles/src/Debug.o
  .debug_pubtypes
-                  0x00091c         0x98 build/debug/production/source/src/main.o
+                  0x000926         0x3b build/debug/production/source/src/main.o
 
 __c30_signature
-                  0x0009b4        0x19e
+                  0x000961        0x19e
  __c30_signature
-                  0x0009b4          0x6 build/debug/production/source/CubeControl/src/CubeData.o
+                  0x000961          0x6 build/debug/production/source/CubeControl/src/CubeData.o
  __c30_signature
-                  0x0009ba          0x6 build/debug/production/source/CubeControl/src/LayerControl.o
+                  0x000967          0x6 build/debug/production/source/CubeControl/src/LayerControl.o
  __c30_signature
-                  0x0009c0          0x6 build/debug/production/source/CubeControl/src/LedCube.o
+                  0x00096d          0x6 build/debug/production/source/CubeControl/src/LedCube.o
  __c30_signature
-                  0x0009c6          0x6 build/debug/production/source/CubeControl/src/LedDriver.o
+                  0x000973          0x6 build/debug/production/source/CubeControl/src/LedDriver.o
  __c30_signature
-                  0x0009cc          0x6 build/debug/production/source/CubeControl/src/PanelControl.o
+                  0x000979          0x6 build/debug/production/source/CubeControl/src/PanelControl.o
  __c30_signature
-                  0x0009d2          0x6 build/debug/production/source/LibraryFiles/src/Uart.o
+                  0x00097f          0x6 build/debug/production/source/LibraryFiles/src/Uart.o
  __c30_signature
-                  0x0009d8          0x6 build/debug/production/source/LibraryFiles/src/BitOperations.o
+                  0x000985          0x6 build/debug/production/source/LibraryFiles/src/BitOperations.o
  __c30_signature
-                  0x0009de          0x6 build/debug/production/source/LibraryFiles/src/Buzzer.o
+                  0x00098b          0x6 build/debug/production/source/LibraryFiles/src/Buzzer.o
  __c30_signature
-                  0x0009e4          0x6 build/debug/production/source/LibraryFiles/src/IOPorts.o
+                  0x000991          0x6 build/debug/production/source/LibraryFiles/src/IOPorts.o
  __c30_signature
-                  0x0009ea          0x6 build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
+                  0x000997          0x6 build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
  __c30_signature
-                  0x0009f0          0x6 build/debug/production/source/LibraryFiles/src/System.o
+                  0x00099d          0x6 build/debug/production/source/LibraryFiles/src/System.o
  __c30_signature
-                  0x0009f6          0x6 build/debug/production/source/LibraryFiles/src/Debug.o
+                  0x0009a3          0x6 build/debug/production/source/LibraryFiles/src/Debug.o
  __c30_signature
-                  0x0009fc          0x6 build/debug/production/source/src/main.o
+                  0x0009a9          0x6 build/debug/production/source/src/main.o
  __c30_signature
-                  0x000a02          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
+                  0x0009af          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
  __c30_signature
-                  0x000a08          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-pic30-elf.a(data_init_standard.o)
+                  0x0009b5          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-pic30-elf.a(data_init_standard.o)
  __c30_signature
-                  0x000a0e          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-pic30-elf.a(delay32.Leo)
+                  0x0009bb          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-pic30-elf.a(delay32.Leo)
  __c30_signature
-                  0x000a14          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(addsf3.eo)
+                  0x0009c1          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(addsf3.eo)
  __c30_signature
-                  0x000a1a          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(divsf3.eo)
+                  0x0009c7          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(divsf3.eo)
  __c30_signature
-                  0x000a20          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(divsi3.eo)
+                  0x0009cd          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(divsi3.eo)
  __c30_signature
-                  0x000a26          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(fixunssfsi.eo)
+                  0x0009d3          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(fixunssfsi.eo)
  __c30_signature
-                  0x000a2c          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(floatunsisf.eo)
+                  0x0009d9          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(floatunsisf.eo)
  __c30_signature
-                  0x000a32          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(fpack.eo)
+                  0x0009df          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(fpack.eo)
  __c30_signature
-                  0x000a38          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(funpack.eo)
+                  0x0009e5          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(funpack.eo)
  __c30_signature
-                  0x000a3e          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(funpack2.eo)
+                  0x0009eb          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(funpack2.eo)
  __c30_signature
-                  0x000a44          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(futil.eo)
+                  0x0009f1          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(futil.eo)
  __c30_signature
-                  0x000a4a          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(modsi3.eo)
+                  0x0009f7          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(modsi3.eo)
  __c30_signature
-                  0x000a50          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(mulsf3.eo)
+                  0x0009fd          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(mulsf3.eo)
  __c30_signature
-                  0x000a56          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(udivsi3.eo)
+                  0x000a03          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(udivsi3.eo)
  __c30_signature
-                  0x000a5c          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(umodsi3.eo)
+                  0x000a09          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(umodsi3.eo)
  __c30_signature
-                  0x000a62          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(divmoddi3.eo)
+                  0x000a0f          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(divmoddi3.eo)
  __c30_signature
-                  0x000a68          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(muldi3.eo)
+                  0x000a15          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(muldi3.eo)
  __c30_signature
-                  0x000a6e          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(floatundisf.eo)
+                  0x000a1b          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(floatundisf.eo)
  __c30_signature
-                  0x000a74          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(umuldi3.eo)
+                  0x000a21          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(umuldi3.eo)
  __c30_signature
-                  0x000a7a          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-c-elf.a(memset.XXeo)
+                  0x000a27          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-c-elf.a(memset.XXeo)
  __c30_signature
-                  0x000a80          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-c-elf.a(vsprintf.XXeo)
+                  0x000a2d          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-c-elf.a(vsprintf.XXeo)
  __c30_signature
-                  0x000a86          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-c-elf.a(xprintf.XXeo)
+                  0x000a33          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-c-elf.a(xprintf.XXeo)
  __c30_signature
-                  0x000a8c          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-c-elf.a(xputfld.XXeo)
+                  0x000a39          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-c-elf.a(xputfld.XXeo)
  __c30_signature
-                  0x000a92          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-c-elf.a(strchr.XXelo)
+                  0x000a3f          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-c-elf.a(strchr.XXelo)
  __c30_signature
-                  0x000a98          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-c-elf.a(xvacopy.XXelo)
+                  0x000a45          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-c-elf.a(xvacopy.XXelo)
  __c30_signature
-                  0x000a9e          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-c-elf.a(memchr.XXeo)
+                  0x000a4b          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-c-elf.a(memchr.XXeo)
  __c30_signature
-                  0x000aa4          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-c-elf.a(memcpy.XXeo)
+                  0x000a51          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-c-elf.a(memcpy.XXeo)
  __c30_signature
-                  0x000aaa          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-c-elf.a(strlen.XXeo)
+                  0x000a57          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-c-elf.a(strlen.XXeo)
  __c30_signature
-                  0x000ab0          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-c-elf.a(xldtob.XXeo)
+                  0x000a5d          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-c-elf.a(xldtob.XXeo)
  __c30_signature
-                  0x000ab6          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-c-elf.a(xldunsca.XXeo)
+                  0x000a63          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-c-elf.a(xldunsca.XXeo)
  __c30_signature
-                  0x000abc          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-c-elf.a(xlitob.XXeo)
+                  0x000a69          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-c-elf.a(xlitob.XXeo)
  __c30_signature
-                  0x000ac2          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-c-elf.a(xputtxt.XXeo)
+                  0x000a6f          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-c-elf.a(xputtxt.XXeo)
  __c30_signature
-                  0x000ac8          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-c-elf.a(ldiv.XXelo)
+                  0x000a75          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-c-elf.a(ldiv.XXelo)
  __c30_signature
-                  0x000ace          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-c-elf.a(xdnorm.XXelo)
+                  0x000a7b          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-c-elf.a(xdnorm.XXelo)
  __c30_signature
-                  0x000ad4          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-c-elf.a(xldscale.XXelo)
+                  0x000a81          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-c-elf.a(xldscale.XXelo)
  __c30_signature
-                  0x000ada          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-c-elf.a(xgenld.XXeo)
+                  0x000a87          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-c-elf.a(xgenld.XXeo)
  __c30_signature
-                  0x000ae0          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-c-elf.a(div.XXelo)
+                  0x000a8d          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-c-elf.a(div.XXelo)
  __c30_signature
-                  0x000ae6          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(deqltle.eo)
+                  0x000a93          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(deqltle.eo)
  __c30_signature
-                  0x000aec          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(dgtge.eo)
+                  0x000a99          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(dgtge.eo)
  __c30_signature
-                  0x000af2          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(divdf3.eo)
+                  0x000a9f          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(divdf3.eo)
  __c30_signature
-                  0x000af8          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(dpack.eo)
+                  0x000aa5          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(dpack.eo)
  __c30_signature
-                  0x000afe          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(dunpack2.eo)
+                  0x000aab          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(dunpack2.eo)
  __c30_signature
-                  0x000b04          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(extendsfdf.eo)
+                  0x000ab1          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(extendsfdf.eo)
  __c30_signature
-                  0x000b0a          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(fixdfsi.eo)
+                  0x000ab7          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(fixdfsi.eo)
  __c30_signature
-                  0x000b10          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(floatsidf.eo)
+                  0x000abd          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(floatsidf.eo)
  __c30_signature
-                  0x000b16          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(muldf3.eo)
+                  0x000ac3          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(muldf3.eo)
  __c30_signature
-                  0x000b1c          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(subdf3.eo)
+                  0x000ac9          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(subdf3.eo)
  __c30_signature
-                  0x000b22          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(mulsi3.eo)
+                  0x000acf          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(mulsi3.eo)
  __c30_signature
-                  0x000b28          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(adddf3.eo)
+                  0x000ad5          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(adddf3.eo)
  __c30_signature
-                  0x000b2e          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(dcompare.eo)
+                  0x000adb          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(dcompare.eo)
  __c30_signature
-                  0x000b34          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(dpropagateNaN.eo)
+                  0x000ae1          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(dpropagateNaN.eo)
  __c30_signature
-                  0x000b3a          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(dtype.eo)
+                  0x000ae7          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(dtype.eo)
  __c30_signature
-                  0x000b40          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(dunpack.eo)
+                  0x000aed          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(dunpack.eo)
  __c30_signature
-                  0x000b46          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(floatdidf.eo)
+                  0x000af3          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(floatdidf.eo)
  __c30_signature
-                  0x000b4c          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(floatundidf.eo)
+                  0x000af9          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libm-elf.a(floatundidf.eo)
 
-.ndata              0x0800          0x2
- .ndata             0x0800          0x2 build/debug/production/source/CubeControl/src/CubeData.o
-                    0x0800                  _pCubeControlData
+.nbss               0x0800          0x2
+ .nbss              0x0800          0x2 build/debug/production/source/CubeControl/src/LayerControl.o
+                    0x0800                  _layer
+                    0x0801                  _bamRound
 
-.nbss               0x0802          0x2
- .nbss              0x0802          0x2 build/debug/production/source/CubeControl/src/LayerControl.o
-                    0x0802                  _layer
-                    0x0803                  _bamRound
+.ndata              0x0802          0x2
+ .ndata             0x0802          0x2 build/debug/production/source/LibraryFiles/src/Uart.o
+                    0x0802                  _pRxBuffer
 
-.ndata              0x0804          0x2
- .ndata             0x0804          0x2 build/debug/production/source/LibraryFiles/src/Uart.o
-                    0x0804                  _pRxBuffer
-
-.data               0x0806        0x616
- .data              0x0806        0x616 build/debug/production/source/CubeControl/src/CubeData.o
-                    0x0806                  _CubeControlData
+.data               0x0804        0x618
+ .data              0x0804        0x618 build/debug/production/source/CubeControl/src/CubeData.o
+                    0x0804                  _CubeControlData
 
 .bss                0x0e1c        0x108
  .bss               0x0e1c        0x108 build/debug/production/source/LibraryFiles/src/Uart.o
@@ -1952,91 +1953,95 @@ __c30_signature
 .config_IESO      0x00abfc          0x2
  .config_IESO     0x00abfc          0x2 build/debug/production/source/src/main.o
 
-.const              0x9ebe        0x6ce load address 0x001ebe  
- .const             0x9ebe        0x36e build/debug/production/source/CubeControl/src/LedCube.o
- .const             0xa22c        0x152 build/debug/production/source/LibraryFiles/src/Buzzer.o
- .const             0xa37e         0xa0 build/debug/production/source/LibraryFiles/src/Uart.o
- .const             0xa41e         0x70 build/debug/production/source/CubeControl/src/LayerControl.o
-                    0xa41e                  _layerArray
- .const             0xa48e         0x6c build/debug/production/source/CubeControl/src/PanelControl.o
- .const             0xa4fa         0x5a build/debug/production/source/CubeControl/src/LedDriver.o
- .const             0xa554         0x38 build/debug/production/source/CubeControl/src/CubeData.o
-                    0xa554                  _pCubeData0Base
-                    0xa556                  _pCubeData1Base
+.const              0x9ebe        0x7ea load address 0x001ebe  
+ .const             0x9ebe        0x372 build/debug/production/source/CubeControl/src/LedCube.o
+ .const             0xa230        0x152 build/debug/production/source/LibraryFiles/src/Buzzer.o
+ .const             0xa382        0x122 build/debug/production/source/CubeControl/src/CubeData.o
+                    0xa382                  _pCubeControlData
+                    0xa384                  _pCubeData0Base
+                    0xa386                  _pCubeData1Base
+ .const             0xa4a4         0xa0 build/debug/production/source/LibraryFiles/src/Uart.o
+ .const             0xa544         0x9e build/debug/production/source/CubeControl/src/LayerControl.o
+                    0xa544                  _layerArray
+ .const             0xa5e2         0x6c build/debug/production/source/CubeControl/src/PanelControl.o
+ .const             0xa64e         0x5a build/debug/production/source/CubeControl/src/LedDriver.o
 
-.text             0x00258c        0xa58
- .text            0x00258c        0x546 build/debug/production/source/CubeControl/src/LedCube.o
-                  0x00258c                  _LedCube_init
-                  0x0025a4                  _LedCube_setPixel
-                  0x002a66                  _LedCube_update
-                  0x002a6c                  _LedCube_resetData
-                  0x002aa6                  __helperPrintByte
- .text            0x002ad2        0x512 build/debug/production/source/LibraryFiles/src/BitOperations.o
-                  0x002ad2                  _isPositive
-                  0x002aea                  _haveOppositeSigns
-                  0x002b04                  _min
-                  0x002b50                  _max
-                  0x002b98                  _isPowerOf2
-                  0x002bda                  _modifyBits
-                  0x002c22                  _mergeBits
-                  0x002c5e                  _nBitsSet
-                  0x002d38                  _isEven
-                  0x002dce                  _ByteReverseBits
-                  0x002e0c                  _reverseBitOrder
-                  0x002f8c                  _roundUpToPowerOf2
+.text             0x0026a8        0xa22
+ .text            0x0026a8        0x512 build/debug/production/source/LibraryFiles/src/BitOperations.o
+                  0x0026a8                  _isPositive
+                  0x0026c0                  _haveOppositeSigns
+                  0x0026da                  _min
+                  0x002726                  _max
+                  0x00276e                  _isPowerOf2
+                  0x0027b0                  _modifyBits
+                  0x0027f8                  _mergeBits
+                  0x002834                  _nBitsSet
+                  0x00290e                  _isEven
+                  0x0029a4                  _ByteReverseBits
+                  0x0029e2                  _reverseBitOrder
+                  0x002b62                  _roundUpToPowerOf2
+ .text            0x002bba        0x510 build/debug/production/source/CubeControl/src/LedCube.o
+                  0x002bba                  _LedCube_init
+                  0x002bd2                  _LedCube_setPixel
+                  0x003062                  _LedCube_update
+                  0x00306e                  _LedCube_resetData
+                  0x00308e                  _LedCube_printHexData
+                  0x00309e                  __helperPrintByte
 
-.dinit            0x002fe4        0x4d0
- .dinit           0x002fe4        0x4d0 data_init
+.dinit            0x0030ca        0x4c8
+ .dinit           0x0030ca        0x4c8 data_init
 
-.text             0x0034b4        0xc1c
- .text            0x0034b4        0x2e0 build/debug/production/source/CubeControl/src/PanelControl.o
-                  0x0034b4                  _PanelControl_init
-                  0x0034c8                  _PanelControl_update
-                  0x003768                  _PanelControl_allOff
-                  0x00377e                  _PanelControl_allOn
- .text            0x003794        0x278 build/debug/production/source/LibraryFiles/src/Uart.o
-                  0x003794                  _Uart1_init
-                  0x0037ea                  _Uart1_putc
-                  0x003802                  _Uart1_puts
-                  0x00381c                  _Uart1_putNum
-                  0x0038f0                  _Uart1_putBits
-                  0x003932                  _Uart1_printf
-                  0x003974                  _Uart1_gets
-                  0x0039b8                  __U1RXInterrupt
- .text            0x003a0c        0x172 build/debug/production/source/CubeControl/src/LayerControl.o
-                  0x003a0c                  _LayerControl_init
-                  0x003a70                  _LayerControl_setLayer
-                  0x003a90                  _LayerControl_update
-                  0x003af4                  _LayerControl_allOff
-                  0x003b0a                  _LayerControl_allOn
-                  0x003b20                  __T3Interrupt
- .text            0x003b7e        0x158 build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
-                  0x003b7e                  _swFifoBufferPut
-                  0x003c30                  _swFifoBufferGet
- .text            0x003cd6        0x13a build/debug/production/source/LibraryFiles/src/Buzzer.o
-                  0x003cd6                  _Buzzer_init
-                  0x003d0e                  _Buzzer_beep
-                  0x003d26                  _Buzzer_shortBeep
-                  0x003d3e                  _Buzzer_set
- .text            0x003e10         0xe0 build/debug/production/source/LibraryFiles/src/IOPorts.o
-                  0x003e10                  _IOPorts_init
- .text            0x003ef0         0xac build/debug/production/source/CubeControl/src/LedDriver.o
-                  0x003ef0                  _LedDriver_init
-                  0x003f2e                  _LedDriver_update
-                  0x003f88                  _LedDriver_allOff
-                  0x003f92                  _LedDriver_allOn
- .text            0x003f9c         0x94 build/debug/production/source/CubeControl/src/CubeData.o
-                  0x003f9c                  _CubeData_init
-                  0x003fbc                  _resetData
- .text            0x004030         0x80 build/debug/production/source/src/main.o
-                  0x004030                  _main
- .text            0x0040b0         0x20 build/debug/production/source/LibraryFiles/src/System.o
-                  0x0040b0                  _ConfigureOscillator
+.text             0x003592        0xd82
+ .text            0x003592        0x2d4 build/debug/production/source/CubeControl/src/PanelControl.o
+                  0x003592                  _PanelControl_init
+                  0x0035a6                  _PanelControl_update
+                  0x00383a                  _PanelControl_allOff
+                  0x003850                  _PanelControl_allOn
+ .text            0x003866        0x278 build/debug/production/source/LibraryFiles/src/Uart.o
+                  0x003866                  _Uart1_init
+                  0x0038bc                  _Uart1_putc
+                  0x0038d4                  _Uart1_puts
+                  0x0038ee                  _Uart1_putNum
+                  0x0039c2                  _Uart1_putBits
+                  0x003a04                  _Uart1_printf
+                  0x003a46                  _Uart1_gets
+                  0x003a8a                  __U1RXInterrupt
+ .text            0x003ade        0x21c build/debug/production/source/CubeControl/src/CubeData.o
+                  0x003ade                  _CubeData_init
+                  0x003b06                  _CubeData_switchCubeData
+                  0x003bcc                  _CubeData_resetData
+                  0x003c50                  _CubeControlData_printHexCubeData
+ .text            0x003cfa        0x188 build/debug/production/source/CubeControl/src/LayerControl.o
+                  0x003cfa                  _LayerControl_init
+                  0x003d5e                  _LayerControl_setLayer
+                  0x003d7e                  _LayerControl_update
+                  0x003de2                  _LayerControl_allOff
+                  0x003df8                  _LayerControl_allOn
+                  0x003e0e                  __T3Interrupt
+ .text            0x003e82        0x158 build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
+                  0x003e82                  _swFifoBufferPut
+                  0x003f34                  _swFifoBufferGet
+ .text            0x003fda        0x13a build/debug/production/source/LibraryFiles/src/Buzzer.o
+                  0x003fda                  _Buzzer_init
+                  0x004012                  _Buzzer_beep
+                  0x00402a                  _Buzzer_shortBeep
+                  0x004042                  _Buzzer_set
+ .text            0x004114         0xe0 build/debug/production/source/LibraryFiles/src/IOPorts.o
+                  0x004114                  _IOPorts_init
+ .text            0x0041f4         0xac build/debug/production/source/CubeControl/src/LedDriver.o
+                  0x0041f4                  _LedDriver_init
+                  0x004232                  _LedDriver_update
+                  0x00428c                  _LedDriver_allOff
+                  0x004296                  _LedDriver_allOn
+ .text            0x0042a0         0x54 build/debug/production/source/src/main.o
+                  0x0042a0                  _main
+ .text            0x0042f4         0x20 build/debug/production/source/LibraryFiles/src/System.o
+                  0x0042f4                  _ConfigureOscillator
 
-.init.delay32     0x0040d0         0x1c
- .init.delay32    0x0040d0         0x1c c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-pic30-elf.a(delay32.Leo)
-                  0x0040d0                  ___delay32
+.init.delay32     0x004314         0x1c
+ .init.delay32    0x004314         0x1c c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-pic30-elf.a(delay32.Leo)
+                  0x004314                  ___delay32
 
-.text             0x0040ec          0x6
- .text            0x0040ec          0x6 build/debug/production/source/LibraryFiles/src/Debug.o
-                  0x0040ec                  __dummy_printf
+.text             0x004330          0x6
+ .text            0x004330          0x6 build/debug/production/source/LibraryFiles/src/Debug.o
+                  0x004330                  __dummy_printf
