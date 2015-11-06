@@ -92,10 +92,9 @@ Uart1_init( void ) {
     
     U1MODEbits.UARTEN = 1;              // Enable UARTx module
     U1STAbits.UTXEN = 1;                // Enable UARTx transmitter
-    __delay_us(105);
+    Delay_us(105);
     
 #ifdef DEBUG
-    //@fixme Can't print anything directly after this initialisation.
     Uart1_printf(" DEBUG: %s(): Initialize complete...\n" 
             " DEBUG: %s(): Baud Rate Error (must be below 5%%): %.2f%%\n",
             __FUNCTION__, __FUNCTION__, (UART1_BAUD_ERROR / 100.0) );

@@ -39,9 +39,7 @@ extern "C" {
 #include "LedDriver.h"
 #include "CubeControlData.h"
 #ifdef PC_ENABLE_SELF_TEST_YES
-// System.h must be included before libpic32.h because of usage of FCY
-#include "System.h"
-#include <libpic30.h>           // for __delay_ms()
+#include "Delay.h"
 #endif /* PC_ENABLE_SELF_TEST_YES */
 
 /*******************************************************************************

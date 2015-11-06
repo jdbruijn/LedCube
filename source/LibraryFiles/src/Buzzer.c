@@ -63,7 +63,7 @@ void
 Buzzer_beep( void ) {
     PR2 = 499;                  // 4 kHz
     OC1RS = (PR2 >> 1);         // 50% duty cycle
-    __delay_ms(250);
+    Delay_ms(250);
     OC1RS = 0;                  // 0% duty cycle (buzzer is turned off)
     
     return;
@@ -77,7 +77,7 @@ void
 Buzzer_shortBeep( void ) {
     PR2 = 499;                  // 4 kHz
     OC1RS = (PR2 >> 1);         // 50% duty cycle
-    __delay_ms(50);
+    Delay_ms(50);
     OC1RS = 0;                  // 0% duty cycle (buzzer is turned off)
     
     return;
@@ -107,7 +107,7 @@ Buzzer_set( uint16_t _frequency, uint32_t _time ) {
      */
     PR2 = (1 / (_frequency * ((float)T2_TCKPS / FPB))) - 1;
     OC1RS = (PR2 >> 1);         // 50% duty cycle
-    __delay_ms(_time);
+    Delay_ms(_time);
     OC1RS = 0;                  // 0% duty cycle (buzzer is turned off)
     
     return;
@@ -124,7 +124,7 @@ Buzzer_selfTest( void ) {
     
     for( i=0; i<3; i++ ) {
         Buzzer_beep();
-        __delay_ms(100);
+        Delay_ms(100);
     }
     
     for( i=40; i<=20000; i+=100 ) {       
@@ -132,7 +132,7 @@ Buzzer_selfTest( void ) {
     }
     
     for( i=0; i<3; i++ ) {
-        __delay_ms(100);
+        Delay_ms(100);
         Buzzer_beep();
     }
     

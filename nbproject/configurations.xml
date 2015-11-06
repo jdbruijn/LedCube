@@ -3,17 +3,17 @@
   <logicalFolder name="root" displayName="root" projectFiles="true">
     <logicalFolder name="f1" displayName="CubeControl" projectFiles="true">
       <logicalFolder name="f1" displayName="src" projectFiles="true">
-        <itemPath>source/CubeControl/src/CubeData.c</itemPath>
         <itemPath>source/CubeControl/src/LayerControl.c</itemPath>
         <itemPath>source/CubeControl/src/LedCube.c</itemPath>
         <itemPath>source/CubeControl/src/LedDriver.c</itemPath>
         <itemPath>source/CubeControl/src/PanelControl.c</itemPath>
+        <itemPath>source/CubeControl/src/CubeControlData.c</itemPath>
       </logicalFolder>
-      <itemPath>source/CubeControl/CubeData.h</itemPath>
       <itemPath>source/CubeControl/LayerControl.h</itemPath>
       <itemPath>source/CubeControl/LedCube.h</itemPath>
       <itemPath>source/CubeControl/LedDriver.h</itemPath>
       <itemPath>source/CubeControl/PanelControl.h</itemPath>
+      <itemPath>source/CubeControl/CubeControlData.h</itemPath>
     </logicalFolder>
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
@@ -40,6 +40,7 @@
       <itemPath>source/LibraryFiles/Uart.h</itemPath>
       <itemPath>source/LibraryFiles/Debug.h</itemPath>
       <itemPath>source/LibraryFiles/MyAssert.h</itemPath>
+      <itemPath>source/LibraryFiles/Delay.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"

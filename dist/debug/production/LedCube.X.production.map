@@ -19,6 +19,7 @@ Command:
   build/debug/production/source/CubeControl/src/LedCube.o \
   build/debug/production/source/CubeControl/src/LedDriver.o \
   build/debug/production/source/CubeControl/src/PanelControl.o \
+  build/debug/production/source/CubeControl/src/CubeControlData.o \
   build/debug/production/source/LibraryFiles/src/Uart.o \
   build/debug/production/source/LibraryFiles/src/BitOperations.o \
   build/debug/production/source/LibraryFiles/src/Buzzer.o \
@@ -27,7 +28,6 @@ Command:
   build/debug/production/source/LibraryFiles/src/System.o \
   build/debug/production/source/LibraryFiles/src/Debug.o \
   build/debug/production/source/src/main.o \
-  build/debug/production/source/CubeControl/src/CubeControlData.o \
   --defsym=__MPLAB_BUILD=1 \
   -Tp24FJ64GA004.gld.00 \
   --stack=16 \
@@ -518,6 +518,7 @@ LOAD build/debug/production/source/CubeControl/src/LayerControl.o
 LOAD build/debug/production/source/CubeControl/src/LedCube.o
 LOAD build/debug/production/source/CubeControl/src/LedDriver.o
 LOAD build/debug/production/source/CubeControl/src/PanelControl.o
+LOAD build/debug/production/source/CubeControl/src/CubeControlData.o
 LOAD build/debug/production/source/LibraryFiles/src/Uart.o
 LOAD build/debug/production/source/LibraryFiles/src/BitOperations.o
 LOAD build/debug/production/source/LibraryFiles/src/Buzzer.o
@@ -526,7 +527,6 @@ LOAD build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
 LOAD build/debug/production/source/LibraryFiles/src/System.o
 LOAD build/debug/production/source/LibraryFiles/src/Debug.o
 LOAD build/debug/production/source/src/main.o
-LOAD build/debug/production/source/CubeControl/src/CubeControlData.o
                     0x0001                  __MPLAB_BUILD = 0x1
 LOAD pPIC24Fxxx
 LOAD c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\libfx-elf.a
@@ -738,15 +738,15 @@ __CONFIG1
  .debug_info      0x001251        0x6fa build/debug/production/source/CubeControl/src/LedCube.o
  .debug_info      0x00194b        0x8d6 build/debug/production/source/CubeControl/src/LedDriver.o
  .debug_info      0x002221        0x7ca build/debug/production/source/CubeControl/src/PanelControl.o
- .debug_info      0x0029eb        0xdb3 build/debug/production/source/LibraryFiles/src/Uart.o
- .debug_info      0x00379e        0x471 build/debug/production/source/LibraryFiles/src/BitOperations.o
- .debug_info      0x003c0f        0x664 build/debug/production/source/LibraryFiles/src/Buzzer.o
- .debug_info      0x004273        0xd8b build/debug/production/source/LibraryFiles/src/IOPorts.o
- .debug_info      0x004ffe        0x484 build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
- .debug_info      0x005482        0x3ba build/debug/production/source/LibraryFiles/src/System.o
- .debug_info      0x00583c        0x190 build/debug/production/source/LibraryFiles/src/Debug.o
- .debug_info      0x0059cc        0x2bf build/debug/production/source/src/main.o
- .debug_info      0x005c8b        0x70c build/debug/production/source/CubeControl/src/CubeControlData.o
+ .debug_info      0x0029eb        0x70c build/debug/production/source/CubeControl/src/CubeControlData.o
+ .debug_info      0x0030f7        0xdb3 build/debug/production/source/LibraryFiles/src/Uart.o
+ .debug_info      0x003eaa        0x471 build/debug/production/source/LibraryFiles/src/BitOperations.o
+ .debug_info      0x00431b        0x664 build/debug/production/source/LibraryFiles/src/Buzzer.o
+ .debug_info      0x00497f        0xd8b build/debug/production/source/LibraryFiles/src/IOPorts.o
+ .debug_info      0x00570a        0x484 build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
+ .debug_info      0x005b8e        0x3ba build/debug/production/source/LibraryFiles/src/System.o
+ .debug_info      0x005f48        0x190 build/debug/production/source/LibraryFiles/src/Debug.o
+ .debug_info      0x0060d8        0x2bf build/debug/production/source/src/main.o
  *(.gnu.linkonce.wi.*)
 
 .debug_abbrev     0x000000        0xeef
@@ -755,15 +755,15 @@ __CONFIG1
  .debug_abbrev    0x0001c4        0x191 build/debug/production/source/CubeControl/src/LedCube.o
  .debug_abbrev    0x000355        0x14d build/debug/production/source/CubeControl/src/LedDriver.o
  .debug_abbrev    0x0004a2        0x142 build/debug/production/source/CubeControl/src/PanelControl.o
- .debug_abbrev    0x0005e4        0x1b0 build/debug/production/source/LibraryFiles/src/Uart.o
- .debug_abbrev    0x000794         0x93 build/debug/production/source/LibraryFiles/src/BitOperations.o
- .debug_abbrev    0x000827        0x183 build/debug/production/source/LibraryFiles/src/Buzzer.o
- .debug_abbrev    0x0009aa         0xb8 build/debug/production/source/LibraryFiles/src/IOPorts.o
- .debug_abbrev    0x000a62        0x150 build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
- .debug_abbrev    0x000bb2         0xa7 build/debug/production/source/LibraryFiles/src/System.o
- .debug_abbrev    0x000c59         0x5a build/debug/production/source/LibraryFiles/src/Debug.o
- .debug_abbrev    0x000cb3         0xbe build/debug/production/source/src/main.o
- .debug_abbrev    0x000d71        0x17e build/debug/production/source/CubeControl/src/CubeControlData.o
+ .debug_abbrev    0x0005e4        0x17e build/debug/production/source/CubeControl/src/CubeControlData.o
+ .debug_abbrev    0x000762        0x1b0 build/debug/production/source/LibraryFiles/src/Uart.o
+ .debug_abbrev    0x000912         0x93 build/debug/production/source/LibraryFiles/src/BitOperations.o
+ .debug_abbrev    0x0009a5        0x183 build/debug/production/source/LibraryFiles/src/Buzzer.o
+ .debug_abbrev    0x000b28         0xb8 build/debug/production/source/LibraryFiles/src/IOPorts.o
+ .debug_abbrev    0x000be0        0x150 build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
+ .debug_abbrev    0x000d30         0xa7 build/debug/production/source/LibraryFiles/src/System.o
+ .debug_abbrev    0x000dd7         0x5a build/debug/production/source/LibraryFiles/src/Debug.o
+ .debug_abbrev    0x000e31         0xbe build/debug/production/source/src/main.o
 
 .debug_line       0x000000       0x1dc2
  *(.debug_line)
@@ -771,15 +771,15 @@ __CONFIG1
  .debug_line      0x00033f        0x32a build/debug/production/source/CubeControl/src/LedCube.o
  .debug_line      0x000669        0x20c build/debug/production/source/CubeControl/src/LedDriver.o
  .debug_line      0x000875        0x313 build/debug/production/source/CubeControl/src/PanelControl.o
- .debug_line      0x000b88        0x433 build/debug/production/source/LibraryFiles/src/Uart.o
- .debug_line      0x000fbb        0x2c4 build/debug/production/source/LibraryFiles/src/BitOperations.o
- .debug_line      0x00127f        0x232 build/debug/production/source/LibraryFiles/src/Buzzer.o
- .debug_line      0x0014b1        0x180 build/debug/production/source/LibraryFiles/src/IOPorts.o
- .debug_line      0x001631        0x23e build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
- .debug_line      0x00186f         0xe7 build/debug/production/source/LibraryFiles/src/System.o
- .debug_line      0x001956         0x61 build/debug/production/source/LibraryFiles/src/Debug.o
- .debug_line      0x0019b7        0x185 build/debug/production/source/src/main.o
- .debug_line      0x001b3c        0x286 build/debug/production/source/CubeControl/src/CubeControlData.o
+ .debug_line      0x000b88        0x286 build/debug/production/source/CubeControl/src/CubeControlData.o
+ .debug_line      0x000e0e        0x433 build/debug/production/source/LibraryFiles/src/Uart.o
+ .debug_line      0x001241        0x2c4 build/debug/production/source/LibraryFiles/src/BitOperations.o
+ .debug_line      0x001505        0x232 build/debug/production/source/LibraryFiles/src/Buzzer.o
+ .debug_line      0x001737        0x180 build/debug/production/source/LibraryFiles/src/IOPorts.o
+ .debug_line      0x0018b7        0x23e build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
+ .debug_line      0x001af5         0xe7 build/debug/production/source/LibraryFiles/src/System.o
+ .debug_line      0x001bdc         0x61 build/debug/production/source/LibraryFiles/src/Debug.o
+ .debug_line      0x001c3d        0x185 build/debug/production/source/src/main.o
 
 .debug_frame      0x000000        0x868
  *(.debug_frame)
@@ -787,15 +787,15 @@ __CONFIG1
  .debug_frame     0x0000fc        0x1b0 build/debug/production/source/CubeControl/src/LedCube.o
  .debug_frame     0x0002ac         0x94 build/debug/production/source/CubeControl/src/LedDriver.o
  .debug_frame     0x000340         0xb8 build/debug/production/source/CubeControl/src/PanelControl.o
- .debug_frame     0x0003f8         0xc0 build/debug/production/source/LibraryFiles/src/Uart.o
- .debug_frame     0x0004b8         0xd4 build/debug/production/source/LibraryFiles/src/BitOperations.o
- .debug_frame     0x00058c         0xc4 build/debug/production/source/LibraryFiles/src/Buzzer.o
- .debug_frame     0x000650         0x24 build/debug/production/source/LibraryFiles/src/IOPorts.o
- .debug_frame     0x000674         0x34 build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
- .debug_frame     0x0006a8         0x24 build/debug/production/source/LibraryFiles/src/System.o
- .debug_frame     0x0006cc         0x24 build/debug/production/source/LibraryFiles/src/Debug.o
- .debug_frame     0x0006f0         0x24 build/debug/production/source/src/main.o
- .debug_frame     0x000714        0x154 build/debug/production/source/CubeControl/src/CubeControlData.o
+ .debug_frame     0x0003f8        0x154 build/debug/production/source/CubeControl/src/CubeControlData.o
+ .debug_frame     0x00054c         0xc0 build/debug/production/source/LibraryFiles/src/Uart.o
+ .debug_frame     0x00060c         0xd4 build/debug/production/source/LibraryFiles/src/BitOperations.o
+ .debug_frame     0x0006e0         0xc4 build/debug/production/source/LibraryFiles/src/Buzzer.o
+ .debug_frame     0x0007a4         0x24 build/debug/production/source/LibraryFiles/src/IOPorts.o
+ .debug_frame     0x0007c8         0x34 build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
+ .debug_frame     0x0007fc         0x24 build/debug/production/source/LibraryFiles/src/System.o
+ .debug_frame     0x000820         0x24 build/debug/production/source/LibraryFiles/src/Debug.o
+ .debug_frame     0x000844         0x24 build/debug/production/source/src/main.o
 
 .debug_str        0x000000        0x2b3
  *(.debug_str)
@@ -803,13 +803,13 @@ __CONFIG1
  .debug_str       0x00009c         0x37 build/debug/production/source/CubeControl/src/LedCube.o
  .debug_str       0x0000d3         0x54 build/debug/production/source/CubeControl/src/LedDriver.o
  .debug_str       0x000127         0x23 build/debug/production/source/CubeControl/src/PanelControl.o
- .debug_str       0x00014a         0x43 build/debug/production/source/LibraryFiles/src/Uart.o
- .debug_str       0x00018d         0x2c build/debug/production/source/LibraryFiles/src/Buzzer.o
- .debug_str       0x0001b9         0x5b build/debug/production/source/LibraryFiles/src/IOPorts.o
- .debug_str       0x000214         0x1e build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
- .debug_str       0x000232         0x16 build/debug/production/source/LibraryFiles/src/System.o
- .debug_str       0x000248          0x9 build/debug/production/source/src/main.o
- .debug_str       0x000251         0x62 build/debug/production/source/CubeControl/src/CubeControlData.o
+ .debug_str       0x00014a         0x62 build/debug/production/source/CubeControl/src/CubeControlData.o
+ .debug_str       0x0001ac         0x43 build/debug/production/source/LibraryFiles/src/Uart.o
+ .debug_str       0x0001ef         0x2c build/debug/production/source/LibraryFiles/src/Buzzer.o
+ .debug_str       0x00021b         0x5b build/debug/production/source/LibraryFiles/src/IOPorts.o
+ .debug_str       0x000276         0x1e build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
+ .debug_str       0x000294         0x16 build/debug/production/source/LibraryFiles/src/System.o
+ .debug_str       0x0002aa          0x9 build/debug/production/source/src/main.o
 
 .debug_loc
  *(.debug_loc)
@@ -829,23 +829,23 @@ __CONFIG1
  .debug_pubnames
                   0x0001be         0x6f build/debug/production/source/CubeControl/src/PanelControl.o
  .debug_pubnames
-                  0x00022d         0xb0 build/debug/production/source/LibraryFiles/src/Uart.o
+                  0x00022d         0xe0 build/debug/production/source/CubeControl/src/CubeControlData.o
  .debug_pubnames
-                  0x0002dd         0xc9 build/debug/production/source/LibraryFiles/src/BitOperations.o
+                  0x00030d         0xb0 build/debug/production/source/LibraryFiles/src/Uart.o
  .debug_pubnames
-                  0x0003a6         0x56 build/debug/production/source/LibraryFiles/src/Buzzer.o
+                  0x0003bd         0xc9 build/debug/production/source/LibraryFiles/src/BitOperations.o
  .debug_pubnames
-                  0x0003fc         0x23 build/debug/production/source/LibraryFiles/src/IOPorts.o
+                  0x000486         0x56 build/debug/production/source/LibraryFiles/src/Buzzer.o
  .debug_pubnames
-                  0x00041f         0x3a build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
+                  0x0004dc         0x23 build/debug/production/source/LibraryFiles/src/IOPorts.o
  .debug_pubnames
-                  0x000459         0x2a build/debug/production/source/LibraryFiles/src/System.o
+                  0x0004ff         0x3a build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
  .debug_pubnames
-                  0x000483         0x24 build/debug/production/source/LibraryFiles/src/Debug.o
+                  0x000539         0x2a build/debug/production/source/LibraryFiles/src/System.o
  .debug_pubnames
-                  0x0004a7         0x1b build/debug/production/source/src/main.o
+                  0x000563         0x24 build/debug/production/source/LibraryFiles/src/Debug.o
  .debug_pubnames
-                  0x0004c2         0xe0 build/debug/production/source/CubeControl/src/CubeControlData.o
+                  0x000587         0x1b build/debug/production/source/src/main.o
 
 .debug_ranges
  *(.debug_ranges)
@@ -861,23 +861,23 @@ __CONFIG1
  .debug_aranges
                   0x000048         0x18 build/debug/production/source/CubeControl/src/PanelControl.o
  .debug_aranges
-                  0x000060         0x18 build/debug/production/source/LibraryFiles/src/Uart.o
+                  0x000060         0x18 build/debug/production/source/CubeControl/src/CubeControlData.o
  .debug_aranges
-                  0x000078         0x18 build/debug/production/source/LibraryFiles/src/BitOperations.o
+                  0x000078         0x18 build/debug/production/source/LibraryFiles/src/Uart.o
  .debug_aranges
-                  0x000090         0x18 build/debug/production/source/LibraryFiles/src/Buzzer.o
+                  0x000090         0x18 build/debug/production/source/LibraryFiles/src/BitOperations.o
  .debug_aranges
-                  0x0000a8         0x18 build/debug/production/source/LibraryFiles/src/IOPorts.o
+                  0x0000a8         0x18 build/debug/production/source/LibraryFiles/src/Buzzer.o
  .debug_aranges
-                  0x0000c0         0x18 build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
+                  0x0000c0         0x18 build/debug/production/source/LibraryFiles/src/IOPorts.o
  .debug_aranges
-                  0x0000d8         0x18 build/debug/production/source/LibraryFiles/src/System.o
+                  0x0000d8         0x18 build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
  .debug_aranges
-                  0x0000f0         0x18 build/debug/production/source/LibraryFiles/src/Debug.o
+                  0x0000f0         0x18 build/debug/production/source/LibraryFiles/src/System.o
  .debug_aranges
-                  0x000108         0x18 build/debug/production/source/src/main.o
+                  0x000108         0x18 build/debug/production/source/LibraryFiles/src/Debug.o
  .debug_aranges
-                  0x000120         0x18 build/debug/production/source/CubeControl/src/CubeControlData.o
+                  0x000120         0x18 build/debug/production/source/src/main.o
 
 .ivt              0x000004         0xfc
                   0x000004          0x4 LONG 0x29e DEFINED (__ReservedTrap0)?ABSOLUTE (__ReservedTrap0):ABSOLUTE (__DefaultInterrupt)
@@ -1758,23 +1758,23 @@ LOAD data_init
  .debug_pubtypes
                   0x0003f3         0xc3 build/debug/production/source/CubeControl/src/PanelControl.o
  .debug_pubtypes
-                  0x0004b6        0x11b build/debug/production/source/LibraryFiles/src/Uart.o
+                  0x0004b6         0xb0 build/debug/production/source/CubeControl/src/CubeControlData.o
  .debug_pubtypes
-                  0x0005d1         0x37 build/debug/production/source/LibraryFiles/src/BitOperations.o
+                  0x000566        0x11b build/debug/production/source/LibraryFiles/src/Uart.o
  .debug_pubtypes
-                  0x000608         0x85 build/debug/production/source/LibraryFiles/src/Buzzer.o
+                  0x000681         0x37 build/debug/production/source/LibraryFiles/src/BitOperations.o
  .debug_pubtypes
-                  0x00068d        0x12b build/debug/production/source/LibraryFiles/src/IOPorts.o
+                  0x0006b8         0x85 build/debug/production/source/LibraryFiles/src/Buzzer.o
  .debug_pubtypes
-                  0x0007b8         0x58 build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
+                  0x00073d        0x12b build/debug/production/source/LibraryFiles/src/IOPorts.o
  .debug_pubtypes
-                  0x000810         0x54 build/debug/production/source/LibraryFiles/src/System.o
+                  0x000868         0x58 build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
  .debug_pubtypes
-                  0x000864         0x12 build/debug/production/source/LibraryFiles/src/Debug.o
+                  0x0008c0         0x54 build/debug/production/source/LibraryFiles/src/System.o
  .debug_pubtypes
-                  0x000876         0x3b build/debug/production/source/src/main.o
+                  0x000914         0x12 build/debug/production/source/LibraryFiles/src/Debug.o
  .debug_pubtypes
-                  0x0008b1         0xb0 build/debug/production/source/CubeControl/src/CubeControlData.o
+                  0x000926         0x3b build/debug/production/source/src/main.o
 
 __c30_signature
                   0x000961        0x19e
@@ -1787,23 +1787,23 @@ __c30_signature
  __c30_signature
                   0x000973          0x6 build/debug/production/source/CubeControl/src/PanelControl.o
  __c30_signature
-                  0x000979          0x6 build/debug/production/source/LibraryFiles/src/Uart.o
+                  0x000979          0x6 build/debug/production/source/CubeControl/src/CubeControlData.o
  __c30_signature
-                  0x00097f          0x6 build/debug/production/source/LibraryFiles/src/BitOperations.o
+                  0x00097f          0x6 build/debug/production/source/LibraryFiles/src/Uart.o
  __c30_signature
-                  0x000985          0x6 build/debug/production/source/LibraryFiles/src/Buzzer.o
+                  0x000985          0x6 build/debug/production/source/LibraryFiles/src/BitOperations.o
  __c30_signature
-                  0x00098b          0x6 build/debug/production/source/LibraryFiles/src/IOPorts.o
+                  0x00098b          0x6 build/debug/production/source/LibraryFiles/src/Buzzer.o
  __c30_signature
-                  0x000991          0x6 build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
+                  0x000991          0x6 build/debug/production/source/LibraryFiles/src/IOPorts.o
  __c30_signature
-                  0x000997          0x6 build/debug/production/source/LibraryFiles/src/System.o
+                  0x000997          0x6 build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
  __c30_signature
-                  0x00099d          0x6 build/debug/production/source/LibraryFiles/src/Debug.o
+                  0x00099d          0x6 build/debug/production/source/LibraryFiles/src/System.o
  __c30_signature
-                  0x0009a3          0x6 build/debug/production/source/src/main.o
+                  0x0009a3          0x6 build/debug/production/source/LibraryFiles/src/Debug.o
  __c30_signature
-                  0x0009a9          0x6 build/debug/production/source/CubeControl/src/CubeControlData.o
+                  0x0009a9          0x6 build/debug/production/source/src/main.o
  __c30_signature
                   0x0009af          0x6 c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-pic30-elf.a(crt0_standard.o)
  __c30_signature

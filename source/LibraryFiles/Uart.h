@@ -41,8 +41,7 @@ extern "C" {
 #   include <stdarg.h>          // For Uartx_printf()
 #   include <string.h>          // For memset()
 #endif /* UART_USE_PRINTF_YES or DEBUG */
-#include "System.h"             // For definition of FCY (must be before libpic30.h)
-#include <libpic30.h>           // for __delay_ms()
+#include "Delay.h"
 #include "Interrupts.h"
 #include "SwFifoBuffer.h"
 

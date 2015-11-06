@@ -76,8 +76,8 @@
 #include <xc.h>
 #include <stdint.h>
 #include "System.h"
-#include <libpic30.h>
 #include "Buzzer.h"
+#include "Delay.h"
 #include "IOPorts.h"
 #include "LedCube.h"
 #include "Uart.h"
@@ -104,8 +104,7 @@ main(int argc, char** argv) {
     
     LedCube_init();
     Port_ClearPin(OE);
-    
-    
+
     // Infinite loop for user code.
     while(1)
     {
@@ -113,11 +112,11 @@ main(int argc, char** argv) {
         uint8_t i = 0;
         for(i = 0; i < 16; i++) {
             LedCube_setPixel(3,4,2,  0, 0, 14);
-            __delay_ms(500);
+            Delay_ms(500);
         }
         LedCube_update();
         LedCube_resetData();
-        __delay_ms(5000);
+        Delay_ms(5000);
         
     }
     

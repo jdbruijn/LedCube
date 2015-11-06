@@ -136,9 +136,9 @@ PanelControl_selfTest( void ) {
         
         PanelControl_update(pPanelData);
         
-        __delay_ms(1000);
+        Delay_ms(1000);
         if( 0 == (led +1) % 8 ) {
-            __delay_ms(2000);
+            Delay_ms(2000);
         }
         panelData <<= 1;    // Prepare the panelData for the next iteration.
     }
