@@ -46,9 +46,13 @@ extern "C" {
  * Defines
  ******************************************************************************/
 #define LEDCUBE_MIN_XYZ         0
-#define LEDCUBE_MAX_XYZ         7
-#define LEDCUBE_MIN_INTENSITY   0
-#define LEDCUBE_MAX_INTENSITY   15
+#define LEDCUBE_MAX_XYZ         (CUBEDATA_MAX_X_C - 1)
+#if (CUBEDATA_N_BAM_BITS == 4)
+#   define LEDCUBE_MIN_INTENSITY   0
+#   define LEDCUBE_MAX_INTENSITY   15
+#else
+#   error Unknown value of CUBEDATA_N_BAM_BITS in CubeControlData.h defined!
+#endif
 
 /*******************************************************************************
  * Function prototypes
@@ -68,20 +72,70 @@ LedCube_init( void );
 /**
  * Set a single pixel in the LedCube's data.
  * 
- * @todo Add an image or diagram of how the LedCube's axis are set.
+ * @Note    See the following 'image' of how the axis of the LED cube are set.
+ * The 'O' is the origin and represents coordinate (0, 0, 0).
+ * 'A' is the right back bottom corner of the cube and represents coordinate
+ * (7, 0, 0).
+ * 'B' is the right front bottom corner of the cube and represents coordinate
+ * (7, 7, 0).
+ * 'C' is the left front bottom corner of the cube and represents coordinate
+ * (0, 7, 0).
+ * 'D' is the right front top corner of the cube and represents coordinate
+ * (7, 7, 7).
  * 
- * @param   _x Ranges from 0 to 7 and selects the row, 0 for the back row and
- * 8 for the front row.
- * @param   _y Ranges from 0 to 7 and selects the column, 0 for the left column
- * and 7 for the right column.
- * @param   _z Ranges from 0 to 7 and selects the layer, 0 for the bottom layer
- * and 7 for the top layer.
- * @param   _red Ranges from 0 (off) to 255 (full on) and selects the intensity
- * of the selected LED's red colour.
- * @param   _green Ranges from 0 (off) to 255 (full on) and selects the intensity
- * of the selected LED's green colour.
- * @param   _blue Ranges from 0 (off) to 255 (full on) and selects the intensity
- * of the selected LED's blue colour.
+ * Image great here but rubbish in the function documentation view:\n
+ *       +------------------+ - x-axis
+ *      /'                 /|
+ *     / '                / |
+ *    /  '               /  |
+ *   /   '              /   |
+ *  +------------------D    |
+ *  |    '             |    |
+ *  |    '             |    |
+ *  |    '             |    |
+ *  |    O ~~~~~~~~~~~ | ~~ A
+ *  |   ,              |   /
+ *  |  ,               |  /
+ *  | ,                | /
+ *  |,                 |/
+ *  C------------------B
+ *  |                 /
+ *  z-axis(vertical) y-axis (horizontal)
+ * 
+ * Image rubbish here but great in the function documentation view.           \n
+ *  &#32 &#32 &#32+------------------+ - x-axis                               \n
+ *  &#32 &#32 /' &#32 &#32 &#32 &#32 &#32 &#32 &#32 &#32 /|                   \n
+ *  &#32&#32 / ' &#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32&#32 / | \n
+ *  &#32 / &#32' &#32 &#32 &#32 &#32 &#32 &#32 &#32 / &#32|                   \n
+ *  &#32/ &#32 ' &#32 &#32 &#32 &#32 &#32 &#32 &#32/ &#32 |                   \n
+ *  +------------------D &#32 &#32|                                           \n
+ *  | &#32 &#32' &#32 &#32 &#32 &#32 &#32 &#32 | &#32 &#32|                   \n
+ *  | &#32 &#32' &#32 &#32 &#32 &#32 &#32 &#32 | &#32 &#32|                   \n
+ *  | &#32 &#32' &#32 &#32 &#32 &#32 &#32 &#32 | &#32 &#32|                   \n
+ *  | &#32 &#32O ~~~~~~~~~~~ | ~~ A                                           \n
+ *  | &#32 , &#32 &#32 &#32 &#32 &#32 &#32 &#32| &#32 /                       \n
+ *  | &#32, &#32 &#32 &#32 &#32 &#32 &#32 &#32 | &#32/                        \n
+ *  | , &#32 &#32 &#32 &#32 &#32 &#32 &#32 &#32| /                            \n
+ *  |, &#32 &#32 &#32 &#32 &#32 &#32 &#32 &#32 |/                             \n
+ *  C------------------B                                                      \n
+ *  | &#32 &#32 &#32 &#32 &#32 &#32 &#32 &#32 /                               \n
+ *  z-axis(vertical) y-axis (horizontal)
+ * 
+ * @param   _x, selects the row. Ranges from 0 to LEDCUBE_MAX_XYZ, 0 for the
+ * back row and LEDCUBE_MAX_XYZ for the front row.
+ * @param   _y, selects the column. Ranges from 0 to LEDCUBE_MAX_XYZ, 0 for the
+ * left column and LEDCUBE_MAX_XYZ for the right column.
+ * @param   _z, selects the layer. Ranges from 0 to LEDCUBE_MAX_XYZ, 0 for the
+ * bottom layer and LEDCUBE_MAX_XYZ for the top layer.
+ * @param   _red, intensity of the red colour. Ranges from 0 to 
+ * LEDCUBE_MAX_INTENSITY, 0 for the lowest intensity (off) and
+ * LEDCUBE_MAX_INTENSITY for the brightest intensity.
+ * @param   _green, intensity of the green colour. Ranges from 0 to 
+ * LEDCUBE_MAX_INTENSITY, 0 for the lowest intensity (off) and
+ * LEDCUBE_MAX_INTENSITY for the brightest intensity.
+ * @param   _blue, intensity of the blue colour. Ranges from 0 to 
+ * LEDCUBE_MAX_INTENSITY, 0 for the lowest intensity (off) and
+ * LEDCUBE_MAX_INTENSITY for the brightest intensity.
  * @return  void
  * @Example <code>LedCube_setPixel(0, 0, 0, 255, 0, 0); // Set the origin (most
  * back, left and lowest LED to 100% red.</code>
@@ -92,7 +146,7 @@ LedCube_setPixel( uint8_t const _x, uint8_t const _y, uint8_t const _z,
 
 /**
  * Update the outputs of the LedCube with the data that is currently set in the
- * CubeData structure array.
+ * CubeData structure array using a read-write pointer switch.
  * 
  * @param   void
  * @return  void
@@ -100,6 +154,17 @@ LedCube_setPixel( uint8_t const _x, uint8_t const _y, uint8_t const _z,
  */
 void
 LedCube_update( void );
+
+/**
+ * Update the outputs of the LedCube with the data that is currently set in the
+ * CubeData structure array using a copy.
+ * 
+ * @param   void
+ * @return  void
+ * @Example <code>LedCube_updateUsingCopy();</code>
+ */
+void
+LedCube_updateUsingCopy( void );
 
 /**
  * Reset all the LedCube's LED data.
@@ -110,6 +175,26 @@ LedCube_update( void );
  */
 void
 LedCube_resetData( void );
+
+/**
+ * Print all the LedCube's write LED data.
+ * 
+ * @param   void
+ * @return  void
+ * @Example <code>LedCube_printHexWriteData();</code>
+ */
+void
+LedCube_printHexWriteData( void );
+
+/**
+ * Print all the LedCube's read LED data.
+ * 
+ * @param   void
+ * @return  void
+ * @Example <code>LedCube_printHexReadData();</code>
+ */
+void
+LedCube_printHexReadData( void );
 
 /**
  * Print the data of one level via UARTx. The data is formatted to be easily

@@ -81,6 +81,7 @@
 #include "IOPorts.h"
 #include "LedCube.h"
 #include "Uart.h"
+#include "Fill.h"
 
 /*******************************************************************************
  * Main function
@@ -104,7 +105,9 @@ main(int argc, char** argv) {
     
     LedCube_init();
     Port_ClearPin(OE);
-
+    FillRowWithSingleColour(0,2, 0,0,15);
+    FillRowAtOnceWithSingleColour(3,2, 0,0,15);
+    Delay_s(10);
     // Infinite loop for user code.
     while(1)
     {

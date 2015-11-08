@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configurationDescriptor version="62">
   <logicalFolder name="root" displayName="root" projectFiles="true">
+    <logicalFolder name="f3" displayName="Animations" projectFiles="true">
+      <logicalFolder name="f1" displayName="src" projectFiles="true">
+        <itemPath>source/Animations/src/FillLayer.c</itemPath>
+      </logicalFolder>
+      <itemPath>source/Animations/FillLayer.h</itemPath>
+    </logicalFolder>
     <logicalFolder name="f1" displayName="CubeControl" projectFiles="true">
       <logicalFolder name="f1" displayName="src" projectFiles="true">
         <itemPath>source/CubeControl/src/LayerControl.c</itemPath>
@@ -14,6 +20,7 @@
       <itemPath>source/CubeControl/LedDriver.h</itemPath>
       <itemPath>source/CubeControl/PanelControl.h</itemPath>
       <itemPath>source/CubeControl/CubeControlData.h</itemPath>
+      <itemPath>source/CubeControl/Colours.h</itemPath>
     </logicalFolder>
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
@@ -65,6 +72,7 @@
     <Elem>source/src</Elem>
     <Elem>source/CubeControl</Elem>
     <Elem>source/LibraryFiles</Elem>
+    <Elem>source/Animations</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -210,7 +218,7 @@
       </C30-LD>
       <C30Global>
         <property key="common-include-directories"
-                  value="source\CubeControl;source\LibraryFiles"/>
+                  value="source\CubeControl;source\LibraryFiles;source\Animations"/>
         <property key="dual-boot-partition" value="0"/>
         <property key="fast-math" value="false"/>
         <property key="generic-16-bit" value="false"/>
@@ -646,7 +654,7 @@
       </C30-LD>
       <C30Global>
         <property key="common-include-directories"
-                  value="source\CubeControl;source\LibraryFiles"/>
+                  value="source\CubeControl;source\LibraryFiles;source\Animations"/>
         <property key="dual-boot-partition" value="0"/>
         <property key="fast-math" value="false"/>
         <property key="generic-16-bit" value="false"/>

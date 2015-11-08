@@ -123,6 +123,7 @@ CubeControlData_init( pCubeControlData_t const _pCubeControlData ) {
  */
 void
 CubeControlData_switchCubeData( pCubeControlData_t const _pCubeControlData ) {
+    DEBUG_PRINTF_FUNCTION_CALL("%p", _pCubeControlData);
     INTERRUPTS_DISSABLE_AND_SAVE_CPU_IPL();
     
     if(_pCubeControlData->pCubeDataRead == pCubeData0Base) {
@@ -149,8 +150,8 @@ CubeControlData_switchCubeData( pCubeControlData_t const _pCubeControlData ) {
  * 
  */
 void
-CubeControlData_resetData( pCubeData_t const _pCubeData ) {
-    DEBUG_PRINTF_FUNCTION("     Resetting: %p", _pCubeData);
+CubeControlData_resetCubeData( pCubeData_t const _pCubeData ) {
+    DEBUG_PRINTF_FUNCTION_CALL("%p", _pCubeData);
     
     uint8_t x, z;
     for(z = 0; z < CUBEDATA_MAX_Z_C; z++) {
@@ -165,11 +166,43 @@ CubeControlData_resetData( pCubeData_t const _pCubeData ) {
 }
 
 /**
+ * Copy a CubeData structure array by looping through the z and x coordinates.
+ * Performed with interrupts disabled because the CubeData read takes place in
+ * an interrupt service routine.
+ * 
+ */
+void
+CubeControlData_copyCubeData( pCubeData_t const _pCubeDataFrom,
+        pCubeData_t const _pCubeDataTo ) {
+    DEBUG_PRINTF_FUNCTION_CALL("%p, %p", _pCubeDataFrom, _pCubeDataTo);
+    
+    INTERRUPTS_DISSABLE_AND_SAVE_CPU_IPL();
+    
+    uint8_t x, z;
+    for(z = 0; z < CUBEDATA_MAX_Z_C; z++) {
+        for(x = 0; x < CUBEDATA_MAX_X_C; x++) {
+            (_pCubeDataTo + z * CUBEDATA_MAX_Z_C + x)->red   = \
+                    (_pCubeDataFrom + z * CUBEDATA_MAX_Z_C + x)->red;
+            (_pCubeDataTo + z * CUBEDATA_MAX_Z_C + x)->green = \
+                    (_pCubeDataFrom + z * CUBEDATA_MAX_Z_C + x)->green;
+            (_pCubeDataTo + z * CUBEDATA_MAX_Z_C + x)->blue  = \
+                    (_pCubeDataFrom + z * CUBEDATA_MAX_Z_C + x)->blue;
+        }
+    }
+    
+    INTERRUPTS_RESTORE_CPU_IPL();
+    
+    return;
+}
+
+/**
  * Print a CubeData structure array by looping through the z and x coordinates.
  * 
  */
 void
 CubeControlData_printHexCubeData( pCubeData_t const _pCubeData ) {
+    DEBUG_PRINTF_FUNCTION_CALL("%p", _pCubeData);
+    
     uint8_t x, z;
     for(z = 0; z < 8; z++) {
         for(x = 0; x < 8; x++) {

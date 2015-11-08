@@ -145,20 +145,6 @@ isEven( uint32_t const _v ) {
 /**
  * Based on Sean Eron Anderson's Bit Twiddling Hacks.
  * 
- * @see https://graphics.stanford.edu/~seander/bithacks.html#ReverseByteWith64BitsDiv
- * @see https://github.com/gibsjose/BitHacks/blob/master/BitHacks.md#reverse-the-bits-in-a-byte-with-3-operations-64-bit-multiply-and-modulus-division
- * 
- */
-void
-ByteReverseBits( uint8_t *_pByte ) {
-    *_pByte = ((*_pByte * 0x0202020202ULL & 0x010884422010ULL) % 1023) & 0xFF;
-    
-    return;
-}
-
-/**
- * Based on Sean Eron Anderson's Bit Twiddling Hacks.
- * 
  * @see https://graphics.stanford.edu/~seander/bithacks.html#ReverseParallel
  * @see https://github.com/gibsjose/BitHacks/blob/master/BitHacks.md#reverse-an-n-bit-quantity-in-parallel-in-5--lgn-operations
  * 

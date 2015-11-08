@@ -40,7 +40,7 @@ extern "C" {
 /* Max coordinate for the x-axis */
 #define CUBEDATA_MAX_X_C    8
 /* Max coordinate for the y-axis */
-#define CUBEDATA_MAX_Z_C    CUBEDATA_MAX_X_C
+#define CUBEDATA_MAX_Y_C    CUBEDATA_MAX_X_C
 /* Max coordinate for the z-axis */
 #define CUBEDATA_MAX_Z_C    CUBEDATA_MAX_X_C
 /* Number of bits used for bit angle modulation (BAM) */
@@ -123,7 +123,21 @@ CubeControlData_switchCubeData( pCubeControlData_t const _pCubeControlData );
  * CubeControlData_resetCubeData(pCubeControlData->pCubeDataWrite);</code>
  */
 void
-CubeControlData_resetData( pCubeData_t const _pCubeData );
+CubeControlData_resetCubeData( pCubeData_t const _pCubeData );
+
+/**
+ * Copy a CubeData structure array.
+ * 
+ * @param   _pCubeDataFrom, pointer to a CubeData structure array to copy from.
+ * @param   _pCubeDataFrom, pointer to a CubeData structure array to copy to.
+ * @return  void
+ * @Example <code>
+ * CubeControlData_copyCubeData(pCubeControlData->pCubeDataWrite,
+ *         pCubeControlData->pCubeDataWrite);</code>
+ */
+void
+CubeControlData_copyCubeData( pCubeData_t const _pCubeDataFrom,
+        pCubeData_t const _pCubeDataTo );
 
 /**
  * Print the contents of a CubeData structure array hexadecimal.

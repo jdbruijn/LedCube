@@ -23,4 +23,6 @@ source/LibraryFiles/Ports.h  \
  source/LibraryFiles/BitOperations.h  \
 source/CubeControl/CubeControlData.h  \
  source/LibraryFiles/Interrupts.h  \
-source/LibraryFiles/MyAssert.h 
+source/LibraryFiles/MyAssert.h  \
+ source/Animations/Fill.h  \
+source/CubeControl/CubeControlData.h 

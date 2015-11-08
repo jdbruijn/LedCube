@@ -231,19 +231,6 @@ nBitsSet( int32_t const _v );
 bool
 isEven( uint32_t const _v );
 
-/**@todo change this function and description
- * Reverse the order of bits in a byte.
- * @Note
- *  Old: 8  7  6  5  4  3  2  1
- *       |  |  |  |  |  |  |  |
- *  New: 1  2  3  4  5  6  7  8
- * 
- * @param   _pByte, byte pointer to the byte which needs to be reversed
- * @return  void
- */
-void
-ByteReverseBits( uint8_t *_pByte );
-
 /**
  * Reverse an N-bit quantity in parallel in 5 * lg(N) operations. Now set to
  * reverse the bit order of an 32 bit unsigned integer.

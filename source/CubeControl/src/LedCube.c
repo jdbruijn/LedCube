@@ -19,33 +19,6 @@
 #include "LedCube.h"
 
 /*******************************************************************************
- * Global variables
- ******************************************************************************/
-uint8_t _pArray[8][3] = {
-#if 0
-/*  |red |green |blue | */
-/*   \  / \    / \   /  */
-    {0x01, 0x02, 0x03}, /* row 1 */
-    {0x04, 0x05, 0x06}, /* row 2 */
-    {0x07, 0x08, 0x09}, /* row 3 */
-    {0x0A, 0x0B, 0x0C}, /* row 4 */
-    {0x0D, 0x0E, 0x0F}, /* row 5 */
-    {0x10, 0x11, 0x12}, /* row 6 */
-    {0x13, 0x14, 0x15}, /* row 7 */
-    {0x16, 0x17, 0x18}  /* row 8 */
-#else
-    {0x00, 0x00, 0x00}, /* row 1 */
-    {0x00, 0x00, 0x00}, /* row 2 */
-    {0x00, 0x00, 0x00}, /* row 3 */
-    {0x00, 0x00, 0x00}, /* row 4 */
-    {0x00, 0x00, 0x00}, /* row 5 */
-    {0x00, 0x00, 0x00}, /* row 6 */
-    {0x00, 0x00, 0x00}, /* row 7 */
-    {0x00, 0x00, 0x00}  /* row 8 */
-#endif
-};
-
-/*******************************************************************************
  * Functions
  ******************************************************************************/
 /**
@@ -73,8 +46,6 @@ LedCube_setPixel( uint8_t const _x, uint8_t const _y, uint8_t const _z,
         uint8_t const _red, uint8_t const _green, uint8_t const _blue ) {
     DEBUG_PRINTF_FUNCTION_CALL("%u, %u, %u, %u, %u, %u", \
             _x, _y, _z, _red, _green, _blue);
-    
-    pCubeData_t const pCubeDataWrite = pCubeControlData->pCubeDataWrite;
     
     /********** Check conditions **********************************************/
     /* X, y, z positions within range */
@@ -125,23 +96,22 @@ LedCube_setPixel( uint8_t const _x, uint8_t const _y, uint8_t const _z,
      *                            |             1   (14 positions to the left)
      *                    |                    1    (21 positions to the left)
      */
-    (pCubeDataWrite + _z * CUBEDATA_MAX_Z_C + _x)->red = \
+    pCubeData_t const pCubeDataWrite = pCubeControlData->pCubeDataWrite;
+    (pCubeDataWrite + _z * CUBEDATA_MAX_Z_C + _x)->red |= \
             ((_red   & 0x01UL) << _y)        |
             ((_red   & 0x02UL) << (_y + 7))  |
             ((_red   & 0x04UL) << (_y + 14)) |
             ((_red   & 0x08UL) << (_y + 21));
-    (pCubeDataWrite + _z * CUBEDATA_MAX_Z_C + _x)->green = \
+    (pCubeDataWrite + _z * CUBEDATA_MAX_Z_C + _x)->green |= \
             ((_green & 0x01UL) << _y)        |
             ((_green & 0x02UL) << (_y + 7))  |
             ((_green & 0x04UL) << (_y + 14)) |
             ((_green & 0x08UL) << (_y + 21));
-    (pCubeDataWrite + _z * CUBEDATA_MAX_Z_C + _x)->blue = \
+    (pCubeDataWrite + _z * CUBEDATA_MAX_Z_C + _x)->blue |= \
             ((_blue  & 0x01UL) << _y)        |
             ((_blue  & 0x02UL) << (_y + 7))  |
             ((_blue  & 0x04UL) << (_y + 14)) |
             ((_blue  & 0x08UL) << (_y + 21));
-         
-//    LedCube_printLayerDataVF( &pCubeData->LayerData0, 0);
     
     return;
 }
@@ -154,7 +124,20 @@ LedCube_setPixel( uint8_t const _x, uint8_t const _y, uint8_t const _z,
 void
 LedCube_update( void ) {
     CubeControlData_switchCubeData(pCubeControlData);
-    Nop();
+    
+    return;
+}
+
+/**
+ * Copy the CubeDataWrite structure array to the CubeDataRead structure array so
+ * the data previously written thus far in CubeDataWrite structure array becomes
+ * the LedCube's output.
+ * 
+ */
+void
+LedCube_updateUsingCopy( void ) {
+    CubeControlData_copyCubeData(pCubeControlData->pCubeDataWrite,
+            pCubeControlData->pCubeDataRead);
     
     return;
 }
@@ -166,19 +149,31 @@ LedCube_update( void ) {
  */
 void
 LedCube_resetData( void ) {
-    CubeControlData_resetData(pCubeControlData->pCubeDataWrite);
+    CubeControlData_resetCubeData(pCubeControlData->pCubeDataWrite);
     
     return;
 }
 
 /**
- * Print all the data in the LedCube's LED data array using the
+ * Print all the data in the CubeDataWrite structure array using the
  * CubeControlData_printHexCubeData function.
  * 
  */
 void
-LedCube_printHexData( void ) {
+LedCube_printHexWriteData( void ) {
     CubeControlData_printHexCubeData(pCubeControlData->pCubeDataWrite);
+    
+    return;
+}
+
+/**
+ * Print all the data in the CubeDataWrite structure array using the
+ * CubeControlData_printHexCubeData function.
+ * 
+ */
+void
+LedCube_printHexReadData( void ) {
+    CubeControlData_printHexCubeData(pCubeControlData->pCubeDataRead);
     
     return;
 }
