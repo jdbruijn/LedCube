@@ -87,6 +87,8 @@ PanelControl_update( const pCubeControlData_t _pCubeControlData,
  */
 void
 PanelControl_allOff( void ) {
+    DEBUG_PRINTF_FUNCTION_CALL();
+    
     uint8_t i;
     for( i=0; i<N_LEDDRIVERS; i++ ) {
         LedDriver_allOff();
@@ -101,6 +103,8 @@ PanelControl_allOff( void ) {
  */
 void
 PanelControl_allOn( void ) {
+    DEBUG_PRINTF_FUNCTION_CALL();
+    
     uint8_t i;
     for( i=0; i<N_LEDDRIVERS; i++ ) {
         LedDriver_allOn();
@@ -119,6 +123,8 @@ PanelControl_allOn( void ) {
  */
 void
 PanelControl_selfTest( void ) {
+    DEBUG_PRINTF_FUNCTION_CALL();
+    
     PanelControlData_t data = {0,0,0,0,0,0};
     pPanelControlData_t pPanelData = &data;
     

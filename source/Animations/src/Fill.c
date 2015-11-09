@@ -28,6 +28,9 @@
 void
 FillRowAtOnceWithSingleColour( uint8_t _x, uint8_t _z,
         uint8_t _red, uint8_t _green, uint8_t _blue ) {
+    DEBUG_PRINTF_FUNCTION_CALL("%u, %u, %u, %u, %u", _x, _z,
+            _red, _green, _blue);
+    
     uint8_t y;
     for(y = 0; y < CUBEDATA_MAX_Y_C; y++) {
         LedCube_setPixel(_x, y, _z, _red, _green, _blue);
@@ -44,6 +47,9 @@ FillRowAtOnceWithSingleColour( uint8_t _x, uint8_t _z,
 void
 FillRowWithSingleColour( uint8_t _x, uint8_t _z,
         uint8_t _red, uint8_t _green, uint8_t _blue ) {
+    DEBUG_PRINTF_FUNCTION_CALL("%u, %u, %u, %u, %u", _x, _z,
+            _red, _green, _blue);
+    
     uint8_t y;
     for(y = 0; y < CUBEDATA_MAX_Y_C; y++) {
         LedCube_setPixel(_x, y, _z, _red, _green, _blue);
@@ -61,7 +67,9 @@ FillRowWithSingleColour( uint8_t _x, uint8_t _z,
  */
 void
 FillLayerAtOnceWithSingleColour( uint8_t _z,
-        uint8_t _red, uint8_t _green, uint8_t _blue ) {    
+        uint8_t _red, uint8_t _green, uint8_t _blue ) {  
+    DEBUG_PRINTF_FUNCTION_CALL("%u, %u, %u, %u", _z, _red, _green, _blue);
+    
     uint8_t x;
     for(x = 0; x < CUBEDATA_MAX_X_C; x++) {
         FillRowAtOnceWithSingleColour(x, _z, _red, _green, _blue);
@@ -77,7 +85,9 @@ FillLayerAtOnceWithSingleColour( uint8_t _z,
  */
 void
 FillLayerWithSingleColour( uint8_t _z,
-        uint8_t _red, uint8_t _green, uint8_t _blue ) {    
+        uint8_t _red, uint8_t _green, uint8_t _blue ) {
+    DEBUG_PRINTF_FUNCTION_CALL("%u, %u, %u, %u", _z, _red, _green, _blue);
+    
     uint8_t x;
     for(x = 0; x < CUBEDATA_MAX_X_C; x++) {
         FillRowWithSingleColour(x, _z, _red, _green, _blue);

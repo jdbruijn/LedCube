@@ -116,6 +116,8 @@ LedDriver_update( const uint16_t _ledData ) {
  */
 void
 LedDriver_allOff( void ) {
+    DEBUG_PRINTF_FUNCTION_CALL();
+    
     LedDriver_update(0x0000);
     
     return;
@@ -127,6 +129,8 @@ LedDriver_allOff( void ) {
  */
 void
 LedDriver_allOn( void ) {
+    DEBUG_PRINTF_FUNCTION_CALL();
+    
     LedDriver_update(0xFFFF);
     
     return;
@@ -141,6 +145,8 @@ LedDriver_allOn( void ) {
  */
 void
 LedDriver_selfTest( void ) {
+    DEBUG_PRINTF_FUNCTION_CALL();
+    
     uint8_t led;
     uint16_t ledData = 0x0001;
     uint32_t delay;

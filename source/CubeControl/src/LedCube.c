@@ -123,6 +123,8 @@ LedCube_setPixel( uint8_t const _x, uint8_t const _y, uint8_t const _z,
  */
 void
 LedCube_update( void ) {
+    DEBUG_PRINTF_FUNCTION_CALL();
+    
     CubeControlData_switchCubeData(pCubeControlData);
     
     return;
@@ -136,6 +138,8 @@ LedCube_update( void ) {
  */
 void
 LedCube_updateUsingCopy( void ) {
+    DEBUG_PRINTF_FUNCTION_CALL();
+    
     CubeControlData_copyCubeData(pCubeControlData->pCubeDataWrite,
             pCubeControlData->pCubeDataRead);
     
@@ -149,6 +153,8 @@ LedCube_updateUsingCopy( void ) {
  */
 void
 LedCube_resetData( void ) {
+    DEBUG_PRINTF_FUNCTION_CALL();
+    
     CubeControlData_resetCubeData(pCubeControlData->pCubeDataWrite);
     
     return;
@@ -161,6 +167,8 @@ LedCube_resetData( void ) {
  */
 void
 LedCube_printHexWriteData( void ) {
+    DEBUG_PRINTF_FUNCTION_CALL();
+    
     CubeControlData_printHexCubeData(pCubeControlData->pCubeDataWrite);
     
     return;
@@ -173,6 +181,8 @@ LedCube_printHexWriteData( void ) {
  */
 void
 LedCube_printHexReadData( void ) {
+    DEBUG_PRINTF_FUNCTION_CALL();
+    
     CubeControlData_printHexCubeData(pCubeControlData->pCubeDataRead);
     
     return;
@@ -185,6 +195,8 @@ LedCube_printHexReadData( void ) {
  */
 void
 _helperPrintByte(const uint8_t _b) {
+    DEBUG_PRINTF_FUNCTION_CALL();
+    
     uint8_t i;
     for( i=8; i>0; i-- ) {
         Uart1_putc( ((_b >>(i-1)) & 0x01) + 48 ); Uart1_puts("  ");

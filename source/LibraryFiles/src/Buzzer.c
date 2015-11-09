@@ -61,6 +61,8 @@ Buzzer_init( void ) {
  */
 void
 Buzzer_beep( void ) {
+    DEBUG_PRINTF_FUNCTION_CALL();
+    
     PR2 = 499;                  // 4 kHz
     OC1RS = (PR2 >> 1);         // 50% duty cycle
     Delay_ms(250);
@@ -75,6 +77,8 @@ Buzzer_beep( void ) {
  */
 void
 Buzzer_shortBeep( void ) {
+    DEBUG_PRINTF_FUNCTION_CALL();
+    
     PR2 = 499;                  // 4 kHz
     OC1RS = (PR2 >> 1);         // 50% duty cycle
     Delay_ms(50);
@@ -89,6 +93,8 @@ Buzzer_shortBeep( void ) {
  */
 void
 Buzzer_set( uint16_t _frequency, uint32_t _time ) {
+    DEBUG_PRINTF_FUNCTION_CALL("%u, %lu", _frequency, _time);
+    
     /********** Check conditions **********************************************/
     ASSERT( _frequency >= BUZZER_MIN_FREQUENCY && \
             _frequency <= BUZZER_MAX_FREQUENCY );
@@ -120,6 +126,8 @@ Buzzer_set( uint16_t _frequency, uint32_t _time ) {
  */
 void
 Buzzer_selfTest( void ) {
+    DEBUG_PRINTF_FUNCTION_CALL();
+    
     uint16_t i;
     
     for( i=0; i<3; i++ ) {

@@ -84,7 +84,7 @@ Buzzer_shortBeep( void );
 /**
  * Make a sound with a frequency of _frequency Hz and for _time amount of
  * milliseconds.
- * 
+ * @todo edit time for delay_max_s or something.
  * @Note    _frequency must be between 40 and 16000 Hz and _time must be between
  * 10 ms and 250000 ms (250 s).
  * @Note    The output frequency has a maximum deviation of 1.1%.

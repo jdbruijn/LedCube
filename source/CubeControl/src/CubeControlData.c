@@ -124,21 +124,21 @@ CubeControlData_init( pCubeControlData_t const _pCubeControlData ) {
 void
 CubeControlData_switchCubeData( pCubeControlData_t const _pCubeControlData ) {
     DEBUG_PRINTF_FUNCTION_CALL("%p", _pCubeControlData);
+    
     INTERRUPTS_DISSABLE_AND_SAVE_CPU_IPL();
     
     if(_pCubeControlData->pCubeDataRead == pCubeData0Base) {
         _pCubeControlData->pCubeDataRead = pCubeData1Base;
         _pCubeControlData->pCubeDataWrite = pCubeData0Base;
-        DEBUG_PRINTF_FUNCTION("pCubeDataRead: %p, pCubeDataWrite: %p",
-                _pCubeControlData->pCubeDataRead,
-                _pCubeControlData->pCubeDataWrite);
     } else {
         _pCubeControlData->pCubeDataRead = pCubeData0Base;
         _pCubeControlData->pCubeDataWrite = pCubeData1Base;
-        DEBUG_PRINTF_FUNCTION("pCubeDataRead: %p, pCubeDataWrite: %p",
+        
+    }
+    
+    DEBUG_PRINTF_FUNCTION("pCubeDataRead: %p, pCubeDataWrite: %p",
                 _pCubeControlData->pCubeDataRead,
                 _pCubeControlData->pCubeDataWrite);
-    }
     
     INTERRUPTS_RESTORE_CPU_IPL();
     

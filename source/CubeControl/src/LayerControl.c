@@ -201,6 +201,8 @@ LayerControl_update( const pCubeControlData_t _pCubeControlData,
  */
 void
 LayerControl_allOff( void ) {
+    DEBUG_PRINTF_FUNCTION_CALL();
+    
     uint8_t i;
     for( i=0; i<N_PANELCONTROLS; i++ ) {
         PanelControl_allOff();
@@ -215,6 +217,8 @@ LayerControl_allOff( void ) {
  */
 void
 LayerControl_allOn( void ) {
+    DEBUG_PRINTF_FUNCTION_CALL();
+    
     uint8_t i;
     for( i=0; i<N_PANELCONTROLS; i++ ) {
         PanelControl_allOn();
@@ -230,10 +234,7 @@ LayerControl_allOn( void ) {
  */
 void
 __attribute__((interrupt,auto_psv)) _T3Interrupt(void) {
-    LayerControl_setLayer(0);
-//    Uart1_printf("called from IR: \nLayer: %u, bamRound: %u\n", layer, bamRound);
-    
-    DEBUG_PRINTF_FUNCTION("     Reading: %p", pCubeControlData->pCubeDataRead);
+    LayerControl_setLayer(0);    
     
     LayerControl_update( pCubeControlData, pCubeControlData->pCubeDataRead,
             /* layer */0, /* bamRound */ 0 );
