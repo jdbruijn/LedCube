@@ -43,10 +43,10 @@ extern "C" {
  * Defines
  ******************************************************************************/
 #define T2_TCKPS                8
-#define BUZZER_MAX_FREQUENCY    16000   // Hz
 #define BUZZER_MIN_FREQUENCY    40      // Hz
-#define BUZZER_MAX_TIME         250000  // ms (250 s)
+#define BUZZER_MAX_FREQUENCY    16000   // Hz
 #define BUZZER_MIN_TIME         10      // ms
+#define BUZZER_MAX_TIME         DELAY_MAX_MS
     
 /*******************************************************************************
  * Function prototypes
@@ -84,9 +84,9 @@ Buzzer_shortBeep( void );
 /**
  * Make a sound with a frequency of _frequency Hz and for _time amount of
  * milliseconds.
- * @todo edit time for delay_max_s or something.
+ * 
  * @Note    _frequency must be between 40 and 16000 Hz and _time must be between
- * 10 ms and 250000 ms (250 s).
+ * 10 ms and DELAY_MAX_MS.
  * @Note    The output frequency has a maximum deviation of 1.1%.
  * @param   _frequency Frequency to set in Hz
  * @param   _time Time to create a sound in ms
