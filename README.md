@@ -1,4 +1,5 @@
-# LedCube
+# LedCube [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/vidavidorra/LedCube.svg)](http://isitmaintained.com/project/vidavidorra/LedCube "Average time to resolve an issue") [![Percentage of issues still open](http://isitmaintained.com/badge/open/vidavidorra/LedCube.svg)](http://isitmaintained.com/project/vidavidorra/LedCube "Percentage of issues still open")
+
 LedCube is a project of making an 8x8x8 RGB LED cube. This repository contains the drawings, design, overview of the hardware and last but not least the code to control this 8x8x8 RGB LED cube.
 
 LedCube is written in C and uses various peripherals like SPI, UART.
