@@ -68,6 +68,8 @@ extern "C" {
 #define SPI2_PPRE           1       /* SPI2 Primary Prescale bits */
 #define SPI2_SPRE           2       /* SPI2 Secondary Prescale bits */
 #define SPI2_FSCK           FCY / (SPI2_PPRE * SPI2_SPRE)
+#define LC_MAX_Z_C          (CUBEDATA_MAX_X_C - 1)
+#define LC_MAX_BAM_VAL      (CUBEDATA_N_BAM_BITS - 1)
 
 /*******************************************************************************
  * Macros

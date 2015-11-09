@@ -17,15 +17,14 @@
  * Includes
  ******************************************************************************/
 #include "LayerControl.h"
-#include "Uart.h"
 
 /*******************************************************************************
  * Global variables
  ******************************************************************************/
-// Used for keeping track of the current layer in the ISR.
+// Used for keeping track of the current layer and BAM-round in the ISR.
 volatile uint8_t layer = 0;
 volatile uint8_t bamRound = 0;
-const uint8_t layerArray[8] = { 1, 2, 4, 8, 16, 32, 64, 128 }; // @todo remove this when it is not needed anymore
+
 /*******************************************************************************
  * Functions
  ******************************************************************************/
@@ -150,17 +149,20 @@ LayerControl_init( void ) {
  */
 void
 LayerControl_setLayer( const uint8_t _layer ) {
-    // Wait until a possible previous transmit is finished.
+    DEBUG_PRINTF_FUNCTION_CALL("%u", _layer);
+    
     SPI2_WaitTillTxBufferEmpty();
     
-    // Use the data out of the layerArray to select the data for the SPIx buffer.
-    // @todo test whether the following line works, since it uses way less memory and resources.
-    SPI2BUF = (0x7F >> _layer);
-    
-    //@todo Remove the block of code below
-//    uint8_t layerData = layerArray[_layer];
-//    ByteReverseBits(&layerData);
-//    SPI2BUF = ~layerData;
+    /**
+     * Shift 0xFF7F, which is 1111 1111 0111 1111 binary, _layer places to the
+     * right so at all times one bit (layer) is 0 (turned on). Only a 8-bit
+     * value is needed but since it is shifted to the right an additional 8-bit
+     * value of 0xFF is needed for padding the value with ones. Since a logical
+     * 1 as output of the shift register results in 0 Volt on the MOSFET output.
+     * Finally AND it with 0xFF so it becomes an 8-bit value that can be put in
+     * the SPIx buffer.
+     */
+    SPI2BUF = (0xFF7F >> _layer) & 0xFF;
     
     SPI2_WaitTillTxBufferEmpty();
     
@@ -229,7 +231,7 @@ LayerControl_allOn( void ) {
  */
 void
 __attribute__((interrupt,auto_psv)) _T3Interrupt(void) {
-    LayerControl_setLayer(0);
+    LayerControl_setLayer(layer);
 //    Uart1_printf("called from IR: \nLayer: %u, bamRound: %u\n", layer, bamRound);
     
     DEBUG_PRINTF_FUNCTION("     Reading: %p", pCubeControlData->pCubeDataRead);
@@ -238,13 +240,10 @@ __attribute__((interrupt,auto_psv)) _T3Interrupt(void) {
             /* layer */0, /* bamRound */ 0 );
     
     
-    // Prepare layer data for the next round
-//    layer = (layer == 0b10000000) ? 1 : layer << 1;
-    layer = (layer == 7) ? 0 : layer + 1;
-    bamRound = (bamRound == 3) ? 0 : bamRound + 1;
+    layer = (layer == LC_MAX_Z_C) ? 0 : layer + 1;
+    bamRound = (bamRound == LC_MAX_BAM_VAL) ? 0 : bamRound + 1;
     LayerControl_pulseLatch();
 
-    
     IFS0bits.T3IF = 0;              // Clear the Timer x interrupt flag
 }
 /* End of file LayerControl.c */

@@ -177,14 +177,14 @@ Program Memory  [Origin = 0x200, Length = 0xa9fc]
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x200              0x1cbe          0x2b1d  (11037)
-.const                      0x1ebe               0x810           0xc18  (3096)
-.text                       0x26ce               0xa5e           0xf8d  (3981)
-.dinit                      0x312c               0x4c2           0x723  (1827)
-.text                       0x35ee               0xf80          0x1740  (5952)
-.init.delay32               0x456e                0x1c            0x2a  (42)
-.text                       0x458a                 0x6             0x9  (9)
+.const                      0x1ebe               0x866           0xc99  (3225)
+.text                       0x2724               0xa5e           0xf8d  (3981)
+.dinit                      0x3182               0x4c2           0x723  (1827)
+.text                       0x3644               0xfa8          0x177c  (6012)
+.init.delay32               0x45ec                0x1c            0x2a  (42)
+.text                       0x4608                 0x6             0x9  (9)
 
-                     Total program memory used (bytes):         0x6558  (25944) 39%
+                     Total program memory used (bytes):         0x6615  (26133) 40%
 
 
 Data Memory  [Origin = 0x800, Length = 0x2000]
@@ -277,8 +277,8 @@ External Symbols in Program Memory (by address):
                   0x00170c                  __Genld
                   0x001970                  _div
                   0x001986                  ___ledf2
-                  0x001986                  ___eqdf2
                   0x001986                  ___ltdf2
+                  0x001986                  ___eqdf2
                   0x001990                  ___gedf2
                   0x001990                  ___gtdf2
                   0x00199a                  ___divdf3
@@ -291,9 +291,9 @@ External Symbols in Program Memory (by address):
                   0x001b6e                  ___floatsidf
                   0x001b74                  ___muldf3
                   0x001c5e                  ___subdf3
-                  0x001c62                  ___mulp32peds3
-                  0x001c62                  ___mulsi3
                   0x001c62                  ___mulp32eds3
+                  0x001c62                  ___mulsi3
+                  0x001c62                  ___mulp32peds3
                   0x001c6e                  ___adddf3
                   0x001d68                  __dcompare
                   0x001dba                  __dPropagateNaN
@@ -304,113 +304,112 @@ External Symbols in Program Memory (by address):
                   0x0021fc                  _pCubeControlData
                   0x0021fe                  _pCubeData0Base
                   0x002200                  _pCubeData1Base
-                  0x00256a                  _layerArray
-                  0x0026ce                  _LedCube_init
-                  0x0026e6                  _LedCube_setPixel
-                  0x002bda                  _LedCube_update
-                  0x002be4                  _LedCube_updateUsingCopy
-                  0x002bfc                  _LedCube_resetData
-                  0x002c0c                  _LedCube_printHexWriteData
-                  0x002c1c                  _LedCube_printHexReadData
-                  0x002c2c                  __helperPrintByte
-                  0x002c58                  _isPositive
-                  0x002c70                  _haveOppositeSigns
-                  0x002c8a                  _min
-                  0x002cd6                  _max
-                  0x002d1e                  _isPowerOf2
-                  0x002d60                  _modifyBits
-                  0x002da8                  _mergeBits
-                  0x002de4                  _nBitsSet
-                  0x002ebe                  _isEven
-                  0x002f54                  _reverseBitOrder
-                  0x0030d4                  _roundUpToPowerOf2
-                  0x0035ee                  _CubeControlData_init
-                  0x003616                  _CubeControlData_switchCubeData
-                  0x0036ec                  _CubeControlData_resetCubeData
-                  0x003770                  _CubeControlData_copyCubeData
-                  0x003880                  _CubeControlData_printHexCubeData
-                  0x00393a                  _PanelControl_init
-                  0x00394e                  _PanelControl_update
-                  0x003be2                  _PanelControl_allOff
-                  0x003bf8                  _PanelControl_allOn
-                  0x003c0e                  _Uart1_init
-                  0x003c64                  _Uart1_putc
-                  0x003c7c                  _Uart1_puts
-                  0x003c96                  _Uart1_putNum
-                  0x003d6a                  _Uart1_putBits
-                  0x003dac                  _Uart1_printf
-                  0x003dee                  _Uart1_gets
-                  0x003e32                  __U1RXInterrupt
-                  0x003e86                  _LayerControl_init
-                  0x003eea                  _LayerControl_setLayer
-                  0x003f0a                  _LayerControl_update
-                  0x003f6e                  _LayerControl_allOff
-                  0x003f84                  _LayerControl_allOn
-                  0x003f9a                  __T3Interrupt
-                  0x00400e                  _swFifoBufferPut
-                  0x0040c0                  _swFifoBufferGet
-                  0x004166                  _Buzzer_init
-                  0x00419e                  _Buzzer_beep
-                  0x0041b6                  _Buzzer_shortBeep
-                  0x0041ce                  _Buzzer_set
-                  0x0042a0                  _IOPorts_init
-                  0x004380                  _FillRowAtOnceWithSingleColour
-                  0x0043ac                  _FillRowWithSingleColour
-                  0x0043e0                  _FillLayerAtOnceWithSingleColour
-                  0x004408                  _FillLayerWithSingleColour
-                  0x004430                  _LedDriver_init
-                  0x00446e                  _LedDriver_update
-                  0x0044c8                  _LedDriver_allOff
-                  0x0044d2                  _LedDriver_allOn
-                  0x0044dc                  _main
-                  0x00454e                  _ConfigureOscillator
-                  0x00456e                  ___delay32
-                  0x00458a                  __dummy_printf
+                  0x002724                  _LedCube_init
+                  0x00273c                  _LedCube_setPixel
+                  0x002c30                  _LedCube_update
+                  0x002c3a                  _LedCube_updateUsingCopy
+                  0x002c52                  _LedCube_resetData
+                  0x002c62                  _LedCube_printHexWriteData
+                  0x002c72                  _LedCube_printHexReadData
+                  0x002c82                  __helperPrintByte
+                  0x002cae                  _isPositive
+                  0x002cc6                  _haveOppositeSigns
+                  0x002ce0                  _min
+                  0x002d2c                  _max
+                  0x002d74                  _isPowerOf2
+                  0x002db6                  _modifyBits
+                  0x002dfe                  _mergeBits
+                  0x002e3a                  _nBitsSet
+                  0x002f14                  _isEven
+                  0x002faa                  _reverseBitOrder
+                  0x00312a                  _roundUpToPowerOf2
+                  0x003644                  _CubeControlData_init
+                  0x00366c                  _CubeControlData_switchCubeData
+                  0x003742                  _CubeControlData_resetCubeData
+                  0x0037c6                  _CubeControlData_copyCubeData
+                  0x0038d6                  _CubeControlData_printHexCubeData
+                  0x003990                  _PanelControl_init
+                  0x0039a4                  _PanelControl_update
+                  0x003c38                  _PanelControl_allOff
+                  0x003c4e                  _PanelControl_allOn
+                  0x003c64                  _Uart1_init
+                  0x003cba                  _Uart1_putc
+                  0x003cd2                  _Uart1_puts
+                  0x003cec                  _Uart1_putNum
+                  0x003dc0                  _Uart1_putBits
+                  0x003e02                  _Uart1_printf
+                  0x003e44                  _Uart1_gets
+                  0x003e88                  __U1RXInterrupt
+                  0x003edc                  _LayerControl_init
+                  0x003f40                  _LayerControl_setLayer
+                  0x003f88                  _LayerControl_update
+                  0x003fec                  _LayerControl_allOff
+                  0x004002                  _LayerControl_allOn
+                  0x004018                  __T3Interrupt
+                  0x00408c                  _swFifoBufferPut
+                  0x00413e                  _swFifoBufferGet
+                  0x0041e4                  _Buzzer_init
+                  0x00421c                  _Buzzer_beep
+                  0x004234                  _Buzzer_shortBeep
+                  0x00424c                  _Buzzer_set
+                  0x00431e                  _IOPorts_init
+                  0x0043fe                  _FillRowAtOnceWithSingleColour
+                  0x00442a                  _FillRowWithSingleColour
+                  0x00445e                  _FillLayerAtOnceWithSingleColour
+                  0x004486                  _FillLayerWithSingleColour
+                  0x0044ae                  _LedDriver_init
+                  0x0044ec                  _LedDriver_update
+                  0x004546                  _LedDriver_allOff
+                  0x004550                  _LedDriver_allOn
+                  0x00455a                  _main
+                  0x0045cc                  _ConfigureOscillator
+                  0x0045ec                  ___delay32
+                  0x004608                  __dummy_printf
 
 External Symbols in Program Memory (by name):
 
-                  0x00419e                  _Buzzer_beep
-                  0x004166                  _Buzzer_init
-                  0x0041ce                  _Buzzer_set
-                  0x0041b6                  _Buzzer_shortBeep
-                  0x00454e                  _ConfigureOscillator
-                  0x003770                  _CubeControlData_copyCubeData
-                  0x0035ee                  _CubeControlData_init
-                  0x003880                  _CubeControlData_printHexCubeData
-                  0x0036ec                  _CubeControlData_resetCubeData
-                  0x003616                  _CubeControlData_switchCubeData
-                  0x0043e0                  _FillLayerAtOnceWithSingleColour
-                  0x004408                  _FillLayerWithSingleColour
-                  0x004380                  _FillRowAtOnceWithSingleColour
-                  0x0043ac                  _FillRowWithSingleColour
-                  0x0042a0                  _IOPorts_init
-                  0x003f6e                  _LayerControl_allOff
-                  0x003f84                  _LayerControl_allOn
-                  0x003e86                  _LayerControl_init
-                  0x003eea                  _LayerControl_setLayer
-                  0x003f0a                  _LayerControl_update
-                  0x0026ce                  _LedCube_init
-                  0x002c1c                  _LedCube_printHexReadData
-                  0x002c0c                  _LedCube_printHexWriteData
-                  0x002bfc                  _LedCube_resetData
-                  0x0026e6                  _LedCube_setPixel
-                  0x002bda                  _LedCube_update
-                  0x002be4                  _LedCube_updateUsingCopy
-                  0x0044c8                  _LedDriver_allOff
-                  0x0044d2                  _LedDriver_allOn
-                  0x004430                  _LedDriver_init
-                  0x00446e                  _LedDriver_update
-                  0x003be2                  _PanelControl_allOff
-                  0x003bf8                  _PanelControl_allOn
-                  0x00393a                  _PanelControl_init
-                  0x00394e                  _PanelControl_update
-                  0x003dee                  _Uart1_gets
-                  0x003c0e                  _Uart1_init
-                  0x003dac                  _Uart1_printf
-                  0x003d6a                  _Uart1_putBits
-                  0x003c96                  _Uart1_putNum
-                  0x003c64                  _Uart1_putc
-                  0x003c7c                  _Uart1_puts
+                  0x00421c                  _Buzzer_beep
+                  0x0041e4                  _Buzzer_init
+                  0x00424c                  _Buzzer_set
+                  0x004234                  _Buzzer_shortBeep
+                  0x0045cc                  _ConfigureOscillator
+                  0x0037c6                  _CubeControlData_copyCubeData
+                  0x003644                  _CubeControlData_init
+                  0x0038d6                  _CubeControlData_printHexCubeData
+                  0x003742                  _CubeControlData_resetCubeData
+                  0x00366c                  _CubeControlData_switchCubeData
+                  0x00445e                  _FillLayerAtOnceWithSingleColour
+                  0x004486                  _FillLayerWithSingleColour
+                  0x0043fe                  _FillRowAtOnceWithSingleColour
+                  0x00442a                  _FillRowWithSingleColour
+                  0x00431e                  _IOPorts_init
+                  0x003fec                  _LayerControl_allOff
+                  0x004002                  _LayerControl_allOn
+                  0x003edc                  _LayerControl_init
+                  0x003f40                  _LayerControl_setLayer
+                  0x003f88                  _LayerControl_update
+                  0x002724                  _LedCube_init
+                  0x002c72                  _LedCube_printHexReadData
+                  0x002c62                  _LedCube_printHexWriteData
+                  0x002c52                  _LedCube_resetData
+                  0x00273c                  _LedCube_setPixel
+                  0x002c30                  _LedCube_update
+                  0x002c3a                  _LedCube_updateUsingCopy
+                  0x004546                  _LedDriver_allOff
+                  0x004550                  _LedDriver_allOn
+                  0x0044ae                  _LedDriver_init
+                  0x0044ec                  _LedDriver_update
+                  0x003c38                  _PanelControl_allOff
+                  0x003c4e                  _PanelControl_allOn
+                  0x003990                  _PanelControl_init
+                  0x0039a4                  _PanelControl_update
+                  0x003e44                  _Uart1_gets
+                  0x003c64                  _Uart1_init
+                  0x003e02                  _Uart1_printf
+                  0x003dc0                  _Uart1_putBits
+                  0x003cec                  _Uart1_putNum
+                  0x003cba                  _Uart1_putc
+                  0x003cd2                  _Uart1_puts
                   0x00029e                  __DefaultInterrupt
                   0x00157e                  __Dnorm
                   0x00170c                  __Genld
@@ -421,12 +420,12 @@ External Symbols in Program Memory (by name):
                   0x0008ba                  __Printf
                   0x000a1e                  __Putfld
                   0x0013dc                  __Puttxt
-                  0x003f9a                  __T3Interrupt
-                  0x003e32                  __U1RXInterrupt
+                  0x004018                  __T3Interrupt
+                  0x003e88                  __U1RXInterrupt
                   0x000d06                  __Vacopy
                   0x001c6e                  ___adddf3
                   0x0002a4                  ___addsf3
-                  0x00456e                  ___delay32
+                  0x0045ec                  ___delay32
                   0x00199a                  ___divdf3
                   0x0006d4                  ___divdi3
                   0x00035e                  ___divsf3
@@ -467,7 +466,7 @@ External Symbols in Program Memory (by name):
                   0x001a4e                  __dpack
                   0x001ac8                  __dreturnNaN
                   0x001dd6                  __dtype
-                  0x00458a                  __dummy_printf
+                  0x004608                  __dummy_printf
                   0x001dfa                  __dunpack
                   0x001aa6                  __dunpack2
                   0x001ace                  __dunpack2exit
@@ -477,34 +476,33 @@ External Symbols in Program Memory (by name):
                   0x00043a                  __fpack
                   0x000486                  __funpack
                   0x0004b0                  __funpack2
-                  0x002c2c                  __helperPrintByte
+                  0x002c82                  __helperPrintByte
                   0x00022c                  __psv_init
                   0x000200                  __resetPRI
                   0x001970                  _div
-                  0x002c70                  _haveOppositeSigns
-                  0x002ebe                  _isEven
-                  0x002c58                  _isPositive
-                  0x002d1e                  _isPowerOf2
-                  0x00256a                  _layerArray
+                  0x002cc6                  _haveOppositeSigns
+                  0x002f14                  _isEven
+                  0x002cae                  _isPositive
+                  0x002d74                  _isPowerOf2
                   0x001554                  _ldiv
-                  0x0044dc                  _main
-                  0x002cd6                  _max
+                  0x00455a                  _main
+                  0x002d2c                  _max
                   0x000d0a                  _memchr
                   0x000d1e                  _memcpy
                   0x000884                  _memset
-                  0x002da8                  _mergeBits
-                  0x002c8a                  _min
-                  0x002d60                  _modifyBits
-                  0x002de4                  _nBitsSet
+                  0x002dfe                  _mergeBits
+                  0x002ce0                  _min
+                  0x002db6                  _modifyBits
+                  0x002e3a                  _nBitsSet
                   0x0021fc                  _pCubeControlData
                   0x0021fe                  _pCubeData0Base
                   0x002200                  _pCubeData1Base
-                  0x002f54                  _reverseBitOrder
-                  0x0030d4                  _roundUpToPowerOf2
+                  0x002faa                  _reverseBitOrder
+                  0x00312a                  _roundUpToPowerOf2
                   0x000ce8                  _strchr
                   0x000d2c                  _strlen
-                  0x0040c0                  _swFifoBufferGet
-                  0x00400e                  _swFifoBufferPut
+                  0x00413e                  _swFifoBufferGet
+                  0x00408c                  _swFifoBufferPut
                   0x0008a0                  _vsprintf
                   0x000892                  vsprintf.XXeo:_prout
 
@@ -742,22 +740,22 @@ __CONFIG1
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x67c9
+.debug_info       0x000000       0x67c0
  *(.debug_info)
- .debug_info      0x000000       0x1251 build/debug/production/source/CubeControl/src/LayerControl.o
- .debug_info      0x001251        0x722 build/debug/production/source/CubeControl/src/LedCube.o
- .debug_info      0x001973        0x8d6 build/debug/production/source/CubeControl/src/LedDriver.o
- .debug_info      0x002249        0x7ca build/debug/production/source/CubeControl/src/PanelControl.o
- .debug_info      0x002a13        0x80e build/debug/production/source/CubeControl/src/CubeControlData.o
- .debug_info      0x003221        0xdb3 build/debug/production/source/LibraryFiles/src/Uart.o
- .debug_info      0x003fd4        0x436 build/debug/production/source/LibraryFiles/src/BitOperations.o
- .debug_info      0x00440a        0x664 build/debug/production/source/LibraryFiles/src/Buzzer.o
- .debug_info      0x004a6e        0xd8b build/debug/production/source/LibraryFiles/src/IOPorts.o
- .debug_info      0x0057f9        0x484 build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
- .debug_info      0x005c7d        0x3ba build/debug/production/source/LibraryFiles/src/System.o
- .debug_info      0x006037        0x190 build/debug/production/source/LibraryFiles/src/Debug.o
- .debug_info      0x0061c7        0x2bf build/debug/production/source/src/main.o
- .debug_info      0x006486        0x343 build/debug/production/source/Animations/src/Fill.o
+ .debug_info      0x000000       0x1248 build/debug/production/source/CubeControl/src/LayerControl.o
+ .debug_info      0x001248        0x722 build/debug/production/source/CubeControl/src/LedCube.o
+ .debug_info      0x00196a        0x8d6 build/debug/production/source/CubeControl/src/LedDriver.o
+ .debug_info      0x002240        0x7ca build/debug/production/source/CubeControl/src/PanelControl.o
+ .debug_info      0x002a0a        0x80e build/debug/production/source/CubeControl/src/CubeControlData.o
+ .debug_info      0x003218        0xdb3 build/debug/production/source/LibraryFiles/src/Uart.o
+ .debug_info      0x003fcb        0x436 build/debug/production/source/LibraryFiles/src/BitOperations.o
+ .debug_info      0x004401        0x664 build/debug/production/source/LibraryFiles/src/Buzzer.o
+ .debug_info      0x004a65        0xd8b build/debug/production/source/LibraryFiles/src/IOPorts.o
+ .debug_info      0x0057f0        0x484 build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
+ .debug_info      0x005c74        0x3ba build/debug/production/source/LibraryFiles/src/System.o
+ .debug_info      0x00602e        0x190 build/debug/production/source/LibraryFiles/src/Debug.o
+ .debug_info      0x0061be        0x2bf build/debug/production/source/src/main.o
+ .debug_info      0x00647d        0x343 build/debug/production/source/Animations/src/Fill.o
  *(.gnu.linkonce.wi.*)
 
 .debug_abbrev     0x000000        0xf72
@@ -777,39 +775,39 @@ __CONFIG1
  .debug_abbrev    0x000e2f         0xbe build/debug/production/source/src/main.o
  .debug_abbrev    0x000eed         0x85 build/debug/production/source/Animations/src/Fill.o
 
-.debug_line       0x000000       0x2017
+.debug_line       0x000000       0x201f
  *(.debug_line)
- .debug_line      0x000000        0x33f build/debug/production/source/CubeControl/src/LayerControl.o
- .debug_line      0x00033f        0x36e build/debug/production/source/CubeControl/src/LedCube.o
- .debug_line      0x0006ad        0x20c build/debug/production/source/CubeControl/src/LedDriver.o
- .debug_line      0x0008b9        0x313 build/debug/production/source/CubeControl/src/PanelControl.o
- .debug_line      0x000bcc        0x330 build/debug/production/source/CubeControl/src/CubeControlData.o
- .debug_line      0x000efc        0x433 build/debug/production/source/LibraryFiles/src/Uart.o
- .debug_line      0x00132f        0x2a2 build/debug/production/source/LibraryFiles/src/BitOperations.o
- .debug_line      0x0015d1        0x232 build/debug/production/source/LibraryFiles/src/Buzzer.o
- .debug_line      0x001803        0x180 build/debug/production/source/LibraryFiles/src/IOPorts.o
- .debug_line      0x001983        0x23e build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
- .debug_line      0x001bc1         0xe7 build/debug/production/source/LibraryFiles/src/System.o
- .debug_line      0x001ca8         0x61 build/debug/production/source/LibraryFiles/src/Debug.o
- .debug_line      0x001d09        0x19d build/debug/production/source/src/main.o
- .debug_line      0x001ea6        0x171 build/debug/production/source/Animations/src/Fill.o
+ .debug_line      0x000000        0x347 build/debug/production/source/CubeControl/src/LayerControl.o
+ .debug_line      0x000347        0x36e build/debug/production/source/CubeControl/src/LedCube.o
+ .debug_line      0x0006b5        0x20c build/debug/production/source/CubeControl/src/LedDriver.o
+ .debug_line      0x0008c1        0x313 build/debug/production/source/CubeControl/src/PanelControl.o
+ .debug_line      0x000bd4        0x330 build/debug/production/source/CubeControl/src/CubeControlData.o
+ .debug_line      0x000f04        0x433 build/debug/production/source/LibraryFiles/src/Uart.o
+ .debug_line      0x001337        0x2a2 build/debug/production/source/LibraryFiles/src/BitOperations.o
+ .debug_line      0x0015d9        0x232 build/debug/production/source/LibraryFiles/src/Buzzer.o
+ .debug_line      0x00180b        0x180 build/debug/production/source/LibraryFiles/src/IOPorts.o
+ .debug_line      0x00198b        0x23e build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
+ .debug_line      0x001bc9         0xe7 build/debug/production/source/LibraryFiles/src/System.o
+ .debug_line      0x001cb0         0x61 build/debug/production/source/LibraryFiles/src/Debug.o
+ .debug_line      0x001d11        0x19d build/debug/production/source/src/main.o
+ .debug_line      0x001eae        0x171 build/debug/production/source/Animations/src/Fill.o
 
-.debug_frame      0x000000        0x94c
+.debug_frame      0x000000        0x984
  *(.debug_frame)
- .debug_frame     0x000000         0xfc build/debug/production/source/CubeControl/src/LayerControl.o
- .debug_frame     0x0000fc        0x1d0 build/debug/production/source/CubeControl/src/LedCube.o
- .debug_frame     0x0002cc         0x94 build/debug/production/source/CubeControl/src/LedDriver.o
- .debug_frame     0x000360         0xb8 build/debug/production/source/CubeControl/src/PanelControl.o
- .debug_frame     0x000418        0x1d4 build/debug/production/source/CubeControl/src/CubeControlData.o
- .debug_frame     0x0005ec         0xc0 build/debug/production/source/LibraryFiles/src/Uart.o
- .debug_frame     0x0006ac         0xc4 build/debug/production/source/LibraryFiles/src/BitOperations.o
- .debug_frame     0x000770         0xc4 build/debug/production/source/LibraryFiles/src/Buzzer.o
- .debug_frame     0x000834         0x24 build/debug/production/source/LibraryFiles/src/IOPorts.o
- .debug_frame     0x000858         0x34 build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
- .debug_frame     0x00088c         0x24 build/debug/production/source/LibraryFiles/src/System.o
- .debug_frame     0x0008b0         0x24 build/debug/production/source/LibraryFiles/src/Debug.o
- .debug_frame     0x0008d4         0x24 build/debug/production/source/src/main.o
- .debug_frame     0x0008f8         0x54 build/debug/production/source/Animations/src/Fill.o
+ .debug_frame     0x000000        0x134 build/debug/production/source/CubeControl/src/LayerControl.o
+ .debug_frame     0x000134        0x1d0 build/debug/production/source/CubeControl/src/LedCube.o
+ .debug_frame     0x000304         0x94 build/debug/production/source/CubeControl/src/LedDriver.o
+ .debug_frame     0x000398         0xb8 build/debug/production/source/CubeControl/src/PanelControl.o
+ .debug_frame     0x000450        0x1d4 build/debug/production/source/CubeControl/src/CubeControlData.o
+ .debug_frame     0x000624         0xc0 build/debug/production/source/LibraryFiles/src/Uart.o
+ .debug_frame     0x0006e4         0xc4 build/debug/production/source/LibraryFiles/src/BitOperations.o
+ .debug_frame     0x0007a8         0xc4 build/debug/production/source/LibraryFiles/src/Buzzer.o
+ .debug_frame     0x00086c         0x24 build/debug/production/source/LibraryFiles/src/IOPorts.o
+ .debug_frame     0x000890         0x34 build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
+ .debug_frame     0x0008c4         0x24 build/debug/production/source/LibraryFiles/src/System.o
+ .debug_frame     0x0008e8         0x24 build/debug/production/source/LibraryFiles/src/Debug.o
+ .debug_frame     0x00090c         0x24 build/debug/production/source/src/main.o
+ .debug_frame     0x000930         0x54 build/debug/production/source/Animations/src/Fill.o
 
 .debug_str        0x000000        0x2cb
  *(.debug_str)
@@ -833,36 +831,36 @@ __CONFIG1
  *(.debug_macinfo)
 
 .debug_pubnames
-                  0x000000        0x677
+                  0x000000        0x668
  *(.debug_pubnames)
  .debug_pubnames
-                  0x000000         0xc0 build/debug/production/source/CubeControl/src/LayerControl.o
+                  0x000000         0xb1 build/debug/production/source/CubeControl/src/LayerControl.o
  .debug_pubnames
-                  0x0000c0         0xcd build/debug/production/source/CubeControl/src/LedCube.o
+                  0x0000b1         0xcd build/debug/production/source/CubeControl/src/LedCube.o
  .debug_pubnames
-                  0x00018d         0x63 build/debug/production/source/CubeControl/src/LedDriver.o
+                  0x00017e         0x63 build/debug/production/source/CubeControl/src/LedDriver.o
  .debug_pubnames
-                  0x0001f0         0x6f build/debug/production/source/CubeControl/src/PanelControl.o
+                  0x0001e1         0x6f build/debug/production/source/CubeControl/src/PanelControl.o
  .debug_pubnames
-                  0x00025f        0x105 build/debug/production/source/CubeControl/src/CubeControlData.o
+                  0x000250        0x105 build/debug/production/source/CubeControl/src/CubeControlData.o
  .debug_pubnames
-                  0x000364         0xb0 build/debug/production/source/LibraryFiles/src/Uart.o
+                  0x000355         0xb0 build/debug/production/source/LibraryFiles/src/Uart.o
  .debug_pubnames
-                  0x000414         0xb5 build/debug/production/source/LibraryFiles/src/BitOperations.o
+                  0x000405         0xb5 build/debug/production/source/LibraryFiles/src/BitOperations.o
  .debug_pubnames
-                  0x0004c9         0x56 build/debug/production/source/LibraryFiles/src/Buzzer.o
+                  0x0004ba         0x56 build/debug/production/source/LibraryFiles/src/Buzzer.o
  .debug_pubnames
-                  0x00051f         0x23 build/debug/production/source/LibraryFiles/src/IOPorts.o
+                  0x000510         0x23 build/debug/production/source/LibraryFiles/src/IOPorts.o
  .debug_pubnames
-                  0x000542         0x3a build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
+                  0x000533         0x3a build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
  .debug_pubnames
-                  0x00057c         0x2a build/debug/production/source/LibraryFiles/src/System.o
+                  0x00056d         0x2a build/debug/production/source/LibraryFiles/src/System.o
  .debug_pubnames
-                  0x0005a6         0x24 build/debug/production/source/LibraryFiles/src/Debug.o
+                  0x000597         0x24 build/debug/production/source/LibraryFiles/src/Debug.o
  .debug_pubnames
-                  0x0005ca         0x1b build/debug/production/source/src/main.o
+                  0x0005bb         0x1b build/debug/production/source/src/main.o
  .debug_pubnames
-                  0x0005e5         0x92 build/debug/production/source/Animations/src/Fill.o
+                  0x0005d6         0x92 build/debug/production/source/Animations/src/Fill.o
 
 .debug_ranges
  *(.debug_ranges)
@@ -915,10 +913,10 @@ __CONFIG1
                   0x00001e          0x4 LONG 0x29e DEFINED (__IC2Interrupt)?ABSOLUTE (__IC2Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000020          0x4 LONG 0x29e DEFINED (__OC2Interrupt)?ABSOLUTE (__OC2Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000022          0x4 LONG 0x29e DEFINED (__T2Interrupt)?ABSOLUTE (__T2Interrupt):ABSOLUTE (__DefaultInterrupt)
-                  0x000024          0x4 LONG 0x3f9a DEFINED (__T3Interrupt)?ABSOLUTE (__T3Interrupt):ABSOLUTE (__DefaultInterrupt)
+                  0x000024          0x4 LONG 0x4018 DEFINED (__T3Interrupt)?ABSOLUTE (__T3Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000026          0x4 LONG 0x29e DEFINED (__SPI1ErrInterrupt)?ABSOLUTE (__SPI1ErrInterrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000028          0x4 LONG 0x29e DEFINED (__SPI1Interrupt)?ABSOLUTE (__SPI1Interrupt):ABSOLUTE (__DefaultInterrupt)
-                  0x00002a          0x4 LONG 0x3e32 DEFINED (__U1RXInterrupt)?ABSOLUTE (__U1RXInterrupt):ABSOLUTE (__DefaultInterrupt)
+                  0x00002a          0x4 LONG 0x3e88 DEFINED (__U1RXInterrupt)?ABSOLUTE (__U1RXInterrupt):ABSOLUTE (__DefaultInterrupt)
                   0x00002c          0x4 LONG 0x29e DEFINED (__U1TXInterrupt)?ABSOLUTE (__U1TXInterrupt):ABSOLUTE (__DefaultInterrupt)
                   0x00002e          0x4 LONG 0x29e DEFINED (__ADC1Interrupt)?ABSOLUTE (__ADC1Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000030          0x4 LONG 0x29e DEFINED (__Interrupt14)?ABSOLUTE (__Interrupt14):ABSOLUTE (__DefaultInterrupt)
@@ -1043,10 +1041,10 @@ __CONFIG1
                   0x00011e          0x4 LONG 0x29e DEFINED (__AltIC2Interrupt)?ABSOLUTE (__AltIC2Interrupt):DEFINED (__IC2Interrupt)?ABSOLUTE (__IC2Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000120          0x4 LONG 0x29e DEFINED (__AltOC2Interrupt)?ABSOLUTE (__AltOC2Interrupt):DEFINED (__OC2Interrupt)?ABSOLUTE (__OC2Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000122          0x4 LONG 0x29e DEFINED (__AltT2Interrupt)?ABSOLUTE (__AltT2Interrupt):DEFINED (__T2Interrupt)?ABSOLUTE (__T2Interrupt):ABSOLUTE (__DefaultInterrupt)
-                  0x000124          0x4 LONG 0x3f9a DEFINED (__AltT3Interrupt)?ABSOLUTE (__AltT3Interrupt):DEFINED (__T3Interrupt)?ABSOLUTE (__T3Interrupt):ABSOLUTE (__DefaultInterrupt)
+                  0x000124          0x4 LONG 0x4018 DEFINED (__AltT3Interrupt)?ABSOLUTE (__AltT3Interrupt):DEFINED (__T3Interrupt)?ABSOLUTE (__T3Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000126          0x4 LONG 0x29e DEFINED (__AltSPI1ErrInterrupt)?ABSOLUTE (__AltSPI1ErrInterrupt):DEFINED (__SPI1ErrInterrupt)?ABSOLUTE (__SPI1ErrInterrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000128          0x4 LONG 0x29e DEFINED (__AltSPI1Interrupt)?ABSOLUTE (__AltSPI1Interrupt):DEFINED (__SPI1Interrupt)?ABSOLUTE (__SPI1Interrupt):ABSOLUTE (__DefaultInterrupt)
-                  0x00012a          0x4 LONG 0x3e32 DEFINED (__AltU1RXInterrupt)?ABSOLUTE (__AltU1RXInterrupt):DEFINED (__U1RXInterrupt)?ABSOLUTE (__U1RXInterrupt):ABSOLUTE (__DefaultInterrupt)
+                  0x00012a          0x4 LONG 0x3e88 DEFINED (__AltU1RXInterrupt)?ABSOLUTE (__AltU1RXInterrupt):DEFINED (__U1RXInterrupt)?ABSOLUTE (__U1RXInterrupt):ABSOLUTE (__DefaultInterrupt)
                   0x00012c          0x4 LONG 0x29e DEFINED (__AltU1TXInterrupt)?ABSOLUTE (__AltU1TXInterrupt):DEFINED (__U1TXInterrupt)?ABSOLUTE (__U1TXInterrupt):ABSOLUTE (__DefaultInterrupt)
                   0x00012e          0x4 LONG 0x29e DEFINED (__AltADC1Interrupt)?ABSOLUTE (__AltADC1Interrupt):DEFINED (__ADC1Interrupt)?ABSOLUTE (__ADC1Interrupt):ABSOLUTE (__DefaultInterrupt)
                   0x000130          0x4 LONG 0x29e DEFINED (__AltInterrupt14)?ABSOLUTE (__AltInterrupt14):DEFINED (__Interrupt14)?ABSOLUTE (__Interrupt14):ABSOLUTE (__DefaultInterrupt)
@@ -1970,102 +1968,101 @@ __c30_signature
 .config_IESO      0x00abfc          0x2
  .config_IESO     0x00abfc          0x2 build/debug/production/source/src/main.o
 
-.const              0x9ebe        0x810 load address 0x001ebe  
+.const              0x9ebe        0x866 load address 0x001ebe  
  .const             0x9ebe        0x33e build/debug/production/source/CubeControl/src/LedCube.o
  .const             0xa1fc        0x17c build/debug/production/source/CubeControl/src/CubeControlData.o
                     0xa1fc                  _pCubeControlData
                     0xa1fe                  _pCubeData0Base
                     0xa200                  _pCubeData1Base
  .const             0xa378        0x152 build/debug/production/source/LibraryFiles/src/Buzzer.o
- .const             0xa4ca         0xa0 build/debug/production/source/LibraryFiles/src/Uart.o
- .const             0xa56a         0x9e build/debug/production/source/CubeControl/src/LayerControl.o
-                    0xa56a                  _layerArray
- .const             0xa608         0x6c build/debug/production/source/CubeControl/src/PanelControl.o
- .const             0xa674         0x5a build/debug/production/source/CubeControl/src/LedDriver.o
+ .const             0xa4ca         0xf4 build/debug/production/source/CubeControl/src/LayerControl.o
+ .const             0xa5be         0xa0 build/debug/production/source/LibraryFiles/src/Uart.o
+ .const             0xa65e         0x6c build/debug/production/source/CubeControl/src/PanelControl.o
+ .const             0xa6ca         0x5a build/debug/production/source/CubeControl/src/LedDriver.o
 
-.text             0x0026ce        0xa5e
- .text            0x0026ce        0x58a build/debug/production/source/CubeControl/src/LedCube.o
-                  0x0026ce                  _LedCube_init
-                  0x0026e6                  _LedCube_setPixel
-                  0x002bda                  _LedCube_update
-                  0x002be4                  _LedCube_updateUsingCopy
-                  0x002bfc                  _LedCube_resetData
-                  0x002c0c                  _LedCube_printHexWriteData
-                  0x002c1c                  _LedCube_printHexReadData
-                  0x002c2c                  __helperPrintByte
- .text            0x002c58        0x4d4 build/debug/production/source/LibraryFiles/src/BitOperations.o
-                  0x002c58                  _isPositive
-                  0x002c70                  _haveOppositeSigns
-                  0x002c8a                  _min
-                  0x002cd6                  _max
-                  0x002d1e                  _isPowerOf2
-                  0x002d60                  _modifyBits
-                  0x002da8                  _mergeBits
-                  0x002de4                  _nBitsSet
-                  0x002ebe                  _isEven
-                  0x002f54                  _reverseBitOrder
-                  0x0030d4                  _roundUpToPowerOf2
+.text             0x002724        0xa5e
+ .text            0x002724        0x58a build/debug/production/source/CubeControl/src/LedCube.o
+                  0x002724                  _LedCube_init
+                  0x00273c                  _LedCube_setPixel
+                  0x002c30                  _LedCube_update
+                  0x002c3a                  _LedCube_updateUsingCopy
+                  0x002c52                  _LedCube_resetData
+                  0x002c62                  _LedCube_printHexWriteData
+                  0x002c72                  _LedCube_printHexReadData
+                  0x002c82                  __helperPrintByte
+ .text            0x002cae        0x4d4 build/debug/production/source/LibraryFiles/src/BitOperations.o
+                  0x002cae                  _isPositive
+                  0x002cc6                  _haveOppositeSigns
+                  0x002ce0                  _min
+                  0x002d2c                  _max
+                  0x002d74                  _isPowerOf2
+                  0x002db6                  _modifyBits
+                  0x002dfe                  _mergeBits
+                  0x002e3a                  _nBitsSet
+                  0x002f14                  _isEven
+                  0x002faa                  _reverseBitOrder
+                  0x00312a                  _roundUpToPowerOf2
 
-.dinit            0x00312c        0x4c2
- .dinit           0x00312c        0x4c2 data_init
+.dinit            0x003182        0x4c2
+ .dinit           0x003182        0x4c2 data_init
 
-.text             0x0035ee        0xf80
- .text            0x0035ee        0x34c build/debug/production/source/CubeControl/src/CubeControlData.o
-                  0x0035ee                  _CubeControlData_init
-                  0x003616                  _CubeControlData_switchCubeData
-                  0x0036ec                  _CubeControlData_resetCubeData
-                  0x003770                  _CubeControlData_copyCubeData
-                  0x003880                  _CubeControlData_printHexCubeData
- .text            0x00393a        0x2d4 build/debug/production/source/CubeControl/src/PanelControl.o
-                  0x00393a                  _PanelControl_init
-                  0x00394e                  _PanelControl_update
-                  0x003be2                  _PanelControl_allOff
-                  0x003bf8                  _PanelControl_allOn
- .text            0x003c0e        0x278 build/debug/production/source/LibraryFiles/src/Uart.o
-                  0x003c0e                  _Uart1_init
-                  0x003c64                  _Uart1_putc
-                  0x003c7c                  _Uart1_puts
-                  0x003c96                  _Uart1_putNum
-                  0x003d6a                  _Uart1_putBits
-                  0x003dac                  _Uart1_printf
-                  0x003dee                  _Uart1_gets
-                  0x003e32                  __U1RXInterrupt
- .text            0x003e86        0x188 build/debug/production/source/CubeControl/src/LayerControl.o
-                  0x003e86                  _LayerControl_init
-                  0x003eea                  _LayerControl_setLayer
-                  0x003f0a                  _LayerControl_update
-                  0x003f6e                  _LayerControl_allOff
-                  0x003f84                  _LayerControl_allOn
-                  0x003f9a                  __T3Interrupt
- .text            0x00400e        0x158 build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
-                  0x00400e                  _swFifoBufferPut
-                  0x0040c0                  _swFifoBufferGet
- .text            0x004166        0x13a build/debug/production/source/LibraryFiles/src/Buzzer.o
-                  0x004166                  _Buzzer_init
-                  0x00419e                  _Buzzer_beep
-                  0x0041b6                  _Buzzer_shortBeep
-                  0x0041ce                  _Buzzer_set
- .text            0x0042a0         0xe0 build/debug/production/source/LibraryFiles/src/IOPorts.o
-                  0x0042a0                  _IOPorts_init
- .text            0x004380         0xb0 build/debug/production/source/Animations/src/Fill.o
-                  0x004380                  _FillRowAtOnceWithSingleColour
-                  0x0043ac                  _FillRowWithSingleColour
-                  0x0043e0                  _FillLayerAtOnceWithSingleColour
-                  0x004408                  _FillLayerWithSingleColour
- .text            0x004430         0xac build/debug/production/source/CubeControl/src/LedDriver.o
-                  0x004430                  _LedDriver_init
-                  0x00446e                  _LedDriver_update
-                  0x0044c8                  _LedDriver_allOff
-                  0x0044d2                  _LedDriver_allOn
- .text            0x0044dc         0x72 build/debug/production/source/src/main.o
-                  0x0044dc                  _main
- .text            0x00454e         0x20 build/debug/production/source/LibraryFiles/src/System.o
-                  0x00454e                  _ConfigureOscillator
+.text             0x003644        0xfa8
+ .text            0x003644        0x34c build/debug/production/source/CubeControl/src/CubeControlData.o
+                  0x003644                  _CubeControlData_init
+                  0x00366c                  _CubeControlData_switchCubeData
+                  0x003742                  _CubeControlData_resetCubeData
+                  0x0037c6                  _CubeControlData_copyCubeData
+                  0x0038d6                  _CubeControlData_printHexCubeData
+ .text            0x003990        0x2d4 build/debug/production/source/CubeControl/src/PanelControl.o
+                  0x003990                  _PanelControl_init
+                  0x0039a4                  _PanelControl_update
+                  0x003c38                  _PanelControl_allOff
+                  0x003c4e                  _PanelControl_allOn
+ .text            0x003c64        0x278 build/debug/production/source/LibraryFiles/src/Uart.o
+                  0x003c64                  _Uart1_init
+                  0x003cba                  _Uart1_putc
+                  0x003cd2                  _Uart1_puts
+                  0x003cec                  _Uart1_putNum
+                  0x003dc0                  _Uart1_putBits
+                  0x003e02                  _Uart1_printf
+                  0x003e44                  _Uart1_gets
+                  0x003e88                  __U1RXInterrupt
+ .text            0x003edc        0x1b0 build/debug/production/source/CubeControl/src/LayerControl.o
+                  0x003edc                  _LayerControl_init
+                  0x003f40                  _LayerControl_setLayer
+                  0x003f88                  _LayerControl_update
+                  0x003fec                  _LayerControl_allOff
+                  0x004002                  _LayerControl_allOn
+                  0x004018                  __T3Interrupt
+ .text            0x00408c        0x158 build/debug/production/source/LibraryFiles/src/SwFifoBuffer.o
+                  0x00408c                  _swFifoBufferPut
+                  0x00413e                  _swFifoBufferGet
+ .text            0x0041e4        0x13a build/debug/production/source/LibraryFiles/src/Buzzer.o
+                  0x0041e4                  _Buzzer_init
+                  0x00421c                  _Buzzer_beep
+                  0x004234                  _Buzzer_shortBeep
+                  0x00424c                  _Buzzer_set
+ .text            0x00431e         0xe0 build/debug/production/source/LibraryFiles/src/IOPorts.o
+                  0x00431e                  _IOPorts_init
+ .text            0x0043fe         0xb0 build/debug/production/source/Animations/src/Fill.o
+                  0x0043fe                  _FillRowAtOnceWithSingleColour
+                  0x00442a                  _FillRowWithSingleColour
+                  0x00445e                  _FillLayerAtOnceWithSingleColour
+                  0x004486                  _FillLayerWithSingleColour
+ .text            0x0044ae         0xac build/debug/production/source/CubeControl/src/LedDriver.o
+                  0x0044ae                  _LedDriver_init
+                  0x0044ec                  _LedDriver_update
+                  0x004546                  _LedDriver_allOff
+                  0x004550                  _LedDriver_allOn
+ .text            0x00455a         0x72 build/debug/production/source/src/main.o
+                  0x00455a                  _main
+ .text            0x0045cc         0x20 build/debug/production/source/LibraryFiles/src/System.o
+                  0x0045cc                  _ConfigureOscillator
 
-.init.delay32     0x00456e         0x1c
- .init.delay32    0x00456e         0x1c c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-pic30-elf.a(delay32.Leo)
-                  0x00456e                  ___delay32
+.init.delay32     0x0045ec         0x1c
+ .init.delay32    0x0045ec         0x1c c:/program files (x86)/microchip/xc16/v1.25/bin/bin/../../lib\liblega-pic30-elf.a(delay32.Leo)
+                  0x0045ec                  ___delay32
 
-.text             0x00458a          0x6
- .text            0x00458a          0x6 build/debug/production/source/LibraryFiles/src/Debug.o
-                  0x00458a                  __dummy_printf
+.text             0x004608          0x6
+ .text            0x004608          0x6 build/debug/production/source/LibraryFiles/src/Debug.o
+                  0x004608                  __dummy_printf

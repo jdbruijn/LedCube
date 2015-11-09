@@ -275,8 +275,11 @@ __attribute__((interrupt,auto_psv)) _U1RXInterrupt(void) {
         }
         else if( U1STAbits.OERR == 1 ) {
             U1STAbits.OERR = 0;         // Clear the Overrun Error Status bit
-            // @todo @check Is this needed and wanted?
-            Uart1_puts("An Overrun Error has been detected.");
+#ifdef DEBUG
+            Uart1_printf(" DEBUG: %s:%d:%s(): " \
+                    "An UART1 overrun error has been detected",
+                    __FILE__, __LINE__, __FUNCTION__);
+#endif /* DEBUG */
         }
 
     IFS0bits.U1RXIF = 0;                // Clear the UARTx RX interrupt flag

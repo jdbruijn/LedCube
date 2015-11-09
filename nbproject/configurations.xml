@@ -3,9 +3,9 @@
   <logicalFolder name="root" displayName="root" projectFiles="true">
     <logicalFolder name="f3" displayName="Animations" projectFiles="true">
       <logicalFolder name="f1" displayName="src" projectFiles="true">
-        <itemPath>source/Animations/src/FillLayer.c</itemPath>
+        <itemPath>source/Animations/src/Fill.c</itemPath>
       </logicalFolder>
-      <itemPath>source/Animations/FillLayer.h</itemPath>
+      <itemPath>source/Animations/Fill.h</itemPath>
     </logicalFolder>
     <logicalFolder name="f1" displayName="CubeControl" projectFiles="true">
       <logicalFolder name="f1" displayName="src" projectFiles="true">
