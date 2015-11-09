@@ -32,15 +32,11 @@
  */
 void
 swFifoBufferPut( pSwFifoBuffer_t _pBuffer, const char _inData ) {
-    uint16_t cpuIntPrio = 0;
-    SET_AND_SAVE_CPU_IPL(cpuIntPrio, 7);
-    // @todo Improve disabling interrupts
+    INTERRUPTS_DISSABLE_AND_SAVE_CPU_IPL();
     
     // Check if there is room in the buffer
     if( _pBuffer->numBytes == FIFO_BUFFER_SIZE ) {
         _pBuffer->bufferOverflowFlag = 1;
-        // @todo Handle overflow error. Remove all received data, or ...?
-//        Uart1_puts("\nSoftware FIFO buffer: an overflow has occurred!\n");
     }
     else if( _pBuffer->numBytes < FIFO_BUFFER_SIZE ) {
         _pBuffer->data[_pBuffer->iLast] = _inData;
@@ -62,7 +58,7 @@ swFifoBufferPut( pSwFifoBuffer_t _pBuffer, const char _inData ) {
     // Just put data in the buffer, so the buffer is not empty
     _pBuffer->bufferNotEmptyFlag = 1;
     
-    RESTORE_CPU_IPL(cpuIntPrio);
+    INTERRUPTS_RESTORE_CPU_IPL();
     
     return;
 }
@@ -75,11 +71,9 @@ swFifoBufferPut( pSwFifoBuffer_t _pBuffer, const char _inData ) {
  */
 char
 swFifoBufferGet( pSwFifoBuffer_t _pBuffer ) {
-    char outData = '\0';
+    INTERRUPTS_DISSABLE_AND_SAVE_CPU_IPL();
     
-    uint16_t cpuIntPrio = 0;
-    SET_AND_SAVE_CPU_IPL(cpuIntPrio, 7);
-    // @todo Improve disabling interrupts.
+    char outData = '\0';
     
     // Check if the buffer is full and handle the bufferFullFlag
     if( _pBuffer->numBytes == FIFO_BUFFER_SIZE ) {
@@ -103,7 +97,7 @@ swFifoBufferGet( pSwFifoBuffer_t _pBuffer ) {
         _pBuffer->iFirst = 0;
     }
     
-    RESTORE_CPU_IPL(cpuIntPrio);
+    INTERRUPTS_RESTORE_CPU_IPL();
     
     return outData;
 }

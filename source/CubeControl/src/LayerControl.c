@@ -72,7 +72,6 @@ LayerControl_init( void ) {
      * value of 1:1 at the same time.
      */
     SPI2CON1bits.SPRE = 0b110;
-    SPI2STATbits.SPIROV = 0;        // Clear the Receive Overflow Flag bit
     /**
      * CKE: SPIx Clock Edge Select bit
      * 1 = Serial output data changes on transition from active clock state to
@@ -231,7 +230,7 @@ LayerControl_allOn( void ) {
  */
 void
 __attribute__((interrupt,auto_psv)) _T3Interrupt(void) {
-    LayerControl_setLayer(layer);
+    LayerControl_setLayer(0);
 //    Uart1_printf("called from IR: \nLayer: %u, bamRound: %u\n", layer, bamRound);
     
     DEBUG_PRINTF_FUNCTION("     Reading: %p", pCubeControlData->pCubeDataRead);

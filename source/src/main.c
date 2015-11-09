@@ -108,10 +108,11 @@ main(int argc, char** argv) {
     FillRowWithSingleColour(0,2, 0,0,15);
     FillRowAtOnceWithSingleColour(3,2, 0,0,15);
     Delay_s(10);
+    
     // Infinite loop for user code.
     while(1)
     {
-        LedCube_setPixel(1,0,0, 0,0,1);
+        LedCube_setPixel(0,0,0, 0,0,1);
         uint8_t i = 0;
         for(i = 0; i < 16; i++) {
             LedCube_setPixel(3,4,2,  0, 0, 14);

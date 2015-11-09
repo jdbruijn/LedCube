@@ -62,7 +62,21 @@ LedDriver_init( void ) {
      * value of 1:1 at the same time.
      */
     SPI1CON1bits.SPRE = 0b110;
-    // @todo Check if clock edge select is needed (I think it is)
+        /**
+     * CKE: SPIx Clock Edge Select bit
+     * 1 = Serial output data changes on transition from active clock state to
+     *     Idle clock state (see CKP)
+     * 0 = Serial output data changes on transition from Idle clock state to
+     *     active clock state (see CKP)
+     */
+    SPI2CON1bits.CKE = 1;
+    /**
+     * CKP: Clock Polarity Select bit
+     * 1 = Idle state for clock is a high level; active state is a low level
+     * 0 = Idle state for clock is a low level; active state is a high level
+     */
+    SPI2CON1bits.CKP = 0;
+    
     {
         uint16_t rData;
         rData = SPI1BUF;        // Clear the SPIx transmit/receive buffer

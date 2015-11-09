@@ -35,7 +35,6 @@ extern "C" {
  ******************************************************************************/
 #include <xc.h>
 #include <stdint.h>
-#include <stdbool.h>
 #if defined(UART_USE_PRINTF_YES) || defined(DEBUG)
 #   include <stdio.h>           // For vsprintf() in Uartx_printf()
 #   include <stdarg.h>          // For Uartx_printf()
@@ -275,15 +274,16 @@ Uart1_printf( const char *format, ... );
 /**
  * Receive a string using the UARTx module.
  * 
- * @param   str, pointer to the char array to put the received string in.
- * @param   echo, true or false, specifies if the received string is send back.
- * for debugging purposes
+ * @param   _str, pointer to an array of chars where the received string is
+ * copied.
+ * @param   _num, maximum number of characters to be copied into _str (including
+ * the terminating null-character).
  * @return  void
- * @example <code>char* rxStr;\n
- * Uartx_gets(rxStr, 0);</code>
+ * @example <code>char rxStr[100] = {0};\n
+ * Uartx_gets(rxStr, 100);</code>
  */
 void
-Uart1_gets( char* str, bool echo );
+Uart1_gets( char *_str, uint8_t _num );
 
 #ifdef	__cplusplus
 }

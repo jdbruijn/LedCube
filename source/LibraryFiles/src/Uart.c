@@ -22,8 +22,8 @@
  * Global variables
  ******************************************************************************/
 // Declare a UARTx receive software FIFO buffer
-swFifoBuffer_t rxBuffer = { 0,0,0, {0}, 0, 0, 0 };
-pSwFifoBuffer_t pRxBuffer = &rxBuffer;
+swFifoBuffer_t rxBuffer = { 0,0,0, {0}, 0,0,0 };
+pSwFifoBuffer_t const pRxBuffer = &rxBuffer;
 
 /*******************************************************************************
  * Functions
@@ -236,31 +236,48 @@ Uart1_printf( const char *format, ... ) {
 #endif /* UART_USE_PRINTF_YES or DEBUG */
 
 /**
- * Use the software FIFO buffer to receive data.
+ * Use the software FIFO buffer to receive data and handle the software FIFO
+ * buffer overflow flag.
  * 
  */
 void
-Uart1_gets( char* str, bool echo ) {
-    while(1) {
-        // @todo While fifo not empty?
-        *str = swFifoBufferGet( pRxBuffer );
-        // @todo Check sw fifo overflow flag
-        
-        // If string is empty or linefeed character is received
-        if( !*str || *str == UART_LF ) {
-            continue;
-        }
-        else if( *str == UART_CR ) {
-            *str = '\0';                // Ignore character and end the string
-            return;                     // String is complete, exit loop and return
-        }
+Uart1_gets( char *_str, uint8_t _num ) {
+    uint8_t i = 0;
+    while(i < _num) {
+        if(pRxBuffer->bufferOverflowFlag == 1) {
+            /**
+             * Handle overflow error by (at this time) informing about the
+             * overflow.
+             */
+#ifdef DEBUG
+            Uart1_printf("\n ERROR: %s:%d:%s(): " \
+                    "An UART1 overrun error has been detected\n\n",
+                    __FILE__, __LINE__, __FUNCTION__);
+#else /* DEBUG */
+            // Return the message: "ERROR: UART1 overflow"
+            *_str = '\n'; *++_str = '\n'; *++_str = 'E'; *++_str = 'R';
+            *++_str = 'R'; *++_str = 'O'; *++_str = 'R'; *++_str = ':';
+            *++_str = ' '; *++_str = 'U'; *++_str = 'A'; *++_str = 'R';
+            *++_str = 'T'; *++_str = '1'; *++_str = ' '; *++_str = 'o';
+            *++_str = 'v'; *++_str = 'e'; *++_str = 'r'; *++_str = 'f';
+            *++_str = 'l'; *++_str = 'o'; *++_str = 'w'; *++_str = '\n';
+            *++_str = '\n'; *++_str = '\0';
+#endif /* DEBUG */
+            
+            return;
+        } else if(pRxBuffer->bufferNotEmptyFlag) {
+            *_str = swFifoBufferGet( pRxBuffer );
+            
+             if(*_str == UART_CR || *_str == UART_LF) {
+                *_str = '\0';       // Ignore character and end the string
+                return;             // String is complete, exit loop and return
+            }
 
-        if( echo == 1 ) {
-            Uart1_putc(*str);
+            _str++;                 // Move to next position in the string
         }
-        
-        str++;                          // Move to next position in the string
+        i++;
     }
+    
     return;
 }
 
@@ -276,9 +293,18 @@ __attribute__((interrupt,auto_psv)) _U1RXInterrupt(void) {
         else if( U1STAbits.OERR == 1 ) {
             U1STAbits.OERR = 0;         // Clear the Overrun Error Status bit
 #ifdef DEBUG
-            Uart1_printf(" DEBUG: %s:%d:%s(): " \
-                    "An UART1 overrun error has been detected",
+            Uart1_printf("\n ERROR: %s:%d:%s(): " \
+                    "An UART1 overrun error has been detected\n\n",
                     __FILE__, __LINE__, __FUNCTION__);
+#else /* DEBUG */
+            // Return the message: "ERROR: UART1 overflow"
+            *_str = '\n'; *++_str = '\n'; *++_str = 'E'; *++_str = 'R';
+            *++_str = 'R'; *++_str = 'O'; *++_str = 'R'; *++_str = ':';
+            *++_str = ' '; *++_str = 'U'; *++_str = 'A'; *++_str = 'R';
+            *++_str = 'T'; *++_str = '1'; *++_str = ' '; *++_str = 'o';
+            *++_str = 'v'; *++_str = 'e'; *++_str = 'r'; *++_str = 'f';
+            *++_str = 'l'; *++_str = 'o'; *++_str = 'w'; *++_str = '\n';
+            *++_str = '\n'; *++_str = '\0';
 #endif /* DEBUG */
         }
 
