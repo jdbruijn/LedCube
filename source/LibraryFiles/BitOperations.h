@@ -162,22 +162,34 @@ isPositive( int32_t const _v ) ;
 bool
 haveOppositeSigns( int32_t const _x, int32_t const _y );
 
+/* Make sure the implementation below is used instead of a standard
+ * implementation like in @ref stdlib.h
+ */
+#ifdef min
+#undef min
+#endif
 /**
  * Compute the minimum of two integers without branching.
- * @todo maby ifndef min, because min can be defined in stdlib.h...
- * @param   _x, first variable of which the minimum needs to be found
- * @param   _y, second variable of which the minimum needs to be found
- * @return  int32_t, the minimum value _x or _y
+ * 
+ * @param   _x First variable of which the minimum needs to be found.
+ * @param   _y Second variable of which the minimum needs to be found.
+ * @return  int32_t The minimum value, _x or _y.
  */
 int32_t
 min( int32_t const _x, int32_t const _y );
 
+/* Make sure the implementation below is used instead of a standard
+ * implementation like in @ref stdlib.h
+ */
+#ifdef max
+#undef max
+#endif
 /**
  * Compute the maximum of two integers without branching.
  * 
- * @param   _x, first variable of which the maximum needs to be found
- * @param   _y, second variable of which the maximum needs to be found
- * @return  int32_t, the maximum value _x or _y
+ * @param   _x First variable of which the maximum needs to be found.
+ * @param   _y Second variable of which the maximum needs to be found.
+ * @return  int32_t The maximum value, _x or _y.
  */
 int32_t
 max( int32_t const _x, int32_t const _y );
