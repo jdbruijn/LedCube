@@ -58,7 +58,6 @@ extern "C" {
 #include "Debug.h"
 #include "PanelControl.h"
 #include "Interrupts.h"
-#include "BitOperations.h"
 #include "CubeControlData.h"
     
 /*******************************************************************************

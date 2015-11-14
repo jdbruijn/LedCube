@@ -164,7 +164,7 @@ haveOppositeSigns( int32_t const _x, int32_t const _y );
 
 /**
  * Compute the minimum of two integers without branching.
- * 
+ * @todo maby ifndef min, because min can be defined in stdlib.h...
  * @param   _x, first variable of which the minimum needs to be found
  * @param   _y, second variable of which the minimum needs to be found
  * @return  int32_t, the minimum value _x or _y

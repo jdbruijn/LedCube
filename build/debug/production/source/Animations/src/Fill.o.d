@@ -20,6 +20,5 @@ source/LibraryFiles/Ports.h  \
  source/LibraryFiles/IOPorts.h  \
 source/LibraryFiles/PeripheralPinSelect.h  \
  source/LibraryFiles/Ports.h  \
-source/LibraryFiles/BitOperations.h  \
- source/CubeControl/CubeControlData.h  \
-source/LibraryFiles/MyAssert.h 
+source/CubeControl/CubeControlData.h  \
+ source/LibraryFiles/MyAssert.h 

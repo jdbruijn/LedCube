@@ -40,7 +40,6 @@ extern "C" {
 #include "Debug.h"
 #include "Ports.h"
 #include "IOPorts.h"
-#include "BitOperations.h"
 
 /*******************************************************************************
  * Defines

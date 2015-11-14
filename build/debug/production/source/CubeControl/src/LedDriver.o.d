@@ -11,5 +11,4 @@ source/LibraryFiles/Interrupts.h  \
 source/LibraryFiles/Ports.h  \
  source/LibraryFiles/IOPorts.h  \
 source/LibraryFiles/PeripheralPinSelect.h  \
- source/LibraryFiles/Ports.h  \
-source/LibraryFiles/BitOperations.h 
+ source/LibraryFiles/Ports.h 
