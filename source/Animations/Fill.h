@@ -11,10 +11,9 @@
  * For full license details see file "main.c" or "LICENSE.md" or go to
  * https://opensource.org/licenses/MIT
  * 
- *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
- * 
- * Description:
- *  Animations to fill a row, layer or the whole cube.
+ *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
+ /** @file 
+ * @brief Animations to fill a row, layer or whole LED cube.
  * 
  ******************************************************************************/
 
@@ -37,92 +36,83 @@ extern "C" {
  * Function prototypes
  ******************************************************************************/
 /**
- * Fill a row with a single colour at once.
+ * Fill a row with a single colour at once, using @ref LedCube_setPixel.
  * 
- * @param   _x, row to fill. Ranges from 0 to LEDCUBE_MAX_XYZ, 0 for the back
- * row and LEDCUBE_MAX_XYZ for front row.
- * @param   _z, layer to fill the row in. Ranges from 0 to LEDCUBE_MAX_XYZ, 0
- * for the bottom layer and LEDCUBE_MAX_XYZ for the top layer.
- * @param   _red, intensity of the red colour. Ranges from 0 to 
- * LEDCUBE_MAX_INTENSITY, 0 for the lowest intensity (off) and
- * LEDCUBE_MAX_INTENSITY for the brightest intensity.
+ * @param   _x Row to fill. Ranges from 0 to @ref LEDCUBE_MAX_XYZ, 0 for the
+ * back row and @ref LEDCUBE_MAX_XYZ for front row.
+ * @param   _z Layer to fill the row in. Ranges from 0 to @ref LEDCUBE_MAX_XYZ,
+ * 0 for the bottom layer and @ref LEDCUBE_MAX_XYZ for the top layer.
+ * @param   _red Intensity of the red colour. Ranges from 0 to 
+ * @ref LEDCUBE_MAX_INTENSITY, 0 for the lowest intensity (off) and
+ * @ref LEDCUBE_MAX_INTENSITY for the brightest intensity.
  * @param   _green, intensity of the green colour. Ranges from 0 to 
- * LEDCUBE_MAX_INTENSITY, 0 for the lowest intensity (off) and
- * LEDCUBE_MAX_INTENSITY for the brightest intensity.
+ * @ref LEDCUBE_MAX_INTENSITY, 0 for the lowest intensity (off) and
+ * @ref LEDCUBE_MAX_INTENSITY for the brightest intensity.
  * @param   _blue, intensity of the blue colour. Ranges from 0 to 
- * LEDCUBE_MAX_INTENSITY, 0 for the lowest intensity (off) and
- * LEDCUBE_MAX_INTENSITY for the brightest intensity.
- * @return  void
- * @Example <code>FillRowAtOnceWithSingleColour(1, 4, 0, 15, 15);\n// Fills row
- * one of layer four with a cyan colour.</code>
+ * @ref LEDCUBE_MAX_INTENSITY, 0 for the lowest intensity (off) and
+ * @ref LEDCUBE_MAX_INTENSITY for the brightest intensity.
  */
 void
 FillRowAtOnceWithSingleColour( uint8_t _x, uint8_t _z,
         uint8_t _red, uint8_t _green, uint8_t _blue );
 
 /**
- * Fill a row with a single colour by adding one LED at a time.
+ * Fill a row with a single colour by adding one LED at a time using @ref
+ * LedCube_setPixel.
  * 
- * @param   _x, row to fill. Ranges from 0 to LEDCUBE_MAX_XYZ, 0 for the back
- * row and LEDCUBE_MAX_XYZ for front row.
- * @param   _z, layer to fill the row in. Ranges from 0 to LEDCUBE_MAX_XYZ, 0
- * for the bottom layer and LEDCUBE_MAX_XYZ for the top layer.
- * @param   _red, intensity of the red colour. Ranges from 0 to 
- * LEDCUBE_MAX_INTENSITY, 0 for the lowest intensity (off) and
- * LEDCUBE_MAX_INTENSITY for the brightest intensity.
+ * @param   _x Row to fill. Ranges from 0 to @ref LEDCUBE_MAX_XYZ, 0 for the
+ * back row and @ref LEDCUBE_MAX_XYZ for front row.
+ * @param   _z Layer to fill the row in. Ranges from 0 to @ref LEDCUBE_MAX_XYZ,
+ * 0 for the bottom layer and @ref LEDCUBE_MAX_XYZ for the top layer.
+ * @param   _red Intensity of the red colour. Ranges from 0 to 
+ * @ref LEDCUBE_MAX_INTENSITY, 0 for the lowest intensity (off) and
+ * @ref LEDCUBE_MAX_INTENSITY for the brightest intensity.
  * @param   _green, intensity of the green colour. Ranges from 0 to 
- * LEDCUBE_MAX_INTENSITY, 0 for the lowest intensity (off) and
- * LEDCUBE_MAX_INTENSITY for the brightest intensity.
+ * @ref LEDCUBE_MAX_INTENSITY, 0 for the lowest intensity (off) and
+ * @ref LEDCUBE_MAX_INTENSITY for the brightest intensity.
  * @param   _blue, intensity of the blue colour. Ranges from 0 to 
- * LEDCUBE_MAX_INTENSITY, 0 for the lowest intensity (off) and
- * LEDCUBE_MAX_INTENSITY for the brightest intensity.
- * @return  void
- * @Example <code>FillRowWithSingleColour(1, 4, 0, 15, 15);\n// Fills row one of
- * layer four with a cyan colour.</code>
+ * @ref LEDCUBE_MAX_INTENSITY, 0 for the lowest intensity (off) and
+ * @ref LEDCUBE_MAX_INTENSITY for the brightest intensity.
  */
 void
 FillRowWithSingleColour( uint8_t _x, uint8_t _z,
         uint8_t _red, uint8_t _green, uint8_t _blue );
 
 /**
- * Fill a layer with a single colour at once.
+ * Fill a layer with a single colour at once using @ref
+ * FillRowAtOnceWithSingleColour.
  * 
- * @param   _z, layer to fill. Ranges from 0 to LEDCUBE_MAX_XYZ, 0 for the
- * bottom layer and LEDCUBE_MAX_XYZ for the top layer.
- * @param   _red, intensity of the red colour. Ranges from 0 to 
- * LEDCUBE_MAX_INTENSITY, 0 for the lowest intensity (off) and
- * LEDCUBE_MAX_INTENSITY for the brightest intensity.
+ * @param   _z Layer to fill the row in. Ranges from 0 to @ref LEDCUBE_MAX_XYZ,
+ * 0 for the bottom layer and @ref LEDCUBE_MAX_XYZ for the top layer.
+ * @param   _red Intensity of the red colour. Ranges from 0 to 
+ * @ref LEDCUBE_MAX_INTENSITY, 0 for the lowest intensity (off) and
+ * @ref LEDCUBE_MAX_INTENSITY for the brightest intensity.
  * @param   _green, intensity of the green colour. Ranges from 0 to 
- * LEDCUBE_MAX_INTENSITY, 0 for the lowest intensity (off) and
- * LEDCUBE_MAX_INTENSITY for the brightest intensity.
+ * @ref LEDCUBE_MAX_INTENSITY, 0 for the lowest intensity (off) and
+ * @ref LEDCUBE_MAX_INTENSITY for the brightest intensity.
  * @param   _blue, intensity of the blue colour. Ranges from 0 to 
- * LEDCUBE_MAX_INTENSITY, 0 for the lowest intensity (off) and
- * LEDCUBE_MAX_INTENSITY for the brightest intensity.
- * @return  void
- * @Example <code>FillLayerAtOnceWithSingleColour(4, 0, 15, 15);\n// Fills layer
- * four with a cyan colour.</code>
+ * @ref LEDCUBE_MAX_INTENSITY, 0 for the lowest intensity (off) and
+ * @ref LEDCUBE_MAX_INTENSITY for the brightest intensity.
  */
 void
 FillLayerAtOnceWithSingleColour( uint8_t _z,
         uint8_t _red, uint8_t _green, uint8_t _blue );
 
 /**
- * Fill a layer with a single colour by adding one LED at a time.
+ * Fill a layer with a single colour by adding one LED at a time using @ref
+ * FillRowAtOnceWithSingleColour.
  * 
- * @param   _z, layer to fill. Ranges from 0 to LEDCUBE_MAX_XYZ, 0 for the
- * bottom layer and LEDCUBE_MAX_XYZ for the top layer.
- * @param   _red, intensity of the red colour. Ranges from 0 to 
- * LEDCUBE_MAX_INTENSITY, 0 for the lowest intensity (off) and
- * LEDCUBE_MAX_INTENSITY for the brightest intensity.
+ * @param   _z Layer to fill the row in. Ranges from 0 to @ref LEDCUBE_MAX_XYZ,
+ * 0 for the bottom layer and @ref LEDCUBE_MAX_XYZ for the top layer.
+ * @param   _red Intensity of the red colour. Ranges from 0 to 
+ * @ref LEDCUBE_MAX_INTENSITY, 0 for the lowest intensity (off) and
+ * @ref LEDCUBE_MAX_INTENSITY for the brightest intensity.
  * @param   _green, intensity of the green colour. Ranges from 0 to 
- * LEDCUBE_MAX_INTENSITY, 0 for the lowest intensity (off) and
- * LEDCUBE_MAX_INTENSITY for the brightest intensity.
+ * @ref LEDCUBE_MAX_INTENSITY, 0 for the lowest intensity (off) and
+ * @ref LEDCUBE_MAX_INTENSITY for the brightest intensity.
  * @param   _blue, intensity of the blue colour. Ranges from 0 to 
- * LEDCUBE_MAX_INTENSITY, 0 for the lowest intensity (off) and
- * LEDCUBE_MAX_INTENSITY for the brightest intensity.
- * @return  void
- * @Example <code>FillLayerWithSingleColour(4, 0, 15, 15);\n// Fills layer four
- * with a cyan colour.</code>
+ * @ref LEDCUBE_MAX_INTENSITY, 0 for the lowest intensity (off) and
+ * @ref LEDCUBE_MAX_INTENSITY for the brightest intensity.
  */
 void
 FillLayerWithSingleColour( uint8_t _z,

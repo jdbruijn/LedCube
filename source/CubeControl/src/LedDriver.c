@@ -12,6 +12,10 @@
  * https://opensource.org/licenses/MIT
  * 
  ******************************************************************************/
+/** @file
+ * @brief Controls a single LED Sink Driver.
+ * 
+ ******************************************************************************/
 
 /*******************************************************************************
  * Includes
@@ -21,10 +25,6 @@
 /*******************************************************************************
  * Functions
  ******************************************************************************/
-/**
- * Configure the SPIx peripheral.
- * 
- */
 void
 LedDriver_init( void ) {
     SPI1STAT = 0;               // Reset SPIx module
@@ -38,18 +38,16 @@ LedDriver_init( void ) {
     SPI1CON1bits.MSTEN = 1;     // Master Mode
     SPI1CON1bits.MODE16 = 1;    // Communication is word-wide (16 bits)
     SPI1CON1bits.SSEN = 0;      // SSx pin is not used by the module
-    /**
-     * PPRE<1:0>: Primary Prescale bits (Master mode)
+    /* PPRE<1:0>: Primary Prescale bits (Master mode)
      * 11 = Primary prescale 1:1
      * 10 = Primary prescale 4:1
      * 01 = Primary prescale 16:1
      * 00 = Primary prescale 64:1
-     * @Note Do not set the primary and secondary prescalers to the
+     * @note Do not set the primary and secondary prescalers to the
      * value of 1:1 at the same time.
      */
     SPI1CON1bits.PPRE = 0b11;
-    /**
-     * SPRE<2:0>: Secondary Prescale bits (Master mode)
+    /* SPRE<2:0>: Secondary Prescale bits (Master mode)
      * 111 = Secondary prescale 1:1
      * 110 = Secondary prescale 2:1
      * 101 = Secondary prescale 3:1
@@ -58,20 +56,18 @@ LedDriver_init( void ) {
      * 010 = Secondary prescale 6:1
      * 001 = Secondary prescale 7:1
      * 000 = Secondary prescale 8:1
-     * @Note Do not set the primary and secondary prescalers to the
+     * @note Do not set the primary and secondary prescalers to the
      * value of 1:1 at the same time.
      */
     SPI1CON1bits.SPRE = 0b110;
-        /**
-     * CKE: SPIx Clock Edge Select bit
+    /* CKE: SPIx Clock Edge Select bit
      * 1 = Serial output data changes on transition from active clock state to
      *     Idle clock state (see CKP)
      * 0 = Serial output data changes on transition from Idle clock state to
      *     active clock state (see CKP)
      */
     SPI2CON1bits.CKE = 1;
-    /**
-     * CKP: Clock Polarity Select bit
+    /* CKP: Clock Polarity Select bit
      * 1 = Idle state for clock is a high level; active state is a low level
      * 0 = Idle state for clock is a low level; active state is a high level
      */
@@ -89,20 +85,12 @@ LedDriver_init( void ) {
     return;
 }
 
-/**
- * Update the output of the LED Sink Driver using SPIx module. The SPIx module
- * will automatically start transmitting after the data is in it's buffer.
- * @Note    The LED data needs to be reordered before it is send to the SPIx
- * module since the hardware layout of the data is different than a standard
- * ascending order of 01234567.
- * 
- */
 void
 LedDriver_update( const uint16_t _ledData ) {
     DEBUG_PRINTF_FUNCTION_CALL("0x%.4X", _ledData);
     
     SPI1_WaitTillTxBufferEmpty();
-    
+
     SPI1BUF = _LED_DRIVER_ReorderLedData(_ledData);
     
     SPI1_WaitTillTxBufferEmpty();
@@ -110,10 +98,6 @@ LedDriver_update( const uint16_t _ledData ) {
     return;
 }
 
-/**
- * Use the update function to turn all the LEDs of a LED Sink Driver off.
- * 
- */
 void
 LedDriver_allOff( void ) {
     DEBUG_PRINTF_FUNCTION_CALL();
@@ -123,10 +107,6 @@ LedDriver_allOff( void ) {
     return;
 }
 
-/**
- * Use the update function to turn all the LEDs of a LED Sink Driver on.
- * 
- */
 void
 LedDriver_allOn( void ) {
     DEBUG_PRINTF_FUNCTION_CALL();

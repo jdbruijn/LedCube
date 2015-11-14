@@ -12,6 +12,10 @@
  * https://opensource.org/licenses/MIT
  * 
  ******************************************************************************/
+ /** @file 
+ * @brief Animations to fill a row, layer or whole LED cube.
+ * 
+ ******************************************************************************/
 
 /*******************************************************************************
  * Includes
@@ -21,10 +25,6 @@
 /*******************************************************************************
  * Functions
  ******************************************************************************/
-/**
- * Fill a row with a single colour at once using the LedCube_setPixel function.
- * 
- */
 void
 FillRowAtOnceWithSingleColour( uint8_t _x, uint8_t _z,
         uint8_t _red, uint8_t _green, uint8_t _blue ) {
@@ -39,11 +39,6 @@ FillRowAtOnceWithSingleColour( uint8_t _x, uint8_t _z,
     return;
 }
 
-/**
- * Fill a row with a single colour one LED at a time using the LedCube_setPixel
- * function.
- * 
- */
 void
 FillRowWithSingleColour( uint8_t _x, uint8_t _z,
         uint8_t _red, uint8_t _green, uint8_t _blue ) {
@@ -60,11 +55,6 @@ FillRowWithSingleColour( uint8_t _x, uint8_t _z,
     return;
 }
 
-/**
- * Fill a layer with a single colour at once using the
- * FillRowAtOnceWithSingleColour function.
- * 
- */
 void
 FillLayerAtOnceWithSingleColour( uint8_t _z,
         uint8_t _red, uint8_t _green, uint8_t _blue ) {  
@@ -78,11 +68,6 @@ FillLayerAtOnceWithSingleColour( uint8_t _z,
     return;
 }
 
-/**
- * Fill a layer with a single colour one LED at a time using the
- * FillRowAtOnceWithSingleColour function.
- * 
- */
 void
 FillLayerWithSingleColour( uint8_t _z,
         uint8_t _red, uint8_t _green, uint8_t _blue ) {
