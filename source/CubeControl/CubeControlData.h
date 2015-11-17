@@ -150,8 +150,9 @@ extern pCubeData_t const pCubeData1Base;
  * Function prototypes
  ******************************************************************************/
 /**
- * Initialize a CubeControlData structure. The CubeDataWRead pointer points to
- * @ref pCubeData0Base in the beginning and the CubeDataWrite pointer points to
+ * Initialize a CubeControlData structure. The @ref
+ * CubeControlData_t::pCubeDataRead pointer points to @ref pCubeData0Base in the
+ * beginning and the @ref CubeControlData_t::pCubeDataWrite pointer points to
  * @ref pCubeData1Base in the beginning.
  * 
  * @param   _pCubeControlData Pointer to a CubeControlData structure.

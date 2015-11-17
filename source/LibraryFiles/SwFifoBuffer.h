@@ -44,9 +44,9 @@ extern "C" {
 /**
  * Structure representing a software FIFO buffer.
  * 
- * @Note    The bufferFullFlag is the only flag that is not automatically
+ * @note    The bufferFullFlag is the only flag that is not automatically
  * cleared by the software FIFO buffer.
- * @Example <code>// Declare a receive software FIFO buffer
+ * @example <code>// Declare a receive software FIFO buffer
  * swFifoBuffer_t rxBuffer = { 0,0,0, {0}, 0,0,0 };</code>
  */
 typedef struct {

@@ -128,7 +128,7 @@ LedCube_init( void );
 void
 LedCube_setPixel( uint8_t const _x, uint8_t const _y, uint8_t const _z,
         uint8_t const _red, uint8_t const _green, uint8_t const _blue );
-LedCube_setPixel
+
 /**
  * Update the outputs of the LedCube with the data that is currently set in the
  * CubeData structure array using a read-write pointer switch.
