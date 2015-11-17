@@ -11,6 +11,10 @@
  * For full license details see file "main.c" or "LICENSE.md" or go to
  * https://opensource.org/licenses/MIT
  * 
+ *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
+/** @file
+ * @brief Controls a single PanelControl PCB.
+ * 
  ******************************************************************************/
 
 /*******************************************************************************
@@ -21,10 +25,6 @@
 /*******************************************************************************
  * Functions
  ******************************************************************************/
-/**
- * Initialize the LED Sink Drivers using the LedDriver_init function.
- * 
- */
 void
 PanelControl_init( void ) {
     LedDriver_init();
@@ -33,14 +33,6 @@ PanelControl_init( void ) {
     return;
 }
 
-/**
- * Update the output of the PanelControl by calling the LedDriver's update
- * function three times.
- * Update in reverse order (BGR instead of RGB) because the LedDriver's update
- * function updates the data in reversed order due to shifting. So the first
- * data need to be send last.
- * 
- */
 void
 PanelControl_update( const pCubeControlData_t _pCubeControlData,
         const pCubeData_t _pCubeData[],
@@ -52,6 +44,10 @@ PanelControl_update( const pCubeControlData_t _pCubeControlData,
     
     LED_DRIVER_LeLow();
     
+    /* Update in reverse order (BRG instead of RGB), because the Led Sink
+     * Drivers shift the data through. So the data for the first Led Sink Driver 
+     * needs to be send last.
+     */
     LedDriver_update(
             ( ( (_pCubeData[_layer][_panel + 1].blue &
             _pCubeControlData->BamRoundMask[_bamRound]) >>
@@ -80,11 +76,6 @@ PanelControl_update( const pCubeControlData_t _pCubeControlData,
     return;
 }
 
-/**
- * Use the LedDriver's allOff function to turn all the LEDs of a PanelControl
- * PCB off.
- * 
- */
 void
 PanelControl_allOff( void ) {
     DEBUG_PRINTF_FUNCTION_CALL();
@@ -97,10 +88,6 @@ PanelControl_allOff( void ) {
     return;
 }
 
-/**
- * Use the LedDriver's allOn function to turn all the LEDs of a PanelControl
- * PCB on.
- */
 void
 PanelControl_allOn( void ) {
     DEBUG_PRINTF_FUNCTION_CALL();

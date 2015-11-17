@@ -10,6 +10,9 @@
  * This file is part of LedCube which is released under The MIT License (MIT).
  * For full license details see file "main.c" or "LICENSE.md" or go to
  * https://opensource.org/licenses/MIT
+ *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
+/** @file
+ * @brief Controls a single layer of the 8x8x8 LED cube. 
  * 
  ******************************************************************************/
 
@@ -17,22 +20,19 @@
  * Includes
  ******************************************************************************/
 #include "LayerControl.h"
+#include "Buzzer.h"
 
 /*******************************************************************************
  * Global variables
  ******************************************************************************/
-// Used for keeping track of the current layer and BAM-round in the ISR.
+/** Global variable for keeping track of the current active layer in the ISR. */
 volatile uint8_t layer = 0;
+/** Global variable for keeping track of the current BAM round in the ISR. */
 volatile uint8_t bamRound = 0;
 
 /*******************************************************************************
  * Functions
  ******************************************************************************/
-/**
- * Initialize everything needed for a PanelControl PCB using the
- * PanelControl_init function and configure the SPIx peripheral.
- * 
- */
 void
 LayerControl_init( void ) {
     /********** Setup PanelControl ********************************************/
@@ -48,8 +48,7 @@ LayerControl_init( void ) {
     IEC2bits.SPI2IE = 0;            // Disable the interrupt
     
     SPI2CON1bits.MSTEN = 1;         // Master mode
-    /**
-     * PPRE<1:0>: Primary Prescale bits (Master mode)
+    /* PPRE<1:0>: Primary Prescale bits (Master mode)
      * 11 = Primary prescale 1:1
      * 10 = Primary prescale 4:1
      * 01 = Primary prescale 16:1
@@ -58,8 +57,7 @@ LayerControl_init( void ) {
      * value of 1:1 at the same time.
      */
     SPI2CON1bits.PPRE = 0b11;
-    /**
-     * SPRE<2:0>: Secondary Prescale bits (Master mode)
+    /* SPRE<2:0>: Secondary Prescale bits (Master mode)
      * 111 = Secondary prescale 1:1
      * 110 = Secondary prescale 2:1
      * 101 = Secondary prescale 3:1
@@ -72,16 +70,14 @@ LayerControl_init( void ) {
      * value of 1:1 at the same time.
      */
     SPI2CON1bits.SPRE = 0b110;
-    /**
-     * CKE: SPIx Clock Edge Select bit
+    /* CKE: SPIx Clock Edge Select bit
      * 1 = Serial output data changes on transition from active clock state to
      *     Idle clock state (see CKP)
      * 0 = Serial output data changes on transition from Idle clock state to
      *     active clock state (see CKP)
      */
     SPI2CON1bits.CKE = 1;
-    /**
-     * CKP: Clock Polarity Select bit
+    /* CKP: Clock Polarity Select bit
      * 1 = Idle state for clock is a high level; active state is a low level
      * 0 = Idle state for clock is a low level; active state is a high level
      */
@@ -100,7 +96,7 @@ LayerControl_init( void ) {
     TMR3 = 0;                       // Clear contents of Timer x register
     Nop();
     
-    /** @todo remove this block of comment
+    /* @todo remove this block of comment
      * Fpb of 16 MHz, TCKPS 8
      * need period of 8000 to get 250 Hz
      *                2000 to get 1 kHz
@@ -124,8 +120,7 @@ LayerControl_init( void ) {
     IFS0bits.T3IF = 0;              // Clear the Timer x interrupt flag
     IEC0bits.T3IE = 1;              // Enable Timer x interrupts
     
-    /**
-     * TCKPS<1:0>: Timerx Input Clock Prescale bits
+    /* TCKPS<1:0>: Timerx Input Clock Prescale bits
      * 11 = 1:256 prescaler value
      * 10 = 1:64 prescaler value
      * 01 = 1:8 prescaler value
@@ -141,10 +136,8 @@ LayerControl_init( void ) {
 /**
  * Set a single layer active using the SPIx peripheral.
  * 
- * @Note    This function is used by the _T3Interrupt ISR.
- * @param   _layer, the layer to set active ranging from 0 to 7.
- * @return  void
- * @Example <code>LayerControl_setLayer(0);</code>
+ * @note    This function is used by the _T3Interrupt ISR.
+ * @param   _layer The layer to set active ranging from 0 to @ref LC_MAX_Z_C.
  */
 void
 LayerControl_setLayer( const uint8_t _layer ) {
@@ -152,8 +145,7 @@ LayerControl_setLayer( const uint8_t _layer ) {
     
     SPI2_WaitTillTxBufferEmpty();
     
-    /**
-     * Shift 0xFF7F, which is 1111 1111 0111 1111 binary, _layer places to the
+    /* Shift 0xFF7F, which is 1111 1111 0111 1111 binary, _layer places to the
      * right so at all times one bit (layer) is 0 (turned on). Only a 8-bit
      * value is needed but since it is shifted to the right an additional 8-bit
      * value of 0xFF is needed for padding the value with ones. Since a logical
@@ -168,13 +160,6 @@ LayerControl_setLayer( const uint8_t _layer ) {
     return;
 }
 
-/**
- * Update the output of the LedCube.
- * 
- * Update in reverse order (BGR instead of RGB) because the LedDriver updates
- * the data in reversed order due to shifting. So the first data need to be
- * send last.
- */
 void
 LayerControl_update( const pCubeControlData_t _pCubeControlData,
         const pCubeData_t _pCubeData,
@@ -183,6 +168,10 @@ LayerControl_update( const pCubeControlData_t _pCubeControlData,
     DEBUG_PRINTF_FUNCTION_CALL("%p, %p, %u, %u", _pCubeControlData, \
             _pCubeData, _layer, _bamRound);
     
+    /* Update in reverse order (panel 3 first), because the PanelControl PCBs
+     * shift the data trough. So the data for the first PanelControl PCB needs 
+     * to be send last.
+     */
     PanelControl_update( _pCubeControlData, &_pCubeData, _layer, PANEL_3,
             _bamRound );
     PanelControl_update( _pCubeControlData, &_pCubeData, _layer, PANEL_2,
@@ -195,10 +184,6 @@ LayerControl_update( const pCubeControlData_t _pCubeControlData,
     return;
 }
 
-/**
- * Use the PanelControl's allOff method to turn all the LedCube's LEDs off.
- * 
- */
 void
 LayerControl_allOff( void ) {
     DEBUG_PRINTF_FUNCTION_CALL();
@@ -211,10 +196,6 @@ LayerControl_allOff( void ) {
     return;
 }
 
-/**
- * Use the PanelControl's allOn method to turn all the LedCube's LEDs on.
- * 
- */
 void
 LayerControl_allOn( void ) {
     DEBUG_PRINTF_FUNCTION_CALL();
@@ -238,7 +219,6 @@ __attribute__((interrupt,auto_psv)) _T3Interrupt(void) {
     
     LayerControl_update( pCubeControlData, pCubeControlData->pCubeDataRead,
             /* layer */0, /* bamRound */ 0 );
-    
     
     layer = (layer == LC_MAX_Z_C) ? 0 : layer + 1;
     bamRound = (bamRound == LC_MAX_BAM_VAL) ? 0 : bamRound + 1;

@@ -45,10 +45,10 @@ extern "C" {
  * @param   _red Intensity of the red colour. Ranges from 0 to 
  * @ref LEDCUBE_MAX_INTENSITY, 0 for the lowest intensity (off) and
  * @ref LEDCUBE_MAX_INTENSITY for the brightest intensity.
- * @param   _green, intensity of the green colour. Ranges from 0 to 
+ * @param   _green Intensity of the green colour. Ranges from 0 to 
  * @ref LEDCUBE_MAX_INTENSITY, 0 for the lowest intensity (off) and
  * @ref LEDCUBE_MAX_INTENSITY for the brightest intensity.
- * @param   _blue, intensity of the blue colour. Ranges from 0 to 
+ * @param   _blue Intensity of the blue colour. Ranges from 0 to 
  * @ref LEDCUBE_MAX_INTENSITY, 0 for the lowest intensity (off) and
  * @ref LEDCUBE_MAX_INTENSITY for the brightest intensity.
  */
@@ -67,10 +67,10 @@ FillRowAtOnceWithSingleColour( uint8_t _x, uint8_t _z,
  * @param   _red Intensity of the red colour. Ranges from 0 to 
  * @ref LEDCUBE_MAX_INTENSITY, 0 for the lowest intensity (off) and
  * @ref LEDCUBE_MAX_INTENSITY for the brightest intensity.
- * @param   _green, intensity of the green colour. Ranges from 0 to 
+ * @param   _green Intensity of the green colour. Ranges from 0 to 
  * @ref LEDCUBE_MAX_INTENSITY, 0 for the lowest intensity (off) and
  * @ref LEDCUBE_MAX_INTENSITY for the brightest intensity.
- * @param   _blue, intensity of the blue colour. Ranges from 0 to 
+ * @param   _blue Intensity of the blue colour. Ranges from 0 to 
  * @ref LEDCUBE_MAX_INTENSITY, 0 for the lowest intensity (off) and
  * @ref LEDCUBE_MAX_INTENSITY for the brightest intensity.
  */
@@ -87,10 +87,10 @@ FillRowWithSingleColour( uint8_t _x, uint8_t _z,
  * @param   _red Intensity of the red colour. Ranges from 0 to 
  * @ref LEDCUBE_MAX_INTENSITY, 0 for the lowest intensity (off) and
  * @ref LEDCUBE_MAX_INTENSITY for the brightest intensity.
- * @param   _green, intensity of the green colour. Ranges from 0 to 
+ * @param   _green Intensity of the green colour. Ranges from 0 to 
  * @ref LEDCUBE_MAX_INTENSITY, 0 for the lowest intensity (off) and
  * @ref LEDCUBE_MAX_INTENSITY for the brightest intensity.
- * @param   _blue, intensity of the blue colour. Ranges from 0 to 
+ * @param   _blue Intensity of the blue colour. Ranges from 0 to 
  * @ref LEDCUBE_MAX_INTENSITY, 0 for the lowest intensity (off) and
  * @ref LEDCUBE_MAX_INTENSITY for the brightest intensity.
  */
@@ -107,10 +107,10 @@ FillLayerAtOnceWithSingleColour( uint8_t _z,
  * @param   _red Intensity of the red colour. Ranges from 0 to 
  * @ref LEDCUBE_MAX_INTENSITY, 0 for the lowest intensity (off) and
  * @ref LEDCUBE_MAX_INTENSITY for the brightest intensity.
- * @param   _green, intensity of the green colour. Ranges from 0 to 
+ * @param   _green Intensity of the green colour. Ranges from 0 to 
  * @ref LEDCUBE_MAX_INTENSITY, 0 for the lowest intensity (off) and
  * @ref LEDCUBE_MAX_INTENSITY for the brightest intensity.
- * @param   _blue, intensity of the blue colour. Ranges from 0 to 
+ * @param   _blue Intensity of the blue colour. Ranges from 0 to 
  * @ref LEDCUBE_MAX_INTENSITY, 0 for the lowest intensity (off) and
  * @ref LEDCUBE_MAX_INTENSITY for the brightest intensity.
  */

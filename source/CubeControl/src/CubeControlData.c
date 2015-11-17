@@ -11,6 +11,11 @@
  * For full license details see file "main.c" or "LICENSE.md" or go to
  * https://opensource.org/licenses/MIT
  * 
+ *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
+/** @file
+ * 
+ * Declares and controls the data of the whole LED cube using several functions.
+ * 
  ******************************************************************************/
 
 /*******************************************************************************
@@ -21,6 +26,10 @@
 /*******************************************************************************
  * Global variables
  ******************************************************************************/
+/** The global declaration of CubeControlData containing two CubeData structure
+ * arrays of the type @ref RowData_t.
+ * This is where all the data for the LED Cube is stored.
+ */
 CubeControlData_t CubeControlData = {
     { /* CubeData0 */
         { /* Layer 0 */
@@ -90,21 +99,19 @@ CubeControlData_t CubeControlData = {
     }
     
 };
-/* Constant pointer to the CubeControlData structure */
+
+/** Constant pointer to the CubeControlData structure */
 pCubeControlData_t const pCubeControlData = &CubeControlData;
-/* Constant pointer to the CubeData0 structure array */
+
+/** Constant pointer to the CubeData0 structure array */
 pCubeData_t const pCubeData0Base = &CubeControlData.CubeData0[0][0];
-/* Constant pointer to the CubeData1 structure array */
+
+/** Constant pointer to the CubeData1 structure array */
 pCubeData_t const pCubeData1Base = &CubeControlData.CubeData1[0][0];
 
 /*******************************************************************************
  * Functions
  ******************************************************************************/
-/**
- * Initialize the CubeControlData structure by pointing the CubeData read- and
- * write pointers to respectively the first and second CubeData structure array.
- * 
- */
 void
 CubeControlData_init( pCubeControlData_t const _pCubeControlData ) {
     _pCubeControlData->pCubeDataRead = pCubeData0Base;
@@ -114,13 +121,6 @@ CubeControlData_init( pCubeControlData_t const _pCubeControlData ) {
     return;
 }
 
-/**
- * Switch the CubeData read- and write pointers by checking where the read
- * pointer is currently pointing to and switching the read- and write pointers
- * accordingly. All performed with interrupts disabled because the CubeData read
- * takes place in an interrupt service routine.
- * 
- */
 void
 CubeControlData_switchCubeData( pCubeControlData_t const _pCubeControlData ) {
     DEBUG_PRINTF_FUNCTION_CALL("%p", _pCubeControlData);
@@ -145,10 +145,6 @@ CubeControlData_switchCubeData( pCubeControlData_t const _pCubeControlData ) {
     return;
 }
 
-/**
- * Reset a CubeData structure array by looping through the z and x coordinates.
- * 
- */
 void
 CubeControlData_resetCubeData( pCubeData_t const _pCubeData ) {
     DEBUG_PRINTF_FUNCTION_CALL("%p", _pCubeData);
@@ -165,12 +161,6 @@ CubeControlData_resetCubeData( pCubeData_t const _pCubeData ) {
     return;
 }
 
-/**
- * Copy a CubeData structure array by looping through the z and x coordinates.
- * Performed with interrupts disabled because the CubeData read takes place in
- * an interrupt service routine.
- * 
- */
 void
 CubeControlData_copyCubeData( pCubeData_t const _pCubeDataFrom,
         pCubeData_t const _pCubeDataTo ) {
@@ -195,10 +185,6 @@ CubeControlData_copyCubeData( pCubeData_t const _pCubeDataFrom,
     return;
 }
 
-/**
- * Print a CubeData structure array by looping through the z and x coordinates.
- * 
- */
 void
 CubeControlData_printHexCubeData( pCubeData_t const _pCubeData ) {
     DEBUG_PRINTF_FUNCTION_CALL("%p", _pCubeData);

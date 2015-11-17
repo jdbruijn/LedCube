@@ -11,11 +11,11 @@
  * For full license details see file "main.c" or "LICENSE.md" or go to
  * https://opensource.org/licenses/MIT
  * 
- *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
- * 
- * Description:
- *  Control a single PanelControl PCB. A PanelControl PCB holds three LED Sink
- *  Drivers.
+ *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
+/** @file
+ * @brief Controls a single PanelControl PCB.
+ *   
+ * A PanelControl PCB holds three LED Sink Drivers.
  * 
  ******************************************************************************/
 
@@ -45,7 +45,8 @@ extern "C" {
 /*******************************************************************************
  * Defines
  ******************************************************************************/
-#define N_LEDDRIVERS    3       // Number of LedDrivers on a PanelControl
+/** Number of LedDrivers on a PanelControl PCB */
+#define N_LEDDRIVERS    3
 
 /*******************************************************************************
  * Function prototypes
@@ -53,28 +54,21 @@ extern "C" {
 /**
  * Initialize everything needed for a PanelControl PCB.
  * 
- * @Note    This initializes the LED Sink Drivers.
- * @param   void
- * @return  void
- * @Example <code>PanelControl_init();</code>
+ * @note    This initializes a LED Sink Driver using @ref LedDriver_init.
  */
 void
 PanelControl_init( void );
 
 /**
- * Update the outputs of a PanelControl PCB.
+ * Update the outputs of a PanelControl PCB by calling @ref LedDriver_update
+ * three times.
  * 
- * @param   _pCubeControlData, pointer to CubeControlData structure.
- * @param   _pCubeData[], pointer to the first element of a CubeData structure
+ * @param   _pCubeControlData Pointer to @ref CubeControlData structure.
+ * @param   _pCubeData[] Pointer to the first element of a CubeData structure
  * array.
- * @param   _layer, the layer to update.
- * @param   _panel, the panel to update.
- * @param   _bamRound, the BAM-round to update.
- * @return  void
- * @Example <code>// See CubeControlData.h or CubeControlData.c for more
- * information on how to setup the CubeControlData structure.\n
- * PanelControl_update( pCubeControlData, &pCubeData, layer, PANEL_0,
- * bamRound );</code>
+ * @param   _layer The layer to update.
+ * @param   _panel The panel to update.
+ * @param   _bamRound The BAM-round to update.
  */
 void
 PanelControl_update( const pCubeControlData_t _pCubeControlData,
@@ -84,21 +78,13 @@ PanelControl_update( const pCubeControlData_t _pCubeControlData,
         const uint8_t _bamRound );
 
 /**
- * Turn all the LEDs of a PanelControl PCB off.
- * 
- * @param   void
- * @return  void
- * @Example <code>PanelControl_allOff();</code>
+ * Turn all the LEDs of a PanelControl PCB off using @ref LedDriver_allOff.
  */
 void
 PanelControl_allOff( void );
 
 /**
- * Turn all the LEDs of a PanelControl PCB on.
- * 
- * @param   void
- * @return  void
- * @Example <code>PanelControl_allOn();</code>
+ * Turn all the LEDs of a PanelControl PCB on using @ref LedDriver_allOn.
  */
 void
 PanelControl_allOn( void );

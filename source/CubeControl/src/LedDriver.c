@@ -11,7 +11,7 @@
  * For full license details see file "main.c" or "LICENSE.md" or go to
  * https://opensource.org/licenses/MIT
  * 
- ******************************************************************************/
+ *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
 /** @file
  * @brief Controls a single LED Sink Driver.
  * 

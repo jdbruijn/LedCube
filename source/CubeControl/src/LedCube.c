@@ -11,6 +11,12 @@
  * For full license details see file "main.c" or "LICENSE.md" or go to
  * https://opensource.org/licenses/MIT
  * 
+*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
+/** @file
+ * @brief Controls the whole LedCube.
+ * 
+ * All 512 RGB LEDs are (indirectly) controlled by this file.
+ * 
  ******************************************************************************/
 
 /*******************************************************************************
@@ -21,12 +27,6 @@
 /*******************************************************************************
  * Functions
  ******************************************************************************/
-/**
- * Initialize everything needed for controlling the layers using the the
- * LayerControl_init function and initialize the CubeControlData using the
- * CubeControlData_init function.
- * 
- */
 void
 LedCube_init( void ) {
     LayerControl_init();
@@ -36,11 +36,6 @@ LedCube_init( void ) {
     return;
 }
 
-/**
- * First asserting the boundaries of the cube, then map the current pixel in the
- * CubeData structure array.
- * 
- */
 void
 LedCube_setPixel( uint8_t const _x, uint8_t const _y, uint8_t const _z,
         uint8_t const _red, uint8_t const _green, uint8_t const _blue ) {
@@ -64,9 +59,8 @@ LedCube_setPixel( uint8_t const _x, uint8_t const _y, uint8_t const _z,
             LEDCUBE_MAX_INTENSITY >= _blue );
     
     /********** Calculate position ********************************************/
-    /**
-     * _x Ranges from 0 to 7 and selects the row, 0 for the back row and
-     * 8 for the front row.
+    /* _x Ranges from 0 to 7 and selects the row, 0 for the back row and
+     * 7 for the front row.
      * _y Ranges from 0 to 7 and selects the column, 0 for the left column
      * and 7 for the right column.
      * _z Ranges from 0 to 7 and selects the layer, 0 for the bottom layer
@@ -116,11 +110,6 @@ LedCube_setPixel( uint8_t const _x, uint8_t const _y, uint8_t const _z,
     return;
 }
 
-/**
- * Switch the CubeData structure array pointer so the data previously written
- * in this array becomes the LedCube's output.
- * 
- */
 void
 LedCube_update( void ) {
     DEBUG_PRINTF_FUNCTION_CALL();
@@ -130,12 +119,6 @@ LedCube_update( void ) {
     return;
 }
 
-/**
- * Copy the CubeDataWrite structure array to the CubeDataRead structure array so
- * the data previously written thus far in CubeDataWrite structure array becomes
- * the LedCube's output.
- * 
- */
 void
 LedCube_updateUsingCopy( void ) {
     DEBUG_PRINTF_FUNCTION_CALL();
@@ -146,11 +129,6 @@ LedCube_updateUsingCopy( void ) {
     return;
 }
 
-/**
- * Set all the data in the LedCube's LED data array to zero using the
- * CubeControlData_resetCubeData function.
- * 
- */
 void
 LedCube_resetData( void ) {
     DEBUG_PRINTF_FUNCTION_CALL();
@@ -160,11 +138,6 @@ LedCube_resetData( void ) {
     return;
 }
 
-/**
- * Print all the data in the CubeDataWrite structure array using the
- * CubeControlData_printHexCubeData function.
- * 
- */
 void
 LedCube_printHexWriteData( void ) {
     DEBUG_PRINTF_FUNCTION_CALL();
@@ -174,11 +147,6 @@ LedCube_printHexWriteData( void ) {
     return;
 }
 
-/**
- * Print all the data in the CubeDataWrite structure array using the
- * CubeControlData_printHexCubeData function.
- * 
- */
 void
 LedCube_printHexReadData( void ) {
     DEBUG_PRINTF_FUNCTION_CALL();
@@ -191,7 +159,7 @@ LedCube_printHexReadData( void ) {
 /**
  * Helper function to print the bits in a byte, separated by spaces, with zero
  * padding.
- * 
+ * @todo edit function documentation below this point.
  */
 void
 _helperPrintByte(const uint8_t _b) {

@@ -11,14 +11,14 @@
  * For full license details see file "main.c" or "LICENSE.md" or go to
  * https://opensource.org/licenses/MIT
  * 
- *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
- * Description:
- *  Control a single layer of the 8x8x8 LED cube. 
+ *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
+/** @file
+ * @brief Controls a single layer of the 8x8x8 LED cube. 
  * 
  ******************************************************************************/
 
 // <editor-fold defaultstate="collapsed" desc="Cube Layout">
-/**
+/** @todo this layout looks weird in Doxygen
  * Cube Layout:
  * 
  *                   Rear
@@ -63,6 +63,7 @@ extern "C" {
 /*******************************************************************************
  * Defines
  ******************************************************************************/
+    /** @todo document defines and macros */
 #define N_PANELCONTROLS     4       /* Number of PanelControls in the cube */
 #define SPI2_PPRE           1       /* SPI2 Primary Prescale bits */
 #define SPI2_SPRE           2       /* SPI2 Secondary Prescale bits */
@@ -80,28 +81,24 @@ extern "C" {
  * Function prototypes
  ******************************************************************************/
 /**
- * Initialize everything needed for controlling the layers.
+ * Initialize everything needed for controlling the layers by configuring the
+ * SPIx peripheral.
  * 
- * @Note    This also initializes everything needed for a PanelControl PCB.
- * @param   void
- * @return  void
- * @Example <code>LayerControl_init();</code>
+ * @note    This also initializes everything needed for a PanelControl PCB using
+ * the @ref PanelControl_init function.
  */
 void
 LayerControl_init( void );
 
 /**
- * Update the output of a single layer in the LedCube.
+ * Update the output of a single layer in the LED cube by calling the @ref
+ * PanelControl_update function four times.
  * 
- * @param   _pCubeControlData, pointer to CubeControlData structure.
- * @param   _pCubeData, pointer to the first element of a CubeData structure
+ * @param   _pCubeControlData Pointer to CubeControlData structure.
+ * @param   _pCubeData Pointer to the first element of a CubeData structure
  * array.
- * @param   _layer, the layer to update.
- * @param   _bamRound, the BAM-round to update.
- * @return  void
- * @Example <code>// See CubeControlData.h or CubeControlData.c for more
- * information on how to setup the CubeControlData structure.\n
- * PanelControl_update( pCubeControlData, &pCubeData, layer, bamRound );</code>
+ * @param   _layer The layer to update.
+ * @param   _bamRound The BAM-round to update.
  */
 void
 LayerControl_update( const pCubeControlData_t _pCubeControlData,
@@ -110,13 +107,13 @@ LayerControl_update( const pCubeControlData_t _pCubeControlData,
         const uint8_t _bamRound );
 
 /**
- * Turn all the LEDs of a layer off.
+ * Turn all the LEDs of a layer off using @ref PanelControl_allOff.
  */
 void
 LayerControl_allOff( void );
 
 /**
- * Turn all the LEDs of a layer on.
+ * Turn all the LEDs of a layer on using @ref PanelControl_allOn.
  */
 void
 LayerControl_allOn( void );
