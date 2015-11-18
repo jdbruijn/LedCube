@@ -1,4 +1,7 @@
-# LedCube [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/vidavidorra/LedCube.svg)](http://isitmaintained.com/project/vidavidorra/LedCube "Average time to resolve an issue") [![Percentage of issues still open](http://isitmaintained.com/badge/open/vidavidorra/LedCube.svg)](http://isitmaintained.com/project/vidavidorra/LedCube "Percentage of issues still open")
+LedCube
+=======
+
+[![License MIT][badge-license]][license]
 
 LedCube is a project of making an 8x8x8 RGB LED cube. This repository contains the drawings, design, overview of the hardware and last but not least the code to control this 8x8x8 RGB LED cube.
 
@@ -28,3 +31,12 @@ Used PCBs:
 #### Programming environment
 IDE: [MPLAB X v3.10](http://www.microchip.com/pagehandler/en-us/family/mplabx/home.html?tab=t2)  
 Compiler: [XC16 v1.25](http://www.microchip.com/pagehandler/en-us/devtools/mplabxc/home.html#tab-2)  
+
+Licensing
+---------
+LedCube is free software, released under the [MIT license](http://opensource.org/licenses/MIT), as published by the Open Source Initiative.
+Modification and redistribution are permitted according to the terms of the MIT license.
+The license can be found in the `LICENSE` file.
+
+[badge-license]: https://img.shields.io/badge/license-MIT-blue.svg
+[license]: https://github.com/vidavidorra/LedCube/blob/master/LICENSE.md
