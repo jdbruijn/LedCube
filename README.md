@@ -13,8 +13,6 @@ LedCube Visualisation
 =====================
 [LedCube Visualisation](https://github.com/vidavidorra/LedCube-Visualisation/) is a Windows program that visualizes a 8x8x8 RGB LED cube and can be used to visualize a LED cube without risking of damaging the actual LED cube. In the future this program can possibly also be used to program the LedCube by visually programming sequences.<br />
 
-Documentation
-=============
 - Documentation can be found in the [wiki](https://github.com/vidavidorra/LedCube/wiki) and in the [docs](Docs) directory.
 - [Pull requests](https://github.com/vidavidorra/LedCube/pulls) and [bug reports](https://github.com/vidavidorra/LedCube/issues) are welcome!
 
