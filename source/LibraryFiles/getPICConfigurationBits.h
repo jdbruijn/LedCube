@@ -49,7 +49,6 @@ extern "C" {
  ******************************************************************************/
 #include <xc.h>
 #include <stdbool.h>
-#include "BitOperations.h"
 #include "Uart.h"
 
 /*******************************************************************************
@@ -239,7 +238,7 @@ extern "C" {
  * @endverbatim
  */
 void
-readPICConfigBits( void );
+getPICConfigBits( void );
 
 #ifdef  __cplusplus
 }

@@ -176,7 +176,7 @@ _getPICConfigurationBits_verifyConfigUpperByte(
 }
 
 void
-readPICConfigBits( void ) {
+getPICConfigBits( void ) {
     /* Base address of CW1: Flash Configuration Word 1 */
     _getPICConfigurationBits_uReg32 CW1Addr;
     /* Base address of CW1: Flash Configuration Word 2 */
