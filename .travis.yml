@@ -17,11 +17,11 @@ addons:
     - libexpat1:i386
 
 before_install: 
- - chmod +x install-dependencies.sh
+ - chmod +x travis/install-dependencies.sh
 
 # Install needed IDE and compiler
 install:
- - ./install-dependencies.sh
+ - ./travis/install-dependencies.sh
 
 # Generate Makefiles and make
 script:
