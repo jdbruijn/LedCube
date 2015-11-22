@@ -1,4 +1,4 @@
-build/debug/production/source/CubeControl/src/LayerControl.o:  \
+build/debug_and_program/production/source/CubeControl/src/LayerControl.o:  \
  source/CubeControl/src/LayerControl.c  \
 source/CubeControl/LayerControl.h  \
  source/LibraryFiles/System.h  \

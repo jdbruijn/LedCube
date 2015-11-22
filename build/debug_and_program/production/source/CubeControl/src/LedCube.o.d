@@ -1,13 +1,15 @@
-build/debug/production/source/CubeControl/src/LayerControl.o:  \
- source/CubeControl/src/LayerControl.c  \
-source/CubeControl/LayerControl.h  \
- source/LibraryFiles/System.h  \
-source/LibraryFiles/Debug.h  \
+build/debug_and_program/production/source/CubeControl/src/LedCube.o:  \
+ source/CubeControl/src/LedCube.c  \
+source/CubeControl/LedCube.h  \
  source/LibraryFiles/Uart.h  \
 source/LibraryFiles/Delay.h  \
  source/LibraryFiles/System.h  \
 source/LibraryFiles/Interrupts.h  \
  source/LibraryFiles/SwFifoBuffer.h  \
+source/LibraryFiles/Debug.h  \
+ source/LibraryFiles/Uart.h  \
+source/CubeControl/LayerControl.h  \
+ source/LibraryFiles/System.h  \
 source/CubeControl/PanelControl.h  \
  source/CubeControl/LedDriver.h  \
 source/LibraryFiles/Ports.h  \
@@ -16,6 +18,4 @@ source/LibraryFiles/PeripheralPinSelect.h  \
  source/LibraryFiles/Ports.h  \
 source/CubeControl/CubeControlData.h  \
  source/LibraryFiles/Interrupts.h  \
-source/LibraryFiles/Buzzer.h  \
- source/LibraryFiles/Debug.h  \
 source/LibraryFiles/MyAssert.h 

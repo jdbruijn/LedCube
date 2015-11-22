@@ -13,8 +13,8 @@ ifeq "${IGNORE_LOCAL}" "TRUE"
 else
 include Makefile
 # Include makefile containing local settings
-ifeq "$(wildcard nbproject/Makefile-local-debug.mk)" "nbproject/Makefile-local-debug.mk"
-include nbproject/Makefile-local-debug.mk
+ifeq "$(wildcard nbproject/Makefile-local-debug_and_program.mk)" "nbproject/Makefile-local-debug_and_program.mk"
+include nbproject/Makefile-local-debug_and_program.mk
 endif
 endif
 
@@ -25,7 +25,7 @@ MV=mv
 CP=cp 
 
 # Macros
-CND_CONF=debug
+CND_CONF=debug_and_program
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
 IMAGE_TYPE=debug
 OUTPUT_SUFFIX=elf
@@ -71,11 +71,28 @@ LDLIBSOPTIONS=
 # fixDeps replaces a bunch of sed/cat/printf statements that slow down the build
 FIXDEPS=fixDeps
 
+# The following macros may be used in the pre and post step lines
+Device=PIC24FJ64GA004
+ProjectDir="C:\Users\jdebruijn\Drive\Programming\MPLABX\LedCube.X"
+ConfName=debug_and_program
+ImagePath="dist\debug_and_program\${IMAGE_TYPE}\LedCube.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}"
+ImageDir="dist\debug_and_program\${IMAGE_TYPE}"
+ImageName="LedCube.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}"
+ifeq ($(TYPE_IMAGE), DEBUG_RUN)
+IsDebug="true"
+else
+IsDebug="false"
+endif
+
 .build-conf:  ${BUILD_SUBPROJECTS}
 ifneq ($(INFORMATION_MESSAGE), )
 	@echo $(INFORMATION_MESSAGE)
 endif
-	${MAKE}  -f nbproject/Makefile-debug.mk dist/${CND_CONF}/${IMAGE_TYPE}/LedCube.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
+	${MAKE}  -f nbproject/Makefile-debug_and_program.mk dist/${CND_CONF}/${IMAGE_TYPE}/LedCube.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
+	@echo "--------------------------------------"
+	@echo "User defined post-build step: ["C:\Program Files (x86)\BullyCPP\BullyCPP-0.8.1-win32.exe" --baud 115200 --no-gui --device COM4 --mclr C:/Users/jdebruijn/Drive/Programming/MPLABX/LedCube.X/dist/debug/production/LedCube.X.production.hex]"
+	@"C:\Program Files (x86)\BullyCPP\BullyCPP-0.8.1-win32.exe" --baud 115200 --no-gui --device COM4 --mclr C:/Users/jdebruijn/Drive/Programming/MPLABX/LedCube.X/dist/debug/production/LedCube.X.production.hex
+	@echo "--------------------------------------"
 
 MP_PROCESSOR_OPTION=24FJ64GA004
 MP_LINKER_FILE_OPTION=,--script=lkr/p24FJ64GA004_bootldr.gld
@@ -86,98 +103,98 @@ ${OBJECTDIR}/source/Animations/src/Fill.o: source/Animations/src/Fill.c  nbproje
 	@${MKDIR} "${OBJECTDIR}/source/Animations/src" 
 	@${RM} ${OBJECTDIR}/source/Animations/src/Fill.o.d 
 	@${RM} ${OBJECTDIR}/source/Animations/src/Fill.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  source/Animations/src/Fill.c  -o ${OBJECTDIR}/source/Animations/src/Fill.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/Animations/src/Fill.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -legacy-libc  -I"source/CubeControl" -I"source/Animations" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
+	${MP_CC} $(MP_EXTRA_CC_PRE)  source/Animations/src/Fill.c  -o ${OBJECTDIR}/source/Animations/src/Fill.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/Animations/src/Fill.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -legacy-libc  -I"source/Animations" -I"source/CubeControl" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/source/Animations/src/Fill.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/source/CubeControl/src/LayerControl.o: source/CubeControl/src/LayerControl.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/source/CubeControl/src" 
 	@${RM} ${OBJECTDIR}/source/CubeControl/src/LayerControl.o.d 
 	@${RM} ${OBJECTDIR}/source/CubeControl/src/LayerControl.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  source/CubeControl/src/LayerControl.c  -o ${OBJECTDIR}/source/CubeControl/src/LayerControl.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/CubeControl/src/LayerControl.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -legacy-libc  -I"source/CubeControl" -I"source/Animations" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
+	${MP_CC} $(MP_EXTRA_CC_PRE)  source/CubeControl/src/LayerControl.c  -o ${OBJECTDIR}/source/CubeControl/src/LayerControl.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/CubeControl/src/LayerControl.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -legacy-libc  -I"source/Animations" -I"source/CubeControl" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/source/CubeControl/src/LayerControl.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/source/CubeControl/src/LedCube.o: source/CubeControl/src/LedCube.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/source/CubeControl/src" 
 	@${RM} ${OBJECTDIR}/source/CubeControl/src/LedCube.o.d 
 	@${RM} ${OBJECTDIR}/source/CubeControl/src/LedCube.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  source/CubeControl/src/LedCube.c  -o ${OBJECTDIR}/source/CubeControl/src/LedCube.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/CubeControl/src/LedCube.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -legacy-libc  -I"source/CubeControl" -I"source/Animations" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
+	${MP_CC} $(MP_EXTRA_CC_PRE)  source/CubeControl/src/LedCube.c  -o ${OBJECTDIR}/source/CubeControl/src/LedCube.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/CubeControl/src/LedCube.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -legacy-libc  -I"source/Animations" -I"source/CubeControl" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/source/CubeControl/src/LedCube.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/source/CubeControl/src/LedDriver.o: source/CubeControl/src/LedDriver.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/source/CubeControl/src" 
 	@${RM} ${OBJECTDIR}/source/CubeControl/src/LedDriver.o.d 
 	@${RM} ${OBJECTDIR}/source/CubeControl/src/LedDriver.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  source/CubeControl/src/LedDriver.c  -o ${OBJECTDIR}/source/CubeControl/src/LedDriver.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/CubeControl/src/LedDriver.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -legacy-libc  -I"source/CubeControl" -I"source/Animations" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
+	${MP_CC} $(MP_EXTRA_CC_PRE)  source/CubeControl/src/LedDriver.c  -o ${OBJECTDIR}/source/CubeControl/src/LedDriver.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/CubeControl/src/LedDriver.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -legacy-libc  -I"source/Animations" -I"source/CubeControl" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/source/CubeControl/src/LedDriver.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/source/CubeControl/src/PanelControl.o: source/CubeControl/src/PanelControl.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/source/CubeControl/src" 
 	@${RM} ${OBJECTDIR}/source/CubeControl/src/PanelControl.o.d 
 	@${RM} ${OBJECTDIR}/source/CubeControl/src/PanelControl.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  source/CubeControl/src/PanelControl.c  -o ${OBJECTDIR}/source/CubeControl/src/PanelControl.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/CubeControl/src/PanelControl.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -legacy-libc  -I"source/CubeControl" -I"source/Animations" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
+	${MP_CC} $(MP_EXTRA_CC_PRE)  source/CubeControl/src/PanelControl.c  -o ${OBJECTDIR}/source/CubeControl/src/PanelControl.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/CubeControl/src/PanelControl.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -legacy-libc  -I"source/Animations" -I"source/CubeControl" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/source/CubeControl/src/PanelControl.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/source/CubeControl/src/CubeControlData.o: source/CubeControl/src/CubeControlData.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/source/CubeControl/src" 
 	@${RM} ${OBJECTDIR}/source/CubeControl/src/CubeControlData.o.d 
 	@${RM} ${OBJECTDIR}/source/CubeControl/src/CubeControlData.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  source/CubeControl/src/CubeControlData.c  -o ${OBJECTDIR}/source/CubeControl/src/CubeControlData.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/CubeControl/src/CubeControlData.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -legacy-libc  -I"source/CubeControl" -I"source/Animations" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
+	${MP_CC} $(MP_EXTRA_CC_PRE)  source/CubeControl/src/CubeControlData.c  -o ${OBJECTDIR}/source/CubeControl/src/CubeControlData.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/CubeControl/src/CubeControlData.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -legacy-libc  -I"source/Animations" -I"source/CubeControl" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/source/CubeControl/src/CubeControlData.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/source/LibraryFiles/src/Uart.o: source/LibraryFiles/src/Uart.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/source/LibraryFiles/src" 
 	@${RM} ${OBJECTDIR}/source/LibraryFiles/src/Uart.o.d 
 	@${RM} ${OBJECTDIR}/source/LibraryFiles/src/Uart.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  source/LibraryFiles/src/Uart.c  -o ${OBJECTDIR}/source/LibraryFiles/src/Uart.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/LibraryFiles/src/Uart.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -legacy-libc  -I"source/CubeControl" -I"source/Animations" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
+	${MP_CC} $(MP_EXTRA_CC_PRE)  source/LibraryFiles/src/Uart.c  -o ${OBJECTDIR}/source/LibraryFiles/src/Uart.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/LibraryFiles/src/Uart.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -legacy-libc  -I"source/Animations" -I"source/CubeControl" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/source/LibraryFiles/src/Uart.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/source/LibraryFiles/src/BitOperations.o: source/LibraryFiles/src/BitOperations.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/source/LibraryFiles/src" 
 	@${RM} ${OBJECTDIR}/source/LibraryFiles/src/BitOperations.o.d 
 	@${RM} ${OBJECTDIR}/source/LibraryFiles/src/BitOperations.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  source/LibraryFiles/src/BitOperations.c  -o ${OBJECTDIR}/source/LibraryFiles/src/BitOperations.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/LibraryFiles/src/BitOperations.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -legacy-libc  -I"source/CubeControl" -I"source/Animations" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
+	${MP_CC} $(MP_EXTRA_CC_PRE)  source/LibraryFiles/src/BitOperations.c  -o ${OBJECTDIR}/source/LibraryFiles/src/BitOperations.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/LibraryFiles/src/BitOperations.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -legacy-libc  -I"source/Animations" -I"source/CubeControl" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/source/LibraryFiles/src/BitOperations.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/source/LibraryFiles/src/Buzzer.o: source/LibraryFiles/src/Buzzer.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/source/LibraryFiles/src" 
 	@${RM} ${OBJECTDIR}/source/LibraryFiles/src/Buzzer.o.d 
 	@${RM} ${OBJECTDIR}/source/LibraryFiles/src/Buzzer.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  source/LibraryFiles/src/Buzzer.c  -o ${OBJECTDIR}/source/LibraryFiles/src/Buzzer.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/LibraryFiles/src/Buzzer.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -legacy-libc  -I"source/CubeControl" -I"source/Animations" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
+	${MP_CC} $(MP_EXTRA_CC_PRE)  source/LibraryFiles/src/Buzzer.c  -o ${OBJECTDIR}/source/LibraryFiles/src/Buzzer.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/LibraryFiles/src/Buzzer.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -legacy-libc  -I"source/Animations" -I"source/CubeControl" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/source/LibraryFiles/src/Buzzer.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/source/LibraryFiles/src/IOPorts.o: source/LibraryFiles/src/IOPorts.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/source/LibraryFiles/src" 
 	@${RM} ${OBJECTDIR}/source/LibraryFiles/src/IOPorts.o.d 
 	@${RM} ${OBJECTDIR}/source/LibraryFiles/src/IOPorts.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  source/LibraryFiles/src/IOPorts.c  -o ${OBJECTDIR}/source/LibraryFiles/src/IOPorts.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/LibraryFiles/src/IOPorts.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -legacy-libc  -I"source/CubeControl" -I"source/Animations" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
+	${MP_CC} $(MP_EXTRA_CC_PRE)  source/LibraryFiles/src/IOPorts.c  -o ${OBJECTDIR}/source/LibraryFiles/src/IOPorts.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/LibraryFiles/src/IOPorts.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -legacy-libc  -I"source/Animations" -I"source/CubeControl" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/source/LibraryFiles/src/IOPorts.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/source/LibraryFiles/src/SwFifoBuffer.o: source/LibraryFiles/src/SwFifoBuffer.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/source/LibraryFiles/src" 
 	@${RM} ${OBJECTDIR}/source/LibraryFiles/src/SwFifoBuffer.o.d 
 	@${RM} ${OBJECTDIR}/source/LibraryFiles/src/SwFifoBuffer.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  source/LibraryFiles/src/SwFifoBuffer.c  -o ${OBJECTDIR}/source/LibraryFiles/src/SwFifoBuffer.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/LibraryFiles/src/SwFifoBuffer.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -legacy-libc  -I"source/CubeControl" -I"source/Animations" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
+	${MP_CC} $(MP_EXTRA_CC_PRE)  source/LibraryFiles/src/SwFifoBuffer.c  -o ${OBJECTDIR}/source/LibraryFiles/src/SwFifoBuffer.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/LibraryFiles/src/SwFifoBuffer.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -legacy-libc  -I"source/Animations" -I"source/CubeControl" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/source/LibraryFiles/src/SwFifoBuffer.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/source/LibraryFiles/src/System.o: source/LibraryFiles/src/System.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/source/LibraryFiles/src" 
 	@${RM} ${OBJECTDIR}/source/LibraryFiles/src/System.o.d 
 	@${RM} ${OBJECTDIR}/source/LibraryFiles/src/System.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  source/LibraryFiles/src/System.c  -o ${OBJECTDIR}/source/LibraryFiles/src/System.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/LibraryFiles/src/System.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -legacy-libc  -I"source/CubeControl" -I"source/Animations" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
+	${MP_CC} $(MP_EXTRA_CC_PRE)  source/LibraryFiles/src/System.c  -o ${OBJECTDIR}/source/LibraryFiles/src/System.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/LibraryFiles/src/System.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -legacy-libc  -I"source/Animations" -I"source/CubeControl" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/source/LibraryFiles/src/System.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/source/LibraryFiles/src/Debug.o: source/LibraryFiles/src/Debug.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/source/LibraryFiles/src" 
 	@${RM} ${OBJECTDIR}/source/LibraryFiles/src/Debug.o.d 
 	@${RM} ${OBJECTDIR}/source/LibraryFiles/src/Debug.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  source/LibraryFiles/src/Debug.c  -o ${OBJECTDIR}/source/LibraryFiles/src/Debug.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/LibraryFiles/src/Debug.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -legacy-libc  -I"source/CubeControl" -I"source/Animations" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
+	${MP_CC} $(MP_EXTRA_CC_PRE)  source/LibraryFiles/src/Debug.c  -o ${OBJECTDIR}/source/LibraryFiles/src/Debug.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/LibraryFiles/src/Debug.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -legacy-libc  -I"source/Animations" -I"source/CubeControl" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/source/LibraryFiles/src/Debug.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/source/src/main.o: source/src/main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/source/src" 
 	@${RM} ${OBJECTDIR}/source/src/main.o.d 
 	@${RM} ${OBJECTDIR}/source/src/main.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  source/src/main.c  -o ${OBJECTDIR}/source/src/main.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/src/main.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -legacy-libc  -I"source/CubeControl" -I"source/Animations" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
+	${MP_CC} $(MP_EXTRA_CC_PRE)  source/src/main.c  -o ${OBJECTDIR}/source/src/main.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/src/main.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -legacy-libc  -I"source/Animations" -I"source/CubeControl" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/source/src/main.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 else
@@ -185,98 +202,98 @@ ${OBJECTDIR}/source/Animations/src/Fill.o: source/Animations/src/Fill.c  nbproje
 	@${MKDIR} "${OBJECTDIR}/source/Animations/src" 
 	@${RM} ${OBJECTDIR}/source/Animations/src/Fill.o.d 
 	@${RM} ${OBJECTDIR}/source/Animations/src/Fill.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  source/Animations/src/Fill.c  -o ${OBJECTDIR}/source/Animations/src/Fill.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/Animations/src/Fill.o.d"        -g -omf=elf -legacy-libc  -I"source/CubeControl" -I"source/Animations" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
+	${MP_CC} $(MP_EXTRA_CC_PRE)  source/Animations/src/Fill.c  -o ${OBJECTDIR}/source/Animations/src/Fill.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/Animations/src/Fill.o.d"        -g -omf=elf -legacy-libc  -I"source/Animations" -I"source/CubeControl" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/source/Animations/src/Fill.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/source/CubeControl/src/LayerControl.o: source/CubeControl/src/LayerControl.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/source/CubeControl/src" 
 	@${RM} ${OBJECTDIR}/source/CubeControl/src/LayerControl.o.d 
 	@${RM} ${OBJECTDIR}/source/CubeControl/src/LayerControl.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  source/CubeControl/src/LayerControl.c  -o ${OBJECTDIR}/source/CubeControl/src/LayerControl.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/CubeControl/src/LayerControl.o.d"        -g -omf=elf -legacy-libc  -I"source/CubeControl" -I"source/Animations" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
+	${MP_CC} $(MP_EXTRA_CC_PRE)  source/CubeControl/src/LayerControl.c  -o ${OBJECTDIR}/source/CubeControl/src/LayerControl.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/CubeControl/src/LayerControl.o.d"        -g -omf=elf -legacy-libc  -I"source/Animations" -I"source/CubeControl" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/source/CubeControl/src/LayerControl.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/source/CubeControl/src/LedCube.o: source/CubeControl/src/LedCube.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/source/CubeControl/src" 
 	@${RM} ${OBJECTDIR}/source/CubeControl/src/LedCube.o.d 
 	@${RM} ${OBJECTDIR}/source/CubeControl/src/LedCube.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  source/CubeControl/src/LedCube.c  -o ${OBJECTDIR}/source/CubeControl/src/LedCube.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/CubeControl/src/LedCube.o.d"        -g -omf=elf -legacy-libc  -I"source/CubeControl" -I"source/Animations" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
+	${MP_CC} $(MP_EXTRA_CC_PRE)  source/CubeControl/src/LedCube.c  -o ${OBJECTDIR}/source/CubeControl/src/LedCube.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/CubeControl/src/LedCube.o.d"        -g -omf=elf -legacy-libc  -I"source/Animations" -I"source/CubeControl" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/source/CubeControl/src/LedCube.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/source/CubeControl/src/LedDriver.o: source/CubeControl/src/LedDriver.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/source/CubeControl/src" 
 	@${RM} ${OBJECTDIR}/source/CubeControl/src/LedDriver.o.d 
 	@${RM} ${OBJECTDIR}/source/CubeControl/src/LedDriver.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  source/CubeControl/src/LedDriver.c  -o ${OBJECTDIR}/source/CubeControl/src/LedDriver.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/CubeControl/src/LedDriver.o.d"        -g -omf=elf -legacy-libc  -I"source/CubeControl" -I"source/Animations" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
+	${MP_CC} $(MP_EXTRA_CC_PRE)  source/CubeControl/src/LedDriver.c  -o ${OBJECTDIR}/source/CubeControl/src/LedDriver.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/CubeControl/src/LedDriver.o.d"        -g -omf=elf -legacy-libc  -I"source/Animations" -I"source/CubeControl" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/source/CubeControl/src/LedDriver.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/source/CubeControl/src/PanelControl.o: source/CubeControl/src/PanelControl.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/source/CubeControl/src" 
 	@${RM} ${OBJECTDIR}/source/CubeControl/src/PanelControl.o.d 
 	@${RM} ${OBJECTDIR}/source/CubeControl/src/PanelControl.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  source/CubeControl/src/PanelControl.c  -o ${OBJECTDIR}/source/CubeControl/src/PanelControl.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/CubeControl/src/PanelControl.o.d"        -g -omf=elf -legacy-libc  -I"source/CubeControl" -I"source/Animations" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
+	${MP_CC} $(MP_EXTRA_CC_PRE)  source/CubeControl/src/PanelControl.c  -o ${OBJECTDIR}/source/CubeControl/src/PanelControl.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/CubeControl/src/PanelControl.o.d"        -g -omf=elf -legacy-libc  -I"source/Animations" -I"source/CubeControl" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/source/CubeControl/src/PanelControl.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/source/CubeControl/src/CubeControlData.o: source/CubeControl/src/CubeControlData.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/source/CubeControl/src" 
 	@${RM} ${OBJECTDIR}/source/CubeControl/src/CubeControlData.o.d 
 	@${RM} ${OBJECTDIR}/source/CubeControl/src/CubeControlData.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  source/CubeControl/src/CubeControlData.c  -o ${OBJECTDIR}/source/CubeControl/src/CubeControlData.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/CubeControl/src/CubeControlData.o.d"        -g -omf=elf -legacy-libc  -I"source/CubeControl" -I"source/Animations" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
+	${MP_CC} $(MP_EXTRA_CC_PRE)  source/CubeControl/src/CubeControlData.c  -o ${OBJECTDIR}/source/CubeControl/src/CubeControlData.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/CubeControl/src/CubeControlData.o.d"        -g -omf=elf -legacy-libc  -I"source/Animations" -I"source/CubeControl" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/source/CubeControl/src/CubeControlData.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/source/LibraryFiles/src/Uart.o: source/LibraryFiles/src/Uart.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/source/LibraryFiles/src" 
 	@${RM} ${OBJECTDIR}/source/LibraryFiles/src/Uart.o.d 
 	@${RM} ${OBJECTDIR}/source/LibraryFiles/src/Uart.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  source/LibraryFiles/src/Uart.c  -o ${OBJECTDIR}/source/LibraryFiles/src/Uart.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/LibraryFiles/src/Uart.o.d"        -g -omf=elf -legacy-libc  -I"source/CubeControl" -I"source/Animations" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
+	${MP_CC} $(MP_EXTRA_CC_PRE)  source/LibraryFiles/src/Uart.c  -o ${OBJECTDIR}/source/LibraryFiles/src/Uart.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/LibraryFiles/src/Uart.o.d"        -g -omf=elf -legacy-libc  -I"source/Animations" -I"source/CubeControl" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/source/LibraryFiles/src/Uart.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/source/LibraryFiles/src/BitOperations.o: source/LibraryFiles/src/BitOperations.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/source/LibraryFiles/src" 
 	@${RM} ${OBJECTDIR}/source/LibraryFiles/src/BitOperations.o.d 
 	@${RM} ${OBJECTDIR}/source/LibraryFiles/src/BitOperations.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  source/LibraryFiles/src/BitOperations.c  -o ${OBJECTDIR}/source/LibraryFiles/src/BitOperations.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/LibraryFiles/src/BitOperations.o.d"        -g -omf=elf -legacy-libc  -I"source/CubeControl" -I"source/Animations" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
+	${MP_CC} $(MP_EXTRA_CC_PRE)  source/LibraryFiles/src/BitOperations.c  -o ${OBJECTDIR}/source/LibraryFiles/src/BitOperations.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/LibraryFiles/src/BitOperations.o.d"        -g -omf=elf -legacy-libc  -I"source/Animations" -I"source/CubeControl" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/source/LibraryFiles/src/BitOperations.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/source/LibraryFiles/src/Buzzer.o: source/LibraryFiles/src/Buzzer.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/source/LibraryFiles/src" 
 	@${RM} ${OBJECTDIR}/source/LibraryFiles/src/Buzzer.o.d 
 	@${RM} ${OBJECTDIR}/source/LibraryFiles/src/Buzzer.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  source/LibraryFiles/src/Buzzer.c  -o ${OBJECTDIR}/source/LibraryFiles/src/Buzzer.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/LibraryFiles/src/Buzzer.o.d"        -g -omf=elf -legacy-libc  -I"source/CubeControl" -I"source/Animations" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
+	${MP_CC} $(MP_EXTRA_CC_PRE)  source/LibraryFiles/src/Buzzer.c  -o ${OBJECTDIR}/source/LibraryFiles/src/Buzzer.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/LibraryFiles/src/Buzzer.o.d"        -g -omf=elf -legacy-libc  -I"source/Animations" -I"source/CubeControl" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/source/LibraryFiles/src/Buzzer.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/source/LibraryFiles/src/IOPorts.o: source/LibraryFiles/src/IOPorts.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/source/LibraryFiles/src" 
 	@${RM} ${OBJECTDIR}/source/LibraryFiles/src/IOPorts.o.d 
 	@${RM} ${OBJECTDIR}/source/LibraryFiles/src/IOPorts.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  source/LibraryFiles/src/IOPorts.c  -o ${OBJECTDIR}/source/LibraryFiles/src/IOPorts.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/LibraryFiles/src/IOPorts.o.d"        -g -omf=elf -legacy-libc  -I"source/CubeControl" -I"source/Animations" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
+	${MP_CC} $(MP_EXTRA_CC_PRE)  source/LibraryFiles/src/IOPorts.c  -o ${OBJECTDIR}/source/LibraryFiles/src/IOPorts.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/LibraryFiles/src/IOPorts.o.d"        -g -omf=elf -legacy-libc  -I"source/Animations" -I"source/CubeControl" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/source/LibraryFiles/src/IOPorts.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/source/LibraryFiles/src/SwFifoBuffer.o: source/LibraryFiles/src/SwFifoBuffer.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/source/LibraryFiles/src" 
 	@${RM} ${OBJECTDIR}/source/LibraryFiles/src/SwFifoBuffer.o.d 
 	@${RM} ${OBJECTDIR}/source/LibraryFiles/src/SwFifoBuffer.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  source/LibraryFiles/src/SwFifoBuffer.c  -o ${OBJECTDIR}/source/LibraryFiles/src/SwFifoBuffer.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/LibraryFiles/src/SwFifoBuffer.o.d"        -g -omf=elf -legacy-libc  -I"source/CubeControl" -I"source/Animations" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
+	${MP_CC} $(MP_EXTRA_CC_PRE)  source/LibraryFiles/src/SwFifoBuffer.c  -o ${OBJECTDIR}/source/LibraryFiles/src/SwFifoBuffer.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/LibraryFiles/src/SwFifoBuffer.o.d"        -g -omf=elf -legacy-libc  -I"source/Animations" -I"source/CubeControl" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/source/LibraryFiles/src/SwFifoBuffer.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/source/LibraryFiles/src/System.o: source/LibraryFiles/src/System.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/source/LibraryFiles/src" 
 	@${RM} ${OBJECTDIR}/source/LibraryFiles/src/System.o.d 
 	@${RM} ${OBJECTDIR}/source/LibraryFiles/src/System.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  source/LibraryFiles/src/System.c  -o ${OBJECTDIR}/source/LibraryFiles/src/System.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/LibraryFiles/src/System.o.d"        -g -omf=elf -legacy-libc  -I"source/CubeControl" -I"source/Animations" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
+	${MP_CC} $(MP_EXTRA_CC_PRE)  source/LibraryFiles/src/System.c  -o ${OBJECTDIR}/source/LibraryFiles/src/System.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/LibraryFiles/src/System.o.d"        -g -omf=elf -legacy-libc  -I"source/Animations" -I"source/CubeControl" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/source/LibraryFiles/src/System.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/source/LibraryFiles/src/Debug.o: source/LibraryFiles/src/Debug.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/source/LibraryFiles/src" 
 	@${RM} ${OBJECTDIR}/source/LibraryFiles/src/Debug.o.d 
 	@${RM} ${OBJECTDIR}/source/LibraryFiles/src/Debug.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  source/LibraryFiles/src/Debug.c  -o ${OBJECTDIR}/source/LibraryFiles/src/Debug.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/LibraryFiles/src/Debug.o.d"        -g -omf=elf -legacy-libc  -I"source/CubeControl" -I"source/Animations" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
+	${MP_CC} $(MP_EXTRA_CC_PRE)  source/LibraryFiles/src/Debug.c  -o ${OBJECTDIR}/source/LibraryFiles/src/Debug.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/LibraryFiles/src/Debug.o.d"        -g -omf=elf -legacy-libc  -I"source/Animations" -I"source/CubeControl" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/source/LibraryFiles/src/Debug.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/source/src/main.o: source/src/main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/source/src" 
 	@${RM} ${OBJECTDIR}/source/src/main.o.d 
 	@${RM} ${OBJECTDIR}/source/src/main.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  source/src/main.c  -o ${OBJECTDIR}/source/src/main.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/src/main.o.d"        -g -omf=elf -legacy-libc  -I"source/CubeControl" -I"source/Animations" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
+	${MP_CC} $(MP_EXTRA_CC_PRE)  source/src/main.c  -o ${OBJECTDIR}/source/src/main.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/src/main.o.d"        -g -omf=elf -legacy-libc  -I"source/Animations" -I"source/CubeControl" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/source/src/main.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 endif
@@ -298,12 +315,12 @@ endif
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
 dist/${CND_CONF}/${IMAGE_TYPE}/LedCube.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk    lkr/p24FJ64GA004_bootldr.gld
 	@${MKDIR} dist/${CND_CONF}/${IMAGE_TYPE} 
-	${MP_CC} $(MP_EXTRA_LD_PRE)  -o dist/${CND_CONF}/${IMAGE_TYPE}/LedCube.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}      -mcpu=$(MP_PROCESSOR_OPTION)        -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -omf=elf -legacy-libc  -I"source/CubeControl" -I"source/Animations" -I"source/LibraryFiles"  -mreserve=data@0x800:0x81F -mreserve=data@0x820:0x821 -mreserve=data@0x822:0x823 -mreserve=data@0x824:0x825 -mreserve=data@0x826:0x84F   -Wl,,--defsym=__MPLAB_BUILD=1,--defsym=__MPLAB_DEBUG=1,--defsym=__DEBUG=1,--defsym=__MPLAB_DEBUGGER_PK3=1,$(MP_LINKER_FILE_OPTION),--stack=16,--check-sections,--data-init,--pack-data,--handles,--isr,--no-gc-sections,--fill-upper=0,--stackguard=16,--no-force-link,--smart-io,-Map="${DISTDIR}/${PROJECTNAME}.${IMAGE_TYPE}.map",--report-mem,--memorysummary,dist/${CND_CONF}/${IMAGE_TYPE}/memoryfile.xml$(MP_EXTRA_LD_POST) 
+	${MP_CC} $(MP_EXTRA_LD_PRE)  -o dist/${CND_CONF}/${IMAGE_TYPE}/LedCube.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}      -mcpu=$(MP_PROCESSOR_OPTION)        -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -omf=elf -legacy-libc  -I"source/Animations" -I"source/CubeControl" -I"source/LibraryFiles"  -mreserve=data@0x800:0x81F -mreserve=data@0x820:0x821 -mreserve=data@0x822:0x823 -mreserve=data@0x824:0x825 -mreserve=data@0x826:0x84F   -Wl,,--defsym=__MPLAB_BUILD=1,--defsym=__MPLAB_DEBUG=1,--defsym=__DEBUG=1,--defsym=__MPLAB_DEBUGGER_PK3=1,$(MP_LINKER_FILE_OPTION),--stack=16,--check-sections,--data-init,--pack-data,--handles,--isr,--no-gc-sections,--fill-upper=0,--stackguard=16,--no-force-link,--smart-io,-Map="${DISTDIR}/${PROJECTNAME}.${IMAGE_TYPE}.map",--report-mem,--memorysummary,dist/${CND_CONF}/${IMAGE_TYPE}/memoryfile.xml$(MP_EXTRA_LD_POST) 
 	
 else
 dist/${CND_CONF}/${IMAGE_TYPE}/LedCube.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk   lkr/p24FJ64GA004_bootldr.gld
 	@${MKDIR} dist/${CND_CONF}/${IMAGE_TYPE} 
-	${MP_CC} $(MP_EXTRA_LD_PRE)  -o dist/${CND_CONF}/${IMAGE_TYPE}/LedCube.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}      -mcpu=$(MP_PROCESSOR_OPTION)        -omf=elf -legacy-libc  -I"source/CubeControl" -I"source/Animations" -I"source/LibraryFiles" -Wl,,--defsym=__MPLAB_BUILD=1,$(MP_LINKER_FILE_OPTION),--stack=16,--check-sections,--data-init,--pack-data,--handles,--isr,--no-gc-sections,--fill-upper=0,--stackguard=16,--no-force-link,--smart-io,-Map="${DISTDIR}/${PROJECTNAME}.${IMAGE_TYPE}.map",--report-mem,--memorysummary,dist/${CND_CONF}/${IMAGE_TYPE}/memoryfile.xml$(MP_EXTRA_LD_POST) 
+	${MP_CC} $(MP_EXTRA_LD_PRE)  -o dist/${CND_CONF}/${IMAGE_TYPE}/LedCube.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}      -mcpu=$(MP_PROCESSOR_OPTION)        -omf=elf -legacy-libc  -I"source/Animations" -I"source/CubeControl" -I"source/LibraryFiles" -Wl,,--defsym=__MPLAB_BUILD=1,$(MP_LINKER_FILE_OPTION),--stack=16,--check-sections,--data-init,--pack-data,--handles,--isr,--no-gc-sections,--fill-upper=0,--stackguard=16,--no-force-link,--smart-io,-Map="${DISTDIR}/${PROJECTNAME}.${IMAGE_TYPE}.map",--report-mem,--memorysummary,dist/${CND_CONF}/${IMAGE_TYPE}/memoryfile.xml$(MP_EXTRA_LD_POST) 
 	${MP_CC_DIR}\\xc16-bin2hex dist/${CND_CONF}/${IMAGE_TYPE}/LedCube.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX} -a  -omf=elf  
 	
 endif
@@ -318,8 +335,8 @@ endif
 
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
-	${RM} -r build/debug
-	${RM} -r dist/debug
+	${RM} -r build/debug_and_program
+	${RM} -r dist/debug_and_program
 
 # Enable dependency checking
 .dep.inc: .depcheck-impl
