@@ -297,7 +297,7 @@ __attribute__((interrupt,auto_psv)) _U1RXInterrupt(void) {
                     "An UART1 overrun error has been detected\n\n",
                     __FILE__, __LINE__, __FUNCTION__);
 #else /* DEBUG */
-            // Return the message: "ERROR: UART1 overflow"
+            // Return the message: "ERROR: UART1 overflow" @todo _str is unknown in this function
             *_str = '\n'; *++_str = '\n'; *++_str = 'E'; *++_str = 'R';
             *++_str = 'R'; *++_str = 'O'; *++_str = 'R'; *++_str = ':';
             *++_str = ' '; *++_str = 'U'; *++_str = 'A'; *++_str = 'R';

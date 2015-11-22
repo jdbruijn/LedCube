@@ -104,24 +104,34 @@ main(int argc, char** argv) {
     Buzzer_shortBeep();
     
     LedCube_init();
+    Buzzer_shortBeep();
     Port_ClearPin(OE);
-    FillRowWithSingleColour(0,2, 0,0,15);
-    FillRowAtOnceWithSingleColour(3,2, 0,0,15);
-    Delay_s(10);
+    uint32_t delay = 1000;
     
     // Infinite loop for user code.
     while(1)
     {
-        LedCube_setPixel(0,0,0, 0,0,1);
+        
         uint8_t i = 0;
-        for(i = 0; i < 16; i++) {
-            LedCube_setPixel(3,4,2,  0, 0, 14);
-            Delay_ms(500);
+        for(i = 0; i < CUBEDATA_MAX_X_C; i++) {
+            LedCube_setPixel(i,0,0, LEDCUBE_MAX_INTENSITY, 0, 0);
+            LedCube_update();
+            Delay_ms(delay);
+//            LedCube_printHexReadData();
+            LedCube_resetData();
+            LedCube_setPixel(i,0,0, 0, LEDCUBE_MAX_INTENSITY, 0);
+            LedCube_update();
+            Delay_ms(delay);
+//            LedCube_printHexReadData();
+            LedCube_resetData();
+            LedCube_setPixel(i,0,0, 0, 0, LEDCUBE_MAX_INTENSITY);
+            LedCube_update();
+            Delay_ms(delay);
+//            LedCube_printHexReadData();
+            LedCube_resetData();
         }
         LedCube_update();
-        LedCube_resetData();
-        Delay_ms(5000);
-        
+        Delay_ms(10000);
     }
     
     // End, nothing comes beyond this point!
