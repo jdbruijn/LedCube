@@ -42,8 +42,7 @@ extern "C" {
 /**
  * Create a bitmask. E.g. 0b00010000
  * 
- * @Note    b must be a power of 2
- * @param   b The number of the bit to create the mask for (0-128)
+ * @param   b The number of the bit to create the mask for (0-64)
  * @Example <code>uint8_t mask1 = bitMask(3); // Create bit mask 0b00001000</code>
  */
 #define bitMask(b) (0x01 << (b))
