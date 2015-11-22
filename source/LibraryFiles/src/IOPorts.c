@@ -63,7 +63,11 @@ IOPorts_init( ) {
     Port_ConfigurePinDigitalOut(SPI2_SCK);
     Port_ConfigurePinDigitalOut(ANODE_LATCH);
     /* LedDriver & Anode Control */
+#ifdef USE_OE_STATE_EXTENDER
+    Port_ConfigurePinDigitalIn(OE);
+#else
     Port_ConfigurePinDigitalOut(OE);
+#endif
     /* USB to UART */
     Port_ConfigurePinDigitalIn(USB_TO_UART_RX);
     Port_ConfigurePinDigitalOut(USB_TO_UART_TX);
