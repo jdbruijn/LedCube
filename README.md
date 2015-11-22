@@ -2,6 +2,7 @@ LedCube
 =======
 
 [![License MIT][badge-license]][license]
+[![Travis build status][badge-travis]][travis]
 
 LedCube is a project of making an 8x8x8 RGB LED cube. This repository contains the drawings, design, overview of the hardware and last but not least the code to control this 8x8x8 RGB LED cube.
 
@@ -24,3 +25,5 @@ The license can be found in the `LICENSE` file.
 
 [badge-license]: https://img.shields.io/badge/license-MIT-blue.svg
 [license]: https://github.com/vidavidorra/LedCube/blob/master/LICENSE
+[badge-travis]: https://travis-ci.org/vidavidorra/LedCube.svg
+[travis]: https://travis-ci.org/vidavidorra/LedCube
