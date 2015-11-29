@@ -250,18 +250,13 @@ Uart1_gets( char *_str, uint8_t _num ) {
              * overflow.
              */
 #ifdef DEBUG
-            Uart1_printf("\n ERROR: %s:%d:%s(): " \
-                    "An UART1 overrun error has been detected\n\n",
+            Uart1_printf("\n\n ERROR: %s:%d:%s(): " \
+                    "UART1 FIFO software buffer overflow\n\n",
                     __FILE__, __LINE__, __FUNCTION__);
 #else /* DEBUG */
-            // Return the message: "ERROR: UART1 overflow"
-            *_str = '\n'; *++_str = '\n'; *++_str = 'E'; *++_str = 'R';
-            *++_str = 'R'; *++_str = 'O'; *++_str = 'R'; *++_str = ':';
-            *++_str = ' '; *++_str = 'U'; *++_str = 'A'; *++_str = 'R';
-            *++_str = 'T'; *++_str = '1'; *++_str = ' '; *++_str = 'o';
-            *++_str = 'v'; *++_str = 'e'; *++_str = 'r'; *++_str = 'f';
-            *++_str = 'l'; *++_str = 'o'; *++_str = 'w'; *++_str = '\n';
-            *++_str = '\n'; *++_str = '\0';
+            Uart1_puts("\n\n ERROR: "); Uart1_puts(__FILE__);
+            Uart1_putNum(__LINE__, 10); Uart1_puts(__FUNCTION__);
+            Uart1_puts("UART1 FIFO software buffer overflow\n\n");
 #endif /* DEBUG */
             
             return;
@@ -293,18 +288,13 @@ __attribute__((interrupt,auto_psv)) _U1RXInterrupt(void) {
         else if( U1STAbits.OERR == 1 ) {
             U1STAbits.OERR = 0;         // Clear the Overrun Error Status bit
 #ifdef DEBUG
-            Uart1_printf("\n ERROR: %s:%d:%s(): " \
-                    "An UART1 overrun error has been detected\n\n",
+            Uart1_printf("\n\n ERROR: %s:%d:%s(): " \
+                    "UART1 hardware overrun\n\n",
                     __FILE__, __LINE__, __FUNCTION__);
 #else /* DEBUG */
-            // Return the message: "ERROR: UART1 overflow" @todo _str is unknown in this function
-            *_str = '\n'; *++_str = '\n'; *++_str = 'E'; *++_str = 'R';
-            *++_str = 'R'; *++_str = 'O'; *++_str = 'R'; *++_str = ':';
-            *++_str = ' '; *++_str = 'U'; *++_str = 'A'; *++_str = 'R';
-            *++_str = 'T'; *++_str = '1'; *++_str = ' '; *++_str = 'o';
-            *++_str = 'v'; *++_str = 'e'; *++_str = 'r'; *++_str = 'f';
-            *++_str = 'l'; *++_str = 'o'; *++_str = 'w'; *++_str = '\n';
-            *++_str = '\n'; *++_str = '\0';
+            Uart1_puts("\n\n ERROR: "); Uart1_puts(__FILE__);
+            Uart1_putNum(__LINE__, 10); Uart1_puts(__FUNCTION__);
+            Uart1_puts("UART1 hardware overrun\n\n");
 #endif /* DEBUG */
         }
 
