@@ -13,7 +13,7 @@
  * 
  *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
 /** @file
- * @brief Definition of a number of colours.
+ * @brief Definition of a number of basic RGB colours.
  * 
  * These colours can be used in combination with the @ref LedCube_setPixel
  * function and are formatted in RGB order.
@@ -36,37 +36,37 @@ extern "C" {
  * Defines
  ******************************************************************************/
 /** Internal maximum intensity for a single colour. */
-#define _MAX    LEDCUBE_MAX_INTENSITY
+#define _COLOUR_MAX LEDCUBE_MAX_INTENSITY
 
-/* Colour values:       
- *             | red   || green || blue  | */
+/* Colour values:
+ *                     | red      |  | green      |  | blue     | */
 /** Colour black, i.e. the red, green and blue LED are turned off. @ref OFF can
  *  also be used for this. */
-#define BLACK   0      , 0      , 0
+#define COLOUR_BLACK   0           , 0             , 0
 
 /** Colour red. Red is at full intensity and green and blue are turned off. */
-#define RED     _MAX   , 0      , 0
+#define COLOUR_RED     _COLOUR_MAX , 0             , 0
 
 /** Colour green. Green is at full intensity and red and blue are turned off. */
-#define GREEN   0      , _MAX   , 0
+#define COLOUR_GREEN   0           , _COLOUR_MAX   , 0
 
 /** Colour yellow. Red and green are at full intensity and blue is turned off. */
-#define YELLOW  _MAX   , _MAX   , 0
+#define COLOUR_YELLOW  _COLOUR_MAX , _COLOUR_MAX   , 0
 
 /** Colour blue. Blue is at full intensity and red and blue are turned off. */
-#define BLUE    0      , 0      , _MAX
+#define COLOUR_BLUE    0           , 0             , _COLOUR_MAX
 
 /** Colour magenta. Red and blue are at full intensity and green is turned off. */
-#define MAGENTA _MAX   , 0      , _MAX
+#define COLOUR_MAGENTA _COLOUR_MAX , 0             , _COLOUR_MAX
 
 /** Colour cyan. Green and blue are at full intensity and red is turned off. */
-#define CYAN    0      , _MAX   , _MAX
+#define COLOUR_CYAN    0           , _COLOUR_MAX   , _COLOUR_MAX
 
 /** Colour white. Red, green and blue are all at full intensity. */
-#define WHITE   _MAX   , _MAX   , _MAX
+#define COLOUR_WHITE   _COLOUR_MAX , _COLOUR_MAX   , _COLOUR_MAX
 
-/** Alias for @ref BLACK. */
-#define OFF     BLACK
+/** Alias for @ref COLOUR_BLACK. */
+#define COLOUR_OFF COLOUR_BLACK
 
 #ifdef	__cplusplus
 }
