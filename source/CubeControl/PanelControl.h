@@ -72,7 +72,7 @@ PanelControl_init( void );
  */
 void
 PanelControl_update( const pCubeControlData_t _pCubeControlData,
-        const pCubeData_t _pCubeData[],
+        const pCubeData_t _pCubeData,
         const uint8_t _layer,
         const Panels_t _panel,
         const uint8_t _bamRound );
