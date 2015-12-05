@@ -91,7 +91,7 @@ ConfigureOscillator( void ) {
      * 001 = 4 MHz (divide by 2)
      * 000 = 8 MHz (divide by 1)
      */
-    CLKDIVbits.RCDIV = 0b000;
+//    CLKDIVbits.RCDIV = 0b000;
     
     return;
 }

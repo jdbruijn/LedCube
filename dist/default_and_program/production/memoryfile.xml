@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project>
+  <executable name="dist/default_and_program/production/LedCube.X.production.elf">
+    <memory name="data">
+      <units>bytes</units>
+      <length>8192</length>
+      <used>2502</used>
+      <free>5690</free>
+    </memory>
+    <memory name="program">
+      <units>bytes</units>
+      <length>60663</length>
+      <used>25308</used>
+      <free>35355</free>
+    </memory>
+  </executable>
+</project>

@@ -3,9 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/jdebruijn/Drive/Programming/MPLABX/LedCube.X/source/CubeControl/src/LedCube.c</file>
+            <file>file:/C:/Users/jdebruijn/Drive/Programming/MPLABX/LedCube.X/source/CubeControl/Colours.h</file>
             <file>file:/C:/Users/jdebruijn/Drive/Programming/MPLABX/LedCube.X/source/src/main.c</file>
+            <file>file:/C:/Users/jdebruijn/Drive/Programming/MPLABX/LedCube.X/source/Animations/src/Fill.c</file>
             <file>file:/C:/Users/jdebruijn/Drive/Programming/MPLABX/LedCube.X/source/CubeControl/LedCube.h</file>
-            <file>file:/C:/Users/jdebruijn/Drive/Programming/MPLABX/LedCube.X/source/LibraryFiles/Buzzer.h</file>
+            <file>file:/C:/Users/jdebruijn/Drive/Programming/MPLABX/LedCube.X/source/CubeControl/src/PanelControl.c</file>
+            <file>file:/C:/Users/jdebruijn/Drive/Programming/MPLABX/LedCube.X/source/CubeControl/LayerControl.h</file>
+            <file>file:/C:/Users/jdebruijn/Drive/Programming/MPLABX/LedCube.X/source/CubeControl/src/LayerControl.c</file>
         </group>
     </open-files>
 </project-private>

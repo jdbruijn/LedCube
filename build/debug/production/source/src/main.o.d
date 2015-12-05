@@ -24,4 +24,6 @@ source/LibraryFiles/Ports.h  \
 source/LibraryFiles/Interrupts.h  \
  source/LibraryFiles/MyAssert.h  \
 source/Animations/Fill.h  \
- source/CubeControl/CubeControlData.h 
+ source/CubeControl/CubeControlData.h  \
+source/CubeControl/Colours.h  \
+ source/CubeControl/LedCube.h 

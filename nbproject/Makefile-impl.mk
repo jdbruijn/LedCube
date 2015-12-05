@@ -27,11 +27,11 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 PROJECTNAME=LedCube.X
 
 # Active Configuration
-DEFAULTCONF=debug
+DEFAULTCONF=default
 CONF=${DEFAULTCONF}
 
 # All Configurations
-ALLCONFS=default debug debug_and_program 
+ALLCONFS=default debug debug_and_program default_and_program 
 
 
 # build
@@ -48,6 +48,7 @@ ALLCONFS=default debug debug_and_program
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=default clean
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=debug clean
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=debug_and_program clean
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=default_and_program clean
 
 
 
@@ -56,6 +57,7 @@ ALLCONFS=default debug debug_and_program
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=default build
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=debug build
 	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=debug_and_program build
+	    ${MAKE} SUBPROJECTS=${SUBPROJECTS} CONF=default_and_program build
 
 
 

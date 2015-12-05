@@ -25,3 +25,10 @@ CND_ARTIFACT_PATH_debug_and_program=dist/debug_and_program/production/LedCube.X.
 CND_PACKAGE_DIR_debug_and_program=${CND_DISTDIR}/debug_and_program/package
 CND_PACKAGE_NAME_debug_and_program=ledcube.x.tar
 CND_PACKAGE_PATH_debug_and_program=${CND_DISTDIR}/debug_and_program/package/ledcube.x.tar
+# default_and_program configuration
+CND_ARTIFACT_DIR_default_and_program=dist/default_and_program/production
+CND_ARTIFACT_NAME_default_and_program=LedCube.X.production.hex
+CND_ARTIFACT_PATH_default_and_program=dist/default_and_program/production/LedCube.X.production.hex
+CND_PACKAGE_DIR_default_and_program=${CND_DISTDIR}/default_and_program/package
+CND_PACKAGE_NAME_default_and_program=ledcube.x.tar
+CND_PACKAGE_PATH_default_and_program=${CND_DISTDIR}/default_and_program/package/ledcube.x.tar

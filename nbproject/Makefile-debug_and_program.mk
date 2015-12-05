@@ -45,17 +45,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=source/Animations/src/Fill.c source/CubeControl/src/LayerControl.c source/CubeControl/src/LedCube.c source/CubeControl/src/LedDriver.c source/CubeControl/src/PanelControl.c source/CubeControl/src/CubeControlData.c source/LibraryFiles/src/Uart.c source/LibraryFiles/src/BitOperations.c source/LibraryFiles/src/Buzzer.c source/LibraryFiles/src/IOPorts.c source/LibraryFiles/src/SwFifoBuffer.c source/LibraryFiles/src/System.c source/LibraryFiles/src/Debug.c source/src/main.c
+SOURCEFILES_QUOTED_IF_SPACED=source/Animations/src/Fill.c source/CubeControl/src/LayerControl.c source/CubeControl/src/LedCube.c source/CubeControl/src/LedDriver.c source/CubeControl/src/PanelControl.c source/CubeControl/src/CubeControlData.c source/LibraryFiles/src/Uart.c source/LibraryFiles/src/BitOperations.c source/LibraryFiles/src/Buzzer.c source/LibraryFiles/src/IOPorts.c source/LibraryFiles/src/SwFifoBuffer.c source/LibraryFiles/src/System.c source/src/main.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/source/Animations/src/Fill.o ${OBJECTDIR}/source/CubeControl/src/LayerControl.o ${OBJECTDIR}/source/CubeControl/src/LedCube.o ${OBJECTDIR}/source/CubeControl/src/LedDriver.o ${OBJECTDIR}/source/CubeControl/src/PanelControl.o ${OBJECTDIR}/source/CubeControl/src/CubeControlData.o ${OBJECTDIR}/source/LibraryFiles/src/Uart.o ${OBJECTDIR}/source/LibraryFiles/src/BitOperations.o ${OBJECTDIR}/source/LibraryFiles/src/Buzzer.o ${OBJECTDIR}/source/LibraryFiles/src/IOPorts.o ${OBJECTDIR}/source/LibraryFiles/src/SwFifoBuffer.o ${OBJECTDIR}/source/LibraryFiles/src/System.o ${OBJECTDIR}/source/LibraryFiles/src/Debug.o ${OBJECTDIR}/source/src/main.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/source/Animations/src/Fill.o.d ${OBJECTDIR}/source/CubeControl/src/LayerControl.o.d ${OBJECTDIR}/source/CubeControl/src/LedCube.o.d ${OBJECTDIR}/source/CubeControl/src/LedDriver.o.d ${OBJECTDIR}/source/CubeControl/src/PanelControl.o.d ${OBJECTDIR}/source/CubeControl/src/CubeControlData.o.d ${OBJECTDIR}/source/LibraryFiles/src/Uart.o.d ${OBJECTDIR}/source/LibraryFiles/src/BitOperations.o.d ${OBJECTDIR}/source/LibraryFiles/src/Buzzer.o.d ${OBJECTDIR}/source/LibraryFiles/src/IOPorts.o.d ${OBJECTDIR}/source/LibraryFiles/src/SwFifoBuffer.o.d ${OBJECTDIR}/source/LibraryFiles/src/System.o.d ${OBJECTDIR}/source/LibraryFiles/src/Debug.o.d ${OBJECTDIR}/source/src/main.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/source/Animations/src/Fill.o ${OBJECTDIR}/source/CubeControl/src/LayerControl.o ${OBJECTDIR}/source/CubeControl/src/LedCube.o ${OBJECTDIR}/source/CubeControl/src/LedDriver.o ${OBJECTDIR}/source/CubeControl/src/PanelControl.o ${OBJECTDIR}/source/CubeControl/src/CubeControlData.o ${OBJECTDIR}/source/LibraryFiles/src/Uart.o ${OBJECTDIR}/source/LibraryFiles/src/BitOperations.o ${OBJECTDIR}/source/LibraryFiles/src/Buzzer.o ${OBJECTDIR}/source/LibraryFiles/src/IOPorts.o ${OBJECTDIR}/source/LibraryFiles/src/SwFifoBuffer.o ${OBJECTDIR}/source/LibraryFiles/src/System.o ${OBJECTDIR}/source/src/main.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/source/Animations/src/Fill.o.d ${OBJECTDIR}/source/CubeControl/src/LayerControl.o.d ${OBJECTDIR}/source/CubeControl/src/LedCube.o.d ${OBJECTDIR}/source/CubeControl/src/LedDriver.o.d ${OBJECTDIR}/source/CubeControl/src/PanelControl.o.d ${OBJECTDIR}/source/CubeControl/src/CubeControlData.o.d ${OBJECTDIR}/source/LibraryFiles/src/Uart.o.d ${OBJECTDIR}/source/LibraryFiles/src/BitOperations.o.d ${OBJECTDIR}/source/LibraryFiles/src/Buzzer.o.d ${OBJECTDIR}/source/LibraryFiles/src/IOPorts.o.d ${OBJECTDIR}/source/LibraryFiles/src/SwFifoBuffer.o.d ${OBJECTDIR}/source/LibraryFiles/src/System.o.d ${OBJECTDIR}/source/src/main.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/source/Animations/src/Fill.o ${OBJECTDIR}/source/CubeControl/src/LayerControl.o ${OBJECTDIR}/source/CubeControl/src/LedCube.o ${OBJECTDIR}/source/CubeControl/src/LedDriver.o ${OBJECTDIR}/source/CubeControl/src/PanelControl.o ${OBJECTDIR}/source/CubeControl/src/CubeControlData.o ${OBJECTDIR}/source/LibraryFiles/src/Uart.o ${OBJECTDIR}/source/LibraryFiles/src/BitOperations.o ${OBJECTDIR}/source/LibraryFiles/src/Buzzer.o ${OBJECTDIR}/source/LibraryFiles/src/IOPorts.o ${OBJECTDIR}/source/LibraryFiles/src/SwFifoBuffer.o ${OBJECTDIR}/source/LibraryFiles/src/System.o ${OBJECTDIR}/source/LibraryFiles/src/Debug.o ${OBJECTDIR}/source/src/main.o
+OBJECTFILES=${OBJECTDIR}/source/Animations/src/Fill.o ${OBJECTDIR}/source/CubeControl/src/LayerControl.o ${OBJECTDIR}/source/CubeControl/src/LedCube.o ${OBJECTDIR}/source/CubeControl/src/LedDriver.o ${OBJECTDIR}/source/CubeControl/src/PanelControl.o ${OBJECTDIR}/source/CubeControl/src/CubeControlData.o ${OBJECTDIR}/source/LibraryFiles/src/Uart.o ${OBJECTDIR}/source/LibraryFiles/src/BitOperations.o ${OBJECTDIR}/source/LibraryFiles/src/Buzzer.o ${OBJECTDIR}/source/LibraryFiles/src/IOPorts.o ${OBJECTDIR}/source/LibraryFiles/src/SwFifoBuffer.o ${OBJECTDIR}/source/LibraryFiles/src/System.o ${OBJECTDIR}/source/src/main.o
 
 # Source Files
-SOURCEFILES=source/Animations/src/Fill.c source/CubeControl/src/LayerControl.c source/CubeControl/src/LedCube.c source/CubeControl/src/LedDriver.c source/CubeControl/src/PanelControl.c source/CubeControl/src/CubeControlData.c source/LibraryFiles/src/Uart.c source/LibraryFiles/src/BitOperations.c source/LibraryFiles/src/Buzzer.c source/LibraryFiles/src/IOPorts.c source/LibraryFiles/src/SwFifoBuffer.c source/LibraryFiles/src/System.c source/LibraryFiles/src/Debug.c source/src/main.c
+SOURCEFILES=source/Animations/src/Fill.c source/CubeControl/src/LayerControl.c source/CubeControl/src/LedCube.c source/CubeControl/src/LedDriver.c source/CubeControl/src/PanelControl.c source/CubeControl/src/CubeControlData.c source/LibraryFiles/src/Uart.c source/LibraryFiles/src/BitOperations.c source/LibraryFiles/src/Buzzer.c source/LibraryFiles/src/IOPorts.c source/LibraryFiles/src/SwFifoBuffer.c source/LibraryFiles/src/System.c source/src/main.c
 
 
 CFLAGS=
@@ -90,8 +90,8 @@ ifneq ($(INFORMATION_MESSAGE), )
 endif
 	${MAKE}  -f nbproject/Makefile-debug_and_program.mk dist/${CND_CONF}/${IMAGE_TYPE}/LedCube.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
 	@echo "--------------------------------------"
-	@echo "User defined post-build step: ["C:\Program Files (x86)\BullyCPP\BullyCPP-0.8.1-win32.exe" --baud 115200 --no-gui --device COM4 --mclr C:/Users/jdebruijn/Drive/Programming/MPLABX/LedCube.X/dist/debug/production/LedCube.X.production.hex]"
-	@"C:\Program Files (x86)\BullyCPP\BullyCPP-0.8.1-win32.exe" --baud 115200 --no-gui --device COM4 --mclr C:/Users/jdebruijn/Drive/Programming/MPLABX/LedCube.X/dist/debug/production/LedCube.X.production.hex
+	@echo "User defined post-build step: ["C:\Program Files (x86)\BullyCPP\BullyCPP-0.8.1-win32.exe" --baud 115200 --no-gui --device COM4 --mclr C:/Users/jdebruijn/Drive/Programming/MPLABX/LedCube.X/dist/debug_and_program/production/LedCube.X.production.hex]"
+	@"C:\Program Files (x86)\BullyCPP\BullyCPP-0.8.1-win32.exe" --baud 115200 --no-gui --device COM4 --mclr C:/Users/jdebruijn/Drive/Programming/MPLABX/LedCube.X/dist/debug_and_program/production/LedCube.X.production.hex
 	@echo "--------------------------------------"
 
 MP_PROCESSOR_OPTION=24FJ64GA004
@@ -182,13 +182,6 @@ ${OBJECTDIR}/source/LibraryFiles/src/System.o: source/LibraryFiles/src/System.c 
 	@${RM} ${OBJECTDIR}/source/LibraryFiles/src/System.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  source/LibraryFiles/src/System.c  -o ${OBJECTDIR}/source/LibraryFiles/src/System.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/LibraryFiles/src/System.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -legacy-libc  -I"source/Animations" -I"source/CubeControl" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/source/LibraryFiles/src/System.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
-	
-${OBJECTDIR}/source/LibraryFiles/src/Debug.o: source/LibraryFiles/src/Debug.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/source/LibraryFiles/src" 
-	@${RM} ${OBJECTDIR}/source/LibraryFiles/src/Debug.o.d 
-	@${RM} ${OBJECTDIR}/source/LibraryFiles/src/Debug.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  source/LibraryFiles/src/Debug.c  -o ${OBJECTDIR}/source/LibraryFiles/src/Debug.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/LibraryFiles/src/Debug.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -legacy-libc  -I"source/Animations" -I"source/CubeControl" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
-	@${FIXDEPS} "${OBJECTDIR}/source/LibraryFiles/src/Debug.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/source/src/main.o: source/src/main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/source/src" 
@@ -281,13 +274,6 @@ ${OBJECTDIR}/source/LibraryFiles/src/System.o: source/LibraryFiles/src/System.c 
 	@${RM} ${OBJECTDIR}/source/LibraryFiles/src/System.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  source/LibraryFiles/src/System.c  -o ${OBJECTDIR}/source/LibraryFiles/src/System.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/LibraryFiles/src/System.o.d"        -g -omf=elf -legacy-libc  -I"source/Animations" -I"source/CubeControl" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
 	@${FIXDEPS} "${OBJECTDIR}/source/LibraryFiles/src/System.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
-	
-${OBJECTDIR}/source/LibraryFiles/src/Debug.o: source/LibraryFiles/src/Debug.c  nbproject/Makefile-${CND_CONF}.mk
-	@${MKDIR} "${OBJECTDIR}/source/LibraryFiles/src" 
-	@${RM} ${OBJECTDIR}/source/LibraryFiles/src/Debug.o.d 
-	@${RM} ${OBJECTDIR}/source/LibraryFiles/src/Debug.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  source/LibraryFiles/src/Debug.c  -o ${OBJECTDIR}/source/LibraryFiles/src/Debug.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/source/LibraryFiles/src/Debug.o.d"        -g -omf=elf -legacy-libc  -I"source/Animations" -I"source/CubeControl" -I"source/LibraryFiles" -O0 -DDEBUG -DUSE_OE_STATE_EXTENDER -msmart-io=1 -Wall -msfr-warn=off  
-	@${FIXDEPS} "${OBJECTDIR}/source/LibraryFiles/src/Debug.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 ${OBJECTDIR}/source/src/main.o: source/src/main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}/source/src" 
