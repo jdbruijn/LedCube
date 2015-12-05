@@ -88,8 +88,10 @@ IOPorts_init( ) {
     /* Buzzer */
     Port_ConfigurePinDigitalOut(BUZZER);
     
-    // @todo Initialize ports to standard value (for example 1 for OE to disable
-    // all the outputs of the LEDs)
+    /********** Initialize I/Os to a default value ****************************/
+    Port_ClearPin(LD_LE);
+    Port_ClearPin(ANODE_LATCH);
+    Port_SetPin(OE);
     
     return;
 }
