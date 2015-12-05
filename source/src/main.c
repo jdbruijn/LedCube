@@ -82,6 +82,7 @@
 #include "LedCube.h"
 #include "Uart.h"
 #include "Fill.h"
+#include "Colours.h"
 
 /*******************************************************************************
  * Main function
@@ -101,37 +102,27 @@ main(int argc, char** argv) {
     IOPorts_init();
     Uart1_init();
     Buzzer_init();
-    Buzzer_shortBeep();
     
     LedCube_init();
     Buzzer_shortBeep();
-    Port_ClearPin(OE);
-    uint32_t delay = 1000;
     
-    // Infinite loop for user code.
+    // User code
+    uint8_t z;
+    
+    // Infinite loop for user code
     while(1)
     {
-        
-        uint8_t i = 0;
-        for(i = 0; i < CUBEDATA_MAX_X_C; i++) {
-            LedCube_setPixel(i,0,0, LEDCUBE_MAX_INTENSITY, 0, 0);
-            LedCube_update();
-            Delay_ms(delay);
-//            LedCube_printHexReadData();
-            LedCube_resetData();
-            LedCube_setPixel(i,0,0, 0, LEDCUBE_MAX_INTENSITY, 0);
-            LedCube_update();
-            Delay_ms(delay);
-//            LedCube_printHexReadData();
-            LedCube_resetData();
-            LedCube_setPixel(i,0,0, 0, 0, LEDCUBE_MAX_INTENSITY);
-            LedCube_update();
-            Delay_ms(delay);
-//            LedCube_printHexReadData();
-            LedCube_resetData();
+        for(z = 0; z < CUBEDATA_MAX_Z_C; z++) {
+            //LedCube_setPixel(1, 1, z, COLOUR_CYAN);
+            //LedCube_updateUsingCopy();
+            FillLayerWithSingleColour(z, COLOUR_YELLOW);
+            Buzzer_shortBeep();
+            Delay_s(1);
         }
+        Delay_s(10);
+        LedCube_resetData();
         LedCube_update();
-        Delay_ms(10000);
+        LedCube_resetData();
     }
     
     // End, nothing comes beyond this point!

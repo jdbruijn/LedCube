@@ -42,8 +42,6 @@ PanelControl_update( const pCubeControlData_t _pCubeControlData,
     DEBUG_PRINTF_FUNCTION_CALL("%p, %p, %u, %d, %u", _pCubeControlData, \
             _pCubeData, _layer, _panel, _bamRound);
     
-    LED_DRIVER_LeLow();
-    
     /* Update in reverse order (BRG instead of RGB), because the Led Sink
      * Drivers shift the data through. So the data for the first Led Sink Driver 
      * needs to be send last.
@@ -69,9 +67,6 @@ PanelControl_update( const pCubeControlData_t _pCubeControlData,
             ( ((_pCubeData + _layer * CUBEDATA_MAX_Z_C + _panel)->red &
             _pCubeControlData->BamRoundMask[_bamRound]) >>
             _pCubeControlData->BamRoundShift[_bamRound] ) );
-    
-    SPI1_WaitTillTxBufferEmpty();
-    LED_DRIVER_LeHigh();
     
     return;
 }
