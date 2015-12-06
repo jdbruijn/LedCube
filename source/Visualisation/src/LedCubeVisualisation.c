@@ -88,9 +88,13 @@ void
 LedCubeVisualisation_sendCubeData( pCubeData_t const _pCubeData ) {
     uint8_t z;
     
+    LCV_START_TRANSMISSION();
+    
     for(z = 0; z < CUBEDATA_MAX_Z_C; z++) {
         LedCubeVisualisation_sendLayer(z, _pCubeData);
     }
+    
+    LCV_END_TRANSMISSION();
     
     return;
 }
