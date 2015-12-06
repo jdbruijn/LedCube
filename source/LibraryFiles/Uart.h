@@ -35,6 +35,7 @@ extern "C" {
  ******************************************************************************/
 #include <xc.h>
 #include <stdint.h>
+#include <stdbool.h>
 #if defined(UART_USE_PRINTF_YES) || defined(DEBUG)
 #   include <stdio.h>           // For vsprintf() in Uartx_printf()
 #   include <stdarg.h>          // For Uartx_printf()
@@ -121,24 +122,21 @@ void
 Uart1_puts( const char* _s );
 
 /**
- * Send a integer number using the UARTx module.
+ * @brief Send an integer number using the UARTx module.
  * 
- * @Note    Output is without zero padding.
  * @Note    The number must be within range of a 32-bit integer. Thus the
  * lowest number is -2147483647 and the highest number is 2147483647.
  * @param   _num Number to send using UARTx.
  * @param   _base The numeral system to use.\n
  * _base    &#09 Description\n
- * 2        &#09 Binary (adds prefix b to the output)\n
+ * 2        &#09 Binary (adds suffix 'b' to the output)\n
  * 10       &#09 Decimal\n
- * 16       &#09 Hexadecimal (adds prefix h to the output)
- * @return  void
- * @example <code>Uartx_putNum(123, 10);    &#09 // Outputs 123\n
- *          Uartx_putNum(123, 2);           &#09 // Outputs 1111011b\n
- *          Uartx_putNum(123, 16);          &#09 // Outputs 7Bh
+ * 16       &#09 Hexadecimal (adds suffix 'h' to the output)
+ * @param   _pritnBase Boolean value whether the base ('b' or 'h' suffix) needs
+ * to be added.
  */
 void
-Uart1_putNum( int32_t _num, uint8_t _base );
+Uart1_putNum( int32_t _num, uint8_t _base, bool _printBase );
 
 /**
  * Send a byte in binary form (with zero padding) using the UARTx module.

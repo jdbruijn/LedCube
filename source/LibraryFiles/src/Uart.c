@@ -134,7 +134,7 @@ Uart1_puts( const char* _s ) {
  * 
  */
 void
-Uart1_putNum( int32_t _num, uint8_t _base ) {
+Uart1_putNum( int32_t _num, uint8_t _base, bool _printBase ) {
     char const digit[] = "0123456789ABCDEF";
     char str[20] = {0};
     
@@ -158,12 +158,12 @@ Uart1_putNum( int32_t _num, uint8_t _base ) {
         shifter /= _base;
     } while( shifter );
     
-    if( _base == 2 ) {
+    if( _printBase && _base == 2 ) {
         *p_str = 'b';
         *++p_str = '\0';
         p_str--;
     }
-    else if( _base == 16 ) {
+    else if( _printBase && _base == 16 ) {
         *p_str = 'h';
         *++p_str = '\0';
         p_str--; 
@@ -255,7 +255,7 @@ Uart1_gets( char *_str, uint8_t _num ) {
                     __FILE__, __LINE__, __FUNCTION__);
 #else /* DEBUG */
             Uart1_puts("\n\n ERROR: "); Uart1_puts(__FILE__);
-            Uart1_putNum(__LINE__, 10); Uart1_puts(__FUNCTION__);
+            Uart1_putNum(__LINE__, 10, false); Uart1_puts(__FUNCTION__);
             Uart1_puts("UART1 FIFO software buffer overflow\n\n");
 #endif /* DEBUG */
             
@@ -293,7 +293,7 @@ __attribute__((interrupt,auto_psv)) _U1RXInterrupt(void) {
                     __FILE__, __LINE__, __FUNCTION__);
 #else /* DEBUG */
             Uart1_puts("\n\n ERROR: "); Uart1_puts(__FILE__);
-            Uart1_putNum(__LINE__, 10); Uart1_puts(__FUNCTION__);
+            Uart1_putNum(__LINE__, 10, false); Uart1_puts(__FUNCTION__);
             Uart1_puts("UART1 hardware overrun\n\n");
 #endif /* DEBUG */
         }
