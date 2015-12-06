@@ -75,14 +75,22 @@ LedCubeVisualisation_sendRow( uint8_t _x, uint8_t _z,
 void
 LedCubeVisualisation_sendLayer( uint8_t _z,
                                 pCubeData_t const _pCubeData ) {
+    uint8_t x;
     
+    for(x = 0; x < CUBEDATA_MAX_X_C; x++) {
+        LedCubeVisualisation_sendRow(x, _z, _pCubeData);
+    }
     
     return;
 }
 
 void
 LedCubeVisualisation_sendCubeData( pCubeData_t const _pCubeData ) {
+    uint8_t z;
     
+    for(z = 0; z < CUBEDATA_MAX_Z_C; z++) {
+        LedCubeVisualisation_sendLayer(z, _pCubeData);
+    }
     
     return;
 }
