@@ -8,8 +8,11 @@
  * Copyright (c) 2015 Jeroen de Bruijn <vidavidorra@gmail.com>
  * 
  * This file is part of LedCube which is released under The MIT License (MIT).
- * For full license details see file "main.c" or "LICENSE.md" or go to
+ * For full license details see file "main.c" or "LICENSE" or go to
  * https://opensource.org/licenses/MIT
+ *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
+/** @file
+ * @brief Initialize function for the I\Os.
  * 
  ******************************************************************************/
 
@@ -21,10 +24,6 @@
 /*******************************************************************************
  * Functions
  ******************************************************************************/
-/**
- * Configure the used I/O ports using the PPS library.
- * 
- */
 void
 IOPorts_init( ) {
     /********** Configure I/Os ************************************************/
