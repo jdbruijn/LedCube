@@ -74,7 +74,7 @@ extern "C" {
 /*******************************************************************************
  * Macros
  ******************************************************************************/
-#define LayerControl_pulseLatch() Port_PulsePin(ANODE_LATCH)
+#define LayerControl_pulseLatch() PORT_PULSE_PIN(ANODE_LATCH)
 #define SPI2_WaitTillTxBufferEmpty() while( SPI2STATbits.SPITBF == 1 )
 
 /*******************************************************************************
