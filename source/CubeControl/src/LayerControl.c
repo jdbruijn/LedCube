@@ -240,10 +240,10 @@ __attribute__((interrupt,auto_psv)) _T3Interrupt(void) {
         layer++;
     }
     
-    Port_SetPin(OE);    // Disable the output during the update
-    Port_PulsePin(LD_LE);
+    PORT_SET_PIN(OE);    // Disable the output during the update
+    PORT_PULSE_PIN(LD_LE);
     LayerControl_pulseLatch();
-    Port_ClearPin(OE);  // Enable the output again
+    PORT_CLEAR_PIN(OE);  // Enable the output again
 
     IFS0bits.T3IF = 0;              // Clear the Timer x interrupt flag
 }
