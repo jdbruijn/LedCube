@@ -8,13 +8,12 @@
  * Copyright (c) 2015 Jeroen de Bruijn <vidavidorra@gmail.com>
  * 
  * This file is part of LedCube which is released under The MIT License (MIT).
- * For full license details see file "main.c" or "LICENSE.md" or go to
+ * For full license details see file "main.c" or "LICENSE" or go to
  * https://opensource.org/licenses/MIT
  * 
- *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
- * 
- * Description:
- *  Controls a buzzer using the Output Compare peripheral.
+ *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
+/** @file
+ * @brief Controls a buzzer using the Output Compare peripheral.
  * 
  ******************************************************************************/
 
@@ -42,62 +41,52 @@ extern "C" {
 /*******************************************************************************
  * Defines
  ******************************************************************************/
-#define T2_TCKPS                8
-#define BUZZER_MIN_FREQUENCY    40      // Hz
-#define BUZZER_MAX_FREQUENCY    16000   // Hz
-#define BUZZER_MIN_TIME         10      // ms
+#define T2_TCKPS                8       /**< Timer 2 prescaler. */
+#define BUZZER_MIN_FREQUENCY    40      /**< Minimum buzzer frequency in Hz. */
+#define BUZZER_MAX_FREQUENCY    16000   /**< Maximum buzzer frequency in Hz. */
+#define BUZZER_MIN_TIME         10      /**< Minimum buzzer time in ms. */
+/** Maximum buzzer time in ms. Same as maximum delay time @ref DELAY_MAX_MS. */
 #define BUZZER_MAX_TIME         DELAY_MAX_MS
     
 /*******************************************************************************
  * Function prototypes
  ******************************************************************************/
 /**
- * Initialize the on-board buzzer.
- * 
- * @param   void
- * @return  void
- * @Example <code>Buzzer_init();</code>
+ * @brief Initialize the on-board buzzer.
  */
 void
 Buzzer_init( void );
 
 /**
- * Create a short (250 ms) beep.
- * 
- * @param   void
- * @return  void
- * @Example <code>Buzzer_beep();</code>
+ * @brief Create a short (250 ms) beep with a frequency of 4 kHz.
  */
 void
 Buzzer_beep( void );
 
 /**
- * Create a short (50 ms) beep.
- * 
- * @param   void
- * @return  void
- * @Example <code>Buzzer_shortBeep();</code>
+ * @brief Create a very short (50 ms) beep with a frequency of 4 kHz.
  */
 void
 Buzzer_shortBeep( void );
 
 /**
- * Make a sound with a frequency of _frequency Hz and for _time amount of
- * milliseconds.
+ * @brief Make a sound with adjustable frequency and duration time.
  * 
- * @Note    _frequency must be between 40 and 16000 Hz and _time must be between
- * 10 ms and DELAY_MAX_MS.
- * @Note    The output frequency has a maximum deviation of 1.1%.
- * @param   _frequency Frequency to set in Hz
- * @param   _time Time to create a sound in ms
- * @return  void
- * @Example <code>Buzzer_set(10000, 500);</code>
+ * The sound is created using a PWM-signal with  a duty cycle of fifty percent.
+ * @note    _frequency must be between @ref BUZZER_MIN_FREQUENCY and @ref
+ * BUZZER_MAX_FREQUENCY, and _time must be between @ref BUZZER_MIN_TIME and @ref
+ * BUZZER_MAX_TIME.
+ * @note    The output frequency has a maximum deviation of 1.1%.
+ * @param   _frequency Frequency of the sound in Hz. Ranging from @ref
+ * BUZZER_MIN_FREQUENCY to @ref BUZZER_MAX_FREQUENCY.
+ * @param   _time Duration of the sound in ms. Ranging from @ref BUZZER_MIN_TIME
+ * to @ref BUZZER_MAX_TIME.
  */
 void
 Buzzer_set( uint16_t _frequency, uint32_t _time );
 
 #ifdef BUZZER_ENABLE_SELF_TEST_YES
-/**
+/** @todo remove selftest and add seperate unit test
  * Run a self test on the buzzer. I.e. first beep three times than go from
  * lowest frequency to highest frequency followed by three beeps.
  * 

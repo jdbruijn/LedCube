@@ -27,9 +27,9 @@ extern "C" {
 /*******************************************************************************
  * Defines
  ******************************************************************************/
-#define VERSION_MAJOR 0
-#define VERSION_MINOR 1
-#define VERSION_PATCH 0
+#define VERSION_MAJOR 0     /**< Major version number. */
+#define VERSION_MINOR 1     /**< Minor version number. */
+#define VERSION_PATCH 0     /**< Patch version number. */
 
 /*******************************************************************************
  * Macros

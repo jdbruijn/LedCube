@@ -10,6 +10,7 @@
  * This file is part of LedCube which is released under The MIT License (MIT).
  * For full license details see file "main.c" or "LICENSE.md" or go to
  * https://opensource.org/licenses/MIT
+ * 
  *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
 /** @file
  * @brief Gets the configuration bits that are set in the microcontroller.
@@ -24,22 +25,23 @@
 /*******************************************************************************
  * Structures
  ******************************************************************************/
-/** Internal typedef for a 16-bit unsigned word. */
-typedef unsigned short _getPICConfigurationBits_UWord16;
-/** Internal typedef for a 32-bit unsigned word. */
-typedef unsigned long  _getPICConfigurationBits_UWord32;
+/** @brief Internal typedef for a 16-bit unsigned word. */
+typedef unsigned short _GPCB_UWord16;
+/** @brief Internal typedef for a 32-bit unsigned word. */
+typedef unsigned long  _GPCB_UWord32;
 /** @cond ignore
- * Internal typedef union for a 32-bit register. */
+ * Internal typedef union for a 32-bit register.
+ */
 typedef union _tuReg32 {
-  _getPICConfigurationBits_UWord32 Val32;
+  _GPCB_UWord32 Val32;
 
   struct {
-    _getPICConfigurationBits_UWord16 LW;
-    _getPICConfigurationBits_UWord16 HW;
+    _GPCB_UWord16 LW;
+    _GPCB_UWord16 HW;
   } Word;
 
   char Val[4];
-} _getPICConfigurationBits_uReg32;
+} _GPCB_uReg32;
 
 /** Internal structure for the Flash Configuration Word 1. */
 typedef struct tagCW1BITS {
@@ -102,24 +104,24 @@ typedef struct tagCW2BITS {
 
 /** Internal typedef union for the Flash Configuration Word 1. */
 typedef union CWReg1_t {
-  _getPICConfigurationBits_UWord32 Val32;
+  _GPCB_UWord32 Val32;
 
   struct {
-    _getPICConfigurationBits_UWord16 LW;
-    _getPICConfigurationBits_UWord16 HW;
+    _GPCB_UWord16 LW;
+    _GPCB_UWord16 HW;
   } Word;
 
   char Val[4];
   CW1BITS CW1bits;
 } CWReg1_t;
 
-/** Internal typedef union for the Flash Configuration Word 1. */
+/** Internal typedef union for the Flash Configuration Word 2. */
 typedef union CWReg2_t {
-  _getPICConfigurationBits_UWord32 Val32;
+  _GPCB_UWord32 Val32;
 
   struct {
-    _getPICConfigurationBits_UWord16 LW;
-    _getPICConfigurationBits_UWord16 HW;
+    _GPCB_UWord16 LW;
+    _GPCB_UWord16 HW;
   } Word;
 
   char Val[4];
@@ -131,7 +133,7 @@ typedef union CWReg2_t {
  * Functions
  ******************************************************************************/
 /**
- * Internal function to read a 32-bit value from an address.
+ * @brief Internal function to read a 32-bit value from an address.
  * 
  * @note    This gives a compiler warning because a value is not explicitly
  * returned from the function.
@@ -139,9 +141,9 @@ typedef union CWReg2_t {
  * @param   addrlo Low word of the address to read from.
  * @return  UWord32 32-bit value that was at the address of addrhi and addrlo.
  */
-_getPICConfigurationBits_UWord32
-_getPICConfigurationBits_readLatch( _getPICConfigurationBits_UWord16 addrhi,
-        _getPICConfigurationBits_UWord16 addrlo) {
+_GPCB_UWord32
+_GPCB_readLatch( _GPCB_UWord16 addrhi,
+        _GPCB_UWord16 addrlo) {
     UNUSED(addrhi);
     UNUSED(addrlo);
     
@@ -158,16 +160,15 @@ _getPICConfigurationBits_readLatch( _getPICConfigurationBits_UWord16 addrhi,
 }
 
 /**
- * Internal function to verify that the upper byte of a Flash Configuration
- * Word is '1111 1111' as it should be according to the PIC24FJ64GA004 Family
- * Data Sheet.pdf (page 209).
+ * @brief Internal function to verify that the upper byte of a Flash
+ * Configuration Word is '1111 1111' as it should be according to the
+ * PIC24FJ64GA004 Family Data Sheet.pdf (page 209).
  * 
  * @param   _CW 32-bit Configuration Word to verify the upper byte from.
  * @return  bool True if the upper byte is successfully verified, false else.
  */
 bool
-_getPICConfigurationBits_verifyConfigUpperByte(
-        _getPICConfigurationBits_UWord32 _CW ) {
+_GPCB_verifyConfigUpperByte( _GPCB_UWord32 _CW ) {
     if((_CW & 0x00FF0000) == 0x00FF0000) {
         return(true);
     } else {
@@ -178,9 +179,9 @@ _getPICConfigurationBits_verifyConfigUpperByte(
 void
 getPICConfigBits( void ) {
     /* Base address of CW1: Flash Configuration Word 1 */
-    _getPICConfigurationBits_uReg32 CW1Addr;
+    _GPCB_uReg32 CW1Addr;
     /* Base address of CW1: Flash Configuration Word 2 */
-    _getPICConfigurationBits_uReg32 CW2Addr;
+    _GPCB_uReg32 CW2Addr;
     /* Value of CW1: Flash Configuration Word 1 */
     CWReg1_t CW1;
     /* Value of CW1: Flash Configuration Word 2 */
@@ -194,12 +195,12 @@ getPICConfigBits( void ) {
         
     /********** Read and verify Flash Configuration Word 1 ********************/
     PRINTF("\n\nReading Flash Configuration Word 1...\n");
-    CW1.Val32 = _getPICConfigurationBits_readLatch(CW1Addr.Word.HW,
+    CW1.Val32 = _GPCB_readLatch(CW1Addr.Word.HW,
             CW1Addr.Word.LW);
     PRINTF("Binary read value:\n");
     Uart1_putBits(CW1.Val32, 24);
     
-    if(_getPICConfigurationBits_verifyConfigUpperByte(CW1.Val32) == true) {
+    if(_GPCB_verifyConfigUpperByte(CW1.Val32) == true) {
         PRINTF("\nSuccessfully verified the Flash Configuration Word 1" \
             " with address 0x%.2X%.4X\n", CW1Addr.Word.HW, CW1Addr.Word.LW);
         
@@ -314,12 +315,12 @@ getPICConfigBits( void ) {
     
     /********** Read and verify Flash Configuration Word 2 ********************/
     PRINTF("\nReading Flash Configuration Word 2...\n");
-    CW2.Val32 = _getPICConfigurationBits_readLatch(CW2Addr.Word.HW,
+    CW2.Val32 = _GPCB_readLatch(CW2Addr.Word.HW,
             CW2Addr.Word.LW);
     PRINTF("Binary read value:\n");
     Uart1_putBits(CW2.Val32, 24);
     
-    if(_getPICConfigurationBits_verifyConfigUpperByte(CW2.Val32) == true) {
+    if(_GPCB_verifyConfigUpperByte(CW2.Val32) == true) {
         PRINTF("\nSuccessfully verified the Flash Configuration Word 2" \
             " with address 0x%.2X%.4X\n", CW2Addr.Word.HW, CW2Addr.Word.LW);
         
@@ -421,5 +422,4 @@ getPICConfigBits( void ) {
     
     return;
 }
-
 /* End of file getPICConfigurationBits.c */

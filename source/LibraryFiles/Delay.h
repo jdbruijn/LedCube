@@ -8,13 +8,12 @@
  * Copyright (c) 2015 Jeroen de Bruijn <vidavidorra@gmail.com>
  * 
  * This file is part of LedCube which is released under The MIT License (MIT).
- * For full license details see file "main.c" or "LICENSE.md" or go to
+ * For full license details see file "main.c" or "LICENSE" or go to
  * https://opensource.org/licenses/MIT
  * 
- *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
- * 
- * Description:
- *  Delay macros and wrappers to the delay macros in libpic32.h.
+ *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
+/** @file
+ * @brief Delay macros and wrappers to the delay macros in libpic32.h.
  * 
  ******************************************************************************/
 
@@ -28,8 +27,7 @@ extern "C" {
 /*******************************************************************************
  * Includes
  ******************************************************************************/
-/**
- * System.h must be included before libpic32.h because the libpic32.h needs the
+/* System.h must be included before libpic32.h because the libpic32.h needs the
  * definition of FCY, which is in System.h
  */
 #include "System.h"
@@ -38,60 +36,47 @@ extern "C" {
 /*******************************************************************************
  * Defines
  ******************************************************************************/
+/** @brief Maximum amount of seconds to delay. */
 #define DELAY_MAX_S     134U
+/** @brief Maximum amount of milliseconds to delay. */
 #define DELAY_MAX_MS    134217UL
+/** @brief Maximum amount of microseconds to delay. */
 #define DELAY_MAX_US    134217727UL
 
 /*******************************************************************************
  * Condition checks
  ******************************************************************************/
 #ifndef FCY
-#   warning FCY is not defined!
+# warning "FCY is not defined!"
 #elif (FCY < 31250UL)
-#   warning FCY has a very low value!
+# warning "FCY has a very low value!"
 #endif
 
 /*******************************************************************************
- * Macros
+ * Function macros
  ******************************************************************************/
 /**
- * Delay a certain number of seconds.
+ * @brief Delay a certain number of seconds.
  * 
- * @param   d, the number of seconds to delay. Ranging from 1 to 134 seconds.
- * @Example <code>// Prints "Testing Delay_s()..." every second.\n
- * while(1) {\n
- *  &#32 printf("Testing Delay_s()...");\n
- *  &#32 Delay_s(1);\n
- * }</code>
+ * @param   d Number of seconds to delay. Ranging from 1 to @ref DELAY_MAX_S.
  */
-#define Delay_s(d)  \
-        { __delay32( (unsigned long)( ((unsigned long long)d)*(FCY)/1ULL ) ); }
+#define Delay_s(t)                                                             \
+    { __delay32((unsigned long)( ((unsigned long long)(t))*(FCY)/1ULL )); }
 
 /**
- * Delay a certain number of milliseconds.
+ * @brief Delay a certain number of milliseconds.
  * 
- * @param   d, number of milliseconds to delay. Ranging from 1 to 134217
- * milliseconds.
- * @Example <code>// Prints "Testing Delay_ms()..." every 100 milliseconds.\n
- * while(1) {\n
- *  &#32 printf("Testing Delay_ms()...");\n
- *  &#32 Delay_ms(100);\n
- * }</code>
+ * @param   d Milliseconds to delay. Ranging from 1 to @ref DELAY_MAX_MS.
  */
-#define Delay_ms(d) __delay_ms(d)
+#define Delay_ms(t) __delay_ms((t))
 
 /**
- * Delay a certain number of microseconds.
+ * @brief Delay a certain number of microseconds.
  * 
- * @param   d, number of microseconds to delay. Ranging from 1 to 134217727
- * microseconds.
- * @Example <code>// Prints "Testing Delay_us()..." every 1000 microseconds.\n
- * while(1) {\n
- *  &#32 printf("Testing Delay_us()...");\n
- *  &#32 Delay_us(1000);\n
- * }</code>
+ * @param   d, number of microseconds to delay. Ranging from 1 to @ref
+ * DELAY_MAX_US.
  */
-#define Delay_us(d) __delay_us(d)
+#define Delay_us(t) __delay_us((t))
 
 #ifdef	__cplusplus
 }

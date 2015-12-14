@@ -55,30 +55,28 @@ extern "C" {
  * Defines
  ******************************************************************************/
 #ifndef PRINTF
-/** Wrapper for PRINTF to an actual printf function, in this case @ref
+/** 
+ * @brief Wrapper for PRINTF to an actual printf function, in this case @ref
  * Uart1_printf.
  */
 # define PRINTF Uart1_printf
 #endif
 
 #ifdef __CONFIG1_BASE
-/** Base address for Flash Configuration Word 1 */
+/** @brief Base address for Flash Configuration Word 1 */
 # define _CONFIG1_BASE_ADDRESS __CONFIG1_BASE
 #else
-# define _CONFIG1_BASE_ADDRESS 0x000000 /* Dummy base address */
 # error "__CONFIG1_BASE is not defined. Enter the base address of Flash Configuration Word 1 manually."
 # error "For the Configuration Word Addresses @see PIC24FJ64GA004 Family Data Sheet.pdf TABLE 24-1."
 #endif
 
 #ifdef __CONFIG2_BASE
-/** Base address for Flash Configuration Word 1 */
+/** @brief Base address for Flash Configuration Word 2 */
 # define _CONFIG2_BASE_ADDRESS __CONFIG2_BASE
 #else
-# define _CONFIG2_BASE_ADDRESS 0x000000 /* Dummy base address */
 # error "__CONFIG2_BASE is not defined. Enter the base address of Flash Configuration Word 2 manually."
 # error "For the Configuration Word Addresses @see PIC24FJ64GA004 Family Data Sheet.pdf TABLE 24-1."
 #endif
-#define _CONFIG2_BASE_ADDRESS __CONFIG2_BASE
 
 /********** Result descriptions for Flash Configuration Word 1 ************/
 #define JTAGEN_DESC "JTAGEN: JTAG Port Enable bit"
@@ -167,23 +165,24 @@ extern "C" {
 #define POSCMD_00 "[POSCMOD_EC] EC Oscillator mode is selected"
 
 /*******************************************************************************
- * Macros
+ * Function macros
  ******************************************************************************/
 #ifndef UNUSED
-/** Macro to suppress the "unused parameter" warnings. */
+/** @brief Macro to suppress the "unused parameter" warnings. */
 # define UNUSED(x) (void)(x)
 #endif
-/** Macro for printing the configuration bit description with indent. */
+/** @brief Macro for printing the configuration bit description with indent. */
 #define PRINT_DESC(fmt, args...) PRINTF(" " fmt "\n", ##args)
-/** Macro for printing the configuration bit result with indent. */
+/** @brief Macro for printing the configuration bit result with indent. */
 #define PRINT_RESULT(fmt, args...) PRINTF("  " fmt "\n", ##args)
 
 /*******************************************************************************
  * Function prototypes
  ******************************************************************************/
 /**
- * Read the two Flash Configuration Words, verify and print the read Flash
- * Configuration Words in a user friendly format.
+ * @brief Read the two Flash Configuration Words, verify and print the read
+ * Flash Configuration Words in a user friendly format.
+ * 
  * @note    The print of the read data is done using the @ref PRINTF wrapper.
  * 
  * #### Example output (without the asterisks):

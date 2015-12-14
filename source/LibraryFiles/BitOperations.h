@@ -8,12 +8,16 @@
  * Copyright (c) 2015 Jeroen de Bruijn <vidavidorra@gmail.com>
  * 
  * This file is part of LedCube which is released under The MIT License (MIT).
- * For full license details see file "main.c" or "LICENSE.md" or go to
+ * For full license details see file "main.c" or "LICENSE" or go to
  * https://opensource.org/licenses/MIT
  * 
- *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
- * Description:
- *  Several bit operations and manipulations.
+ *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
+/** @file
+ * @brief Several bit operations and manipulations.
+ * @note The macros and functions below are based on Sean Eron Anderson's Bit
+ * Twiddling Hacks.
+ * @see https://graphics.stanford.edu/~seander/bithacks.html#CopyIntegerSign
+ * @see https://github.com/gibsjose/BitHacks/blob/master/BitHacks.md#compute-the-sign-of-an-integer
  * 
  ******************************************************************************/
 
@@ -34,108 +38,86 @@ extern "C" {
 /*******************************************************************************
  * Defines
  ******************************************************************************/
-#define CHAR_BIT        8           /* Number of bits in a byte */
+#define CHAR_BIT        8           /**< @brief Number of bits in a byte. */
 
 /*******************************************************************************
- * Macros
+ * Function macros
  ******************************************************************************/
 /**
- * Create a bitmask. E.g. 0b00010000
+ * @brief Create a bitmask. E.g. 0b00010000
  * 
- * @param   b The number of the bit to create the mask for (0-64)
- * @Example <code>uint8_t mask1 = bitMask(3); // Create bit mask 0b00001000</code>
+ * @param   b The number of the bit to create the mask for (0-64).
  */
 #define bitMask(b) (0x01 << (b))
 
 /**
- * Get the value of a bit or bits.
+ * @brief Get the value of a bit or bits.
  * 
- * @param   b The variable to get the bit(s) from
- * @param   mask The mask for getting the bit(s)
- * @Example <code>bitGet(x, 8); // Get the value of bit 3 (0b00001000) of
- * variable x\n
- * bitGet(x, 7); // Get the value of bits 0-2 (0b00000111) of variable x\n
- * bitGet(x, bitMask(5)); // Get the value of bit 5 (0b00100000) of variable x
- * </code>
+ * @param   b The variable to get the bit(s) from.
+ * @param   mask The mask for getting the bit(s).
  */
 #define bitGet(b, mask)   ((b) & (mask))
 
 /**
- * Set a bit or bits.
+ * @brief Set a bit or bits.
  * 
- * @Note    This changes the variable!
- * @param   b The variable to set the bit(s) in
- * @param   mask The mask for setting the bit(s)
- * @Example <code>bitSet(x, 8); // Set bit 3 (0b00001000) in variable x\n
- * bitSet(x, 7); // Set bits 0-2 (0b00000111) in variable x\n
- * bitSet(x, bitMask(5)); // Set the value of bit 5 (0b00100000) in variable x
- * </code>
+ * @note    This changes the variable!
+ * @param   b The variable to set the bit(s) in.
+ * @param   mask The mask for setting the bit(s).
  */
 #define bitSet(b, mask)   ((p) |= (mask))
 
 /**
- * Clear a bit or bits.
+ * @brief Clear a bit or bits.
  * 
- * @Note    This changes the variable!
- * @param   b The variable to clear the bit(s) in
- * @param   mask The mask for clearing the bit(s)
- * @Example <code>bitClear(x, 8); // Clear bit 3 (0b00001000) of variable x\n
- * bitClear(x, 7); // Clear bits 0-2 (0b00000111) of variable x\n
- * bitClear(x, bitMask(5)); // Clear the value of bit 5(0b00100000) of variable
- * x</code>
+ * @note    This changes the variable!
+ * @param   b The variable to clear the bit(s) in.
+ * @param   mask The mask for clearing the bit(s).
  */
 #define bitClear(b, mask) ((b) &= (~(mask)))
 
 /**
- * Flip/toggle a bit or bits.
+ * @brief Flip/toggle a bit or bits.
  * 
- * @Note    This changes the variable!
- * @param   b The variable to flip the bit(s) in
- * @param   mask The mask for flipping the bit(s)
- * @Example <code>bitFlip(x, 8); // Flip bit 3 (0b00001000) of variable x\n
- * bitFlip(x, 7); // Flip bits 0-2 (0b00000111) of variable x\n
- * bitFlip(x, bitMask(5)); // Get the value of bit 5 (0b00100000) of variable x
- * </code>
+ * @note    This changes the variable!
+ * @param   b The variable to flip the bit(s) in.
+ * @param   mask The mask for flipping the bit(s).
  */
 #define bitFlip(b, mask) ((b) ^= (mask))
 
 /**
- * Shift a variable left.
+ * @brief Shift a variable left.
  * 
- * @Note    This changes the variable!
- * @param   v The variable to shift left
- * @param   p Number of positions to shift the variable left
- * @Example <code>shiftLeft(x, 2); // Shift variable x 2 places left</code>
+ * @note    This changes the variable!
+ * @param   v The variable to shift left.
+ * @param   p Number of positions to shift the variable left.
  */
 #define shiftLeft(v, p) ((v) <<= (p))
 
 /**
- * Shift a variable right.
+ * @brief Shift a variable right.
  * 
- * @Note    This changes the variable!
- * @param   v The variable to shift right
- * @param   p Number of positions to shift the variable right
- * @Example <code>shiftRight(x, 2); // Shift variable x 2 places right</code>
+ * @note    This changes the variable!
+ * @param   v The variable to shift right.
+ * @param   p Number of positions to shift the variable right.
  */
 #define shiftRight(v, p) ((v) >>= (p))
 
 /**
- * Shift a variable left without changing the variable.
+ * @brief Shift a variable left without changing the variable.
  * 
- * @Note    This does not change the variable.
- * @param   v The variable to shift left
- * @param   p Number of positions to shift left
- * @Example <code>x = shiftLeftM(x, 2); // Shift 2 places left</code>
+ * @note    This does not change the variable.
+ * @param   v The variable to shift left.
+ * @param   p Number of positions to shift left.
  */
 #define shiftLeftM(v, p) ((v) << (p))
 
 /**
- * Shift a variable right without changing the variable.
+ * @brief Shift a variable right without changing the variable.
  * 
- * @Note    This does not change the variable.
- * @param   v The variable to shift right
- * @param   p Number of positions to shift right
- * @Example <code>x = shiftRightM(x, 2); // Shift 2 places right</code>
+ * @note    This does not change the variable.
+ * @param   v The variable to shift right.
+ * @param   p Number of positions to shift right.
  */
 #define shiftRightM(v, p) ((v) << (p))
 
@@ -143,20 +125,20 @@ extern "C" {
  * Function prototypes
  ******************************************************************************/
 /**
- * Compute the sign of an integer.
+ * @brief Compute the sign of an integer.
  * 
- * @param   _v, variable of which to compute the sign
- * @return  boolean value of 1 (true) if the variable is positive, 0 else.
+ * @param   _v Variable of which to compute the sign.
+ * @return  bool True if the variable is positive, false else.
  */
 bool
 isPositive( int32_t const _v ) ;
 
 /**
- * Detect if two integers have opposite signs.
+ * @brief Detect if two integers have opposite signs.
  * 
- * @param   _x, first variable of which the signs need to be compared
- * @param   _y, second variable of which the signs need to be compared
- * @return  bool, true if the variables have opposite signs, false else
+ * @param   _x First variable of which the signs need to be compared.
+ * @param   _y Second variable of which the signs need to be compared.
+ * @return  bool True if the variables have opposite signs, false else.
  */
 bool
 haveOppositeSigns( int32_t const _x, int32_t const _y );
@@ -168,7 +150,7 @@ haveOppositeSigns( int32_t const _x, int32_t const _y );
 #undef min
 #endif
 /**
- * Compute the minimum of two integers without branching.
+ * @brief Compute the minimum of two integers without branching.
  * 
  * @param   _x First variable of which the minimum needs to be found.
  * @param   _y Second variable of which the minimum needs to be found.
@@ -184,7 +166,7 @@ min( int32_t const _x, int32_t const _y );
 #undef max
 #endif
 /**
- * Compute the maximum of two integers without branching.
+ * @brief Compute the maximum of two integers without branching.
  * 
  * @param   _x First variable of which the maximum needs to be found.
  * @param   _y Second variable of which the maximum needs to be found.
@@ -194,71 +176,69 @@ int32_t
 max( int32_t const _x, int32_t const _y );
 
 /**
- * Determining if an integer is a power of 2
+ * @brief Determining if an integer is a power of two.
  * 
- * @param   _v, variable of which to check if it is a power of two
- * @return  bool, true if _v is a power of to, false else
+ * @param   _v, variable of which to check if it is a power of two.
+ * @return  bool True if _v is a power of to, false else.
  */
 bool
 isPowerOf2( int32_t const _v );
 
 /**
- * Conditionally set or clear bits without branching.
+ * @brief Conditionally set or clear bits without branching.
  * 
- * @param   _v, pointer to the variable of which to set or clear bits
- * @param   _mask, bit mask for setting or clearing bits
- * @param   _f, flag whether the flag needs to be set or cleared (1 or 0)
- * @return  void
+ * @param   _v Pointer to the variable of which to set or clear bits.
+ * @param   _mask Bit mask for setting or clearing bits.
+ * @param   _f Flag whether the bits needs to be set or cleared (1 or 0).
  */
 void
 modifyBits( uint32_t *_v, uint32_t const _mask, bool const _f );
 
 /**
- * Merge bits from two values according to a mask.
+ * @brief Merge bits from two values according to a mask.
  * 
- * @param   _x, variable to merge in non-masked bits
- * @param   _y, variable to merge in masked bits
- * @param   _mask, bit mask for setting or clearing bits
- * @return  uint32_t, result of the merged variables _x and _y
+ * @param   _x Variable to merge in non-masked bits.
+ * @param   _y Variable to merge in masked bits.
+ * @param   _mask Bit mask for setting or clearing bits.
+ * @return  uint32_t Result of the merged variables _x and _y.
  */
 uint32_t
 mergeBits( uint32_t const _x, uint32_t const _y, uint32_t const _mask );
 
 /**
- * Counting bits set.
+ * @brief Counting bits set.
  * 
- * @param   _v, variable of which to check how much bits are set
- * @return  uint8_t, number of bits set in _v
+ * @param   _v Variable of which to check how much bits are set.
+ * @return  uint8_t Number of bits set in _v.
  */
 uint8_t
 nBitsSet( int32_t const _v );
 
 /**
- * Compute parity of word with a multiply.
+ * @brief Compute parity of word with a multiply.
  * 
- * @param   _v, variable of which to compute the parity
- * @return  bool, true if _v is odd, false else
+ * @param   _v Variable of which to compute the parity.
+ * @return  bool True if _v is odd, false else.
  */
 bool
 isEven( uint32_t const _v );
 
 /**
- * Reverse an N-bit quantity in parallel in 5 * lg(N) operations. Now set to
- * reverse the bit order of an 32 bit unsigned integer.
+ * @brief Reverse an N-bit quantity in parallel in 5 * lg(N) operations. Now set
+ * to reverse the bit order of an 32 bit unsigned integer.
  * 
- * @param   _v, pointer to the variable of which the bit order needs to be
- * reversed
- * @return  void
+ * @param   _v Pointer to the variable of which the bit order needs to be
+ * reversed.
  */
 void
 reverseBitOrder( uint32_t *_v );
 
 /**
- * Round up to the next highest power of 2 by float casting.
+ * @brief Round up to the next highest power of two by float casting.
  * 
- * @param   _v, pointer to the variable of which needs to be round up to the
- * next power of 2
- * @return  uint16_t, the next power of 2
+ * @param   _v Pointer to the variable of which needs to be round up to the
+ * next power of two.
+ * @return  uint16_t The next power of two.
  */
 uint32_t
 roundUpToPowerOf2( uint32_t const _v );

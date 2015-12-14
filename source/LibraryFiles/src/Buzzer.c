@@ -8,8 +8,12 @@
  * Copyright (c) 2015 Jeroen de Bruijn <vidavidorra@gmail.com>
  * 
  * This file is part of LedCube which is released under The MIT License (MIT).
- * For full license details see file "main.c" or "LICENSE.md" or go to
+ * For full license details see file "main.c" or "LICENSE" or go to
  * https://opensource.org/licenses/MIT
+ * 
+ *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
+/** @file
+ * @brief Controls a buzzer using the Output Compare peripheral.
  * 
  ******************************************************************************/
 
@@ -21,10 +25,6 @@
 /*******************************************************************************
  * Functions
  ******************************************************************************/
-/**
- * Setup the I/O and timer 2 to be used for PWM.
- * 
- */
 void
 Buzzer_init( void ) {
     /********** Configure Output Compare Module *******************************/
@@ -39,8 +39,7 @@ Buzzer_init( void ) {
     
     /********** Configure Timer 2 *********************************************/
     T2CONbits.TON = 0;          // Stop the timer during config
-    /**
-     * TCKPS<1:0>: Timerx Input Clock Prescale bits
+    /* TCKPS<1:0>: Timerx Input Clock Prescale bits
      * 11 = 1:256 prescaler value
      * 10 = 1:64 prescaler value
      * 01 = 1:8 prescaler value
@@ -55,10 +54,6 @@ Buzzer_init( void ) {
     return;
 }
 
-/**
- * Beep for 250 ms at a frequency of 4 kHz.
- * 
- */
 void
 Buzzer_beep( void ) {
     DEBUG_PRINTF_FUNCTION_CALL();
@@ -71,10 +66,6 @@ Buzzer_beep( void ) {
     return;
 }
 
-/**
- * Beep for 50 ms at a frequency of 4 kHz.
- * 
- */
 void
 Buzzer_shortBeep( void ) {
     DEBUG_PRINTF_FUNCTION_CALL();
@@ -87,10 +78,6 @@ Buzzer_shortBeep( void ) {
     return;
 }
 
-/**
- * Calculate the PWM period and set 50% duty cycle.
- * 
- */
 void
 Buzzer_set( uint16_t _frequency, uint32_t _time ) {
     DEBUG_PRINTF_FUNCTION_CALL("%u, %lu", _frequency, _time);
@@ -102,8 +89,7 @@ Buzzer_set( uint16_t _frequency, uint32_t _time ) {
             _time <= BUZZER_MAX_TIME );
     
     /********** Set frequency *************************************************/
-    /**
-     * "PWM Period = [(PRy + 1) * TCY * (TMRy Prescale Value)]
+    /* "PWM Period = [(PRy + 1) * TCY * (TMRy Prescale Value)]
      * PWM Frequency = 1/[PWM Period]" (Output Compare, Equation 4-1: 
      * Calculating the PWM Period, Microchip)
      * 

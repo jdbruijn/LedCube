@@ -8,13 +8,12 @@
  * Copyright (c) 2015 Jeroen de Bruijn <vidavidorra@gmail.com>
  * 
  * This file is part of LedCube which is released under The MIT License (MIT).
- * For full license details see file "main.c" or "LICENSE.md" or go to
+ * For full license details see file "main.c" or "LICENSE" or go to
  * https://opensource.org/licenses/MIT
  * 
- *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
- * 
- * Description:
- *  Definitions for the interrupt priority.
+ *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
+/** @file
+ * @brief Definitions for the interrupt priority.
  * 
  ******************************************************************************/
 
@@ -34,7 +33,7 @@ extern "C" {
 /*******************************************************************************
  * Defines
  ******************************************************************************/
-/**
+/* Possible interrupt priorities:
  * 7 = Interrupt is priority 7 (highest priority interrupt)
  * 6 = Interrupt is priority 6
  * 5 = Interrupt is priority 5
@@ -44,13 +43,15 @@ extern "C" {
  * 1 = Interrupt is priority 1
  * 0 = Interrupt source is disabled
  */
-#define INT_U1RX_PRIO           1
-#define INT_T3_PRIO             1
+#define INT_U1RX_PRIO           1   /**< Interrupt priority for UART1 receive */
+#define INT_T3_PRIO             1   /**< Interrupt priority for timer 3 */
 
 /*******************************************************************************
- * Macros
+ * Constant macros
  ******************************************************************************/
 /**
+ * @brief Disable interrupts.
+ * 
  * Disable interrupts by saving the current CPU interrupt priority level to a
  * variable and setting the CPU interrupt priority level to 7 (the highest
  * level).
@@ -61,7 +62,9 @@ extern "C" {
                 SET_AND_SAVE_CPU_IPL(cpuIntPrio, 7)
 
 /**
- * Restore the previous CPU interrupt priority level from the saved variable.
+ * @brief Restore the previous CPU interrupt priority level from the saved
+ * variable.
+ * 
  * Using the predefined RESTORE_CPU_IPL macro for restoring the CPU interrupt
  * priority level. This doesn't necessary mean that interrupts are enabled after
  * this macro, because the CPU interrupt priority level is only restored to it's
