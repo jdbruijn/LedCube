@@ -8,14 +8,14 @@
  * Copyright (c) 2015 Jeroen de Bruijn <vidavidorra@gmail.com>
  * 
  * This file is part of LedCube which is released under The MIT License (MIT).
- * For full license details see file "main.c" or "LICENSE.md" or go to
+ * For full license details see file "main.c" or "LICENSE" or go to
  * https://opensource.org/licenses/MIT
  * 
- *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
+ *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
+/** @file 
+ * @brief Software FIFO buffer which can be used as storage for peripherals.
  * 
- * Description:
- *  Software FIFO buffer which can be used as storage for peripherals.
- *  (For example to store UART Tx and Rx data.)
+ * For example UART Tx and Rx data.
  * 
  ******************************************************************************/
 
@@ -36,13 +36,13 @@ extern "C" {
 /*******************************************************************************
  * Defines
  ******************************************************************************/
-#define FIFO_BUFFER_SIZE            255     // Maximum characters in the buffer
+#define FIFO_BUFFER_SIZE    255     /**< Maximum characters in the buffer. */
 
 /*******************************************************************************
  * Structures
  ******************************************************************************/
 /**
- * Structure representing a software FIFO buffer.
+ * @brief Structure representing a software FIFO buffer.
  * 
  * @note    The bufferFullFlag is the only flag that is not automatically
  * cleared by the software FIFO buffer.
@@ -51,44 +51,41 @@ extern "C" {
  */
 typedef struct {
     /********** Flags *********************************************************/
-    /* This flag is automatically set and cleared by the software buffer */
+    /** This flag is automatically set and cleared by the software buffer */
     uint8_t bufferNotEmptyFlag;
-    /* This flag is automatically set and cleared by the software buffer */
+    /** This flag is automatically set and cleared by the software buffer */
     uint8_t bufferFullFlag;
-    /* This flag is not automatically cleared by the software buffer */
+    /** This flag is not automatically cleared by the software buffer */
     uint8_t bufferOverflowFlag;
     
     /********** Buffer and Buffer control *************************************/
-    char data[FIFO_BUFFER_SIZE];    // The actual FIFO buffer
-    uint16_t iFirst;                // Index of oldest data byte in the buffer
-    uint16_t iLast;                 // Index of newest data byte in the buffer
-    uint16_t numBytes;              // Number of bytes currently in the buffer
+    /** The actual FIFO buffer. */
+    char data[FIFO_BUFFER_SIZE];
+    /** Index of oldest data byte in the buffer. */
+    uint16_t iFirst;
+    /** Index of newest data byte in the buffer. */
+    uint16_t iLast;
+    /** Number of bytes currently stored in the buffer. */
+    uint16_t numBytes;
 } swFifoBuffer_t, *pSwFifoBuffer_t;
 
 /*******************************************************************************
  * Function prototypes
  ******************************************************************************/
 /**
- * Put a single character in the FIFO buffer.
+ * @brief Put a single character in the FIFO buffer.
  * 
  * @param   _pBuffer Pointer to the buffer where the data is stored in.
  * @param   _inData Character to put in the buffer.
- * @return  void
- * @Example <code>FifoBuffer_t rxBuffer = { 0,0,0, {0}, 0,0,0};
- * pSwFifoBuffer_t pRxBuffer = &rxBuffer;
- * FIFOBufferPut(pRxBuffer, U1RXREG);</code>
  */
 void
 swFifoBufferPut( pSwFifoBuffer_t _pBuffer, const char _inData );
 
 /**
- * Get a single character in the FIFO buffer.
+ * @brief Get a single character in the FIFO buffer.
  * 
  * @param   _pBuffer Pointer to the buffer where the data is stored in.
  * @return  char The character gotten from the buffer.
- * @Example <code>FifoBuffer_t rxBuffer = { 0,0,0, {0}, 0,0,0};
- * pSwFifoBuffer_t pRxBuffer = &rxBuffer;
- * char rxData = FIFOBufferGet(pRxBuffer);</code>
  */
 char
 swFifoBufferGet( pSwFifoBuffer_t _pBuffer );

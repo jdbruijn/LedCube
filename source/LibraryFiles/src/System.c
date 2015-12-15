@@ -8,8 +8,12 @@
  * Copyright (c) 2015 Jeroen de Bruijn <vidavidorra@gmail.com>
  * 
  * This file is part of LedCube which is released under The MIT License (MIT).
- * For full license details see file "main.c" or "LICENSE.md" or go to
+ * For full license details see file "main.c" or "LICENSE" or go to
  * https://opensource.org/licenses/MIT
+ * 
+ *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
+/** @file 
+ * @brief Sets the system settings.
  * 
  ******************************************************************************/
 
@@ -21,17 +25,11 @@
 /*******************************************************************************
  * Functions
  ******************************************************************************/
-/**
- * Configure OSCCON and CLKDIV registers.
- * 
- */
 void
 ConfigureOscillator( void ) {
     // @todo Unlock OSCCON register before writing it.
     /********** Configure OSCCON register *************************************/
-//    /**
-//     * NOSC<2:0>: New Oscillator Selection bits
-//     * 
+//    /* NOSC<2:0>: New Oscillator Selection bits
 //     * 111 = Fast RC Oscillator with Postscaler (FRCDIV)
 //     * 110 = Reserved
 //     * 101 = Low-Power RC Oscillator (LPRC)
@@ -43,9 +41,7 @@ ConfigureOscillator( void ) {
 //     */
 //    OSCCONbits.NOSC = 0b001;
 //    
-//    /**
-//     * CLKLOCK: Clock Selection Lock Enabled bit (Set Only bit)
-//     * 
+//    /* CLKLOCK: Clock Selection Lock Enabled bit (Set Only bit)
 //     * If FSCM is enabled (FCKSM1 = 1):
 //     * 1 = Clock and PLL selections are locked
 //     * 0 = Clock and PLL selections are not locked and may be modified by setting the OSWEN bit
@@ -54,34 +50,26 @@ ConfigureOscillator( void ) {
 //     */
 //    //OSCCONbits.CLKLOCK = 0;
 //    
-//    /**
-//     * CF: Clock Fail Detect bit
-//     * 
+//    /* CF: Clock Fail Detect bit
 //     * 1 = FSCM has detected a clock failure
 //     * 0 = No clock failure has been detected
 //     */
 //    OSCCONbits.CF = 0;
 //    
-//    /**
-//     * SOSCEN: 32 kHz Secondary Oscillator (SOSC) Enable bit
-//     * 
+//    /* SOSCEN: 32 kHz Secondary Oscillator (SOSC) Enable bit
 //     * 1 = Enable Secondary Oscillator
 //     * 0 = Disable Secondary Oscillator
 //     */
 //    OSCCONbits.SOSCEN = 0;
 //    
-//    /**
-//     * OSWEN: Oscillator Switch Enable bit
-//     * 
+//    /* OSWEN: Oscillator Switch Enable bit
 //     * 1 = Initiate an oscillator switch to the clock source specified by the NOSC<2:0> bits
 //     * 0 = Oscillator switch is complete
 //     */
 //    OSCCONbits.OSWEN = 0;
     
     /********** Configure CLKDIV register *************************************/
-    /**
-     * FRC Postscaler Select bits:
-     * 
+    /* FRC Postscaler Select bits:
      * 111 = 31.25 kHz (divide-by-256)
      * 110 = 125 kHz (divide-by-64)
      * 101 = 250 kHz (divide-by-32)

@@ -8,22 +8,22 @@
  * Copyright (c) 2015 Jeroen de Bruijn <vidavidorra@gmail.com>
  * 
  * This file is part of LedCube which is released under The MIT License (MIT).
- * For full license details see file "main.c" or "LICENSE.md" or go to
+ * For full license details see file "main.c" or "LICENSE" or go to
  * https://opensource.org/licenses/MIT
  * 
- *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
- * 
- * Description:
- *  Controls the UART functionality of the device to send and receive data.
+ *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
+/** @file 
+ * @brief Controls the UART functionality of the device to send and receive
+ * data.
  * 
  ******************************************************************************/
 
 #ifndef UART_H
 #define	UART_H
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+//#ifdef __cplusplus
+//extern "C" {
+//#endif
 
 /*******************************************************************************
  * Switches
@@ -37,9 +37,9 @@ extern "C" {
 #include <stdint.h>
 #include <stdbool.h>
 #if defined(UART_USE_PRINTF_YES) || defined(DEBUG)
-#   include <stdio.h>           // For vsprintf() in Uartx_printf()
-#   include <stdarg.h>          // For Uartx_printf()
-#   include <string.h>          // For memset()
+# include <stdio.h>           // For vsprintf() in Uartx_printf()
+# include <stdarg.h>          // For Uartx_printf()
+# include <string.h>          // For memset()
 #endif /* UART_USE_PRINTF_YES or DEBUG */
 #include "Delay.h"
 #include "Interrupts.h"
@@ -48,21 +48,31 @@ extern "C" {
 /*******************************************************************************
  * Defines
  ******************************************************************************/
-/**
- * Note: UART_BRG_CLOCKS must be either 4 or 16 for further calculations!
- * 4 = BRG generates 4 clocks per bit period (4x baud clock, High-Speed mode)
- * 16 = BRG generates 16 clocks per bit period (16x baud clock, Standard Speed mode)
- */
+/** @brief Maximum string length for UART 1. */
 #define UART1_MAX_STR_LEN       255
-#define UART_CR                 13              // Carriage return character
-#define UART_LF                 10              // Linefeed character
+/** @brief Decimal ASCII number of the carriage return character. */
+#define UART_CR                 13
+/** @brief Decimal ASCII number of the linefeed character. */
+#define UART_LF                 10
+/** @brief Baudrate clock prescaler for UART 1.
+ * 
+ * This value should be either 4 or 16. 
+ * 4 = BRG generates 4 clocks per bit period (4x baud clock, High-Speed mode)
+ * 16 = BRG generates 16 clocks per bit period (16x baud clock, Standard Speed
+ * mode)
+ */
 #define UART1_BRG_CLOCKS        4
+/** @brief Desired baudrate for UART 1. */
 #define UART1_BAUDRATE          115200UL
+/** @brief UART 1 baud rate register value. */
 #define UART1_BRG               ((FCY / (UART1_BRG_CLOCKS * UART1_BAUDRATE)) -1)
+/** @brief Actual calculated baudrate for UART 1. */
 #define UART1_ACTUAL_BAUDRATE   ( FCY / (UART1_BRG_CLOCKS * (UART1_BRG + 1)) )
 /**
- * UARTx Baud Rate error. This value is in tenth, so a value of 21 means that
- * the Baud Rate error equals 2.1%.
+ * @brief UARTx Baud Rate error.
+ * 
+ * This value is in tenth, so a value of 21 means that the Baud Rate error
+ * equals 2.1%.
  * 
  * "Error = [(Calculated Baud Rate - Desired Baud Rate) / Desired Baud Rate]"
  * (Universal Asynchronous Receiver Transmitter (UART), Equation 3-2: Baud
@@ -75,48 +85,41 @@ extern "C" {
  * Condition checks
  ******************************************************************************/
 #if (UART1_BRG_CLOCKS != 4) && (UART1_BRG_CLOCKS != 16)
-#error "Wrong value for UART_BRG_CLOCKS"
+# error "Wrong value for UART_BRG_CLOCKS"
 #endif
 #if (UART1_BAUD_ERROR > 250) && (UART1_BAUD_ERROR <= 500)
-#warning UART1 Baud Rate error is greater than 2.5%
+# warning "UART1 Baud Rate error is greater than 2.5%"
 #elif (UART1_BAUD_ERROR > 500)
-#error UART1 Baud Rate error is greater than 5.0%
+# error "UART1 Baud Rate error is greater than 5.0%"
 #endif
 
 /*******************************************************************************
  * Function prototypes
  ******************************************************************************/
 /**
- * Initialize the UARTx module with the given baud rate.
+ * @brief Initialize the UARTx module with the given baud rate.
  * 
- * @Note    If debug is enabled this function should be called before
+ * @note    If debug is enabled this function should be called before
  * initializing all other initialize functions. But obviously I/O ports should
  * be configured fist.
- * @Note    Make sure the analog functionality of the RX pin, if it has an
+ * @note    Make sure the analog functionality of the RX pin, if it has an
  * analog functionality, is disabled.
- * @param   void
- * @return  void
- * @Example <code>Uartx_init();</code>
  */
 void
 Uart1_init( void );
 
 /**
- * Send a single character (byte) using the UARTx module.
+ * @brief Send a single character (byte) using the UARTx module.
  * 
- * @param   _c, character to send using UARTx.
- * @return  void
- * @Example <code>Uartx_putc('n'); &#09 // Outputs n</code>
+ * @param   _c Character to send using UARTx.
  */
 void
 Uart1_putc( const char _c );
 
 /**
- * Send a string using the UARTx module.
+ * @brief Send a string using the UARTx module.
  * 
- * @param   _s, string to send using UARTx
- * @return  void
- * @example <code>Uartx_puts("Hello this is a string");</code>
+ * @param   _s String to send using UARTx.
  */
 void
 Uart1_puts( const char* _s );
@@ -124,7 +127,7 @@ Uart1_puts( const char* _s );
 /**
  * @brief Send an integer number using the UARTx module.
  * 
- * @Note    The number must be within range of a 32-bit integer. Thus the
+ * @note    The number must be within range of a 32-bit integer. Thus the
  * lowest number is -2147483647 and the highest number is 2147483647.
  * @param   _num Number to send using UARTx.
  * @param   _base The numeral system to use.\n
@@ -139,20 +142,18 @@ void
 Uart1_putNum( int32_t _num, uint8_t _base, bool _printBase );
 
 /**
- * Send a byte in binary form (with zero padding) using the UARTx module.
+ * @brief Send a byte in binary form (with zero padding) using the UARTx module.
  * 
- * @param   _v, variable to send using UARTx
- * @param   _nBits, number of bits to send
- * @return  void
- * @Example <code>Uartx_putByte(32, 8); &#09 // Outputs 00100000\n
- * Uartx_putBits(1024, 16); &#09 // Outputs 0000010000000000</code>
+ * @param   _v Variable to send using UARTx
+ * @param   _nBits Number of bits to send
  */
 void
 Uart1_putBits( const uint64_t _v, uint8_t _nBits );
 
 #if defined(UART_USE_PRINTF_YES) || defined(DEBUG)
 /**
- * Print formatted data to UARTx.
+ * @brief Print formatted data to UARTx.
+ * 
  * Writes the C string pointed by format to the UARTx. If format includes format
  * specifiers (subsequences beginning with %), the additional arguments
  * following format are formatted and inserted in the resulting string
@@ -263,7 +264,6 @@ Uart1_putBits( const uint64_t _v, uint8_t _nBits );
  * the number of values specified in the format specifiers. Additional arguments    \n
  * are ignored by the function.
  * @return  uint16_t len Length of the printed string.
- * @Example <code>length = Uartx_printf("Pi is: %f", 3.141592);</code>
  */
 uint16_t
 Uart1_printf( const char *format, ... );

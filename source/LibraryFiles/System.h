@@ -8,13 +8,12 @@
  * Copyright (c) 2015 Jeroen de Bruijn <vidavidorra@gmail.com>
  * 
  * This file is part of LedCube which is released under The MIT License (MIT).
- * For full license details see file "main.c" or "LICENSE.md" or go to
+ * For full license details see file "main.c" or "LICENSE" or go to
  * https://opensource.org/licenses/MIT
  * 
- *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
- * 
- * Description:
- *  Sets the system settings.
+ *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
+/** @file 
+ * @brief Sets the system settings.
  * 
  ******************************************************************************/
 
@@ -33,29 +32,26 @@ extern "C" {
 /*******************************************************************************
  * Defines (Microcontroller MIPs)
  ******************************************************************************/
-/* Frequency of the device oscillator */
+/** Frequency of the device oscillator. */
 #define FOSC            8000000UL
-/* FRC Postscaler (see settings in ConfigureOscillator()) */
+/** FRC Postscaler (see settings in ConfigureOscillator()). */
 #define FRCDIV          1
-/* PLL, if configured (FNOSC setting) */
+/** PLL, if configured (FNOSC setting). */
 #define PLL_MUL         4
-/* System frequency (device oscillator frequency times PLL_MUL) */
+/** System frequency (device oscillator frequency times @ref PLL_MUL). */
 #define SYS_FREQ        ((FOSC * PLL_MUL) / FRCDIV)
-/* Instruction Cycle Frequency */
+/** Instruction Cycle Frequency. */
 #define FCY             (SYS_FREQ / 2)
-/* Peripheral Bus Clock Frequency */
+/** Peripheral Bus Clock Frequency. */
 #define FPB             FCY
 
 /*******************************************************************************
  * Function prototypes
  ******************************************************************************/   
 /**
- * Configure the system oscillator.
+ * @brief Configure the system oscillator.
  * 
- * @Note    Settings must be confirm Configuration Bits Settings.
- * @param   void
- * @return  void
- * @Example <code>ConfigureOscillator();</code>
+ * @note    Settings must be confirm Configuration Bits Settings.
  */
 void
 ConfigureOscillator( void );

@@ -8,8 +8,14 @@
  * Copyright (c) 2015 Jeroen de Bruijn <vidavidorra@gmail.com>
  * 
  * This file is part of LedCube which is released under The MIT License (MIT).
- * For full license details see file "main.c" or "LICENSE.md" or go to
+ * For full license details see file "main.c" or "LICENSE" or go to
  * https://opensource.org/licenses/MIT
+ * 
+ *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
+/** @file 
+ * @brief Software FIFO buffer which can be used as storage for peripherals.
+ * 
+ * For example UART Tx and Rx data.
  * 
  ******************************************************************************/
 
@@ -22,12 +28,12 @@
  * Functions
  ******************************************************************************/
 /**
- * Checks if there is room in the software FIFO buffer;
- * Automatically sets bufferOverflowFlag;
- * Automatically handles bufferFullFlag;
- * Automatically handles bufferNotEmptyFlag;
- * Sets bufferOverflowFlag upon software FIFO buffer overflow (doesn't overwrite
- * existing data).
+ * 0. Checks if there is room in the software FIFO buffer;
+ * 0. Automatically sets bufferOverflowFlag;
+ * 0. Automatically handles bufferFullFlag;
+ * 0. Automatically handles bufferNotEmptyFlag;
+ * 0. Sets bufferOverflowFlag upon software FIFO buffer overflow (doesn't
+ * overwrite existing data).
  * 
  */
 void
@@ -64,9 +70,9 @@ swFifoBufferPut( pSwFifoBuffer_t _pBuffer, const char _inData ) {
 }
 
 /**
- * Checks if data exists in the software FIFO buffer;
- * Automatically handles bufferFullFlag;
- * Automatically handles bufferNotEmptyFlag;
+ * 0. Checks if data exists in the software FIFO buffer;
+ * 0. Automatically handles bufferFullFlag;
+ * 0. Automatically handles bufferNotEmptyFlag.
  * 
  */
 char
@@ -101,5 +107,4 @@ swFifoBufferGet( pSwFifoBuffer_t _pBuffer ) {
     
     return outData;
 }
-
 /* End of file SwFifoBuffer.c */

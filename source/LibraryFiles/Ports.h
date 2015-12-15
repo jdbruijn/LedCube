@@ -158,7 +158,7 @@ do {                                                                           \
  * 
  * @note    PPS pins can also be called by their RPn name. For example: 
  * @ref PORT_RP16 instead of @ref PORT_RC0.
- * @param   pin Pin which has to be configure as digital input\n
+ * @param   pin Pin which has to be configured as digital input\n
  * - @ref PORT_RA0  \n
  * - @ref PORT_RA1  \n
  * - ...            \n

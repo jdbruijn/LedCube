@@ -8,13 +8,12 @@
  * Copyright (c) 2015 Jeroen de Bruijn <vidavidorra@gmail.com>
  * 
  * This file is part of LedCube which is released under The MIT License (MIT).
- * For full license details see below, see file "LICENSE.md" or go to
+ * For full license details see file "main.c" or "LICENSE" or go to
  * https://opensource.org/licenses/MIT
  * 
- *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*
- * 
- * Description:
- *  Globally controls functions. 
+ *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
+/** @file 
+ * @brief Globally controls the application.
  * 
  ******************************************************************************/
 
@@ -88,17 +87,17 @@
  * Main function
  ******************************************************************************/
 /**
- * Main function of the code, this initializes and controls all other functions.
+ * @brief Initializes and controls all other functions (indirectly).
  * 
- * @param   argc, argument counter
- * @param   argv, array of function arguments
- * @return  uint8_t, error code
+ * @param   argc Argument counter.
+ * @param   argv Array of different function arguments.
+ * @return  int Error code.
  */
 int
 main(int argc, char** argv) {
     ConfigureOscillator();
     
-    // User code initialisation
+    /********** User code initialisation **************************************/
     IOPorts_init();
     Uart1_init();
     Buzzer_init();
@@ -106,12 +105,12 @@ main(int argc, char** argv) {
     LedCube_init();
     Buzzer_shortBeep();
     
-    // User code
     uint8_t z;
     
     // Infinite loop for user code
     while(1)
     {
+        // User code
         for(z = 0; z < CUBEDATA_MAX_Z_C; z++) {
             //LedCube_setPixel(1, 1, z, COLOUR_CYAN);
             //LedCube_updateUsingCopy();
@@ -125,9 +124,9 @@ main(int argc, char** argv) {
         LedCube_resetData();
     }
     
-    // End, nothing comes beyond this point!
+    /********** End, nothing comes beyond this point! *************************/
     while(1);
     
-    return( 0 );
+    return(0);
 }
 /* End of file main.c */
