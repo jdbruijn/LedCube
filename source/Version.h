@@ -25,28 +25,28 @@ extern "C" {
 #endif
 
 /*******************************************************************************
+ * Includes
+ ******************************************************************************/
+#include "Macro.h"
+
+/*******************************************************************************
  * Defines
  ******************************************************************************/
-#define VERSION_MAJOR 0     /**< Major version number. */
-#define VERSION_MINOR 1     /**< Minor version number. */
-#define VERSION_PATCH 0     /**< Patch version number. */
+#define VERSION_MAJOR           0   /**< Major version number. */
+#define VERSION_MINOR           1   /**< Minor version number. */
+#define VERSION_PATCH           0   /**< Patch version number. */
 
 /*******************************************************************************
  * Macros
  ******************************************************************************/
-/** @brief Helper macro to correctly expand the argument. */
-#define _HELPER_VERSION_TO_STRING(s) #s
-
-/** @brief Macro to expand the argument. */
-#define _VERSION_TO_STRING(s) _HELPER_VERSION_TO_STRING(s)
-
-/** @brief Macro for defining a version string.
- *  It uses the @ref _VERSION_TO_STRING macro to expand the version defines to a
- *  single version string.
+/** @brief Version string.
+ * 
+ * It uses the @ref MACRO_EXPAND_CONCATENATE_STR_FIVE macro to expand and
+ * and convert the version defines to a version string.
  */
-#define VERSION_STRING _VERSION_TO_STRING(VERSION_MAJOR) "." \
-            _VERSION_TO_STRING(VERSION_MINOR) "." \
-            _VERSION_TO_STRING(VERSION_PATCH)
+#define VERSION_STRING                                                         \
+    MACRO_EXPAND_CONCATENATE_STR_FIVE(VERSION_MAJOR, ., VERSION_MINOR, . ,     \
+    VERSION_PATCH)
 
 #ifdef	__cplusplus
 }
