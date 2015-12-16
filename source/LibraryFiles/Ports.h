@@ -140,7 +140,7 @@ do {                                                                           \
 /*******************************************************************************
  * Function macros
  ******************************************************************************/
-/** @brief Internal helper macro to xpand and concatenate two arguments using
+/** @brief Internal helper macro to expand and concatenate two arguments using
  * the @ref MACRO_EXPAND_CONCATENATE_TWO macro and assign a value to it.
  * 
  * @param   func Sort of function of which the pin needs to be assigned. For

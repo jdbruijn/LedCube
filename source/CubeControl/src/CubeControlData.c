@@ -13,6 +13,7 @@
  * 
  *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
 /** @file
+ * @brief Provides Cube- and CubeControl data structures and functions.
  * 
  * Declares and controls the data of the whole LED cube using several functions.
  * 
