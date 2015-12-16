@@ -67,7 +67,7 @@ IOPorts_init( ) {
     PORT_SET_PIN(OE);
     
     /********** Assign I/Os to functionalities ********************************/
-    PPSUnlock();
+    PPS_UNLOCK;
     
     /* LedDriver */
     PPSOutput(SPI1_SDO, PPS_OUT_SDO1);
@@ -88,7 +88,7 @@ IOPorts_init( ) {
     /* Buzzer */
     PPSOutput(BUZZER, PPS_OUT_OC1);
     
-    PPSLock();
+    PPS_LOCK;
     
     return;
 }

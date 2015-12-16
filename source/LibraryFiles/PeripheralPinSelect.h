@@ -28,6 +28,7 @@ extern "C" {
  * Includes
  ******************************************************************************/
 #include <xc.h>
+#include "Macro.h"
 
 /*******************************************************************************
  * Defines
@@ -142,21 +143,55 @@ extern "C" {
 // </editor-fold>
 
 /*******************************************************************************
- * Function macros
+ * Constant macros
  ******************************************************************************/
 /**
- * Macros and helper macros to join defines and arguments. The functions below
- * will use the macros to join defines.
+ * @brief Follow the necessary process to clear the IOLOCK bit in order to allow 
+ * I/O mapping to be modified.
  * 
- * @Note	The macros need a second helper macro in order to expand multiple
- * defines.
- * 
- * For details about macro replacement and argument substitution
- * @see http://stackoverflow.com/a/1489985
+ * @preconditions   IOL1WAY in the Configuration Bits must be OFF
+ * @note    Use inline assembly to unlock the Peripheral Pin Selection (PPS).
+ * First writing the unlock sequence (46h followed by 57h) to OSCCON<7:0> and
+ * than clear the IOLOCK bit in the OSCCON to disable the I/O Lock.
  */
-#define _HELPER_JOIN_PPS_PIN(prefix, pin) prefix##pin
-#define _JOIN_PPS_PIN(prefix, pin) _HELPER_JOIN_PPS_PIN(prefix, pin)
+#define PPS_UNLOCK asm volatile ( "push w1      \n"                            \
+                        "push   w2              \n"                            \
+                        "push   w3              \n"                            \
+                        "mov    #OSCCON, w1     \n"                            \
+                        "mov    #0x46, w2       \n"                            \
+                        "mov    #0x57, w3       \n"                            \
+                        "mov.b  w2, [w1]        \n"                            \
+                        "mov.b  w3, [w1]        \n"                            \
+                        "bclr   OSCCON, #6      \n"                            \
+                        "pop    w3              \n"                            \
+                        "pop    w2              \n"                            \
+                        "pop    w1" )
 
+/**
+ * @brief Follow the necessary process to set the IOLOCK bit to lock I/O mapping
+ * from being modified.
+ * 
+ * @preconditions   IOL1WAY in the Configuration Bits must be OFF
+ * @note    Use inline assembly to lock the Peripheral Pin Selection (PPS).
+ * First writing the unlock sequence (46h followed by 57h) to OSCCON<7:0> and
+ * than set the IOLOCK bit in the OSCCON to enable the I/O Lock.
+ */
+#define PPS_LOCK   asm volatile( "push w1       \n"                            \
+                        "push   w2              \n"                            \
+                        "push   w3              \n"                            \
+                        "mov    #OSCCON, w1     \n"                            \
+                        "mov    #0x46, w2       \n"                            \
+                        "mov    #0x57, w3       \n"                            \
+                        "mov.b  w2, [w1]        \n"                            \
+                        "mov.b  w3, [w1]        \n"                            \
+                        "bset   OSCCON, #6      \n"                            \
+                        "pop    w3              \n"                            \
+                        "pop    w2              \n"                            \
+                        "pop    w1" )
+
+/*******************************************************************************
+ * Function macros
+ ******************************************************************************/
 /**
  * @brief Assign input functionality to a pin.
  * 
@@ -195,7 +230,9 @@ extern "C" {
  * For the complete list of possible pins see the list of defines above,
  * starting with @ref PORT_RP0.
  */
-#define PPSInput(fn, pin) fn = _JOIN_PPS_PIN(_PPS_IN_PORT_, pin); Nop()
+#define PPSInput(fn, pin)                                                      \
+    fn = MACRO_EXPAND_CONCATENATE_TWO(_PPS_IN_PORT_, pin);                     \
+    Nop()
 
 /**
  * @brief Assign pin to an output functionality.
@@ -230,51 +267,9 @@ extern "C" {
  * - @ref PPS_OUT_OC4       Output Compare 4\n
  * - @ref PPS_OUT_OC5       Output Compare 5\n
  */
-#define PPSOutput(pin, fn) _JOIN_PPS_PIN(_PPS_OUT_PORT_, pin) = fn; Nop()
-
-/**
- * @brief Follow the necessary process to clear the IOLOCK bit in order to allow 
- * I/O mapping to be modified.
- * 
- * @preconditions   IOL1WAY in the Configuration Bits must be OFF
- * @note    Use inline assembly to unlock the Peripheral Pin Selection (PPS).
- * First writing the unlock sequence (46h followed by 57h) to OSCCON<7:0> and
- * than clear the IOLOCK bit in the OSCCON to disable the I/O Lock.
- */
-#define PPSUnlock() asm volatile    ( "push w1  \n" \
-                        "push   w2              \n" \
-                        "push   w3              \n" \
-                        "mov    #OSCCON, w1     \n" \
-                        "mov    #0x46, w2       \n" \
-                        "mov    #0x57, w3       \n" \
-                        "mov.b  w2, [w1]        \n" \
-                        "mov.b  w3, [w1]        \n" \
-                        "bclr   OSCCON, #6      \n" \
-                        "pop    w3              \n" \
-                        "pop    w2              \n" \
-                        "pop    w1" )
-
-/**
- * @brief Follow the necessary process to set the IOLOCK bit to lock I/O mapping
- * from being modified.
- * 
- * @preconditions   IOL1WAY in the Configuration Bits must be OFF
- * @note    Use inline assembly to lock the Peripheral Pin Selection (PPS).
- * First writing the unlock sequence (46h followed by 57h) to OSCCON<7:0> and
- * than set the IOLOCK bit in the OSCCON to enable the I/O Lock.
- */
-#define PPSLock()   asm volatile    ( "push w1  \n" \
-                        "push   w2              \n" \
-                        "push   w3              \n" \
-                        "mov    #OSCCON, w1     \n" \
-                        "mov    #0x46, w2       \n" \
-                        "mov    #0x57, w3       \n" \
-                        "mov.b  w2, [w1]        \n" \
-                        "mov.b  w3, [w1]        \n" \
-                        "bset   OSCCON, #6      \n" \
-                        "pop    w3              \n" \
-                        "pop    w2              \n" \
-                        "pop    w1" )
+#define PPSOutput(pin, fn)                                                     \
+    MACRO_EXPAND_CONCATENATE_TWO(_PPS_OUT_PORT_, pin) = fn;                    \
+    Nop()
 
 #ifdef	__cplusplus
 }

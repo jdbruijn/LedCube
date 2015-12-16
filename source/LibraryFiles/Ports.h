@@ -26,9 +26,14 @@
 #ifndef PORT_H
 #define	PORT_H
 
-#ifdef	__cplusplus
-extern "C" {
-#endif
+//#ifdef	__cplusplus
+//extern "C" {
+//#endif
+
+/*******************************************************************************
+ * Includes
+ ******************************************************************************/
+#include "Macro.h"
 
 /*******************************************************************************
  * Defines
@@ -135,23 +140,27 @@ do {                                                                           \
 /*******************************************************************************
  * Function macros
  ******************************************************************************/
-/**
- * Macros and helper macros to join defines and arguments. The functions below
- * will use the macros to join defines.
+/** @brief Internal helper macro to xpand and concatenate two arguments using
+ * the @ref MACRO_EXPAND_CONCATENATE_TWO macro and assign a value to it.
  * 
- * @note	The macros need a second helper macro in order to expand multiple
- * defines.
- * 
- * For details about macro replacement and argument substitution
- * @see http://stackoverflow.com/a/1489985
+ * @param   func Sort of function of which the pin needs to be assigned. For
+ * example _LAT, or _TRIS.
+ * @param   pin Pin that needs to be assigned.
+ * @param   val Value that needs to be assigned to the function and pin.
  */
-#define _HELPER_JOIN_PIN(func, pin)         func ## pin
-#define _JOIN_PIN(func, pin)                _HELPER_JOIN_PIN(func, pin)
-#define _HELPER_JOIN_ASSIGN(func, pin, val) _JOIN_PIN(func, pin) = val
-#define _JOIN_ASSIGN(func, pin, val)        _HELPER_JOIN_ASSIGN(func, pin, val)
-#define _HELPER_JOIN_TOGGLE(func, pin)                                         \
-                _JOIN_PIN(func, pin) = ~ _JOIN_PIN(func, pin)
-#define _JOIN_TOGGLE(func, pin)             _HELPER_JOIN_TOGGLE(func, pin)
+#define _PORTS_CONCATENATE_ASSIGN(func, pin, val)                               \
+    MACRO_EXPAND_CONCATENATE_TWO(func, pin) = val
+
+/** @brief Internal helper macro to expand and concatenate two arguments using
+ * the @ref MACRO_EXPAND_CONCATENATE_TWO macro and toggle it.
+ * 
+ * @param   func Sort of function of which the pin needs to be toggled. For
+ * example _LAT, or _TRIS.
+ * @param   pin Pin that needs to be toggled.
+ */
+#define _PORTS_CONCATENATE_TOGGLE(func, pin)                                    \
+    MACRO_EXPAND_CONCATENATE_TWO(func, pin) = ~                                \
+    MACRO_EXPAND_CONCATENATE_TWO(func, pin)
 
 /**
  * @brief Configure selected pin as digital input.
@@ -174,10 +183,8 @@ do {                                                                           \
  * starting with @ref PORT_RA0.
  */
 #define PORT_CONFIGURE_PIN_AS_DIGITAL_INPUT(pin)                               \
-do {                                                                           \
-    _JOIN_ASSIGN(_TRIS, pin, 1);                                               \
-    _JOIN_ASSIGN(_OD, pin, 0);                                                 \
-} while (0)
+    _PORTS_CONCATENATE_ASSIGN(_TRIS, pin, 1);                                   \
+    _PORTS_CONCATENATE_ASSIGN(_OD, pin, 0)
 
 /**
  * @brief Configure selected pin as digital output.
@@ -189,10 +196,8 @@ do {                                                                           \
  * PORT_CONFIGURE_PIN_AS_DIGITAL_INPUT macro.
  */
 #define PORT_CONFIGURE_PIN_AS_DIGITAL_OUTPUT(pin)                              \
-do {                                                                           \
-    _JOIN_ASSIGN(_TRIS, pin, 0);                                               \
-    _JOIN_ASSIGN(_OD, pin, 0);                                                 \
-} while (0)
+    _PORTS_CONCATENATE_ASSIGN(_TRIS, pin, 0);                                   \
+    _PORTS_CONCATENATE_ASSIGN(_OD, pin, 0)
 
 /**
  * @brief Configure selected pin as digital output.
@@ -203,7 +208,8 @@ do {                                                                           \
  * more info on how to use this parameter see the description of the @ref
  * PORT_CONFIGURE_PIN_AS_DIGITAL_INPUT macro.
  */
-#define PORT_CONFIGURE_PIN_AS_OPEN_DRAIN_OUTPUT(pin) _JOIN_ASSIGN(_OD, pin, 1)
+#define PORT_CONFIGURE_PIN_AS_OPEN_DRAIN_OUTPUT(pin)                           \
+    _PORTS_CONCATENATE_ASSIGN(_OD, pin, 1)
 
 /**
  * @brief Set selected pin, i.e make the output high.
@@ -214,7 +220,8 @@ do {                                                                           \
  * more info on how to use this parameter see the description of the @ref
  * PORT_CONFIGURE_PIN_AS_DIGITAL_INPUT macro.
  */
-#define PORT_SET_PIN(pin) _JOIN_ASSIGN(_LAT, pin, 1)
+#define PORT_SET_PIN(pin)                                                      \
+    _PORTS_CONCATENATE_ASSIGN(_LAT, pin, 1)
 
 /**
  * @brief Clear selected pin, i.e make the output low.
@@ -225,9 +232,8 @@ do {                                                                           \
  * more info on how to use this parameter see the description of the @ref
  * PORT_CONFIGURE_PIN_AS_DIGITAL_INPUT macro.
  */
-#define PORT_CLEAR_PIN(pin) _JOIN_ASSIGN(_LAT, pin, 0)
-
-
+#define PORT_CLEAR_PIN(pin)                                                    \
+    _PORTS_CONCATENATE_ASSIGN(_LAT, pin, 0)
 
 /**
  * @brief Toggle selected pin, invert the output.
@@ -238,7 +244,8 @@ do {                                                                           \
  * more info on how to use this parameter see the description of the @ref
  * PORT_CONFIGURE_PIN_AS_DIGITAL_INPUT macro.
  */
-#define PORT_TOGGLE_PIN(pin) _JOIN_TOGGLE(_LAT, pin)
+#define PORT_TOGGLE_PIN(pin)                                                   \
+    _PORTS_CONCATENATE_TOGGLE(_LAT, pin)
 
 /**
  * @brief Pulse selected pin high for one instruction clock cycle.
@@ -249,7 +256,10 @@ do {                                                                           \
  * more info on how to use this parameter see the description of the @ref
  * PORT_CONFIGURE_PIN_AS_DIGITAL_INPUT macro.
  */
-#define PORT_PULSE_PIN(pin) PORT_SET_PIN(pin); Nop(); PORT_CLEAR_PIN(pin)
+#define PORT_PULSE_PIN(pin)                                                    \
+    PORT_SET_PIN(pin);                                                         \
+    Nop();                                                                     \
+    PORT_CLEAR_PIN(pin)
 
 /**
  * @brief Read the value on a port latch.
@@ -259,8 +269,10 @@ do {                                                                           \
  * @param   pin Pin which has to be configured as normal digital output. For
  * more info on how to use this parameter see the description of the @ref
  * PORT_CONFIGURE_PIN_AS_DIGITAL_INPUT macro.
+ * @return  unsigned int The read value of the LAT register.
  */
-#define PORT_READ_PIN_LATCH(pin) _JOIN_PIN(_LAT, pin)
+#define PORT_READ_PIN_LATCH(pin)                                               \
+    MACRO_EXPAND_CONCATENATE_TWO(_LAT, pin)
 
 /**
  * @brief Read the value on an I/O pin.
@@ -270,8 +282,10 @@ do {                                                                           \
  * @param   pin Pin which has to be configured as normal digital output. For
  * more info on how to use this parameter see the description of the @ref
  * PORT_CONFIGURE_PIN_AS_DIGITAL_INPUT macro.
+ * @return  unsigned int The read value of the PORT register.
  */
-#define PORT_READ_PIN(pin) _JOIN_PIN(_R, pin)
+#define PORT_READ_PIN(pin)                                                     \
+    MACRO_EXPAND_CONCATENATE_TWO(_R, pin)
 
 /**
  * @brief Reset all the settings of the selected pin.
@@ -292,10 +306,8 @@ do {                                                                           \
  * PORT_CONFIGURE_PIN_AS_DIGITAL_INPUT macro.
  */
 #define PORT_RESET_CONFIGURATION(pin)                                          \
-do {                                                                           \
     PORT_CLEAR_PIN(pin);                                                       \
-    PORT_CONFIGURE_PIN_AS_DIGITAL_OUTPUT(pin);                                 \
-} while (0)
+    PORT_CONFIGURE_PIN_AS_DIGITAL_OUTPUT(pin)
 
 #ifdef	__cplusplus
 }

@@ -36,15 +36,15 @@ extern "C" {
  * @param   a First argument that is expanded.
  * @param   b Second argument that is expanded.
  */
-#define _MACRO_EXPAND_CONCATENATE_TWO(a,b) a ## b
+#define _MACRO_EXPAND_CONCATENATE_TWO(a, b) a ## b
 
 /** @brief Expand and concatenate two arguments.
  * 
  * @param   a First argument that is expanded.
  * @param   b Second argument that is expanded.
  */
-#define MACRO_EXPAND_CONCATENATE_TWO(a,b)                                      \
-    _MACRO_EXPAND_CONCATENATE_TWO(a,b)
+#define MACRO_EXPAND_CONCATENATE_TWO(a, b)                                     \
+    _MACRO_EXPAND_CONCATENATE_TWO(a, b)
 
 /** @brief Internal helper macro to expand and concatenate three arguments.
  * 
@@ -55,7 +55,7 @@ extern "C" {
  * @param   b Second argument that is expanded.
  * @param   c Third argument that is expanded.
  */
-#define _MACRO_EXPAND_CONCATENATE_THREE(a,b,c) a ## b ## c
+#define _MACRO_EXPAND_CONCATENATE_THREE(a, b, c) a ## b ## c
 
 /** @brief Expand and concatenate three arguments.
  * 
@@ -63,8 +63,8 @@ extern "C" {
  * @param   b Second argument that is expanded.
  * @param   c Third argument that is expanded.
  */
-#define MACRO_EXPAND_CONCATENATE_THREE(a,b,c)                                  \
-    _MACRO_EXPAND_CONCATENATE_THREE(a,b,c)
+#define MACRO_EXPAND_CONCATENATE_THREE(a, b, c)                                \
+    _MACRO_EXPAND_CONCATENATE_THREE(a, b, c)
 
 /** @brief Internal helper macro to expand and concatenate four arguments.
  * 
@@ -76,7 +76,7 @@ extern "C" {
  * @param   c Third argument that is expanded.
  * @param   d Fourth argument that is expanded.
  */
-#define _MACRO_EXPAND_CONCATENATE_FOUR(a,b,c,d) a ## b ## c ## d
+#define _MACRO_EXPAND_CONCATENATE_FOUR(a, b, c, d) a ## b ## c ## d
 
 /** @brief Expand and concatenate four arguments.
  * 
@@ -85,8 +85,8 @@ extern "C" {
  * @param   c Third argument that is expanded.
  * @param   d Fourth argument that is expanded.
  */
-#define MACRO_EXPAND_CONCATENATE_FOUR(a,b,c,d)                                 \
-    _MACRO_EXPAND_CONCATENATE_FOUR(a,b,c,d)
+#define MACRO_EXPAND_CONCATENATE_FOUR(a, b, c, d)                              \
+    _MACRO_EXPAND_CONCATENATE_FOUR(a, b, c, d)
 
 /** @brief Internal helper macro to expand and concatenate five arguments.
  * 
@@ -99,7 +99,7 @@ extern "C" {
  * @param   d Fourth argument that is expanded.
  * @param   e Fifth argument that is expanded.
  */
-#define _MACRO_EXPAND_CONCATENATE_FIVE(a,b,c,d,e) a ## b ## c ## d ## e
+#define _MACRO_EXPAND_CONCATENATE_FIVE(a, b, c, d, e) a ## b ## c ## d ## e
 
 /** @brief Expand and concatenate five arguments.
  * 
@@ -109,8 +109,8 @@ extern "C" {
  * @param   d Fourth argument that is expanded.
  * @param   e Fifth argument that is expanded.
  */
-#define MACRO_EXPAND_CONCATENATE_FIVE(a,b,c,d,e)                               \
-    _MACRO_EXPAND_CONCATENATE_FIVE(a,b,c,d,e)
+#define MACRO_EXPAND_CONCATENATE_FIVE(a, b, c, d, e)                           \
+    _MACRO_EXPAND_CONCATENATE_FIVE(a, b, c, d, e)
 
 /** @brief Internal helper macro to expand and convert to a string one argument.
  * 
@@ -138,7 +138,7 @@ extern "C" {
  * @param   a First argument that is expanded and converted to a string.
  * @param   b Second argument that is expanded and converted to a string.
  */
-#define _MACRO_EXPAND_CONCATENATE_STR_TWO(a,b) #a #b
+#define _MACRO_EXPAND_CONCATENATE_STR_TWO(a, b) #a #b
 
 /** @brief Expand, convert to a string and concatenate two arguments.
  * 
@@ -146,8 +146,8 @@ extern "C" {
  * @param   a First argument that is expanded and converted to a string.
  * @param   b Second argument that is expanded and converted to a string.
  */
-#define MACRO_EXPAND_CONCATENATE_STR_TWO(a,b)                                  \
-    _MACRO_EXPAND_CONCATENATE_STR_TWO(a,b)
+#define MACRO_EXPAND_CONCATENATE_STR_TWO(a, b)                                 \
+    _MACRO_EXPAND_CONCATENATE_STR_TWO(a, b)
 
 /** @brief Internal helper macro to expand, convert to a string and concatenate
  * three arguments.
@@ -159,7 +159,7 @@ extern "C" {
  * @param   b Second argument that is expanded and converted to a string.
  * @param   c Third argument that is expanded and converted to a string.
  */
-#define _MACRO_EXPAND_CONCATENATE_STR_THREE(a,b,c) #a #b #c
+#define _MACRO_EXPAND_CONCATENATE_STR_THREE(a, b, c) #a #b #c
 
 /** @brief Expand, convert to a string and concatenate three arguments.
  * 
@@ -168,8 +168,8 @@ extern "C" {
  * @param   b Second argument that is expanded and converted to a string.
  * @param   c Third argument that is expanded and converted to a string.
  */
-#define MACRO_EXPAND_CONCATENATE_STR_THREE(a,b,c)                              \
-    _MACRO_EXPAND_CONCATENATE_STR_THREE(a,b,c)
+#define MACRO_EXPAND_CONCATENATE_STR_THREE(a, b, c)                            \
+    _MACRO_EXPAND_CONCATENATE_STR_THREE(a, b, c)
 
 /** @brief Internal helper macro to expand, convert to a string and concatenate
  * four arguments.
@@ -182,7 +182,7 @@ extern "C" {
  * @param   c Third argument that is expanded and converted to a string.
  * @param   d Fourth argument that is expanded and converted to a string.
  */
-#define _MACRO_EXPAND_CONCATENATE_STR_FOUR(a,b,c,d) #a #b #c #d
+#define _MACRO_EXPAND_CONCATENATE_STR_FOUR(a, b, c, d) #a #b #c #d
 
 /** @brief Expand, convert to a string and concatenate four arguments.
  * 
@@ -192,8 +192,8 @@ extern "C" {
  * @param   c Third argument that is expanded and converted to a string.
  * @param   d Fourth argument that is expanded and converted to a string.
  */
-#define MACRO_EXPAND_CONCATENATE_STR_FOUR(a,b,c,d)                             \
-    _MACRO_EXPAND_CONCATENATE_STR_FOUR(a,b,c,d)
+#define MACRO_EXPAND_CONCATENATE_STR_FOUR(a, b, c, d)                          \
+    _MACRO_EXPAND_CONCATENATE_STR_FOUR(a, b, c, d)
 
 /** @brief Internal helper macro to expand, convert to a string and concatenate
  * five arguments.
@@ -207,7 +207,7 @@ extern "C" {
  * @param   d Fourth argument that is expanded and converted to a string.
  * @param   e Fifth argument that is expanded and converted to a string.
  */
-#define _MACRO_EXPAND_CONCATENATE_STR_FIVE(a,b,c,d,e) #a #b #c #d #e
+#define _MACRO_EXPAND_CONCATENATE_STR_FIVE(a, b, c, d, e) #a #b #c #d #e
 
 /** @brief Expand, convert to a string and concatenate five arguments.
  * 
@@ -218,8 +218,8 @@ extern "C" {
  * @param   d Fourth argument that is expanded and converted to a string.
  * @param   e Fifth argument that is expanded and converted to a string.
  */
-#define MACRO_EXPAND_CONCATENATE_STR_FIVE(a,b,c,d,e)                           \
-    _MACRO_EXPAND_CONCATENATE_STR_FIVE(a,b,c,d,e)
+#define MACRO_EXPAND_CONCATENATE_STR_FIVE(a, b, c, d, e)                       \
+    _MACRO_EXPAND_CONCATENATE_STR_FIVE(a, b, c, d, e)
 
 #ifdef	__cplusplus
 }
