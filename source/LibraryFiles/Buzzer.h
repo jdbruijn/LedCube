@@ -29,9 +29,9 @@
  ******************************************************************************/
 
 #ifndef BUZZER_H
-#define	BUZZER_H
+#define BUZZER_H
 
-#ifdef	__cplusplus
+#ifdef __cplusplus
 extern "C" {
 #endif
 
@@ -58,7 +58,7 @@ extern "C" {
 #define BUZZER_MIN_TIME         10      /**< Minimum buzzer time in ms. */
 /** Maximum buzzer time in ms. Same as maximum delay time @ref DELAY_MAX_MS. */
 #define BUZZER_MAX_TIME         DELAY_MAX_MS
-    
+
 /*******************************************************************************
  * Function prototypes
  ******************************************************************************/
@@ -66,23 +66,23 @@ extern "C" {
  * @brief Initialize the on-board buzzer.
  */
 void
-Buzzer_init( void );
+Buzzer_init(void);
 
 /**
  * @brief Create a short (250 ms) beep with a frequency of 4 kHz.
  */
 void
-Buzzer_beep( void );
+Buzzer_beep(void);
 
 /**
  * @brief Create a very short (50 ms) beep with a frequency of 4 kHz.
  */
 void
-Buzzer_shortBeep( void );
+Buzzer_shortBeep(void);
 
 /**
  * @brief Make a sound with adjustable frequency and duration time.
- * 
+ *
  * The sound is created using a PWM-signal with  a duty cycle of fifty percent.
  * @note    _frequency must be between @ref BUZZER_MIN_FREQUENCY and @ref
  * BUZZER_MAX_FREQUENCY, and _time must be between @ref BUZZER_MIN_TIME and @ref
@@ -94,25 +94,25 @@ Buzzer_shortBeep( void );
  * to @ref BUZZER_MAX_TIME.
  */
 void
-Buzzer_set( uint16_t _frequency, uint32_t _time );
+Buzzer_set(uint16_t _frequency, uint32_t _time);
 
 #ifdef BUZZER_ENABLE_SELF_TEST_YES
 /** @todo remove selftest and add seperate unit test
  * Run a self test on the buzzer. I.e. first beep three times than go from
  * lowest frequency to highest frequency followed by three beeps.
- * 
+ *
  * @Note    This self tests takes about 22 seconds.
  * @param   void
  * @return  void
  * @Example <code>Buzzer_selfTest();</code>
  */
 void
-Buzzer_selfTest( void ); 
+Buzzer_selfTest(void);
 #endif /* BUZZER_ENABLE_SELF_TEST_YES */
 
-#ifdef	__cplusplus
+#ifdef __cplusplus
 }
 #endif
 
-#endif	/* BUZZER_H */
+#endif /* BUZZER_H */
 /* End of file Buzzer.h */

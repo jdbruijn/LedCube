@@ -31,7 +31,7 @@
  ******************************************************************************/
 
 #ifndef SWFIFOBUFFER_H
-#define	SWFIFOBUFFER_H
+#define SWFIFOBUFFER_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -54,7 +54,7 @@ extern "C" {
  ******************************************************************************/
 /**
  * @brief Structure representing a software FIFO buffer.
- * 
+ *
  * @note    The bufferFullFlag is the only flag that is not automatically
  * cleared by the software FIFO buffer.
  * @example <code>// Declare a receive software FIFO buffer
@@ -68,7 +68,7 @@ typedef struct {
     uint8_t bufferFullFlag;
     /** This flag is not automatically cleared by the software buffer */
     uint8_t bufferOverflowFlag;
-    
+
     /********** Buffer and Buffer control *************************************/
     /** The actual FIFO buffer. */
     char data[FIFO_BUFFER_SIZE];
@@ -85,25 +85,25 @@ typedef struct {
  ******************************************************************************/
 /**
  * @brief Put a single character in the FIFO buffer.
- * 
+ *
  * @param   _pBuffer Pointer to the buffer where the data is stored in.
  * @param   _inData Character to put in the buffer.
  */
 void
-swFifoBufferPut( pSwFifoBuffer_t _pBuffer, const char _inData );
+swFifoBufferPut(pSwFifoBuffer_t _pBuffer, const char _inData);
 
 /**
  * @brief Get a single character in the FIFO buffer.
- * 
+ *
  * @param   _pBuffer Pointer to the buffer where the data is stored in.
  * @return  char The character gotten from the buffer.
  */
 char
-swFifoBufferGet( pSwFifoBuffer_t _pBuffer );
+swFifoBufferGet(pSwFifoBuffer_t _pBuffer);
 
-#ifdef	__cplusplus
+#ifdef __cplusplus
 }
 #endif
 
-#endif	/* SWFIFOBUFFER_H */
+#endif /* SWFIFOBUFFER_H */
 /* End of file SwFifoBuffer.h */

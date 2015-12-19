@@ -30,7 +30,7 @@
  ******************************************************************************/
 
 #ifndef LEDCUBEVISUALISATION_H
-#define	LEDCUBEVISUALISATION_H
+#define LEDCUBEVISUALISATION_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -106,11 +106,11 @@ extern "C" {
  * @brief Send the LedCube software version data.
  */
 void
-LedCubeVisualisation_sendVersion( void );
+LedCubeVisualisation_sendVersion(void);
 
 /**
  * @brief Send the CubeData of a single row.
- * 
+ *
  * @param   _x Selects the row. Ranges from 0 to @ref LEDCUBE_MAX_XYZ, 0 for the
  * back row and @ref LEDCUBE_MAX_XYZ for the front row.
  * @param   _z Selects the layer. Ranges from 0 to @ref LEDCUBE_MAX_XYZ, 0 for
@@ -118,29 +118,29 @@ LedCubeVisualisation_sendVersion( void );
  * @param   _pCubeControlData Pointer to a CubeControlData structure.
  */
 void
-LedCubeVisualisation_sendRow( uint8_t _x, uint8_t _z,
-                              pCubeData_t const _pCubeData );
+LedCubeVisualisation_sendRow(uint8_t _x, uint8_t _z,
+                             pCubeData_t const _pCubeData);
 /**
  * @brief Send the CubeData of a single layer.
- * 
+ *
  * @param   _z Selects the layer. Ranges from 0 to @ref LEDCUBE_MAX_XYZ, 0 for
  * the bottom layer and @ref LEDCUBE_MAX_XYZ for the top layer.
  * @param   _pCubeControlData Pointer to a CubeControlData structure.
  */
 void
-LedCubeVisualisation_sendLayer( uint8_t _z,
-                                pCubeData_t const _pCubeData );
+LedCubeVisualisation_sendLayer(uint8_t _z,
+                               pCubeData_t const _pCubeData);
 /**
  * @brief Send the CubeData of a whole Cube.
- * 
+ *
  * @param   _pCubeControlData Pointer to a CubeControlData structure.
  */
 void
-LedCubeVisualisation_sendCubeData( pCubeData_t const _pCubeData );
+LedCubeVisualisation_sendCubeData(pCubeData_t const _pCubeData);
 
-#ifdef	__cplusplus
+#ifdef __cplusplus
 }
 #endif
 
-#endif	/* LEDCUBEVISUALISATION_H */
+#endif /* LEDCUBEVISUALISATION_H */
 /* End of file LedCubeVisualisation.h */

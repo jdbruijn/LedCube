@@ -32,7 +32,7 @@
  ******************************************************************************/
 
 #ifndef COLOURS_H
-#define	COLOURS_H
+#define COLOURS_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -51,8 +51,9 @@ extern "C" {
 
 /* Colour values:
  *                     | red      |  | green      |  | blue     | */
-/** Colour black, i.e. the red, green and blue LED are turned off. @ref OFF can
- *  also be used for this. */
+/** Colour black, i.e. the red, green and blue LED are turned off. @ref
+ * COLOUR_OFF can also be used for this.
+ */
 #define COLOUR_BLACK   0           , 0             , 0
 
 /** Colour red. Red is at full intensity and green and blue are turned off. */
@@ -61,13 +62,15 @@ extern "C" {
 /** Colour green. Green is at full intensity and red and blue are turned off. */
 #define COLOUR_GREEN   0           , _COLOUR_MAX   , 0
 
-/** Colour yellow. Red and green are at full intensity and blue is turned off. */
+/** Colour yellow. Red and green are at full intensity and blue is turned off.
+ */
 #define COLOUR_YELLOW  _COLOUR_MAX , _COLOUR_MAX   , 0
 
 /** Colour blue. Blue is at full intensity and red and blue are turned off. */
 #define COLOUR_BLUE    0           , 0             , _COLOUR_MAX
 
-/** Colour magenta. Red and blue are at full intensity and green is turned off. */
+/** Colour magenta. Red and blue are at full intensity and green is turned off.
+ */
 #define COLOUR_MAGENTA _COLOUR_MAX , 0             , _COLOUR_MAX
 
 /** Colour cyan. Green and blue are at full intensity and red is turned off. */
@@ -79,9 +82,9 @@ extern "C" {
 /** Alias for @ref COLOUR_BLACK. */
 #define COLOUR_OFF COLOUR_BLACK
 
-#ifdef	__cplusplus
+#ifdef __cplusplus
 }
 #endif
 
-#endif	/* COLOURS_H */
+#endif /* COLOURS_H */
 /* End of file Colours.h */

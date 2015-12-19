@@ -41,6 +41,7 @@
 volatile uint8_t layer = 0;
 /** Global variable for keeping track of the current BAM round in the ISR. */
 volatile uint8_t bamRound = 0;
+/** Pattern to select the current layer. */
 uint8_t const layerReg[8] = {
     0b11111101,
     0b11111110,
@@ -56,20 +57,20 @@ uint8_t const layerReg[8] = {
  * Functions
  ******************************************************************************/
 void
-LayerControl_init( void ) {
+LayerControl_init(void) {
     /********** Setup PanelControl ********************************************/
     PanelControl_init();
-    
+
     /********** Configure SPIx module *****************************************/
-    SPI2STAT = 0;                   // Reset SPIx module
+    SPI2STAT = 0; // Reset SPIx module
     SPI2CON1 = 0;
     SPI2CON2 = 0;
     Nop();
-    
-    IFS2bits.SPI2IF = 0;            // Clear the Interrupt flag
-    IEC2bits.SPI2IE = 0;            // Disable the interrupt
-    
-    SPI2CON1bits.MSTEN = 1;         // Master mode
+
+    IFS2bits.SPI2IF = 0; // Clear the Interrupt flag
+    IEC2bits.SPI2IE = 0; // Disable the interrupt
+
+    SPI2CON1bits.MSTEN = 1; // Master mode
     /* PPRE<1:0>: Primary Prescale bits (Master mode)
      * 11 = Primary prescale 1:1
      * 10 = Primary prescale 4:1
@@ -104,20 +105,20 @@ LayerControl_init( void ) {
      * 0 = Idle state for clock is a low level; active state is a high level
      */
     SPI2CON1bits.CKP = 0;
-    
+
     {
         uint8_t rData;
-        rData = SPI2BUF;            // Clear the SPIx transmit/receive buffer
+        rData = SPI2BUF; // Clear the SPIx transmit/receive buffer
     }
-    
-    SPI2STATbits.SPIEN = 1;         // Enable SPIx module
+
+    SPI2STATbits.SPIEN = 1; // Enable SPIx module
     Nop();
-    
+
     /********** Configure Timer 3 *********************************************/
-    T3CON = 0;                      // Reset Timer x
-    TMR3 = 0;                       // Clear contents of Timer x register
+    T3CON = 0; // Reset Timer x
+    TMR3 = 0; // Clear contents of Timer x register
     Nop();
-    
+
     /* @todo remove this block of comment
      * Fpb of 16 MHz, TCKPS 8
      * need period of 8000 to get 250 Hz
@@ -137,11 +138,11 @@ LayerControl_init( void ) {
      *                2717 to get 23 Hz
      *                2604 to get 24 Hz
      */
-    PR3 = 1600;                    // Interrupt at 1 Hz @todo Final: set final frequency and edit comment
-    IPC2bits.T3IP = INT_T3_PRIO;    // Set Timer x interrupt priority
-    IFS0bits.T3IF = 0;              // Clear the Timer x interrupt flag
-    IEC0bits.T3IE = 1;              // Enable Timer x interrupts
-    
+    PR3 = 1600; // Interrupt at 1 Hz @todo Final: set final frequency and edit comment
+    IPC2bits.T3IP = INT_T3_PRIO; // Set Timer x interrupt priority
+    IFS0bits.T3IF = 0; // Clear the Timer x interrupt flag
+    IEC0bits.T3IE = 1; // Enable Timer x interrupts
+
     /* TCKPS<1:0>: Timerx Input Clock Prescale bits
      * 11 = 1:256 prescaler value
      * 10 = 1:64 prescaler value
@@ -149,8 +150,8 @@ LayerControl_init( void ) {
      * 00 = 1:1 prescaler value
      */
     T3CONbits.TCKPS = 0b01;
-    T3CONbits.TON = 1;              // Enable Timer x
-    
+    T3CONbits.TON = 1; // Enable Timer x
+
     DEBUG_PRINTF_FUNCTION_INITIALIZE_COMPLETE();
     return;
 }
@@ -162,11 +163,11 @@ LayerControl_init( void ) {
  * @param   _layer The layer to set active ranging from 0 to @ref LC_MAX_Z_C.
  */
 void
-LayerControl_setLayer( const uint8_t _layer ) {
+LayerControl_setLayer(const uint8_t _layer) {
     DEBUG_PRINTF_FUNCTION_CALL("%u", _layer);
-    
-    SPI2_WaitTillTxBufferEmpty();
-    
+
+    SPI2_WAIT_TILL_TX_BUFFER_IS_EMPTY;
+
     /* Shift 0xFF7F, which is 1111 1111 0111 1111 binary, _layer places to the
      * right so at all times one bit (layer) is 0 (turned on). Only a 8-bit
      * value is needed but since it is shifted to the right an additional 8-bit
@@ -177,57 +178,57 @@ LayerControl_setLayer( const uint8_t _layer ) {
      */
     //SPI2BUF = (0xFF7F >> _layer) & 0xFF;
     SPI2BUF = layerReg[_layer];
-    
-    SPI2_WaitTillTxBufferEmpty();
-    
+
+    SPI2_WAIT_TILL_TX_BUFFER_IS_EMPTY;
+
     return;
 }
 
 void
-LayerControl_update( const pCubeControlData_t _pCubeControlData,
-        const pCubeData_t _pCubeData,
-        const uint8_t _layer,
-        const uint8_t _bamRound ) {
+LayerControl_update(const pCubeControlData_t _pCubeControlData,
+                    const pCubeData_t _pCubeData,
+                    const uint8_t _layer,
+                    const uint8_t _bamRound) {
     DEBUG_PRINTF_FUNCTION_CALL("%p, %p, %u, %u", _pCubeControlData, \
             _pCubeData, _layer, _bamRound);
-    
+
     /* Update in reverse order (panel 3 first), because the PanelControl PCBs
      * shift the data trough. So the data for the first PanelControl PCB needs 
      * to be send last.
      */
-    PanelControl_update( _pCubeControlData, _pCubeData, _layer, PANEL_3,
-            _bamRound );
-    PanelControl_update( _pCubeControlData, _pCubeData, _layer, PANEL_2,
-            _bamRound );
-    PanelControl_update( _pCubeControlData, _pCubeData, _layer, PANEL_1,
-            _bamRound );
-    PanelControl_update( _pCubeControlData, _pCubeData, _layer, PANEL_0,
-            _bamRound );
-    
+    PanelControl_update(_pCubeControlData, _pCubeData, _layer, PANEL_3,
+            _bamRound);
+    PanelControl_update(_pCubeControlData, _pCubeData, _layer, PANEL_2,
+            _bamRound);
+    PanelControl_update(_pCubeControlData, _pCubeData, _layer, PANEL_1,
+            _bamRound);
+    PanelControl_update(_pCubeControlData, _pCubeData, _layer, PANEL_0,
+            _bamRound);
+
     return;
 }
 
 void
-LayerControl_allOff( void ) {
+LayerControl_allOff(void) {
     DEBUG_PRINTF_FUNCTION_CALL();
-    
+
     uint8_t i;
-    for( i=0; i<N_PANELCONTROLS; i++ ) {
+    for (i = 0; i < N_PANELCONTROLS; i++) {
         PanelControl_allOff();
     }
-    
+
     return;
 }
 
 void
-LayerControl_allOn( void ) {
+LayerControl_allOn(void) {
     DEBUG_PRINTF_FUNCTION_CALL();
-    
+
     uint8_t i;
-    for( i=0; i<N_PANELCONTROLS; i++ ) {
+    for (i = 0; i < N_PANELCONTROLS; i++) {
         PanelControl_allOn();
     }
-    
+
     return;
 }
 
@@ -237,26 +238,27 @@ LayerControl_allOn( void ) {
  * 
  */
 void
-__attribute__((interrupt,auto_psv)) _T3Interrupt(void) {
+__attribute__((interrupt, auto_psv))
+_T3Interrupt(void) {
     LayerControl_setLayer(layer);
-    
-    LayerControl_update( pCubeControlData, pCubeControlData->pCubeDataRead,
-            layer, bamRound );
-    
-//    layer = (layer == LC_MAX_Z_C) ? 0 : layer + 1;
-//    bamRound = (bamRound == LC_MAX_BAM_VAL) ? 0 : bamRound + 1;
-    if(layer == LC_MAX_Z_C) {
+
+    LayerControl_update(pCubeControlData, pCubeControlData->pCubeDataRead,
+            layer, bamRound);
+
+    //    layer = (layer == LC_MAX_Z_C) ? 0 : layer + 1;
+    //    bamRound = (bamRound == LC_MAX_BAM_VAL) ? 0 : bamRound + 1;
+    if (layer == LC_MAX_Z_C) {
         layer = 0;
         bamRound = (bamRound == LC_MAX_BAM_VAL) ? 0 : bamRound + 1;
     } else {
         layer++;
     }
-    
-    PORT_SET_PIN(OE);    // Disable the output during the update
-    PORT_PULSE_PIN(LD_LE);
-    LayerControl_pulseLatch();
-    PORT_CLEAR_PIN(OE);  // Enable the output again
 
-    IFS0bits.T3IF = 0;              // Clear the Timer x interrupt flag
+    PORT_SET_PIN(OE); // Disable the output during the update
+    PORT_PULSE_PIN(LD_LE);
+    LAYERCONTROL_PULSE_LATCH;
+    PORT_CLEAR_PIN(OE); // Enable the output again
+
+    IFS0bits.T3IF = 0; // Clear the Timer x interrupt flag
 }
 /* End of file LayerControl.c */

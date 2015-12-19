@@ -107,22 +107,21 @@
 int
 main(int argc, char** argv) {
     ConfigureOscillator();
-    
+
     /********** User code initialisation **************************************/
     IOPorts_init();
     Uart1_init();
     Buzzer_init();
-    
+
     LedCube_init();
     Buzzer_shortBeep();
-    
+
     uint8_t z;
-    
+
     // Infinite loop for user code
-    while(1)
-    {
+    while (1) {
         // User code
-        for(z = 0; z < CUBEDATA_MAX_Z_C; z++) {
+        for (z = 0; z < CUBEDATA_MAX_Z_C; z++) {
             //LedCube_setPixel(1, 1, z, COLOUR_CYAN);
             //LedCube_updateUsingCopy();
             FillLayerWithSingleColour(z, COLOUR_YELLOW);
@@ -134,10 +133,10 @@ main(int argc, char** argv) {
         LedCube_update();
         LedCube_resetData();
     }
-    
+
     /********** End, nothing comes beyond this point! *************************/
-    while(1);
-    
-    return(0);
+    while (1);
+
+    return (0);
 }
 /* End of file main.c */

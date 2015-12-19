@@ -39,36 +39,40 @@
  * Functions
  ******************************************************************************/
 void
-LedCube_init( void ) {
+LedCube_init(void) {
     LayerControl_init();
     CubeControlData_init(pCubeControlData);
-    
+
     DEBUG_PRINTF_FUNCTION_INITIALIZE_COMPLETE();
     return;
 }
 
 void
-LedCube_setPixel( uint8_t const _x, uint8_t const _y, uint8_t const _z,
-        uint8_t const _red, uint8_t const _green, uint8_t const _blue ) {
+LedCube_setPixel(uint8_t const _x,
+                 uint8_t const _y,
+                 uint8_t const _z,
+                 uint8_t const _red,
+                 uint8_t const _green,
+                 uint8_t const _blue) {
     DEBUG_PRINTF_FUNCTION_CALL("%u, %u, %u, %u, %u, %u", \
             _x, _y, _z, _red, _green, _blue);
-    
+
     /********** Check conditions **********************************************/
     /* X, y, z positions within range */
-    ASSERT( LEDCUBE_MIN_XYZ <= _x && \
-            LEDCUBE_MAX_XYZ >= _x );
-    ASSERT( LEDCUBE_MIN_XYZ <= _y && \
-            LEDCUBE_MAX_XYZ >= _y );
-    ASSERT( LEDCUBE_MIN_XYZ <= _z && \
-            LEDCUBE_MAX_XYZ >= _z );
+    ASSERT(LEDCUBE_MIN_XYZ <= _x && \
+            LEDCUBE_MAX_XYZ >= _x);
+    ASSERT(LEDCUBE_MIN_XYZ <= _y && \
+            LEDCUBE_MAX_XYZ >= _y);
+    ASSERT(LEDCUBE_MIN_XYZ <= _z && \
+            LEDCUBE_MAX_XYZ >= _z);
     /* Intensities within range */
-    ASSERT( LEDCUBE_MIN_INTENSITY <= _red && \
-            LEDCUBE_MAX_INTENSITY >= _red );
-    ASSERT( LEDCUBE_MIN_INTENSITY <= _green && \
-            LEDCUBE_MAX_INTENSITY >= _green );
-    ASSERT( LEDCUBE_MIN_INTENSITY <= _blue && \
-            LEDCUBE_MAX_INTENSITY >= _blue );
-    
+    ASSERT(LEDCUBE_MIN_INTENSITY <= _red && \
+            LEDCUBE_MAX_INTENSITY >= _red);
+    ASSERT(LEDCUBE_MIN_INTENSITY <= _green && \
+            LEDCUBE_MAX_INTENSITY >= _green);
+    ASSERT(LEDCUBE_MIN_INTENSITY <= _blue && \
+            LEDCUBE_MAX_INTENSITY >= _blue);
+
     /********** Calculate position ********************************************/
     /* _x Ranges from 0 to 7 and selects the row, 0 for the back row and
      * 7 for the front row.
@@ -103,67 +107,67 @@ LedCube_setPixel( uint8_t const _x, uint8_t const _y, uint8_t const _z,
      */
     pCubeData_t const pCubeDataWrite = pCubeControlData->pCubeDataWrite;
     (pCubeDataWrite + _z * CUBEDATA_MAX_Z_C + _x)->red |= \
-            ((_red   & 0x01UL) << _y)        |
-            ((_red   & 0x02UL) << (_y + 7))  |
-            ((_red   & 0x04UL) << (_y + 14)) |
-            ((_red   & 0x08UL) << (_y + 21));
+            ((_red & 0x01UL) << _y) |
+            ((_red & 0x02UL) << (_y + 7)) |
+            ((_red & 0x04UL) << (_y + 14)) |
+            ((_red & 0x08UL) << (_y + 21));
     (pCubeDataWrite + _z * CUBEDATA_MAX_Z_C + _x)->green |= \
-            ((_green & 0x01UL) << _y)        |
-            ((_green & 0x02UL) << (_y + 7))  |
+            ((_green & 0x01UL) << _y) |
+            ((_green & 0x02UL) << (_y + 7)) |
             ((_green & 0x04UL) << (_y + 14)) |
             ((_green & 0x08UL) << (_y + 21));
     (pCubeDataWrite + _z * CUBEDATA_MAX_Z_C + _x)->blue |= \
-            ((_blue  & 0x01UL) << _y)        |
-            ((_blue  & 0x02UL) << (_y + 7))  |
-            ((_blue  & 0x04UL) << (_y + 14)) |
-            ((_blue  & 0x08UL) << (_y + 21));
-    
+            ((_blue & 0x01UL) << _y) |
+            ((_blue & 0x02UL) << (_y + 7)) |
+            ((_blue & 0x04UL) << (_y + 14)) |
+            ((_blue & 0x08UL) << (_y + 21));
+
     return;
 }
 
 void
-LedCube_update( void ) {
+LedCube_update(void) {
     DEBUG_PRINTF_FUNCTION_CALL();
-    
+
     CubeControlData_switchCubeData(pCubeControlData);
-    
+
     return;
 }
 
 void
-LedCube_updateUsingCopy( void ) {
+LedCube_updateUsingCopy(void) {
     DEBUG_PRINTF_FUNCTION_CALL();
-    
+
     CubeControlData_copyCubeData(pCubeControlData->pCubeDataWrite,
             pCubeControlData->pCubeDataRead);
-    
+
     return;
 }
 
 void
-LedCube_resetData( void ) {
+LedCube_resetData(void) {
     DEBUG_PRINTF_FUNCTION_CALL();
-    
+
     CubeControlData_resetCubeData(pCubeControlData->pCubeDataWrite);
-    
+
     return;
 }
 
 void
-LedCube_printHexWriteData( void ) {
+LedCube_printHexWriteData(void) {
     DEBUG_PRINTF_FUNCTION_CALL();
-    
+
     CubeControlData_printHexCubeData(pCubeControlData->pCubeDataWrite);
-    
+
     return;
 }
 
 void
-LedCube_printHexReadData( void ) {
+LedCube_printHexReadData(void) {
     DEBUG_PRINTF_FUNCTION_CALL();
-    
+
     CubeControlData_printHexCubeData(pCubeControlData->pCubeDataRead);
-    
+
     return;
 }
 
@@ -175,12 +179,13 @@ LedCube_printHexReadData( void ) {
 void
 _helperPrintByte(const uint8_t _b) {
     DEBUG_PRINTF_FUNCTION_CALL();
-    
+
     uint8_t i;
-    for( i=8; i>0; i-- ) {
-        Uart1_putc( ((_b >>(i-1)) & 0x01) + 48 ); Uart1_puts("  ");
+    for (i = 8; i > 0; i--) {
+        Uart1_putc(((_b >> (i - 1)) & 0x01) + 48);
+        Uart1_puts("  ");
     }
-    
+
     return;
 }
 
@@ -282,5 +287,4 @@ _helperPrintByte(const uint8_t _b) {
 //    
 //    return;
 //}
-
 /* End of file LedCube.c */

@@ -30,11 +30,11 @@
  * colour in the LED cube.
  * 
  ******************************************************************************/
- 
-#ifndef LEDDRIVER_H
-#define	LEDDRIVER_H
 
-#ifdef	__cplusplus
+#ifndef LEDDRIVER_H
+#define LEDDRIVER_H
+
+#ifdef __cplusplus
 extern "C" {
 #endif
 
@@ -56,7 +56,7 @@ extern "C" {
 /*******************************************************************************
  * Defines
  ******************************************************************************/
-    /** @todo document defines and macros */
+/** @todo document defines and macros */
 #define SPI1_PPRE               1           /* SPI1 Primary Prescale bits */
 #define SPI1_SPRE               2           /* SPI1 Secondary Prescale bits */
 #define SPI1_FSCK               FCY / (SPI1_PPRE * SPI1_SPRE)
@@ -64,24 +64,22 @@ extern "C" {
 /*******************************************************************************
  * Macros
  ******************************************************************************/
-#define LED_DRIVER_LeLow()      Port_ClearPin(LD_LE)
-#define LED_DRIVER_LeHigh()     Port_SetPin(LD_LE)
 //@fixme does this actually work or need some other method of waiting?
-#define SPI1_WaitTillTxBufferEmpty() while( SPI1STATbits.SPITBF == 1 )
+#define SPI1_WAIT_TILL_TX_BUFFER_IS_EMPTY while( SPI1STATbits.SPITBF == 1 )
 /** @todo  Change bitorder in the tables below so 0 is the LSB and 15 the MSB.*/
 /**
  * Reorder the bits to be in correct order, where 0 is the rightmost (LSB) bit
  * and 15 is the leftmost (MSB) bit. This is needed for @ref LedDriver_update,
  * which needs to reorder the LED data befor sending it to the LED Sink
  * Driver.
- * 
+ *
  * | Bit number  |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
  * | ----------- |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
  * | **Old var** | 3  | 4  | 2  | 5  | 1  | 6  | 0  | 7  | 11 | 12 | 10 | 13 | 9  | 14 | 8  | 15 |
  * | **New var** | 0  | 1  | 2  | 3  | 4  | 5  | 6  | 7  | 8  | 9  | 10 | 11 | 12 | 13 | 14 | 15 |
- * 
+ *
  * The following table shows the shift operations needed for specific bits.
- * 
+ *
  * | Old bit numbers | new bit numbers | shift action |
  * | :-------------- | :-------------- | :----------: |
  * | 0, 2, 8, 9      | 3, 4, 11, 12    | << 3         |
@@ -91,11 +89,11 @@ extern "C" {
  * | 5, 13           | 6, 14           | >> 1         |
  * | 6, 14           | 0, 8            | >> 6         |
  * | 7, 15           | 7, 15           |              |
- * 
+ *
  * #### Operations:
  * 7 `AND`, 6 `OR`, 5 `SHIFT`
  */
-#define _LED_DRIVER_ReorderLedData(ledData) ( ((ledData) & 0x0303) << 3 | \
+#define LED_DRIVER_REORDER_LEDDATA(ledData) ( ((ledData) & 0x0303) << 3 | \
                 ((ledData) & 0x0404)      | ((ledData) & 0x0808) << 2 | \
                 ((ledData) & 0x1010) >> 3 | ((ledData) & 0x2020) << 1 | \
                 ((ledData) & 0x4040) >> 6 | ((ledData) & 0x8080) )
@@ -105,47 +103,47 @@ extern "C" {
  ******************************************************************************/
 /**
  * Initialize a LED Sink Driver by configuring the SPIx peripheral.
- * 
+ *
  * @note    This function should be called only once because it sets the SPIx
  * peripheral for all the LED Sink Drivers since they are in a bus.
  */
 void
-LedDriver_init( void );
+LedDriver_init(void);
 
 /**
  * Update the output of a LED Sink Driver using the SPIx peripheral.
- * 
+ *
  * @param   _ledData 16-bit variable to send to a LED Sink Driver.
  */
 void
-LedDriver_update( const uint16_t _ledData );
+LedDriver_update(const uint16_t _ledData);
 
 /**
  * Turn all the LEDs of a LED Sink Driver off using @ref LedDriver_update.
  */
 void
-LedDriver_allOff( void );
+LedDriver_allOff(void);
 
 /**
  * Turn all the LEDs of a LED Sink Driver off using @ref LedDriver_update.
  */
 void
-LedDriver_allOn( void );    
+LedDriver_allOn(void);
 
 #ifdef LD_ENABLE_SELF_TEST_YES    
 /** @todo UnitTest: Remove selftest and create a selftest for the leddriver.
- * 
+ *
  * Run a self test on a LED Sink Driver. I.e. test a single LED Sink Driver.
  * Loops through all the outputs of the LED Sink Driver by putting on one output
  * at a time using the @ref LedDriver_update function.
  */
 void
-LedDriver_selfTest( void );
+LedDriver_selfTest(void);
 #endif /* LD_ENABLE_SELF_TEST_YES */
 
-#ifdef	__cplusplus
+#ifdef __cplusplus
 }
 #endif
 
-#endif	/* LEDDRIVER_H */
+#endif /* LEDDRIVER_H */
 /* End of file LedDriver.h */

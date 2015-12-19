@@ -35,11 +35,11 @@
  ******************************************************************************/
 
 #ifndef PORT_H
-#define	PORT_H
+#define PORT_H
 
-//#ifdef	__cplusplus
-//extern "C" {
-//#endif
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*******************************************************************************
  * Includes
@@ -320,7 +320,7 @@ do {                                                                           \
     PORT_CLEAR_PIN(pin);                                                       \
     PORT_CONFIGURE_PIN_AS_DIGITAL_OUTPUT(pin)
 
-#ifdef	__cplusplus
+#ifdef __cplusplus
 }
 #endif
 

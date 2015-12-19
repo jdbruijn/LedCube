@@ -31,9 +31,9 @@
  ******************************************************************************/
 
 #ifndef PANELCONTROL_H
-#define	PANELCONTROL_H
+#define PANELCONTROL_H
 
-#ifdef	__cplusplus
+#ifdef __cplusplus
 extern "C" {
 #endif
 
@@ -64,16 +64,16 @@ extern "C" {
  ******************************************************************************/
 /**
  * Initialize everything needed for a PanelControl PCB.
- * 
+ *
  * @note    This initializes a LED Sink Driver using @ref LedDriver_init.
  */
 void
-PanelControl_init( void );
+PanelControl_init(void);
 
 /**
  * Update the outputs of a PanelControl PCB by calling @ref LedDriver_update
  * three times.
- * 
+ *
  * @param   _pCubeControlData Pointer to @ref CubeControlData structure.
  * @param   _pCubeData[] Pointer to the first element of a CubeData structure
  * array.
@@ -82,41 +82,41 @@ PanelControl_init( void );
  * @param   _bamRound The BAM-round to update.
  */
 void
-PanelControl_update( const pCubeControlData_t _pCubeControlData,
-        const pCubeData_t _pCubeData,
-        const uint8_t _layer,
-        const Panels_t _panel,
-        const uint8_t _bamRound );
+PanelControl_update(const pCubeControlData_t _pCubeControlData,
+                    const pCubeData_t _pCubeData,
+                    const uint8_t _layer,
+                    const Panels_t _panel,
+                    const uint8_t _bamRound);
 
 /**
  * Turn all the LEDs of a PanelControl PCB off using @ref LedDriver_allOff.
  */
 void
-PanelControl_allOff( void );
+PanelControl_allOff(void);
 
 /**
  * Turn all the LEDs of a PanelControl PCB on using @ref LedDriver_allOn.
  */
 void
-PanelControl_allOn( void );
+PanelControl_allOn(void);
 
 #ifdef PC_ENABLE_SELF_TEST_YES
 /**
  * Run a self test on a PanelControl PCB. I.e. test a PanelControl PCB.
  * Loops through all the outputs of a PanelControl PCB by putting on one output
  * at a time.
- * 
+ *
  * @param   void
  * @return  void
  * @Example <code>PanelControl_selfTest();</code>
  */
 void
-PanelControl_selfTest( void );
+PanelControl_selfTest(void);
 #endif /* PC_ENABLE_SELF_TEST_YES */
 
-#ifdef	__cplusplus
+#ifdef __cplusplus
 }
 #endif
 
-#endif	/* PANELCONTROL_H */
+#endif /* PANELCONTROL_H */
 /* End of file PanelControl.h */

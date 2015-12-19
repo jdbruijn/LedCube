@@ -30,11 +30,11 @@
  ******************************************************************************/
 
 #ifndef UART_H
-#define	UART_H
+#define UART_H
 
-//#ifdef __cplusplus
-//extern "C" {
-//#endif
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /*******************************************************************************
  * Switches
@@ -117,7 +117,7 @@
  * analog functionality, is disabled.
  */
 void
-Uart1_init( void );
+Uart1_init(void);
 
 /**
  * @brief Send a single character (byte) using the UARTx module.
@@ -125,7 +125,7 @@ Uart1_init( void );
  * @param   _c Character to send using UARTx.
  */
 void
-Uart1_putc( const char _c );
+Uart1_putc(const char _c);
 
 /**
  * @brief Send a string using the UARTx module.
@@ -133,7 +133,7 @@ Uart1_putc( const char _c );
  * @param   _s String to send using UARTx.
  */
 void
-Uart1_puts( const char* _s );
+Uart1_puts(const char* _s);
 
 /**
  * @brief Send an integer number using the UARTx module.
@@ -150,7 +150,7 @@ Uart1_puts( const char* _s );
  * to be added.
  */
 void
-Uart1_putNum( int32_t _num, uint8_t _base, bool _printBase );
+Uart1_putNum(int32_t _num, uint8_t _base, bool _printBase);
 
 /**
  * @brief Send a byte in binary form (with zero padding) using the UARTx module.
@@ -159,7 +159,7 @@ Uart1_putNum( int32_t _num, uint8_t _base, bool _printBase );
  * @param   _nBits Number of bits to send
  */
 void
-Uart1_putBits( const uint64_t _v, uint8_t _nBits );
+Uart1_putBits(const uint64_t _v, uint8_t _nBits);
 
 #if defined(UART_USE_PRINTF_YES) || defined(DEBUG)
 /**
@@ -227,7 +227,7 @@ Uart1_putBits( const uint64_t _v, uint8_t _nBits );
  *              &#09 an additional integer value argument preceding the argument        \n
  *              &#09 that has to be formatted.
  * 
- * .precision	&#09 description                                                        \n
+ * .precision   &#09 description                                                        \n
  * .number      &#09 For integer specifiers (d, i, o, u, x, X): precision specifies     \n
  *              &#09 the minimum number of digits to be written. If the value to be     \n
  *              &#09 written is shorter than this number, the result is padded with     \n
@@ -277,7 +277,7 @@ Uart1_putBits( const uint64_t _v, uint8_t _nBits );
  * @return  uint16_t len Length of the printed string.
  */
 uint16_t
-Uart1_printf( const char *format, ... );
+Uart1_printf(const char *format, ...);
 #endif /* UART_USE_PRINTF_YES or DEBUG */
 
 /**
@@ -292,11 +292,11 @@ Uart1_printf( const char *format, ... );
  * Uartx_gets(rxStr, 100);</code>
  */
 void
-Uart1_gets( char *_str, uint8_t _num );
+Uart1_gets(char *_str, uint8_t _num);
 
-#ifdef	__cplusplus
+#ifdef __cplusplus
 }
 #endif
 
-#endif	/* UART_H */
+#endif /* UART_H */
 /* End of file Uart.h */

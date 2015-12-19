@@ -31,7 +31,7 @@
  ******************************************************************************/
 
 #ifndef LEDCUBE_H
-#define	LEDCUBE_H
+#define LEDCUBE_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -59,19 +59,15 @@ extern "C" {
  ******************************************************************************/
 /** Minimum value for the x-, y- and z-axis. */
 #define LEDCUBE_MIN_XYZ 0
-
 /** Maximum value for the x-, y- and z-axis. */
 #define LEDCUBE_MAX_XYZ         (CUBEDATA_MAX_X_C - 1)
-
 #if (CUBEDATA_N_BAM_BITS == 4)
 /** Minimum value for the LEDs intensity. */
-#   define LEDCUBE_MIN_INTENSITY 0
-
+# define LEDCUBE_MIN_INTENSITY 0
 /** Maximum value for the LEDs intensity. */
-#   define LEDCUBE_MAX_INTENSITY 15
-
+# define LEDCUBE_MAX_INTENSITY 15
 #else
-#   error Unknown value of CUBEDATA_N_BAM_BITS in CubeControlData.h defined!
+# error Unknown value of CUBEDATA_N_BAM_BITS in CubeControlData.h defined!
 #endif
 
 /*******************************************************************************
@@ -85,11 +81,11 @@ extern "C" {
  * using @ref LayerControl_init.
  */
 void
-LedCube_init( void );
+LedCube_init(void);
 
 /**
  * Set a single pixel in the LedCube's data.
- * 
+ *
  * @note    See the following 'image' of how the axis of the LED cube are set.\n
  * 'O' is the origin and represents coordinate (0, 0, 0).\n
  * 'A' is the right back bottom corner of the cube and represents coordinate
@@ -119,7 +115,7 @@ LedCube_init( void );
  *  |                 /
  *  z-axis(vertical) y-axis (horizontal)
  * @endverbatim
- * 
+ *
  * @param   _x Selects the row. Ranges from 0 to @ref LEDCUBE_MAX_XYZ, 0 for the
  * back row and @ref LEDCUBE_MAX_XYZ for the front row.
  * @param   _y Selects the column. Ranges from 0 to @ref LEDCUBE_MAX_XYZ, 0 for
@@ -137,15 +133,19 @@ LedCube_init( void );
  * LEDCUBE_MAX_INTENSITY for the brightest intensity.
  */
 void
-LedCube_setPixel( uint8_t const _x, uint8_t const _y, uint8_t const _z,
-        uint8_t const _red, uint8_t const _green, uint8_t const _blue );
+LedCube_setPixel(uint8_t const _x,
+                 uint8_t const _y,
+                 uint8_t const _z,
+                 uint8_t const _red,
+                 uint8_t const _green,
+                 uint8_t const _blue);
 
 /**
  * Update the outputs of the LedCube with the data that is currently set in the
  * CubeData structure array using a read-write pointer switch.
  */
 void
-LedCube_update( void );
+LedCube_update(void);
 
 /**
  * Update the outputs of the LedCube with the data that is currently set in the
@@ -155,35 +155,35 @@ LedCube_update( void );
  * output.
  */
 void
-LedCube_updateUsingCopy( void );
+LedCube_updateUsingCopy(void);
 
 /**
  * Reset all the LedCube's LED data pointed to by @ref
  * CubeControlData_t::pCubeDataWrite using @ref CubeControlData_resetCubeData.
  */
 void
-LedCube_resetData( void );
+LedCube_resetData(void);
 
 /**
  * Print all the LedCube's LED data pointed to by @ref
  * CubeControlData_t::pCubeDataWrite using @ref CubeControlData_printHexCubeData.
  */
 void
-LedCube_printHexWriteData( void );
+LedCube_printHexWriteData(void);
 
 /**
  * Print all the LedCube's LED data pointed to by @ref
  * CubeControlData_t::pCubeDataRead using @ref CubeControlData_printHexCubeData.
  */
 void
-LedCube_printHexReadData( void );
+LedCube_printHexReadData(void);
 
 /**
  * @todo edit function documentation below this point.
  * Print the data of one level via UARTx. The data is formatted to be easily
  * understandable from a serial terminal.
- * 
- * @param   _data Pointer to the layer to print, must be of type 
+ *
+ * @param   _data Pointer to the layer to print, must be of type
  * pLayerControlData_t.
  * @param   _layer Integer value of the layer to print.
  * @Example See LedCube_printLayerDataVF() documentation for a code example.
@@ -195,12 +195,12 @@ LedCube_printHexReadData( void );
 /**
  * Print the data of one level via UARTx. The data format is compatible with the
  * Windows program "LedCube Visualisation".
- * 
- * @param   _data Pointer to the layer to print, must be of type 
+ *
+ * @param   _data Pointer to the layer to print, must be of type
  * pLayerControlData_t.
  * @param   _layer Integer value of the layer to print.
  * @Example <code>CubeControlData_t CubeData = {\n
- *  &#92* &#09 &#32     |  Panel 1  | &#32 |  panel 2  | &#32 |  panel 3  | &#32 | 
+ *  &#92* &#09 &#32     |  Panel 1  | &#32 |  panel 2  | &#32 |  panel 3  | &#32 |
  *  panel 4  | *&#47\n
  *   { &#92* Layer 0 *&#47 {0,0,0,0,0,0},{0,0,0,0,0,0},{0,0,0,0,0,0},{0,0,0,0,0,0} },\n
  *   { &#92* Layer 1 *&#47 {0,0,0,0,0,0},{0,0,0,0,0,0},{0,0,0,0,0,0},{0,0,0,0,0,0} },\n
@@ -218,9 +218,9 @@ LedCube_printHexReadData( void );
 //LedCube_printLayerDataVF( const pLayerControlData_t _data,
 //        const uint8_t _layer );
 
-#ifdef	__cplusplus
+#ifdef __cplusplus
 }
 #endif
 
-#endif	/* LEDCUBE_H */
+#endif /* LEDCUBE_H */
 /* End of file LedCube.h */

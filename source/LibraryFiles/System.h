@@ -29,9 +29,9 @@
  ******************************************************************************/
 
 #ifndef SYSTEM_H
-#define	SYSTEM_H
+#define SYSTEM_H
 
-#ifdef	__cplusplus
+#ifdef __cplusplus
 extern "C" {
 #endif
 
@@ -58,18 +58,18 @@ extern "C" {
 
 /*******************************************************************************
  * Function prototypes
- ******************************************************************************/   
+ ******************************************************************************/
 /**
  * @brief Configure the system oscillator.
- * 
+ *
  * @note    Settings must be confirm Configuration Bits Settings.
  */
 void
-ConfigureOscillator( void );
+ConfigureOscillator(void);
 
-#ifdef	__cplusplus
+#ifdef __cplusplus
 }
 #endif
 
-#endif	/* SYSTEM_H */
+#endif /* SYSTEM_H */
 /* End of file System.h */

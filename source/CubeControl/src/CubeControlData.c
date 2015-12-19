@@ -109,7 +109,7 @@ CubeControlData_t CubeControlData = {
         16,
         24
     }
-    
+
 };
 
 /** Constant pointer to the CubeControlData structure */
@@ -125,85 +125,85 @@ pCubeData_t const pCubeData1Base = &CubeControlData.CubeData1[0][0];
  * Functions
  ******************************************************************************/
 void
-CubeControlData_init( pCubeControlData_t const _pCubeControlData ) {
+CubeControlData_init(pCubeControlData_t const _pCubeControlData) {
     _pCubeControlData->pCubeDataRead = pCubeData0Base;
     _pCubeControlData->pCubeDataWrite = pCubeData1Base;
-        
+
     DEBUG_PRINTF_FUNCTION_INITIALIZE_COMPLETE();
     return;
 }
 
 void
-CubeControlData_switchCubeData( pCubeControlData_t const _pCubeControlData ) {
+CubeControlData_switchCubeData(pCubeControlData_t const _pCubeControlData) {
     DEBUG_PRINTF_FUNCTION_CALL("%p", _pCubeControlData);
-    
+
     INTERRUPTS_DISSABLE_AND_SAVE_CPU_IPL();
-    
-    if(_pCubeControlData->pCubeDataRead == pCubeData0Base) {
+
+    if (_pCubeControlData->pCubeDataRead == pCubeData0Base) {
         _pCubeControlData->pCubeDataRead = pCubeData1Base;
         _pCubeControlData->pCubeDataWrite = pCubeData0Base;
     } else {
         _pCubeControlData->pCubeDataRead = pCubeData0Base;
         _pCubeControlData->pCubeDataWrite = pCubeData1Base;
-        
+
     }
-    
+
     DEBUG_PRINTF_FUNCTION("pCubeDataRead: %p, pCubeDataWrite: %p",
-                _pCubeControlData->pCubeDataRead,
-                _pCubeControlData->pCubeDataWrite);
-    
+            _pCubeControlData->pCubeDataRead,
+            _pCubeControlData->pCubeDataWrite);
+
     INTERRUPTS_RESTORE_CPU_IPL();
-    
+
     return;
 }
 
 void
-CubeControlData_resetCubeData( pCubeData_t const _pCubeData ) {
+CubeControlData_resetCubeData(pCubeData_t const _pCubeData) {
     DEBUG_PRINTF_FUNCTION_CALL("%p", _pCubeData);
-    
+
     uint8_t x, z;
-    for(z = 0; z < CUBEDATA_MAX_Z_C; z++) {
-        for(x = 0; x < CUBEDATA_MAX_X_C; x++) {
+    for (z = 0; z < CUBEDATA_MAX_Z_C; z++) {
+        for (x = 0; x < CUBEDATA_MAX_X_C; x++) {
             (_pCubeData + z * CUBEDATA_MAX_Z_C + x)->red   = 0x00000000;
             (_pCubeData + z * CUBEDATA_MAX_Z_C + x)->green = 0x00000000;
             (_pCubeData + z * CUBEDATA_MAX_Z_C + x)->blue  = 0x00000000;
         }
     }
-    
+
     return;
 }
 
 void
-CubeControlData_copyCubeData( pCubeData_t const _pCubeDataFrom,
-        pCubeData_t const _pCubeDataTo ) {
+CubeControlData_copyCubeData(pCubeData_t const _pCubeDataFrom,
+                             pCubeData_t const _pCubeDataTo) {
     DEBUG_PRINTF_FUNCTION_CALL("%p, %p", _pCubeDataFrom, _pCubeDataTo);
-    
+
     INTERRUPTS_DISSABLE_AND_SAVE_CPU_IPL();
-    
+
     uint8_t x, z;
-    for(z = 0; z < CUBEDATA_MAX_Z_C; z++) {
-        for(x = 0; x < CUBEDATA_MAX_X_C; x++) {
-            (_pCubeDataTo + z * CUBEDATA_MAX_Z_C + x)->red   = \
+    for (z = 0; z < CUBEDATA_MAX_Z_C; z++) {
+        for (x = 0; x < CUBEDATA_MAX_X_C; x++) {
+            (_pCubeDataTo + z * CUBEDATA_MAX_Z_C + x)->red = \
                     (_pCubeDataFrom + z * CUBEDATA_MAX_Z_C + x)->red;
             (_pCubeDataTo + z * CUBEDATA_MAX_Z_C + x)->green = \
                     (_pCubeDataFrom + z * CUBEDATA_MAX_Z_C + x)->green;
-            (_pCubeDataTo + z * CUBEDATA_MAX_Z_C + x)->blue  = \
+            (_pCubeDataTo + z * CUBEDATA_MAX_Z_C + x)->blue = \
                     (_pCubeDataFrom + z * CUBEDATA_MAX_Z_C + x)->blue;
         }
     }
-    
+
     INTERRUPTS_RESTORE_CPU_IPL();
-    
+
     return;
 }
 
 void
-CubeControlData_printHexCubeData( pCubeData_t const _pCubeData ) {
+CubeControlData_printHexCubeData(pCubeData_t const _pCubeData) {
     DEBUG_PRINTF_FUNCTION_CALL("%p", _pCubeData);
-    
+
     uint8_t x, z;
-    for(z = 0; z < 8; z++) {
-        for(x = 0; x < 8; x++) {
+    for (z = 0; z < 8; z++) {
+        for (x = 0; x < 8; x++) {
             PRINTF("pCubeData[%u][%u].red  : 0x%.8lX\n", z, x,
                     (_pCubeData + z * CUBEDATA_MAX_Z_C + x)->red);
             PRINTF("pCubeData[%u][%u].green: 0x%.8lX\n", z, x,
@@ -212,7 +212,7 @@ CubeControlData_printHexCubeData( pCubeData_t const _pCubeData ) {
                     (_pCubeData + z * CUBEDATA_MAX_Z_C + x)->blue);
         }
     }
-    
+
     return;
 }
 /* End of file CubeControlData.c */

@@ -29,7 +29,7 @@
  ******************************************************************************/
 
 #ifndef VERSION_H
-#define	VERSION_H
+#define VERSION_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -51,7 +51,7 @@ extern "C" {
  * Macros
  ******************************************************************************/
 /** @brief Version string.
- * 
+ *
  * It uses the @ref MACRO_EXPAND_CONCATENATE_STR_FIVE macro to expand and
  * and convert the version defines to a version string.
  */
@@ -59,9 +59,9 @@ extern "C" {
     MACRO_EXPAND_CONCATENATE_STR_FIVE(VERSION_MAJOR, ., VERSION_MINOR, . ,     \
     VERSION_PATCH)
 
-#ifdef	__cplusplus
+#ifdef __cplusplus
 }
 #endif
 
-#endif	/* VERSION_H */
+#endif /* VERSION_H */
 /* End of file Version.h */

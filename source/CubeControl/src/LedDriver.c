@@ -37,18 +37,18 @@
  * Functions
  ******************************************************************************/
 void
-LedDriver_init( void ) {
-    SPI1STAT = 0;               // Reset SPIx module
+LedDriver_init(void) {
+    SPI1STAT = 0; // Reset SPIx module
     SPI1CON1 = 0;
     SPI1CON2 = 0;
     Nop();
-    
-    IFS0bits.SPI1IF = 0;        // Clear the Interrupt flag
-    IEC0bits.SPI1IE = 0;        // Disable the interrupt
-    
-    SPI1CON1bits.MSTEN = 1;     // Master Mode
-    SPI1CON1bits.MODE16 = 1;    // Communication is word-wide (16 bits)
-    SPI1CON1bits.SSEN = 0;      // SSx pin is not used by the module
+
+    IFS0bits.SPI1IF = 0; // Clear the Interrupt flag
+    IEC0bits.SPI1IE = 0; // Disable the interrupt
+
+    SPI1CON1bits.MSTEN = 1; // Master Mode
+    SPI1CON1bits.MODE16 = 1; // Communication is word-wide (16 bits)
+    SPI1CON1bits.SSEN = 0; // SSx pin is not used by the module
     /* PPRE<1:0>: Primary Prescale bits (Master mode)
      * 11 = Primary prescale 1:1
      * 10 = Primary prescale 4:1
@@ -83,82 +83,82 @@ LedDriver_init( void ) {
      * 0 = Idle state for clock is a low level; active state is a high level
      */
     SPI2CON1bits.CKP = 0;
-    
+
     {
         uint16_t rData;
-        rData = SPI1BUF;        // Clear the SPIx transmit/receive buffer
+        rData = SPI1BUF; // Clear the SPIx transmit/receive buffer
     }
-    
-    SPI1STATbits.SPIEN = 1;     // Enable SPIx module
+
+    SPI1STATbits.SPIEN = 1; // Enable SPIx module
     Nop();
-    
+
     DEBUG_PRINTF_FUNCTION_INITIALIZE_COMPLETE();
     return;
 }
 
 void
-LedDriver_update( const uint16_t _ledData ) {
+LedDriver_update(const uint16_t _ledData) {
     DEBUG_PRINTF_FUNCTION_CALL("0x%.4X", _ledData);
-    
-    SPI1_WaitTillTxBufferEmpty();
 
-    SPI1BUF = _LED_DRIVER_ReorderLedData(_ledData);
-    
-    SPI1_WaitTillTxBufferEmpty();
-    
+    SPI1_WAIT_TILL_TX_BUFFER_IS_EMPTY;
+
+    SPI1BUF = LED_DRIVER_REORDER_LEDDATA(_ledData);
+
+    SPI1_WAIT_TILL_TX_BUFFER_IS_EMPTY;
+
     return;
 }
 
 void
-LedDriver_allOff( void ) {
+LedDriver_allOff(void) {
     DEBUG_PRINTF_FUNCTION_CALL();
-    
+
     LedDriver_update(0x0000);
-    
+
     return;
 }
 
 void
-LedDriver_allOn( void ) {
+LedDriver_allOn(void) {
     DEBUG_PRINTF_FUNCTION_CALL();
-    
+
     LedDriver_update(0xFFFF);
-    
+
     return;
 }
 
 
 #ifdef LD_ENABLE_SELF_TEST_YES
+
 /**
  * Self test using the update function and shifting a 16 bit value to the
  * outputs.
  * 
  */
 void
-LedDriver_selfTest( void ) {
+LedDriver_selfTest(void) {
     DEBUG_PRINTF_FUNCTION_CALL();
-    
+
     uint8_t led;
     uint16_t ledData = 0x0001;
     uint32_t delay;
-    
+
     // Loop to 17 instead of 16 so all the outputs are off in the end.
-    for( led=0; led<17; led++ ) {
+    for (led = 0; led < 17; led++) {
         LED_DRIVER_LeLow();
-        
+
         LedDriver_update(ledData);
-        
+
         SPI1_WaitTillTxBufferEmpty();
         LED_DRIVER_LeHigh();
-        
-        for( delay=0;delay<400000;delay++ ) Nop();
-        shiftLeft(ledData, 1);  // Prepare the ledData for the next iteration.
+
+        for (delay = 0; delay < 400000; delay++) Nop();
+        shiftLeft(ledData, 1); // Prepare the ledData for the next iteration.
     }
-    
+
     SPI1_WaitTillTxBufferEmpty();
-    
+
     return;
 }
 #endif /* LD_ENABLE_SELF_TEST_YES */
-
 /* End of file LedDriver.c */

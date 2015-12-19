@@ -34,7 +34,7 @@
  ******************************************************************************/
 
 #ifndef MYASSERT_H
-#define	MYASSERT_H
+#define MYASSERT_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -46,7 +46,7 @@ extern "C" {
  * Includes
  ******************************************************************************/
 #ifdef DEBUG
-#include <xc.h>
+# include <xc.h>
 # ifndef UART_H
 #  include "Uart.h"
 # endif
@@ -58,37 +58,37 @@ extern "C" {
  * Defines
  ******************************************************************************/
 #ifdef DEBUG
-# ifndef PRINTF
-/** 
+#ifndef PRINTF
+/**
  * @brief Wrapper for PRINTF to an actual printf function, in this case @ref
  * Uart1_printf.
  */
-#  define PRINTF Uart1_printf
-# endif
-# define _ASSERTION_FAILED_MSG " -- assertion failed, program halted..."
+# define PRINTF Uart1_printf
+#endif
+#define _ASSERTION_FAILED_MSG " -- assertion failed, program halted..."
 
 /*******************************************************************************
  * Function macros
  ******************************************************************************/
 /**
  * Helper macro to print a debugging message to the standard device.
- * 
+ *
  * @Note    The macros need a second helper macro in order to expand multiple
  * defines.
  */
-# define _HELPER_ASSERT(expr)                                                  \
+#define _HELPER_ASSERT(expr)                                                  \
     PRINTF("DEBUG: %s:%d:%s(): " expr _ASSERTION_FAILED_MSG "\n",              \
     __FILE__, __LINE__, __FUNCTION__)
 
 /**
  * @brief Evaluate an assertion.
- * 
+ *
  * If the argument expression of this macro with functional form compares equal
  * to zero (i.e., the expression is false), a message is written to the standard
  * device and the program execution is halted. Halting the program execution is
  * done by setting the CPU interrupt priority level to seven and entering an
  * infinite loop.
- * 
+ *
  * @note    This macro is disabled if, at the moment of including "MyAssert.h",
  * a macro with the name @ref NDEBUG has already been defined. This allows for a
  * coder to include as many assert calls as needed in a source code while
@@ -100,9 +100,9 @@ extern "C" {
  * debugging phase.
  * @param   expression Expression to be evaluated. If this expression evaluates
  * to zero, this causes an assertion failure that halts the program.
- * 
+ *
  */
-# define ASSERT(expr) {                                                        \
+#define ASSERT(expr) {                                                        \
     if(!(expr)) {                                                              \
         _HELPER_ASSERT(#expr);                                                 \
         SET_CPU_IPL(7);                                                        \
@@ -111,23 +111,23 @@ extern "C" {
 
 #else /* DEBUG */
 /* Wrapper for ASSERT to the standard assert (from assert.h). */
-#   define ASSERT(expr) assert(expr)
+#define ASSERT(expr) assert(expr)
 #endif /* DEBUG */
 
 #else /* NDEBUG is defined */
-# ifdef DEBUG
-#  warning "Both DEBUG and NDEBUG are defined!"
-# endif
+#ifdef DEBUG
+# warning "Both DEBUG and NDEBUG are defined!"
+#endif
 /**
  * The ASSERT macro does not do anything, the device proceeds program execution
  * as normal.
  */
-#   define ASSERT(expr) ((void)0)
+#define ASSERT(expr) ((void)0)
 #endif /* NDEBUG */
 
-#ifdef	__cplusplus
+#ifdef __cplusplus
 }
 #endif
 
-#endif	/* MYASSERT_H */
+#endif /* MYASSERT_H */
 /* End of file MyAssert.h */

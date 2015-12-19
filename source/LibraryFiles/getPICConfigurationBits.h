@@ -66,7 +66,7 @@ extern "C" {
  * Defines
  ******************************************************************************/
 #ifndef PRINTF
-/** 
+/**
  * @brief Wrapper for PRINTF to an actual printf function, in this case @ref
  * Uart1_printf.
  */
@@ -193,9 +193,9 @@ extern "C" {
 /**
  * @brief Read the two Flash Configuration Words, verify and print the read
  * Flash Configuration Words in a user friendly format.
- * 
+ *
  * @note    The print of the read data is done using the @ref PRINTF wrapper.
- * 
+ *
  * #### Example output (without the asterisks):
  * @verbatim
  * Reading Flash Configuration Word 1...
@@ -221,7 +221,7 @@ extern "C" {
  *  WDTPS<3:0>: Watchdog Timer Postscaler Select bits
  *   [WDTPS_PS32768] 1:32768
  * Done Reading Flash Configuration Word 1.
- * 
+ *
  * Reading Flash Configuration Word 2...
  * Binary read value:
  * 111111111111100101101101
@@ -248,9 +248,9 @@ extern "C" {
  * @endverbatim
  */
 void
-getPICConfigBits( void );
+getPICConfigBits(void);
 
-#ifdef  __cplusplus
+#ifdef __cplusplus
 }
 #endif
 

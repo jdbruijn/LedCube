@@ -37,10 +37,10 @@
  * Functions
  ******************************************************************************/
 void
-IOPorts_init( ) {
+IOPorts_init() {
     /********** Configure I/Os ************************************************/
     PORT_INITIALIZE_ALL_PINS;
-    
+
     /* LedDriver */
     PORT_CONFIGURE_PIN_AS_DIGITAL_OUTPUT(SPI1_SDO);
     PORT_CONFIGURE_PIN_AS_DIGITAL_OUTPUT(SPI1_SCK);
@@ -61,26 +61,26 @@ IOPorts_init( ) {
     PORT_CONFIGURE_PIN_AS_DIGITAL_OUTPUT(USB_TO_UART_CTS);
     PORT_CONFIGURE_PIN_AS_DIGITAL_INPUT(USB_TO_UART_RTS);
     /* Bluetooth */
-//    PORT_CONFIGURE_PIN_AS_DIGITAL_INPUT(BT_UART_TX);
-//    PORT_CONFIGURE_PIN_AS_DIGITAL_OUTPUT(BT_UART_RX);
-//    PORT_CONFIGURE_PIN_AS_DIGITAL_OUTPUT(BT_UART_CTS);
-//    PORT_CONFIGURE_PIN_AS_DIGITAL_INPUT(BT_UART_RTS);
-//    PORT_CONFIGURE_PIN_AS_DIGITAL_OUTPUT(BT_CMD_MLDP);
-//    PORT_CONFIGURE_PIN_AS_DIGITAL_OUTPUT(BT_WAKE_HW);
-//    PORT_CONFIGURE_PIN_AS_DIGITAL_OUTPUT(BT_WAKE_SW);
-//    PORT_CONFIGURE_PIN_AS_DIGITAL_INPUT(BT_CONNECTSTATUS);
-//    PORT_CONFIGURE_PIN_AS_DIGITAL_INPUT(BT_MLDP_EV);
-//    PORT_CONFIGURE_PIN_AS_DIGITAL_INPUT(BT_WS);
-//    PORT_CONFIGURE_PIN_AS_DIGITAL_OUTPUT(BT_PIO7);   // Bidirectional port
+    //    PORT_CONFIGURE_PIN_AS_DIGITAL_INPUT(BT_UART_TX);
+    //    PORT_CONFIGURE_PIN_AS_DIGITAL_OUTPUT(BT_UART_RX);
+    //    PORT_CONFIGURE_PIN_AS_DIGITAL_OUTPUT(BT_UART_CTS);
+    //    PORT_CONFIGURE_PIN_AS_DIGITAL_INPUT(BT_UART_RTS);
+    //    PORT_CONFIGURE_PIN_AS_DIGITAL_OUTPUT(BT_CMD_MLDP);
+    //    PORT_CONFIGURE_PIN_AS_DIGITAL_OUTPUT(BT_WAKE_HW);
+    //    PORT_CONFIGURE_PIN_AS_DIGITAL_OUTPUT(BT_WAKE_SW);
+    //    PORT_CONFIGURE_PIN_AS_DIGITAL_INPUT(BT_CONNECTSTATUS);
+    //    PORT_CONFIGURE_PIN_AS_DIGITAL_INPUT(BT_MLDP_EV);
+    //    PORT_CONFIGURE_PIN_AS_DIGITAL_INPUT(BT_WS);
+    //    PORT_CONFIGURE_PIN_AS_DIGITAL_OUTPUT(BT_PIO7);   // Bidirectional port
     /* Buzzer */
     PORT_CONFIGURE_PIN_AS_DIGITAL_OUTPUT(BUZZER);
-    
+
     /********** Initialize I/Os to a default value ****************************/
     PORT_SET_PIN(OE);
-    
+
     /********** Assign I/Os to functionalities ********************************/
     PPS_UNLOCK;
-    
+
     /* LedDriver */
     PPSOutput(SPI1_SDO, PPS_OUT_SDO1);
     PPSOutput(SPI1_SCK, PPS_OUT_SCK1OUT);
@@ -93,16 +93,15 @@ IOPorts_init( ) {
     PPSInput(PPS_IN_U1CTS, USB_TO_UART_CTS);
     PPSOutput(USB_TO_UART_RTS, PPS_OUT_U1RTS);
     /* Bluetooth */
-//    PPSOutput(BT_UART_TX, PPS_OUT_U2TX);
-//    PPSInput(PPS_IN_U2RX, BT_UART_RX);
-//    PPSInput(PPS_IN_U2CTS, BT_UART_CTS);
-//    PPSOutput(BT_UART_RTS, PPS_OUT_U2RTS);
+    //    PPSOutput(BT_UART_TX, PPS_OUT_U2TX);
+    //    PPSInput(PPS_IN_U2RX, BT_UART_RX);
+    //    PPSInput(PPS_IN_U2CTS, BT_UART_CTS);
+    //    PPSOutput(BT_UART_RTS, PPS_OUT_U2RTS);
     /* Buzzer */
     PPSOutput(BUZZER, PPS_OUT_OC1);
-    
+
     PPS_LOCK;
-    
+
     return;
 }
-
 /* End of file IOPorts.c */

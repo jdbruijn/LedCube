@@ -29,9 +29,9 @@
  ******************************************************************************/
 
 #ifndef IOPORTS_H
-#define	IOPORTS_H
+#define IOPORTS_H
 
-#ifdef	__cplusplus
+#ifdef __cplusplus
 extern "C" {
 #endif
 
@@ -81,9 +81,9 @@ extern "C" {
  * @brief Initialize all used I/Os.
  */
 void
-IOPorts_init( void );
+IOPorts_init(void);
 
-#ifdef	__cplusplus
+#ifdef __cplusplus
 }
 #endif
 

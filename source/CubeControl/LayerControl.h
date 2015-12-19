@@ -49,9 +49,9 @@
 // </editor-fold>
 
 #ifndef LAYERCONTROL_H
-#define	LAYERCONTROL_H
+#define LAYERCONTROL_H
 
-#ifdef	__cplusplus
+#ifdef __cplusplus
 extern "C" {
 #endif
 
@@ -70,11 +70,11 @@ extern "C" {
 #include "PanelControl.h"
 #include "Interrupts.h"
 #include "CubeControlData.h"
-    
+
 /*******************************************************************************
  * Defines
  ******************************************************************************/
-    /** @todo document defines and macros */
+/** @todo document defines and macros */
 #define N_PANELCONTROLS     4       /* Number of PanelControls in the cube */
 #define SPI2_PPRE           1       /* SPI2 Primary Prescale bits */
 #define SPI2_SPRE           2       /* SPI2 Secondary Prescale bits */
@@ -85,8 +85,8 @@ extern "C" {
 /*******************************************************************************
  * Macros
  ******************************************************************************/
-#define LayerControl_pulseLatch() PORT_PULSE_PIN(ANODE_LATCH)
-#define SPI2_WaitTillTxBufferEmpty() while( SPI2STATbits.SPITBF == 1 )
+#define LAYERCONTROL_PULSE_LATCH PORT_PULSE_PIN(ANODE_LATCH)
+#define SPI2_WAIT_TILL_TX_BUFFER_IS_EMPTY while( SPI2STATbits.SPITBF == 1 )
 
 /*******************************************************************************
  * Function prototypes
@@ -94,17 +94,17 @@ extern "C" {
 /**
  * Initialize everything needed for controlling the layers by configuring the
  * SPIx peripheral.
- * 
+ *
  * @note    This also initializes everything needed for a PanelControl PCB using
  * the @ref PanelControl_init function.
  */
 void
-LayerControl_init( void );
+LayerControl_init(void);
 
 /**
  * Update the output of a single layer in the LED cube by calling the @ref
  * PanelControl_update function four times.
- * 
+ *
  * @param   _pCubeControlData Pointer to CubeControlData structure.
  * @param   _pCubeData Pointer to the first element of a CubeData structure
  * array.
@@ -112,26 +112,26 @@ LayerControl_init( void );
  * @param   _bamRound The BAM-round to update.
  */
 void
-LayerControl_update( const pCubeControlData_t _pCubeControlData,
-        const pCubeData_t _pCubeData,
-        const uint8_t _layer,
-        const uint8_t _bamRound );
+LayerControl_update(const pCubeControlData_t _pCubeControlData,
+                    const pCubeData_t _pCubeData,
+                    const uint8_t _layer,
+                    const uint8_t _bamRound);
 
 /**
  * Turn all the LEDs of a layer off using @ref PanelControl_allOff.
  */
 void
-LayerControl_allOff( void );
+LayerControl_allOff(void);
 
 /**
  * Turn all the LEDs of a layer on using @ref PanelControl_allOn.
  */
 void
-LayerControl_allOn( void );
+LayerControl_allOn(void);
 
-#ifdef	__cplusplus
+#ifdef __cplusplus
 }
 #endif
 
-#endif	/* LAYERCONTROL_H */
+#endif /* LAYERCONTROL_H */
 /* End of file LayerControl.h */

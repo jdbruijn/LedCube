@@ -29,7 +29,7 @@
  ******************************************************************************/
 
 #ifndef DELAY_H
-#define	DELAY_H
+#define DELAY_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,7 +43,7 @@ extern "C" {
  */
 #include "System.h"
 #include <libpic30.h>
-    
+
 /*******************************************************************************
  * Defines
  ******************************************************************************/
@@ -68,7 +68,7 @@ extern "C" {
  ******************************************************************************/
 /**
  * @brief Delay a certain number of seconds.
- * 
+ *
  * @param   d Number of seconds to delay. Ranging from 1 to @ref DELAY_MAX_S.
  */
 #define Delay_s(t)                                                             \
@@ -76,22 +76,22 @@ extern "C" {
 
 /**
  * @brief Delay a certain number of milliseconds.
- * 
+ *
  * @param   d Milliseconds to delay. Ranging from 1 to @ref DELAY_MAX_MS.
  */
 #define Delay_ms(t) __delay_ms((t))
 
 /**
  * @brief Delay a certain number of microseconds.
- * 
+ *
  * @param   d, number of microseconds to delay. Ranging from 1 to @ref
  * DELAY_MAX_US.
  */
 #define Delay_us(t) __delay_us((t))
 
-#ifdef	__cplusplus
+#ifdef __cplusplus
 }
 #endif
 
-#endif	/* DELAY_H */
+#endif /* DELAY_H */
 /* End of file Delay.h */

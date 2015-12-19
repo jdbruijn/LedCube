@@ -29,9 +29,9 @@
  ******************************************************************************/
 
 #ifndef PERIPHERALPINSELECT_H
-#define	PERIPHERALPINSELECT_H
+#define PERIPHERALPINSELECT_H
 
-#ifdef	__cplusplus
+#ifdef __cplusplus
 extern "C" {
 #endif
 
@@ -157,9 +157,9 @@ extern "C" {
  * Constant macros
  ******************************************************************************/
 /**
- * @brief Follow the necessary process to clear the IOLOCK bit in order to allow 
+ * @brief Follow the necessary process to clear the IOLOCK bit in order to allow
  * I/O mapping to be modified.
- * 
+ *
  * @preconditions   IOL1WAY in the Configuration Bits must be OFF
  * @note    Use inline assembly to unlock the Peripheral Pin Selection (PPS).
  * First writing the unlock sequence (46h followed by 57h) to OSCCON<7:0> and
@@ -181,7 +181,7 @@ extern "C" {
 /**
  * @brief Follow the necessary process to set the IOLOCK bit to lock I/O mapping
  * from being modified.
- * 
+ *
  * @preconditions   IOL1WAY in the Configuration Bits must be OFF
  * @note    Use inline assembly to lock the Peripheral Pin Selection (PPS).
  * First writing the unlock sequence (46h followed by 57h) to OSCCON<7:0> and
@@ -205,7 +205,7 @@ extern "C" {
  ******************************************************************************/
 /**
  * @brief Assign input functionality to a pin.
- * 
+ *
  * @precondition    IOLOCK must be cleared.
  * @param   fn Function to be assigned to the pin.\n
  * FUNCTION                 DESCRIPTION\n
@@ -247,7 +247,7 @@ extern "C" {
 
 /**
  * @brief Assign pin to an output functionality.
- * 
+ *
  * @preconditions   IOLOCK must be cleared.
  * @param   pin Pin which the functionality has to be assigned to.\n
  * - @ref PORT_RP0  \n
@@ -282,9 +282,9 @@ extern "C" {
     MACRO_EXPAND_CONCATENATE_TWO(_PPS_OUT_PORT_, pin) = fn;                    \
     Nop()
 
-#ifdef	__cplusplus
+#ifdef __cplusplus
 }
 #endif
 
-#endif	/* PERIPHERALPINSELECT_H */
+#endif /* PERIPHERALPINSELECT_H */
 /* End of file PeripheralPinSelect.h */

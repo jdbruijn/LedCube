@@ -29,9 +29,9 @@
  ******************************************************************************/
 
 #ifndef INTERRUPTS_H
-#define	INTERRUPTS_H
+#define INTERRUPTS_H
 
-#ifdef	__cplusplus
+#ifdef __cplusplus
 extern "C" {
 #endif
 
@@ -62,7 +62,7 @@ extern "C" {
  ******************************************************************************/
 /**
  * @brief Disable interrupts.
- * 
+ *
  * Disable interrupts by saving the current CPU interrupt priority level to a
  * variable and setting the CPU interrupt priority level to 7 (the highest
  * level).
@@ -75,7 +75,7 @@ extern "C" {
 /**
  * @brief Restore the previous CPU interrupt priority level from the saved
  * variable.
- * 
+ *
  * Using the predefined RESTORE_CPU_IPL macro for restoring the CPU interrupt
  * priority level. This doesn't necessary mean that interrupts are enabled after
  * this macro, because the CPU interrupt priority level is only restored to it's
@@ -86,9 +86,9 @@ extern "C" {
  */
 #define INTERRUPTS_RESTORE_CPU_IPL() RESTORE_CPU_IPL(cpuIntPrio)
 
-#ifdef	__cplusplus
+#ifdef __cplusplus
 }
 #endif
 
-#endif	/* INTERRUPTS_H */
+#endif /* INTERRUPTS_H */
 /* End of file Interrupts.h */
