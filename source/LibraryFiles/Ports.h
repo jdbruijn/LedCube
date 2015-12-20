@@ -21,9 +21,9 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * 
  *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
-/** @file 
+/** @file
  * @brief Control macros for all I/O operations.
  * 
  * When first configuring all ports, the macro @ref PORT_INITIALIZE_ALL_PINS
@@ -176,7 +176,7 @@ do {                                                                           \
 /**
  * @brief Configure selected pin as digital input.
  * 
- * @note    PPS pins can also be called by their RPn name. For example: 
+ * @note    PPS pins can also be called by their RPn name. For example:
  * @ref PORT_RP16 instead of @ref PORT_RC0.
  * @param   pin Pin which has to be configured as digital input\n
  * - @ref PORT_RA0  \n
@@ -200,7 +200,7 @@ do {                                                                           \
 /**
  * @brief Configure selected pin as digital output.
  * 
- * @note    PPS pins can also be called by their RPn name. For example: 
+ * @note    PPS pins can also be called by their RPn name. For example:
  * @ref PORT_RP16 instead of @ref PORT_RC0.
  * @param   pin Pin which has to be configured as normal digital output. For
  * more info on how to use this parameter see the description of the @ref
@@ -213,7 +213,7 @@ do {                                                                           \
 /**
  * @brief Configure selected pin as digital output.
  * 
- * @note    PPS pins can also be called by their RPn name. For example: 
+ * @note    PPS pins can also be called by their RPn name. For example:
  * @ref PORT_RP16 instead of @ref PORT_RC0.
  * @param   pin Pin which has to be configured as normal digital output. For
  * more info on how to use this parameter see the description of the @ref
@@ -225,7 +225,7 @@ do {                                                                           \
 /**
  * @brief Set selected pin, i.e make the output high.
  * 
- * @note    PPS pins can also be called by their RPn name. For example: 
+ * @note    PPS pins can also be called by their RPn name. For example:
  * @ref PORT_RP16 instead of @ref PORT_RC0.
  * @param   pin Pin which has to be configured as normal digital output. For
  * more info on how to use this parameter see the description of the @ref
@@ -237,7 +237,7 @@ do {                                                                           \
 /**
  * @brief Clear selected pin, i.e make the output low.
  * 
- * @note    PPS pins can also be called by their RPn name. For example: 
+ * @note    PPS pins can also be called by their RPn name. For example:
  * @ref PORT_RP16 instead of @ref PORT_RC0.
  * @param   pin Pin which has to be configured as normal digital output. For
  * more info on how to use this parameter see the description of the @ref
@@ -249,7 +249,7 @@ do {                                                                           \
 /**
  * @brief Toggle selected pin, invert the output.
  * 
- * @note    PPS pins can also be called by their RPn name. For example: 
+ * @note    PPS pins can also be called by their RPn name. For example:
  * @ref PORT_RP16 instead of @ref PORT_RC0.
  * @param   pin Pin which has to be configured as normal digital output. For
  * more info on how to use this parameter see the description of the @ref
@@ -261,7 +261,7 @@ do {                                                                           \
 /**
  * @brief Pulse selected pin high for one instruction clock cycle.
  * 
- * @note    PPS pins can also be called by their RPn name. For example: 
+ * @note    PPS pins can also be called by their RPn name. For example:
  * @ref PORT_RP16 instead of @ref PORT_RC0.
  * @param   pin Pin which has to be configured as normal digital output. For
  * more info on how to use this parameter see the description of the @ref
@@ -275,7 +275,7 @@ do {                                                                           \
 /**
  * @brief Read the value on a port latch.
  * 
- * @note    PPS pins can also be called by their RPn name. For example: 
+ * @note    PPS pins can also be called by their RPn name. For example:
  * @ref PORT_RP16 instead of @ref PORT_RC0.
  * @param   pin Pin which has to be configured as normal digital output. For
  * more info on how to use this parameter see the description of the @ref
@@ -288,7 +288,7 @@ do {                                                                           \
 /**
  * @brief Read the value on an I/O pin.
  * 
- * @note    PPS pins can also be called by their RPn name. For example: 
+ * @note    PPS pins can also be called by their RPn name. For example:
  * @ref PORT_RP16 instead of @ref PORT_RC0.
  * @param   pin Pin which has to be configured as normal digital output. For
  * more info on how to use this parameter see the description of the @ref
@@ -310,7 +310,7 @@ do {                                                                           \
  * @note    This does not change the analog functionality of the pin. If it used
  * to be an analog pin the user still need to disable the analog functionality
  * for this specific pin.
- * @note    PPS pins can also be called by their RPn name. For example: 
+ * @note    PPS pins can also be called by their RPn name. For example:
  * @ref PORT_RP16 instead of @ref PORT_RC0.
  * @param   pin Pin which has to be configured as normal digital output. For
  * more info on how to use this parameter see the description of the @ref

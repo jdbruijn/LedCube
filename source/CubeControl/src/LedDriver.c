@@ -21,7 +21,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * 
  *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
 /** @file
  * @brief Controls a single LED Sink Driver.
@@ -37,7 +37,8 @@
  * Functions
  ******************************************************************************/
 void
-LedDriver_init(void) {
+LedDriver_init(void)
+{
     SPI1STAT = 0; // Reset SPIx module
     SPI1CON1 = 0;
     SPI1CON2 = 0;
@@ -92,12 +93,13 @@ LedDriver_init(void) {
     SPI1STATbits.SPIEN = 1; // Enable SPIx module
     Nop();
 
-    DEBUG_PRINTF_FUNCTION_INITIALIZE_COMPLETE();
+    DEBUG_PRINTF_FUNCTION_INITIALIZE_COMPLETE;
     return;
 }
 
 void
-LedDriver_update(const uint16_t _ledData) {
+LedDriver_update(const uint16_t _ledData)
+{
     DEBUG_PRINTF_FUNCTION_CALL("0x%.4X", _ledData);
 
     SPI1_WAIT_TILL_TX_BUFFER_IS_EMPTY;
@@ -110,7 +112,8 @@ LedDriver_update(const uint16_t _ledData) {
 }
 
 void
-LedDriver_allOff(void) {
+LedDriver_allOff(void)
+{
     DEBUG_PRINTF_FUNCTION_CALL();
 
     LedDriver_update(0x0000);
@@ -119,7 +122,8 @@ LedDriver_allOff(void) {
 }
 
 void
-LedDriver_allOn(void) {
+LedDriver_allOn(void)
+{
     DEBUG_PRINTF_FUNCTION_CALL();
 
     LedDriver_update(0xFFFF);
@@ -136,7 +140,8 @@ LedDriver_allOn(void) {
  * 
  */
 void
-LedDriver_selfTest(void) {
+LedDriver_selfTest(void)
+{
     DEBUG_PRINTF_FUNCTION_CALL();
 
     uint8_t led;

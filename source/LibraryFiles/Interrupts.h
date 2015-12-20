@@ -21,7 +21,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * 
  *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
 /** @file
  * @brief Definitions for the interrupt priority.
@@ -62,20 +62,21 @@ extern "C" {
  ******************************************************************************/
 /**
  * @brief Disable interrupts.
- *
+ * 
  * Disable interrupts by saving the current CPU interrupt priority level to a
  * variable and setting the CPU interrupt priority level to 7 (the highest
  * level).
  * Using the predefined SET_AND_SAVE_CPU_IPL macro for setting and saving the
  * CPU interrupt priority level.
  */
-#define INTERRUPTS_DISSABLE_AND_SAVE_CPU_IPL() uint16_t cpuIntPrio = 0; \
-                SET_AND_SAVE_CPU_IPL(cpuIntPrio, 7)
+#define INTERRUPTS_DISSABLE_AND_SAVE_CPU_IPL                                   \
+    uint16_t cpuIntPrio = 0;                                                   \
+    SET_AND_SAVE_CPU_IPL(cpuIntPrio, 7)
 
 /**
  * @brief Restore the previous CPU interrupt priority level from the saved
  * variable.
- *
+ * 
  * Using the predefined RESTORE_CPU_IPL macro for restoring the CPU interrupt
  * priority level. This doesn't necessary mean that interrupts are enabled after
  * this macro, because the CPU interrupt priority level is only restored to it's
@@ -84,7 +85,8 @@ extern "C" {
  * @Note    The macro INTERRUPTS_DISSABLE_AND_SAVE_CPU_IPL must be in the same
  * scope as this macro.
  */
-#define INTERRUPTS_RESTORE_CPU_IPL() RESTORE_CPU_IPL(cpuIntPrio)
+#define INTERRUPTS_RESTORE_CPU_IPL                                             \
+    RESTORE_CPU_IPL(cpuIntPrio)
 
 #ifdef __cplusplus
 }

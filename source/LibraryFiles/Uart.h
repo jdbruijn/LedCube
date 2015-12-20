@@ -21,9 +21,9 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * 
  *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
-/** @file 
+/** @file
  * @brief Controls the UART functionality of the device to send and receive
  * data.
  * 
@@ -67,7 +67,7 @@ extern "C" {
 #define UART_LF                 10
 /** @brief Baudrate clock prescaler for UART 1.
  * 
- * This value should be either 4 or 16. 
+ * This value should be either 4 or 16.
  * 4 = BRG generates 4 clocks per bit period (4x baud clock, High-Speed mode)
  * 16 = BRG generates 16 clocks per bit period (16x baud clock, Standard Speed
  * mode)

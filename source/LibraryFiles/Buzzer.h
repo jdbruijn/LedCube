@@ -21,7 +21,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * 
  *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
 /** @file
  * @brief Controls a buzzer using the Output Compare peripheral.
@@ -82,7 +82,7 @@ Buzzer_shortBeep(void);
 
 /**
  * @brief Make a sound with adjustable frequency and duration time.
- *
+ * 
  * The sound is created using a PWM-signal with  a duty cycle of fifty percent.
  * @note    _frequency must be between @ref BUZZER_MIN_FREQUENCY and @ref
  * BUZZER_MAX_FREQUENCY, and _time must be between @ref BUZZER_MIN_TIME and @ref
@@ -100,7 +100,7 @@ Buzzer_set(uint16_t _frequency, uint32_t _time);
 /** @todo remove selftest and add seperate unit test
  * Run a self test on the buzzer. I.e. first beep three times than go from
  * lowest frequency to highest frequency followed by three beeps.
- *
+ * 
  * @Note    This self tests takes about 22 seconds.
  * @param   void
  * @return  void

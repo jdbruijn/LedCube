@@ -21,7 +21,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * 
  *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
 /** @file
  * @brief Gets the configuration bits that are set in the microcontroller.
@@ -60,6 +60,7 @@ extern "C" {
  ******************************************************************************/
 #include <xc.h>
 #include <stdbool.h>
+#include "Macro.h"
 #include "Uart.h"
 
 /*******************************************************************************
@@ -77,16 +78,20 @@ extern "C" {
 /** @brief Base address for Flash Configuration Word 1 */
 # define _CONFIG1_BASE_ADDRESS __CONFIG1_BASE
 #else
-# error "__CONFIG1_BASE is not defined. Enter the base address of Flash Configuration Word 1 manually."
-# error "For the Configuration Word Addresses @see PIC24FJ64GA004 Family Data Sheet.pdf TABLE 24-1."
+# error "__CONFIG1_BASE is not defined. Enter the base address of Flash "      \
+    "Configuration Word 1 manually."
+# error "For the Configuration Word Addresses @see PIC24FJ64GA004 Family Data "\
+    "Sheet.pdf TABLE 24-1."
 #endif
 
 #ifdef __CONFIG2_BASE
 /** @brief Base address for Flash Configuration Word 2 */
 # define _CONFIG2_BASE_ADDRESS __CONFIG2_BASE
 #else
-# error "__CONFIG2_BASE is not defined. Enter the base address of Flash Configuration Word 2 manually."
-# error "For the Configuration Word Addresses @see PIC24FJ64GA004 Family Data Sheet.pdf TABLE 24-1."
+# error "__CONFIG2_BASE is not defined. Enter the base address of Flash "      \
+    "Configuration Word 2 manually."
+# error "For the Configuration Word Addresses @see PIC24FJ64GA004 Family Data "\
+    "Sheet.pdf TABLE 24-1."
 #endif
 
 /********** Result descriptions for Flash Configuration Word 1 ************/
@@ -95,7 +100,8 @@ extern "C" {
 #define JTAGEN_0 "[JTAGEN_OFF] JTAG port is disabled"
 #define GCP_DESC "GCP: General Segment Program Memory Code Protection bit"
 #define GCP_1 "[GCP_OFF] Code protection is disabled"
-#define GCP_0 "[GCP_ON] Code protection is enabled for the entire program memory space"
+#define GCP_0 "[GCP_ON] Code protection is enabled for the entire program "    \
+    "memory space"
 #define GWRP_DESC "GWRP: General Segment Code Flash Write Protection bit"
 #define GWRP_1 "[GWRP_OFF] Writes to program memory are allowed"
 #define GWRP_0 "[GWRP_ON] Writes to program memory are disabled"
@@ -112,7 +118,8 @@ extern "C" {
 #define FWDTEN_0 "[FWDTEN_OFF] Watchdog Timer is disabled"
 #define WINDIS_DESC "WINDIS: Windowed Watchdog Timer Disable bit"
 #define WINDIS_1 "[WINDIS_ON] Standard Watchdog Timer is enabled"
-#define WINDIS_0 "[WINDIS_OFF] Windowed Watchdog Timer is enabled; FWDTEN must be '1'"
+#define WINDIS_0 "[WINDIS_OFF] Windowed Watchdog Timer is enabled; FWDTEN "    \
+    "must be '1'"
 #define FWPSA_DESC "FWPSA: WDT Prescaler Ratio Select bit"
 #define FWPSA_1 "[FWPSA_PR128] Prescaler ratio of 1:128"
 #define FWPSA_0 "[FWPSA_PR32] Prescaler ratio of 1:32"
@@ -138,7 +145,8 @@ extern "C" {
 #define IESO_DESC "IESO: Internal External Switchover bit"
 #define IESO_1 "[IESO_ON] IESO mode (Two-Speed Start-up) is enabled"
 #define IESO_0 "[IESO_OFF] IESO mode (Two-Speed Start-up) is disabled"
-#define WUTSEL_DESC "WUTSEL<1:0>: Voltage Regulator Standby Mode Wake-up Time Select bits"
+#define WUTSEL_DESC "WUTSEL<1:0>: Voltage Regulator Standby Mode Wake-up Time "\
+    "Select bits"
 #define WUTSEL_11 "[WUTSEL_LEG] Default regulator start-up time is used"
 #define WUTSEL_01 "[WUTSEL_FST] Fast regulator start-up time is used"
 #define WUTSEL_x0 "Reserved; do not use"
@@ -151,21 +159,30 @@ extern "C" {
 #define FNOSC_110 "Reserved"
 #define FNOSC_101 "[FNOSC_LPRC] Low-Power RC Oscillator (LPRC)"
 #define FNOSC_100 "[FNOSC_SOSC] Secondary Oscillator (SOSC)"
-#define FNOSC_011 "[FNOSC_PRIPLL] Primary Oscillator with PLL module (XTPLL, HSPLL, ECPLL)"
+#define FNOSC_011 "[FNOSC_PRIPLL] Primary Oscillator with PLL module (XTPLL, " \
+    "HSPLL, ECPLL)"
 #define FNOSC_010 "[FNOSC_PRI] Primary Oscillator (XT, HS, EC)"
-#define FNOSC_001 "[FNOSC_FRCPLL] Fast RC Oscillator with Postscaler and PLL module (FRCPLL)"
+#define FNOSC_001 "[FNOSC_FRCPLL] Fast RC Oscillator with Postscaler and PLL " \
+    "module (FRCPLL)"
 #define FNOSC_000 "[FNOSC_FRC] Fast RC Oscillator (FRC)"
-#define FCKSM_DESC "FCKSM<1:0>: Clock Switching and Fail-Safe Clock Monitor Configuration bits"
-#define FCKSM_1x "[FCKSM_CSDCMD] Clock switching and Fail-Safe Clock Monitor are disabled"
-#define FCKSM_01 "[FCKSM_CSECMD] Clock switching is enabled, Fail-Safe Clock Monitor is disabled"
-#define FCKSM_00 "[FCKSM_CSECME] Clock switching is enabled, Fail-Safe Clock Monitor is enabled"
+#define FCKSM_DESC "FCKSM<1:0>: Clock Switching and Fail-Safe Clock Monitor "  \
+    "Configuration bits"
+#define FCKSM_1x "[FCKSM_CSDCMD] Clock switching and Fail-Safe Clock Monitor " \
+    "are disabled"
+#define FCKSM_01 "[FCKSM_CSECMD] Clock switching is enabled, Fail-Safe Clock " \
+    "Monitor is disabled"
+#define FCKSM_00 "[FCKSM_CSECME] Clock switching is enabled, Fail-Safe Clock " \
+    "Monitor is enabled"
 #define OSCIOFCN_DESC "OSCIOFCN: OSCO Pin Configuration bit:"
-#define OSCIOFCN_1 "[OSCIOFNC_OFF] OSCO/CLKO/RA3 functions as CLKO (FOSC/2)"    /* If POSCMD<1:0> = 11 or 00: */
-#define OSCIOFCN_0 "[OSCIOFNC_ON] OSCO/CLKO/RA3 functions as port I/O (RA3)"    /* If POSCMD<1:0> = 11 or 00: */
-#define OSCIOFCN_x "OSCIOFCN has no effect on OSCO/CLKO/RA3"                    /* If POSCMD<1:0> = 10 or 01: */
+#define OSCIOFCN_1 "[OSCIOFNC_OFF] OSCO/CLKO/RA3 functions as CLKO (FOSC/2)"
+#define OSCIOFCN_0 "[OSCIOFNC_ON] OSCO/CLKO/RA3 functions as port I/O (RA3)"
+#define OSCIOFCN_x "OSCIOFCN has no effect on OSCO/CLKO/RA3"
 #define IOL1WAY_DESC "IOL1WAY: IOLOCK One-Way Set Enable bit"
-#define IOL1WAY_1 "[IOL1WAY_ON] The IOLOCK (OSCCON<6>) bit can be set once, provided the unlock sequence has been completed. Once set, the Peripheral Pin Select registers cannot be written to a second time."
-#define IOL1WAY_0 "[IOL1WAY_OFF] The IOLOCK (OSCCON<6>) bit can be set and cleared as needed, provided the unlock sequence has been completed"
+#define IOL1WAY_1 "[IOL1WAY_ON] The IOLOCK (OSCCON<6>) bit can be set once, "  \
+    "provided the unlock sequence has been completed. Once set, the "          \
+    "Peripheral Pin Select registers cannot be written to a second time."
+#define IOL1WAY_0 "[IOL1WAY_OFF] The IOLOCK (OSCCON<6>) bit can be set and "   \
+    "cleared as needed, provided the unlock sequence has been completed"
 #define I2C1SEL_DESC "I2C1SEL: I2C1 Pin Select bit"
 #define I2C1SEL_1 "[I2C1SEL_PRI] Use default SCL1/SDA1 pins"
 #define I2C1SEL_0 "[I2C1SEL_SEC] Use alternate SCL1/SDA1 pins"
@@ -178,10 +195,6 @@ extern "C" {
 /*******************************************************************************
  * Function macros
  ******************************************************************************/
-#ifndef UNUSED
-/** @brief Macro to suppress the "unused parameter" warnings. */
-# define UNUSED(x) (void)(x)
-#endif
 /** @brief Macro for printing the configuration bit description with indent. */
 #define PRINT_DESC(fmt, args...) PRINTF(" " fmt "\n", ##args)
 /** @brief Macro for printing the configuration bit result with indent. */
@@ -193,9 +206,9 @@ extern "C" {
 /**
  * @brief Read the two Flash Configuration Words, verify and print the read
  * Flash Configuration Words in a user friendly format.
- *
+ * 
  * @note    The print of the read data is done using the @ref PRINTF wrapper.
- *
+ * 
  * #### Example output (without the asterisks):
  * @verbatim
  * Reading Flash Configuration Word 1...
@@ -221,7 +234,7 @@ extern "C" {
  *  WDTPS<3:0>: Watchdog Timer Postscaler Select bits
  *   [WDTPS_PS32768] 1:32768
  * Done Reading Flash Configuration Word 1.
- *
+ * 
  * Reading Flash Configuration Word 2...
  * Binary read value:
  * 111111111111100101101101
@@ -235,11 +248,13 @@ extern "C" {
  *  FNOSC<2:0>: Initial Oscillator Select bits
  *   [FNOSC_FRCPLL] Fast RC Oscillator with Postscaler and PLL module (FRCPLL)
  *  FCKSM<1:0>: Clock Switching and Fail-Safe Clock Monitor Configuration bits
- *   [FCKSM_CSECMD] Clock switching is enabled, Fail-Safe Clock Monitor is disabled
+ *   [FCKSM_CSECMD] Clock switching is enabled, Fail-Safe Clock Monitor is
+ *   disabled
  *  OSCIOFCN: OSCO Pin Configuration bit:
  *   OSCIOFCN has no effect on OSCO/CLKO/RA3
  *  IOL1WAY: IOLOCK One-Way Set Enable bit
- *   [IOL1WAY_OFF] The IOLOCK (OSCCON<6>) bit can be set and cleared as needed, provided the unlock sequence has been completed
+ *   [IOL1WAY_OFF] The IOLOCK (OSCCON<6>) bit can be set and cleared as needed,
+ *   provided the unlock sequence has been completed
  *  I2C1SEL: I2C1 Pin Select bit
  *   [I2C1SEL_PRI] Use default SCL1/SDA1 pins
  *  POSCMD<1:0:> Primary Oscillator Configuration bits

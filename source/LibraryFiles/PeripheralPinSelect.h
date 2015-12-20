@@ -21,9 +21,9 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * 
  *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
-/** @file 
+/** @file
  * @brief Links the microcontroller peripherals to specified ports.
  * 
  ******************************************************************************/
@@ -159,7 +159,7 @@ extern "C" {
 /**
  * @brief Follow the necessary process to clear the IOLOCK bit in order to allow
  * I/O mapping to be modified.
- *
+ * 
  * @preconditions   IOL1WAY in the Configuration Bits must be OFF
  * @note    Use inline assembly to unlock the Peripheral Pin Selection (PPS).
  * First writing the unlock sequence (46h followed by 57h) to OSCCON<7:0> and
@@ -181,7 +181,7 @@ extern "C" {
 /**
  * @brief Follow the necessary process to set the IOLOCK bit to lock I/O mapping
  * from being modified.
- *
+ * 
  * @preconditions   IOL1WAY in the Configuration Bits must be OFF
  * @note    Use inline assembly to lock the Peripheral Pin Selection (PPS).
  * First writing the unlock sequence (46h followed by 57h) to OSCCON<7:0> and
@@ -205,80 +205,80 @@ extern "C" {
  ******************************************************************************/
 /**
  * @brief Assign input functionality to a pin.
- *
+ * 
  * @precondition    IOLOCK must be cleared.
- * @param   fn Function to be assigned to the pin.\n
- * FUNCTION                 DESCRIPTION\n
- * - @ref PPS_IN_INT1       External Interrupt 1\n
- * - @ref PPS_IN_INT2       External Interrupt 2\n
- * - @ref PPS_IN_T2CK       Timer2 External Clock\n
- * - @ref PPS_IN_T3CK       Timer3 External Clock\n
- * - @ref PPS_IN_T4CK       Timer4 External Clock\n
- * - @ref PPS_IN_T5CK       Timer5 External Clock\n
- * - @ref PPS_IN_IC1        Input Capture 1\n
- * - @ref PPS_IN_IC2        Input Capture 2\n
- * - @ref PPS_IN_IC3        Input Capture 3\n
- * - @ref PPS_IN_IC4        Input Capture 4\n
- * - @ref PPS_IN_IC5        Input Capture 5\n
- * - @ref PPS_IN_OCFA       Output Compare Fault A\n
- * - @ref PPS_IN_OCFB       Output Compare Fault B\n
- * - @ref PPS_IN_U1RX       UART1 Receive\n
- * - @ref PPS_IN_U1CTS      UART1 Clear-to-Send\n
- * - @ref PPS_IN_U2RX       UART2 Receive\n
- * - @ref PPS_IN_U2CTS      UART2 Clear-to-Send\n
- * - @ref PPS_IN_SDI1       SPI1 Data Input\n
- * - @ref PPS_IN_SCK1IN     SPI1 Clock Input\n
- * - @ref PPS_IN_SS1IN      SPI1 Slave Select Input\n
- * - @ref PPS_IN_SDI2       SPI2 Data Input\n
- * - @ref PPS_IN_SCK2IN     SPI2 Clock Input\n
- * - @ref PPS_IN_SS2IN      SPI2 Slave Select Input\n
- * @param   pin Pin which the functionality has to be assigned to.\n
- * - @ref PORT_RP0  \n
- * - @ref PORT_RP1  \n
- * - ...            \n
- * - @ref PORT_RP24 \n
- * - @ref PORT_RP25 \n
+ * @param   fn Function to be assigned to the pin.                            \n
+ * FUNCTION                 DESCRIPTION                                       \n
+ * - @ref PPS_IN_INT1       External Interrupt 1                              \n
+ * - @ref PPS_IN_INT2       External Interrupt 2                              \n
+ * - @ref PPS_IN_T2CK       Timer2 External Clock                             \n
+ * - @ref PPS_IN_T3CK       Timer3 External Clock                             \n
+ * - @ref PPS_IN_T4CK       Timer4 External Clock                             \n
+ * - @ref PPS_IN_T5CK       Timer5 External Clock                             \n
+ * - @ref PPS_IN_IC1        Input Capture 1                                   \n
+ * - @ref PPS_IN_IC2        Input Capture 2                                   \n
+ * - @ref PPS_IN_IC3        Input Capture 3                                   \n
+ * - @ref PPS_IN_IC4        Input Capture 4                                   \n
+ * - @ref PPS_IN_IC5        Input Capture 5                                   \n
+ * - @ref PPS_IN_OCFA       Output Compare Fault A                            \n
+ * - @ref PPS_IN_OCFB       Output Compare Fault B                            \n
+ * - @ref PPS_IN_U1RX       UART1 Receive                                     \n
+ * - @ref PPS_IN_U1CTS      UART1 Clear-to-Send                               \n
+ * - @ref PPS_IN_U2RX       UART2 Receive                                     \n
+ * - @ref PPS_IN_U2CTS      UART2 Clear-to-Send                               \n
+ * - @ref PPS_IN_SDI1       SPI1 Data Input                                   \n
+ * - @ref PPS_IN_SCK1IN     SPI1 Clock Input                                  \n
+ * - @ref PPS_IN_SS1IN      SPI1 Slave Select Input                           \n
+ * - @ref PPS_IN_SDI2       SPI2 Data Input                                   \n
+ * - @ref PPS_IN_SCK2IN     SPI2 Clock Input                                  \n
+ * - @ref PPS_IN_SS2IN      SPI2 Slave Select Input                           \n
+ * @param   pin Pin which the functionality has to be assigned to.            \n
+ * - @ref PORT_RP0                                                            \n
+ * - @ref PORT_RP1                                                            \n
+ * - ...                                                                      \n
+ * - @ref PORT_RP24                                                           \n
+ * - @ref PORT_RP25                                                           \n
  * For the complete list of possible pins see the list of defines above,
  * starting with @ref PORT_RP0.
  */
-#define PPSInput(fn, pin)                                                      \
+#define PPS_ASSIGN_INPUT(fn, pin)                                              \
     fn = MACRO_EXPAND_CONCATENATE_TWO(_PPS_IN_PORT_, pin);                     \
     Nop()
 
 /**
  * @brief Assign pin to an output functionality.
- *
+ * 
  * @preconditions   IOLOCK must be cleared.
- * @param   pin Pin which the functionality has to be assigned to.\n
- * - @ref PORT_RP0  \n
- * - @ref PORT_RP1  \n
- * - ...            \n
- * - @ref PORT_RP24 \n
- * - @ref PORT_RP25 \n
+ * @param   pin Pin which the functionality has to be assigned to.            \n
+ * - @ref PORT_RP0                                                            \n
+ * - @ref PORT_RP1                                                            \n
+ * - ...                                                                      \n
+ * - @ref PORT_RP24                                                           \n
+ * - @ref PORT_RP25                                                           \n
  * For the complete list of possible pins see the list of defines above,
  * starting with @ref PORT_RP0.
- * @param   fn Function to be assigned to the pin.\n
- * FUNCTION                 DESCRIPTION\n
- * - @ref PPS_OUT_NULL      The pin is an I/O Port pin\n
- * - @ref PPS_OUT_C1OUT     Comparator 1 Output\n
- * - @ref PPS_OUT_C2OUT     Comparator 2 Output\n
- * - @ref PPS_OUT_U1TX      UART1 Transmit\n
- * - @ref PPS_OUT_U1RTS     UART1 Ready To Send\n
- * - @ref PPS_OUT_U2TX      UART2 Transmit\n
- * - @ref PPS_OUT_U2RTS     UART2 Ready To Send\n
- * - @ref PPS_OUT_SDO1      SPI1 Data Output\n
- * - @ref PPS_OUT_SCK1OUT   SPI1 Clock Output\n
- * - @ref PPS_OUT_SS1OUT    SPI1 Slave Select Output\n
- * - @ref PPS_OUT_SDO2      SPI2 Data Output\n
- * - @ref PPS_OUT_SCK2OUT   SPI2 Clock Output\n
- * - @ref PPS_OUT_SS2OUT    SPI2 Slave Select Output\n
- * - @ref PPS_OUT_OC1       Output Compare 1\n
- * - @ref PPS_OUT_OC2       Output Compare 2\n
- * - @ref PPS_OUT_OC3       Output Compare 3\n
- * - @ref PPS_OUT_OC4       Output Compare 4\n
- * - @ref PPS_OUT_OC5       Output Compare 5\n
+ * @param   fn Function to be assigned to the pin.                            \n
+ * FUNCTION                 DESCRIPTION                                       \n
+ * - @ref PPS_OUT_NULL      The pin is an I/O Port pin                        \n
+ * - @ref PPS_OUT_C1OUT     Comparator 1 Output                               \n
+ * - @ref PPS_OUT_C2OUT     Comparator 2 Output                               \n
+ * - @ref PPS_OUT_U1TX      UART1 Transmit                                    \n
+ * - @ref PPS_OUT_U1RTS     UART1 Ready To Send                               \n
+ * - @ref PPS_OUT_U2TX      UART2 Transmit                                    \n
+ * - @ref PPS_OUT_U2RTS     UART2 Ready To Send                               \n
+ * - @ref PPS_OUT_SDO1      SPI1 Data Output                                  \n
+ * - @ref PPS_OUT_SCK1OUT   SPI1 Clock Output                                 \n
+ * - @ref PPS_OUT_SS1OUT    SPI1 Slave Select Output                          \n
+ * - @ref PPS_OUT_SDO2      SPI2 Data Output                                  \n
+ * - @ref PPS_OUT_SCK2OUT   SPI2 Clock Output                                 \n
+ * - @ref PPS_OUT_SS2OUT    SPI2 Slave Select Output                          \n
+ * - @ref PPS_OUT_OC1       Output Compare 1                                  \n
+ * - @ref PPS_OUT_OC2       Output Compare 2                                  \n
+ * - @ref PPS_OUT_OC3       Output Compare 3                                  \n
+ * - @ref PPS_OUT_OC4       Output Compare 4                                  \n
+ * - @ref PPS_OUT_OC5       Output Compare 5                                  \n
  */
-#define PPSOutput(pin, fn)                                                     \
+#define PPS_ASSIGN_OUTPUT(pin, fn)                                             \
     MACRO_EXPAND_CONCATENATE_TWO(_PPS_OUT_PORT_, pin) = fn;                    \
     Nop()
 

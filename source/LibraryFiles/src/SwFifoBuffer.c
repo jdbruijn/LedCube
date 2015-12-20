@@ -21,9 +21,9 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * 
  *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
-/** @file 
+/** @file
  * @brief Software FIFO buffer which can be used as storage for peripherals.
  * 
  * For example UART Tx and Rx data.
@@ -48,8 +48,9 @@
  * 
  */
 void
-swFifoBufferPut(pSwFifoBuffer_t _pBuffer, const char _inData) {
-    INTERRUPTS_DISSABLE_AND_SAVE_CPU_IPL();
+swFifoBufferPut(pSwFifoBuffer_t _pBuffer, const char _inData)
+{
+    INTERRUPTS_DISSABLE_AND_SAVE_CPU_IPL;
 
     // Check if there is room in the buffer
     if (_pBuffer->numBytes == FIFO_BUFFER_SIZE) {
@@ -74,7 +75,7 @@ swFifoBufferPut(pSwFifoBuffer_t _pBuffer, const char _inData) {
     // Just put data in the buffer, so the buffer is not empty
     _pBuffer->bufferNotEmptyFlag = 1;
 
-    INTERRUPTS_RESTORE_CPU_IPL();
+    INTERRUPTS_RESTORE_CPU_IPL;
 
     return;
 }
@@ -86,8 +87,9 @@ swFifoBufferPut(pSwFifoBuffer_t _pBuffer, const char _inData) {
  * 
  */
 char
-swFifoBufferGet(pSwFifoBuffer_t _pBuffer) {
-    INTERRUPTS_DISSABLE_AND_SAVE_CPU_IPL();
+swFifoBufferGet(pSwFifoBuffer_t _pBuffer)
+{
+    INTERRUPTS_DISSABLE_AND_SAVE_CPU_IPL;
 
     char outData = '\0';
 
@@ -112,7 +114,7 @@ swFifoBufferGet(pSwFifoBuffer_t _pBuffer) {
         _pBuffer->iFirst = 0;
     }
 
-    INTERRUPTS_RESTORE_CPU_IPL();
+    INTERRUPTS_RESTORE_CPU_IPL;
 
     return outData;
 }

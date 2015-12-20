@@ -21,10 +21,10 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * 
  *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
 /** @file
- * @brief Controls a single layer of the 8x8x8 LED cube. 
+ * @brief Controls a single layer of the 8x8x8 LED cube.
  * 
  ******************************************************************************/
 
@@ -57,7 +57,8 @@ uint8_t const layerReg[8] = {
  * Functions
  ******************************************************************************/
 void
-LayerControl_init(void) {
+LayerControl_init(void)
+{
     /********** Setup PanelControl ********************************************/
     PanelControl_init();
 
@@ -152,7 +153,7 @@ LayerControl_init(void) {
     T3CONbits.TCKPS = 0b01;
     T3CONbits.TON = 1; // Enable Timer x
 
-    DEBUG_PRINTF_FUNCTION_INITIALIZE_COMPLETE();
+    DEBUG_PRINTF_FUNCTION_INITIALIZE_COMPLETE;
     return;
 }
 
@@ -163,7 +164,8 @@ LayerControl_init(void) {
  * @param   _layer The layer to set active ranging from 0 to @ref LC_MAX_Z_C.
  */
 void
-LayerControl_setLayer(const uint8_t _layer) {
+LayerControl_setLayer(const uint8_t _layer)
+{
     DEBUG_PRINTF_FUNCTION_CALL("%u", _layer);
 
     SPI2_WAIT_TILL_TX_BUFFER_IS_EMPTY;
@@ -188,28 +190,30 @@ void
 LayerControl_update(const pCubeControlData_t _pCubeControlData,
                     const pCubeData_t _pCubeData,
                     const uint8_t _layer,
-                    const uint8_t _bamRound) {
+                    const uint8_t _bamRound)
+{
     DEBUG_PRINTF_FUNCTION_CALL("%p, %p, %u, %u", _pCubeControlData, \
             _pCubeData, _layer, _bamRound);
 
     /* Update in reverse order (panel 3 first), because the PanelControl PCBs
-     * shift the data trough. So the data for the first PanelControl PCB needs 
+     * shift the data trough. So the data for the first PanelControl PCB needs
      * to be send last.
      */
     PanelControl_update(_pCubeControlData, _pCubeData, _layer, PANEL_3,
-            _bamRound);
+                        _bamRound);
     PanelControl_update(_pCubeControlData, _pCubeData, _layer, PANEL_2,
-            _bamRound);
+                        _bamRound);
     PanelControl_update(_pCubeControlData, _pCubeData, _layer, PANEL_1,
-            _bamRound);
+                        _bamRound);
     PanelControl_update(_pCubeControlData, _pCubeData, _layer, PANEL_0,
-            _bamRound);
+                        _bamRound);
 
     return;
 }
 
 void
-LayerControl_allOff(void) {
+LayerControl_allOff(void)
+{
     DEBUG_PRINTF_FUNCTION_CALL();
 
     uint8_t i;
@@ -221,7 +225,8 @@ LayerControl_allOff(void) {
 }
 
 void
-LayerControl_allOn(void) {
+LayerControl_allOn(void)
+{
     DEBUG_PRINTF_FUNCTION_CALL();
 
     uint8_t i;
@@ -239,11 +244,12 @@ LayerControl_allOn(void) {
  */
 void
 __attribute__((interrupt, auto_psv))
-_T3Interrupt(void) {
+_T3Interrupt(void)
+{
     LayerControl_setLayer(layer);
 
     LayerControl_update(pCubeControlData, pCubeControlData->pCubeDataRead,
-            layer, bamRound);
+                        layer, bamRound);
 
     //    layer = (layer == LC_MAX_Z_C) ? 0 : layer + 1;
     //    bamRound = (bamRound == LC_MAX_BAM_VAL) ? 0 : bamRound + 1;

@@ -21,7 +21,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * 
  *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
 /** @file
  * @brief Controls a buzzer using the Output Compare peripheral.
@@ -37,7 +37,8 @@
  * Functions
  ******************************************************************************/
 void
-Buzzer_init(void) {
+Buzzer_init(void)
+{
     /********** Configure Output Compare Module *******************************/
     OC1CON = 0x0000; // Turn off Output Compare 1 Module
 
@@ -61,36 +62,39 @@ Buzzer_init(void) {
     T2CONbits.T32 = 0; // Form 2 seperate 16-bit timers
     T2CONbits.TON = 1; // Enable timer
 
-    DEBUG_PRINTF_FUNCTION_INITIALIZE_COMPLETE();
+    DEBUG_PRINTF_FUNCTION_INITIALIZE_COMPLETE;
     return;
 }
 
 void
-Buzzer_beep(void) {
+Buzzer_beep(void)
+{
     DEBUG_PRINTF_FUNCTION_CALL();
 
     PR2 = 499; // 4 kHz
     OC1RS = (PR2 >> 1); // 50% duty cycle
-    Delay_ms(250);
+    DELAY_MS(250);
     OC1RS = 0; // 0% duty cycle (buzzer is turned off)
 
     return;
 }
 
 void
-Buzzer_shortBeep(void) {
+Buzzer_shortBeep(void)
+{
     DEBUG_PRINTF_FUNCTION_CALL();
 
     PR2 = 499; // 4 kHz
     OC1RS = (PR2 >> 1); // 50% duty cycle
-    Delay_ms(50);
+    DELAY_MS(50);
     OC1RS = 0; // 0% duty cycle (buzzer is turned off)
 
     return;
 }
 
 void
-Buzzer_set(uint16_t _frequency, uint32_t _time) {
+Buzzer_set(uint16_t _frequency, uint32_t _time)
+{
     DEBUG_PRINTF_FUNCTION_CALL("%u, %lu", _frequency, _time);
 
     /********** Check conditions **********************************************/
@@ -101,16 +105,16 @@ Buzzer_set(uint16_t _frequency, uint32_t _time) {
 
     /********** Set frequency *************************************************/
     /* "PWM Period = [(PRy + 1) * TCY * (TMRy Prescale Value)]
-     * PWM Frequency = 1/[PWM Period]" (Output Compare, Equation 4-1: 
+     * PWM Frequency = 1/[PWM Period]" (Output Compare, Equation 4-1:
      * Calculating the PWM Period, Microchip)
      * 
      * PWM Period = 1/[PWM Frequency]
      * PR = ((1 / _frequency) / (( 1/PBCLK) * Timer Prescaler)) -1
      *    = (1 / (_frequency * (Timer Prescaler / PBCLK))) - 1
      */
-    PR2 = (1 / (_frequency * ((float)T2_TCKPS / FPB))) - 1;
+    PR2 = (1 / (_frequency * ((float) T2_TCKPS / FPB))) - 1;
     OC1RS = (PR2 >> 1); // 50% duty cycle
-    Delay_ms(_time);
+    DELAY_MS(_time);
     OC1RS = 0; // 0% duty cycle (buzzer is turned off)
 
     return;
@@ -123,7 +127,8 @@ Buzzer_set(uint16_t _frequency, uint32_t _time) {
  * 
  */
 void
-Buzzer_selfTest(void) {
+Buzzer_selfTest(void)
+{
     DEBUG_PRINTF_FUNCTION_CALL();
 
     uint16_t i;

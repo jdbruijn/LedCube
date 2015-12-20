@@ -21,7 +21,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * 
  *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
 /** @file
  * @brief Delay macros and wrappers to the delay macros in libpic32.h.
@@ -57,7 +57,7 @@ extern "C" {
 /*******************************************************************************
  * Condition checks
  ******************************************************************************/
-#ifndef FCY
+#if !defined(FCY)
 # warning "FCY is not defined!"
 #elif (FCY < 31250UL)
 # warning "FCY has a very low value!"
@@ -68,26 +68,26 @@ extern "C" {
  ******************************************************************************/
 /**
  * @brief Delay a certain number of seconds.
- *
+ * 
  * @param   d Number of seconds to delay. Ranging from 1 to @ref DELAY_MAX_S.
  */
-#define Delay_s(t)                                                             \
-    { __delay32((unsigned long)( ((unsigned long long)(t))*(FCY)/1ULL )); }
+#define DELAY_S(t)                                                             \
+    { __delay32((unsigned long)( ((unsigned long long)(t))*(FCY))); }
 
 /**
  * @brief Delay a certain number of milliseconds.
- *
+ * 
  * @param   d Milliseconds to delay. Ranging from 1 to @ref DELAY_MAX_MS.
  */
-#define Delay_ms(t) __delay_ms((t))
+#define DELAY_MS(t) __delay_ms((t))
 
 /**
  * @brief Delay a certain number of microseconds.
- *
+ * 
  * @param   d, number of microseconds to delay. Ranging from 1 to @ref
  * DELAY_MAX_US.
  */
-#define Delay_us(t) __delay_us((t))
+#define DELAY_US(t) __delay_us((t))
 
 #ifdef __cplusplus
 }

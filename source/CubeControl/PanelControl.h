@@ -21,11 +21,11 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * 
  *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
 /** @file
  * @brief Controls a single PanelControl PCB.
- *   
+ * 
  * A PanelControl PCB holds three LED Sink Drivers.
  * 
  ******************************************************************************/
@@ -64,7 +64,7 @@ extern "C" {
  ******************************************************************************/
 /**
  * Initialize everything needed for a PanelControl PCB.
- *
+ * 
  * @note    This initializes a LED Sink Driver using @ref LedDriver_init.
  */
 void
@@ -73,7 +73,7 @@ PanelControl_init(void);
 /**
  * Update the outputs of a PanelControl PCB by calling @ref LedDriver_update
  * three times.
- *
+ * 
  * @param   _pCubeControlData Pointer to @ref CubeControlData structure.
  * @param   _pCubeData[] Pointer to the first element of a CubeData structure
  * array.
@@ -105,7 +105,7 @@ PanelControl_allOn(void);
  * Run a self test on a PanelControl PCB. I.e. test a PanelControl PCB.
  * Loops through all the outputs of a PanelControl PCB by putting on one output
  * at a time.
- *
+ * 
  * @param   void
  * @return  void
  * @Example <code>PanelControl_selfTest();</code>

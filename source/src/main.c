@@ -21,38 +21,12 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * 
  *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
-/** @file 
+/** @file
  * @brief Globally controls the application.
  * 
  ******************************************************************************/
-
-// <editor-fold defaultstate="collapsed" desc="The MIT License (MIT)">
-/**
- * The MIT License (MIT)
- * 
- * Copyright (c) 2015 Jeroen de Bruijn <vidavidorra@gmail.com>
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-// </editor-fold>
 
 /*******************************************************************************
  * PIC24FJ64GA004 Configuration Bit Settings
@@ -105,7 +79,8 @@
  * @return  int Error code.
  */
 int
-main(int argc, char** argv) {
+main(int argc, char** argv)
+{
     ConfigureOscillator();
 
     /********** User code initialisation **************************************/
@@ -116,8 +91,8 @@ main(int argc, char** argv) {
     LedCube_init();
     Buzzer_shortBeep();
 
-    uint8_t z;
-
+    uint8_t z, u;
+    UNUSED(u);
     // Infinite loop for user code
     while (1) {
         // User code
@@ -126,15 +101,15 @@ main(int argc, char** argv) {
             //LedCube_updateUsingCopy();
             FillLayerWithSingleColour(z, COLOUR_YELLOW);
             Buzzer_shortBeep();
-            Delay_s(1);
+            DELAY_S(1);
         }
-        Delay_s(10);
+        DELAY_S(10);
         LedCube_resetData();
         LedCube_update();
         LedCube_resetData();
     }
 
-    /********** End, nothing comes beyond this point! *************************/
+    /********** End. Nothing comes beyond this point! *************************/
     while (1);
 
     return (0);

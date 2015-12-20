@@ -21,9 +21,9 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * 
  *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
-/** @file 
+/** @file
  * @brief Definitions for used I/O ports and initialize function.
  * 
  ******************************************************************************/
@@ -53,7 +53,7 @@ extern "C" {
 #define SPI2_SDO            PORT_RP3       /**< Serial Data Out to Anode Control */
 #define SPI2_SCK            PORT_RP18      /**< Serial Clock to Anode Control */
 #define ANODE_LATCH         PORT_RP17
-#define OE                  PORT_RP16      /**< For both the LedDriver and Anode Control */
+#define OE                  PORT_RP16      /**< For both LedDriver and Anode Control */
 /* USB to UART */
 #define USB_TO_UART_TX      PORT_RP14      /**< USB to UART Tx */
 #define USB_TO_UART_RX      PORT_RP12      /**< USB to UART Rx */

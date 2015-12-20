@@ -21,7 +21,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * 
  *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
 /** @file
  * @brief Provides Cube- and CubeControl data structures and functions.
@@ -44,6 +44,7 @@ extern "C" {
 #include <stdint.h>
 #include <stddef.h>
 #include "Debug.h"
+#include "Uart.h"
 #include "Interrupts.h"
 
 /*******************************************************************************
@@ -88,14 +89,14 @@ typedef enum {
  * Structures
  ******************************************************************************/
 /** @brief Structure of the RGB values of a single row of LEDs.
- *
+ * 
  * This contains 32-bit red, green and blue values where the data of a single
  * row with @ref CUBEDATA_MAX_Y_C LEDs in it.
  * These 32-bit values contains the state of the LEDs for the @ref
  * CUBEDATA_N_BAM_BITS BAM rounds and are classified as follows.
  * @note The uint32_t value is in binary format and spans all the columns in
  * that row.
- *
+ * 
  * | Description             |          |          |          |          |
  * | ----------------------- | :------: | :------: | :------: | :------: |
  * | BAM round               | 3        | 2        | 1        | 0        |
@@ -115,7 +116,7 @@ typedef struct {
 } RowData_t, *pCubeData_t;
 
 /** @brief Structure with Cube- and CubeControl data.
- *
+ * 
  * This contains two @ref RowData_t structure arrays, pointers to the current
  * read and write structure arrays, masks for the BAM rounds and the shift
  * needed for each BAM round.
@@ -166,7 +167,7 @@ extern pCubeData_t const pCubeData1Base;
  * CubeControlData_t::pCubeDataRead pointer points to @ref pCubeData0Base in the
  * beginning and the @ref CubeControlData_t::pCubeDataWrite pointer points to
  * @ref pCubeData1Base in the beginning.
- *
+ * 
  * @param   _pCubeControlData Pointer to a CubeControlData structure.
  */
 void
@@ -177,7 +178,7 @@ CubeControlData_init(pCubeControlData_t const _pCubeControlData);
  * @note    The switch is performed with interrupts disabled using the @ref
  * INTERRUPTS_DISSABLE_AND_SAVE_CPU_IPL and @ref INTERRUPTS_RESTORE_CPU_IPL
  * macros because the CubeData read takes place in an interrupt service routine.
- *
+ * 
  * @param   _pCubeControlData Pointer to a CubeControlData structure.
  */
 void
@@ -185,7 +186,7 @@ CubeControlData_switchCubeData(pCubeControlData_t const _pCubeControlData);
 
 /**
  * Reset a CubeData structure array.
- *
+ * 
  * @param   _pCubeData Pointer to a CubeData structure array.
  */
 void
@@ -196,7 +197,7 @@ CubeControlData_resetCubeData(pCubeData_t const _pCubeData);
  * @note    The copy is performed with interrupts disabled using the @ref
  * INTERRUPTS_DISSABLE_AND_SAVE_CPU_IPL and @ref INTERRUPTS_RESTORE_CPU_IPL
  * macros because the CubeData read takes place in an interrupt service routine.
- *
+ * 
  * @param   _pCubeDataFrom Pointer to a CubeData structure array to copy from.
  * @param   _pCubeDataTo Pointer to a CubeData structure array to copy to.
  */
@@ -206,7 +207,7 @@ CubeControlData_copyCubeData(pCubeData_t const _pCubeDataFrom,
 
 /**
  * Print the contents of a CubeData structure array hexadecimal.
- *
+ * 
  * @param   _pCubeData Pointer to a CubeData structure array.
  */
 void

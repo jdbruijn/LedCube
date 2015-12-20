@@ -21,10 +21,10 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * 
  *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
 /** @file
- * @brief Controls a single layer of the 8x8x8 LED cube. 
+ * @brief Controls a single layer of the 8x8x8 LED cube.
  * 
  ******************************************************************************/
 
@@ -94,7 +94,7 @@ extern "C" {
 /**
  * Initialize everything needed for controlling the layers by configuring the
  * SPIx peripheral.
- *
+ * 
  * @note    This also initializes everything needed for a PanelControl PCB using
  * the @ref PanelControl_init function.
  */
@@ -104,7 +104,7 @@ LayerControl_init(void);
 /**
  * Update the output of a single layer in the LED cube by calling the @ref
  * PanelControl_update function four times.
- *
+ * 
  * @param   _pCubeControlData Pointer to CubeControlData structure.
  * @param   _pCubeData Pointer to the first element of a CubeData structure
  * array.

@@ -21,7 +21,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * 
  *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
 /** @file
  * @brief Controls a single LED Sink Driver.
@@ -72,14 +72,14 @@ extern "C" {
  * and 15 is the leftmost (MSB) bit. This is needed for @ref LedDriver_update,
  * which needs to reorder the LED data befor sending it to the LED Sink
  * Driver.
- *
+ * 
  * | Bit number  |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |
  * | ----------- |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
  * | **Old var** | 3  | 4  | 2  | 5  | 1  | 6  | 0  | 7  | 11 | 12 | 10 | 13 | 9  | 14 | 8  | 15 |
  * | **New var** | 0  | 1  | 2  | 3  | 4  | 5  | 6  | 7  | 8  | 9  | 10 | 11 | 12 | 13 | 14 | 15 |
- *
+ * 
  * The following table shows the shift operations needed for specific bits.
- *
+ * 
  * | Old bit numbers | new bit numbers | shift action |
  * | :-------------- | :-------------- | :----------: |
  * | 0, 2, 8, 9      | 3, 4, 11, 12    | << 3         |
@@ -89,7 +89,7 @@ extern "C" {
  * | 5, 13           | 6, 14           | >> 1         |
  * | 6, 14           | 0, 8            | >> 6         |
  * | 7, 15           | 7, 15           |              |
- *
+ * 
  * #### Operations:
  * 7 `AND`, 6 `OR`, 5 `SHIFT`
  */
@@ -103,7 +103,7 @@ extern "C" {
  ******************************************************************************/
 /**
  * Initialize a LED Sink Driver by configuring the SPIx peripheral.
- *
+ * 
  * @note    This function should be called only once because it sets the SPIx
  * peripheral for all the LED Sink Drivers since they are in a bus.
  */
@@ -112,7 +112,7 @@ LedDriver_init(void);
 
 /**
  * Update the output of a LED Sink Driver using the SPIx peripheral.
- *
+ * 
  * @param   _ledData 16-bit variable to send to a LED Sink Driver.
  */
 void
@@ -130,9 +130,9 @@ LedDriver_allOff(void);
 void
 LedDriver_allOn(void);
 
-#ifdef LD_ENABLE_SELF_TEST_YES    
+#ifdef LD_ENABLE_SELF_TEST_YES
 /** @todo UnitTest: Remove selftest and create a selftest for the leddriver.
- *
+ * 
  * Run a self test on a LED Sink Driver. I.e. test a single LED Sink Driver.
  * Loops through all the outputs of the LED Sink Driver by putting on one output
  * at a time using the @ref LedDriver_update function.

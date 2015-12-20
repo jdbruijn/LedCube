@@ -21,9 +21,9 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * 
  *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
-/** @file 
+/** @file
  * @brief Sets the system settings.
  * 
  ******************************************************************************/
@@ -61,7 +61,7 @@ extern "C" {
  ******************************************************************************/
 /**
  * @brief Configure the system oscillator.
- *
+ * 
  * @note    Settings must be confirm Configuration Bits Settings.
  */
 void

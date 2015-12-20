@@ -21,7 +21,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * 
  *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
 /** @file
  * @brief Data protocol and functions for connection with the LedCube
@@ -58,46 +58,53 @@ extern "C" {
 #define LCV_END_BLOCK_CHAR 0x17
 
 /*******************************************************************************
- * Macros
+ * Constant- and function macros
  ******************************************************************************/
 /** @brief Wrapper for LCV_SEND_CHAR to a actual function, in this case @ref
- *  Uart1_putc.
+ * Uart1_putc.
  */
-#define LCV_SEND_CHAR(c) Uart1_putc(c)
+#define LCV_SEND_CHAR(c)                                                       \
+    Uart1_putc((c))
 
 /** @brief Wrapper for LCV_SEND_STR to a actual function, in this case @ref
- *  Uart1_puts.
+ * Uart1_puts.
  */
-#define LCV_SEND_STR(s) Uart1_puts(s)
+#define LCV_SEND_STR(s)                                                        \
+    Uart1_puts((s))
 
 /** @brief Wrapper for LCV_SEND_HEX_NUM to a actual function, in this case @ref
- *  Uart1_putNum.
- *  This does send the number in hexadecimal form without the 'h'
- *  suffix.
+ * Uart1_putNum.
+ * 
+ * This does send the number in hexadecimal form without the 'h' suffix.
  */
-#define LCV_SEND_HEX_NUM(s) Uart1_putNum(s, 16, false)
+#define LCV_SEND_HEX_NUM(s)                                                    \
+    Uart1_putNum((s), 16, false)
 
 /** @brief Macro for starting a transmission. */
-#define LCV_START_TRANSMISSION() LCV_SEND_CHAR(LCV_START_TRANSMISSION_CHAR)
+#define LCV_START_TRANSMISSION                                                 \
+    LCV_SEND_CHAR(LCV_START_TRANSMISSION_CHAR)
 
 /** @brief Macro for ending a transmission. */
-#define LCV_END_TRANSMISSION() LCV_SEND_CHAR(LCV_END_TRANSMISSION_CHAR)
+#define LCV_END_TRANSMISSION                                                   \
+    LCV_SEND_CHAR(LCV_END_TRANSMISSION_CHAR)
 
 /** @brief Macro for starting a block. */
-#define LCV_START_BLOCK() LCV_SEND_CHAR(LCV_START_BLOCK_CHAR)
+#define LCV_START_BLOCK                                                        \
+    LCV_SEND_CHAR(LCV_START_BLOCK_CHAR)
 
 /** @brief Macro for ending a block. */
-#define LCV_END_BLOCK() LCV_SEND_CHAR(LCV_END_BLOCK_CHAR)
+#define LCV_END_BLOCK                                                          \
+    LCV_SEND_CHAR(LCV_END_BLOCK_CHAR)
 
 /** @brief Macro for starting a transmission and a block. */
-#define LCV_START_TRANSMISSION_AND_BLOCK()  \
-            LCV_START_TRANSMISSION();       \
-            LCV_START_BLOCK()
+#define LCV_START_TRANSMISSION_AND_BLOCK                                       \
+    LCV_START_TRANSMISSION;                                                    \
+    LCV_START_BLOCK
 
 /** @brief Macro for ending a transmission and a block. */
-#define LCV_END_TRANSMISSION_AND_BLOCK()    \
-            LCV_END_BLOCK();                \
-            LCV_END_TRANSMISSION()
+#define LCV_END_TRANSMISSION_AND_BLOCK                                         \
+    LCV_END_BLOCK;                                                             \
+    LCV_END_TRANSMISSION
 
 /*******************************************************************************
  * Function prototypes
@@ -110,7 +117,7 @@ LedCubeVisualisation_sendVersion(void);
 
 /**
  * @brief Send the CubeData of a single row.
- *
+ * 
  * @param   _x Selects the row. Ranges from 0 to @ref LEDCUBE_MAX_XYZ, 0 for the
  * back row and @ref LEDCUBE_MAX_XYZ for the front row.
  * @param   _z Selects the layer. Ranges from 0 to @ref LEDCUBE_MAX_XYZ, 0 for
@@ -122,7 +129,7 @@ LedCubeVisualisation_sendRow(uint8_t _x, uint8_t _z,
                              pCubeData_t const _pCubeData);
 /**
  * @brief Send the CubeData of a single layer.
- *
+ * 
  * @param   _z Selects the layer. Ranges from 0 to @ref LEDCUBE_MAX_XYZ, 0 for
  * the bottom layer and @ref LEDCUBE_MAX_XYZ for the top layer.
  * @param   _pCubeControlData Pointer to a CubeControlData structure.
@@ -132,7 +139,7 @@ LedCubeVisualisation_sendLayer(uint8_t _z,
                                pCubeData_t const _pCubeData);
 /**
  * @brief Send the CubeData of a whole Cube.
- *
+ * 
  * @param   _pCubeControlData Pointer to a CubeControlData structure.
  */
 void

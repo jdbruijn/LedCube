@@ -21,7 +21,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * 
  *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
 /** @file
  * @brief Data protocol and functions for connection with the LedCube
@@ -38,38 +38,40 @@
  * Functions
  ******************************************************************************/
 void
-LedCubeVisualisation_sendVersion(void) {
-    LCV_START_TRANSMISSION_AND_BLOCK();
+LedCubeVisualisation_sendVersion(void)
+{
+    LCV_START_TRANSMISSION_AND_BLOCK;
 
     LCV_SEND_STR(VERSION_STRING);
 
-    LCV_END_TRANSMISSION_AND_BLOCK();
+    LCV_END_TRANSMISSION_AND_BLOCK;
 
     return;
 }
 
 void
 LedCubeVisualisation_sendRow(uint8_t _x, uint8_t _z,
-                             pCubeData_t const _pCubeData) {
+                             pCubeData_t const _pCubeData)
+{
     uint8_t y;
     for (y = 0; y < CUBEDATA_MAX_Y_C; y++) {
-        LCV_START_BLOCK();
+        LCV_START_BLOCK;
 
         LCV_SEND_HEX_NUM(_x);
         LCV_SEND_HEX_NUM(y);
         LCV_SEND_HEX_NUM(_z);
 
         LCV_SEND_HEX_NUM(                                                      \
-        (((_pCubeData + _z * CUBEDATA_MAX_Z_C + _x)->red >>   y)       & 0x01) |
-        (((_pCubeData + _z * CUBEDATA_MAX_Z_C + _x)->red >>  (y + 7))  & 0x02) |
-        (((_pCubeData + _z * CUBEDATA_MAX_Z_C + _x)->red >>  (y + 14)) & 0x04) |
-        (((_pCubeData + _z * CUBEDATA_MAX_Z_C + _x)->red >>  (y + 21)) & 0x08));
+        (((_pCubeData + _z * CUBEDATA_MAX_Z_C + _x)->red >>  y)       & 0x01)  |
+        (((_pCubeData + _z * CUBEDATA_MAX_Z_C + _x)->red >> (y + 7))  & 0x02)  |
+        (((_pCubeData + _z * CUBEDATA_MAX_Z_C + _x)->red >> (y + 14)) & 0x04)  |
+        (((_pCubeData + _z * CUBEDATA_MAX_Z_C + _x)->red >> (y + 21)) & 0x08));
 
         LCV_SEND_HEX_NUM(                                                      \
-        (((_pCubeData + _z * CUBEDATA_MAX_Z_C + _x)->green >> y)       & 0x01) |
-        (((_pCubeData + _z * CUBEDATA_MAX_Z_C + _x)->green >>(y + 7))  & 0x02) |
-        (((_pCubeData + _z * CUBEDATA_MAX_Z_C + _x)->green >>(y + 14)) & 0x04) |
-        (((_pCubeData + _z * CUBEDATA_MAX_Z_C + _x)->green >>(y + 21)) & 0x08));
+        (((_pCubeData + _z * CUBEDATA_MAX_Z_C +_x)->green >>  y)       & 0x01) |
+        (((_pCubeData + _z * CUBEDATA_MAX_Z_C +_x)->green >> (y + 7))  & 0x02) |
+        (((_pCubeData + _z * CUBEDATA_MAX_Z_C +_x)->green >> (y + 14)) & 0x04) |
+        (((_pCubeData + _z * CUBEDATA_MAX_Z_C +_x)->green >> (y + 21)) & 0x08));
 
         LCV_SEND_HEX_NUM(                                                      \
         (((_pCubeData + _z * CUBEDATA_MAX_Z_C + _x)->blue >>  y)       & 0x01) |
@@ -77,7 +79,7 @@ LedCubeVisualisation_sendRow(uint8_t _x, uint8_t _z,
         (((_pCubeData + _z * CUBEDATA_MAX_Z_C + _x)->blue >> (y + 14)) & 0x04) |
         (((_pCubeData + _z * CUBEDATA_MAX_Z_C + _x)->blue >> (y + 21)) & 0x08));
 
-        LCV_END_BLOCK();
+        LCV_END_BLOCK;
     }
 
     return;
@@ -85,7 +87,8 @@ LedCubeVisualisation_sendRow(uint8_t _x, uint8_t _z,
 
 void
 LedCubeVisualisation_sendLayer(uint8_t _z,
-                               pCubeData_t const _pCubeData) {
+                               pCubeData_t const _pCubeData)
+{
     uint8_t x;
 
     for (x = 0; x < CUBEDATA_MAX_X_C; x++) {
@@ -96,16 +99,17 @@ LedCubeVisualisation_sendLayer(uint8_t _z,
 }
 
 void
-LedCubeVisualisation_sendCubeData(pCubeData_t const _pCubeData) {
+LedCubeVisualisation_sendCubeData(pCubeData_t const _pCubeData)
+{
     uint8_t z;
 
-    LCV_START_TRANSMISSION();
+    LCV_START_TRANSMISSION;
 
     for (z = 0; z < CUBEDATA_MAX_Z_C; z++) {
         LedCubeVisualisation_sendLayer(z, _pCubeData);
     }
 
-    LCV_END_TRANSMISSION();
+    LCV_END_TRANSMISSION;
 
     return;
 }

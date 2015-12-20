@@ -21,9 +21,9 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * 
  *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
-/** @file 
+/** @file
  * @brief Sets the system settings.
  * 
  ******************************************************************************/
@@ -37,7 +37,8 @@
  * Functions
  ******************************************************************************/
 void
-ConfigureOscillator(void) {
+ConfigureOscillator(void)
+{
     // @todo Unlock OSCCON register before writing it.
     /********** Configure OSCCON register *************************************/
     //    /* NOSC<2:0>: New Oscillator Selection bits

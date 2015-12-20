@@ -21,9 +21,9 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * 
  *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
-/** @file 
+/** @file
  * @brief Animations to fill a row, layer or whole LED cube.
  * 
  ******************************************************************************/
@@ -38,9 +38,10 @@
  ******************************************************************************/
 void
 FillRowAtOnceWithSingleColour(uint8_t _x, uint8_t _z,
-                              uint8_t _red, uint8_t _green, uint8_t _blue) {
+                              uint8_t _red, uint8_t _green, uint8_t _blue)
+{
     DEBUG_PRINTF_FUNCTION_CALL("%u, %u, %u, %u, %u", _x, _z,
-            _red, _green, _blue);
+                               _red, _green, _blue);
 
     uint8_t y;
     for (y = 0; y < CUBEDATA_MAX_Y_C; y++) {
@@ -52,15 +53,16 @@ FillRowAtOnceWithSingleColour(uint8_t _x, uint8_t _z,
 
 void
 FillRowWithSingleColour(uint8_t _x, uint8_t _z,
-                        uint8_t _red, uint8_t _green, uint8_t _blue) {
+                        uint8_t _red, uint8_t _green, uint8_t _blue)
+{
     DEBUG_PRINTF_FUNCTION_CALL("%u, %u, %u, %u, %u", _x, _z,
-            _red, _green, _blue);
+                               _red, _green, _blue);
 
     uint8_t y;
     for (y = 0; y < CUBEDATA_MAX_Y_C; y++) {
         LedCube_setPixel(_x, y, _z, _red, _green, _blue);
         LedCube_updateUsingCopy();
-        Delay_ms(100);
+        DELAY_MS(100);
     }
 
     return;
@@ -68,7 +70,8 @@ FillRowWithSingleColour(uint8_t _x, uint8_t _z,
 
 void
 FillLayerAtOnceWithSingleColour(uint8_t _z,
-                                uint8_t _red, uint8_t _green, uint8_t _blue) {
+                                uint8_t _red, uint8_t _green, uint8_t _blue)
+{
     DEBUG_PRINTF_FUNCTION_CALL("%u, %u, %u, %u", _z, _red, _green, _blue);
 
     uint8_t x;
@@ -81,7 +84,8 @@ FillLayerAtOnceWithSingleColour(uint8_t _z,
 
 void
 FillLayerWithSingleColour(uint8_t _z,
-                          uint8_t _red, uint8_t _green, uint8_t _blue) {
+                          uint8_t _red, uint8_t _green, uint8_t _blue)
+{
     DEBUG_PRINTF_FUNCTION_CALL("%u, %u, %u, %u", _z, _red, _green, _blue);
 
     uint8_t x;

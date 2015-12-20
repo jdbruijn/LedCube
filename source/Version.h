@@ -21,7 +21,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * 
  *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
 /** @file
  * @brief Version of the LedCube project.
@@ -43,15 +43,15 @@ extern "C" {
 /*******************************************************************************
  * Defines
  ******************************************************************************/
-#define VERSION_MAJOR           0   /**< Major version number. */
-#define VERSION_MINOR           1   /**< Minor version number. */
-#define VERSION_PATCH           0   /**< Patch version number. */
+#define VERSION_MAJOR 0     /**< Major version number. */
+#define VERSION_MINOR 1     /**< Minor version number. */
+#define VERSION_PATCH 0     /**< Patch version number. */
 
 /*******************************************************************************
- * Macros
+ * Constant macros
  ******************************************************************************/
 /** @brief Version string.
- *
+ * 
  * It uses the @ref MACRO_EXPAND_CONCATENATE_STR_FIVE macro to expand and
  * and convert the version defines to a version string.
  */

@@ -21,7 +21,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * 
  *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
 /** @file
  * @brief Several bit operations and manipulations.
@@ -37,44 +37,52 @@
  * Functions
  ******************************************************************************/
 bool
-isPositive(int32_t const _v) {
-    return (1 ^ ((unsigned int)_v >> (sizeof (int) * CHAR_BIT - 1)));
+isPositive(int32_t const _v)
+{
+    return (1 ^ ((unsigned int) _v >> (sizeof (int) * CHAR_BIT - 1)));
 }
 
 bool
-haveOppositeSigns(int32_t const _x, int32_t const _y) {
+haveOppositeSigns(int32_t const _x, int32_t const _y)
+{
     return ((_x ^ _y) < 0);
 }
 
 int32_t
-min(int32_t const _x, int32_t const _y) {
+min(int32_t const _x, int32_t const _y)
+{
     return (_y ^ ((_x ^ _y) & -(_x < _y)));
 }
 
 int32_t
-max(int32_t const _x, int32_t const _y) {
+max(int32_t const _x, int32_t const _y)
+{
     return (_x ^ ((_x ^ _y) & -(_x < _y)));
 }
 
 bool
-isPowerOf2(int32_t const _v) {
+isPowerOf2(int32_t const _v)
+{
     return (_v && !(_v & (_v - 1)));
 }
 
 void
-modifyBits(uint32_t *_v, uint32_t const _mask, bool const _f) {
+modifyBits(uint32_t *_v, uint32_t const _mask, bool const _f)
+{
     *_v ^= (-_f ^*_v) & _mask;
 
     return;
 }
 
 uint32_t
-mergeBits(uint32_t const _x, uint32_t const _y, uint32_t const _mask) {
+mergeBits(uint32_t const _x, uint32_t const _y, uint32_t const _mask)
+{
     return (_x ^((_x ^_y) & _mask));
 }
 
 uint8_t
-nBitsSet(int32_t const _v) {
+nBitsSet(int32_t const _v)
+{
     uint8_t result;
     result = ((_v & 0xfff) * 0x1001001001001ULL & 0x84210842108421ULL) % 0x1F;
     result += (((_v & 0xfff000) >> 12) * 0x1001001001001ULL & \
@@ -85,7 +93,8 @@ nBitsSet(int32_t const _v) {
 }
 
 bool
-isEven(uint32_t const _v) {
+isEven(uint32_t const _v)
+{
     uint32_t v = _v;
     v ^= v >> 1;
     v ^= v >> 2;
@@ -95,7 +104,8 @@ isEven(uint32_t const _v) {
 }
 
 void
-reverseBitOrder(uint32_t *_v) {
+reverseBitOrder(uint32_t *_v)
+{
     // swap odd and even bits
     *_v = ((*_v >> 1) & 0x55555555) | ((*_v & 0x55555555) << 1);
     // swap consecutive pairs
@@ -111,9 +121,10 @@ reverseBitOrder(uint32_t *_v) {
 }
 
 uint32_t
-roundUpToPowerOf2(uint32_t const _v) {
+roundUpToPowerOf2(uint32_t const _v)
+{
     if (_v > 1) {
-        float f = (float)_v;
+        float f = (float) _v;
         uint32_t const t = 1U << ((*(uint32_t *) & f >> 23) - 0x7F);
         return (t << (t < _v));
     } else {

@@ -21,7 +21,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * 
  *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
 /** @file
  * @brief Controls the whole LedCube.
@@ -63,11 +63,11 @@ extern "C" {
 #define LEDCUBE_MAX_XYZ         (CUBEDATA_MAX_X_C - 1)
 #if (CUBEDATA_N_BAM_BITS == 4)
 /** Minimum value for the LEDs intensity. */
-# define LEDCUBE_MIN_INTENSITY 0
+#define LEDCUBE_MIN_INTENSITY 0
 /** Maximum value for the LEDs intensity. */
-# define LEDCUBE_MAX_INTENSITY 15
+#define LEDCUBE_MAX_INTENSITY 15
 #else
-# error Unknown value of CUBEDATA_N_BAM_BITS in CubeControlData.h defined!
+#error Unknown value of CUBEDATA_N_BAM_BITS in CubeControlData.h defined!
 #endif
 
 /*******************************************************************************
@@ -85,7 +85,7 @@ LedCube_init(void);
 
 /**
  * Set a single pixel in the LedCube's data.
- *
+ * 
  * @note    See the following 'image' of how the axis of the LED cube are set.\n
  * 'O' is the origin and represents coordinate (0, 0, 0).\n
  * 'A' is the right back bottom corner of the cube and represents coordinate
@@ -115,7 +115,7 @@ LedCube_init(void);
  *  |                 /
  *  z-axis(vertical) y-axis (horizontal)
  * @endverbatim
- *
+ * 
  * @param   _x Selects the row. Ranges from 0 to @ref LEDCUBE_MAX_XYZ, 0 for the
  * back row and @ref LEDCUBE_MAX_XYZ for the front row.
  * @param   _y Selects the column. Ranges from 0 to @ref LEDCUBE_MAX_XYZ, 0 for
@@ -182,7 +182,7 @@ LedCube_printHexReadData(void);
  * @todo edit function documentation below this point.
  * Print the data of one level via UARTx. The data is formatted to be easily
  * understandable from a serial terminal.
- *
+ * 
  * @param   _data Pointer to the layer to print, must be of type
  * pLayerControlData_t.
  * @param   _layer Integer value of the layer to print.
@@ -195,7 +195,7 @@ LedCube_printHexReadData(void);
 /**
  * Print the data of one level via UARTx. The data format is compatible with the
  * Windows program "LedCube Visualisation".
- *
+ * 
  * @param   _data Pointer to the layer to print, must be of type
  * pLayerControlData_t.
  * @param   _layer Integer value of the layer to print.

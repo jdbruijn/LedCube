@@ -21,7 +21,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * 
  *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
 /** @file
  * @brief Controls the whole LedCube.
@@ -39,11 +39,12 @@
  * Functions
  ******************************************************************************/
 void
-LedCube_init(void) {
+LedCube_init(void)
+{
     LayerControl_init();
     CubeControlData_init(pCubeControlData);
 
-    DEBUG_PRINTF_FUNCTION_INITIALIZE_COMPLETE();
+    DEBUG_PRINTF_FUNCTION_INITIALIZE_COMPLETE;
     return;
 }
 
@@ -53,7 +54,8 @@ LedCube_setPixel(uint8_t const _x,
                  uint8_t const _z,
                  uint8_t const _red,
                  uint8_t const _green,
-                 uint8_t const _blue) {
+                 uint8_t const _blue)
+{
     DEBUG_PRINTF_FUNCTION_CALL("%u, %u, %u, %u, %u, %u", \
             _x, _y, _z, _red, _green, _blue);
 
@@ -126,7 +128,8 @@ LedCube_setPixel(uint8_t const _x,
 }
 
 void
-LedCube_update(void) {
+LedCube_update(void)
+{
     DEBUG_PRINTF_FUNCTION_CALL();
 
     CubeControlData_switchCubeData(pCubeControlData);
@@ -135,17 +138,19 @@ LedCube_update(void) {
 }
 
 void
-LedCube_updateUsingCopy(void) {
+LedCube_updateUsingCopy(void)
+{
     DEBUG_PRINTF_FUNCTION_CALL();
 
     CubeControlData_copyCubeData(pCubeControlData->pCubeDataWrite,
-            pCubeControlData->pCubeDataRead);
+                                 pCubeControlData->pCubeDataRead);
 
     return;
 }
 
 void
-LedCube_resetData(void) {
+LedCube_resetData(void)
+{
     DEBUG_PRINTF_FUNCTION_CALL();
 
     CubeControlData_resetCubeData(pCubeControlData->pCubeDataWrite);
@@ -154,7 +159,8 @@ LedCube_resetData(void) {
 }
 
 void
-LedCube_printHexWriteData(void) {
+LedCube_printHexWriteData(void)
+{
     DEBUG_PRINTF_FUNCTION_CALL();
 
     CubeControlData_printHexCubeData(pCubeControlData->pCubeDataWrite);
@@ -163,7 +169,8 @@ LedCube_printHexWriteData(void) {
 }
 
 void
-LedCube_printHexReadData(void) {
+LedCube_printHexReadData(void)
+{
     DEBUG_PRINTF_FUNCTION_CALL();
 
     CubeControlData_printHexCubeData(pCubeControlData->pCubeDataRead);
@@ -177,7 +184,8 @@ LedCube_printHexReadData(void) {
  * @todo edit function documentation below this point.
  */
 void
-_helperPrintByte(const uint8_t _b) {
+_helperPrintByte(const uint8_t _b)
+{
     DEBUG_PRINTF_FUNCTION_CALL();
 
     uint8_t i;
@@ -199,42 +207,42 @@ _helperPrintByte(const uint8_t _b) {
 //        const uint8_t _layer ) {
 //    Uart1_puts("\nLayerControlData (layer "); Uart1_putNum(_layer, 10);
 //    Uart1_puts(") :\n");
-//    
+//
 //    Uart1_puts(" color:\t|_____red______|\t|_____green____|\t|_____blue_____|\n");
 //    Uart1_puts(" colum:\t1  2  3  4  5  6  7  8\t1  2  3  4  5  6  7  8\t1  2  3  4  5  6  7  8\n");
-//    
+//
 //    Uart1_puts("row 1: \t"); _helperPrintByte(_data->PanelData1.red_1);
 //    Uart1_putc('\t'); _helperPrintByte(_data->PanelData1.green_1); Uart1_putc('\t');
 //    _helperPrintByte(_data->PanelData1.blue_1); Uart1_putc('\n');
-//    
+//
 //    Uart1_puts("row 2: \t"); _helperPrintByte(_data->PanelData1.red_2);
 //    Uart1_putc('\t'); _helperPrintByte(_data->PanelData1.green_2); Uart1_putc('\t');
 //    _helperPrintByte(_data->PanelData1.blue_2); Uart1_putc('\n');
-//    
+//
 //    Uart1_puts("row 3: \t"); _helperPrintByte(_data->PanelData2.red_1);
 //    Uart1_putc('\t'); _helperPrintByte(_data->PanelData2.green_1); Uart1_putc('\t');
 //    _helperPrintByte(_data->PanelData2.blue_1); Uart1_putc('\n');
-//   
+//
 //    Uart1_puts("row 4: \t"); _helperPrintByte(_data->PanelData2.red_2);
 //    Uart1_putc('\t'); _helperPrintByte(_data->PanelData2.green_2); Uart1_putc('\t');
 //    _helperPrintByte(_data->PanelData2.blue_2); Uart1_putc('\n');
-//    
+//
 //    Uart1_puts("row 5: \t"); _helperPrintByte(_data->PanelData3.red_1);
 //    Uart1_putc('\t'); _helperPrintByte(_data->PanelData3.green_1); Uart1_putc('\t');
 //    _helperPrintByte(_data->PanelData3.blue_1); Uart1_putc('\n');
-//    
+//
 //    Uart1_puts("row 6: \t"); _helperPrintByte(_data->PanelData3.red_2);
 //    Uart1_putc('\t'); _helperPrintByte(_data->PanelData3.green_2); Uart1_putc('\t');
 //    _helperPrintByte(_data->PanelData3.blue_2); Uart1_putc('\n');
-//    
+//
 ////    Uart1_puts("row 7: \t"); _helperPrintByte(_data->PanelData4.red_1);
 ////    Uart1_putc('\t'); _helperPrintByte(_data->PanelData4.green_1); Uart1_putc('\t');
 ////    _helperPrintByte(_data->PanelData4.blue_1); Uart1_putc('\n');
-////    
+////
 ////    Uart1_puts("row 8: \t"); _helperPrintByte(_data->PanelData4.red_2);
 ////    Uart1_putc('\t'); _helperPrintByte(_data->PanelData4.green_2); Uart1_putc('\t');
 ////    _helperPrintByte(_data->PanelData4.blue_2); Uart1_putc('\n');
-//    
+//
 //    return;
 //}
 //
@@ -249,7 +257,7 @@ _helperPrintByte(const uint8_t _b) {
 //    const char end = 'Z';
 //    const char splitColour = ',';
 //    const char splitRow = '.';
-//    
+//
 //    Uart1_putc(begin);
 //    /* Row 0 */
 //    Uart1_putBits(_data->PanelData1.red_1, 8); Uart1_putc(splitColour);
@@ -284,7 +292,7 @@ _helperPrintByte(const uint8_t _b) {
 ////    Uart1_putBits(_data->PanelData4.green_2, 8); Uart1_putc(splitColour);
 ////    Uart1_putBits(_data->PanelData4.blue_2, 8);
 //    Uart1_putc(end);
-//    
+//
 //    return;
 //}
 /* End of file LedCube.c */

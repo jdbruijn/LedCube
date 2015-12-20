@@ -21,7 +21,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * 
  *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
 /** @file
  * @brief Macros to evaluate an assertion and wrapper to print the output to the
@@ -46,12 +46,12 @@ extern "C" {
  * Includes
  ******************************************************************************/
 #ifdef DEBUG
-# include <xc.h>
-# ifndef UART_H
-#  include "Uart.h"
-# endif
+#include <xc.h>
+#ifndef UART_H
+#include "Uart.h"
+#endif
 #else
-# include <assert.h>
+#include <assert.h>
 #endif
 
 /*******************************************************************************
@@ -63,7 +63,7 @@ extern "C" {
  * @brief Wrapper for PRINTF to an actual printf function, in this case @ref
  * Uart1_printf.
  */
-# define PRINTF Uart1_printf
+#define PRINTF Uart1_printf
 #endif
 #define _ASSERTION_FAILED_MSG " -- assertion failed, program halted..."
 
@@ -72,7 +72,7 @@ extern "C" {
  ******************************************************************************/
 /**
  * Helper macro to print a debugging message to the standard device.
- *
+ * 
  * @Note    The macros need a second helper macro in order to expand multiple
  * defines.
  */
@@ -82,13 +82,13 @@ extern "C" {
 
 /**
  * @brief Evaluate an assertion.
- *
+ * 
  * If the argument expression of this macro with functional form compares equal
  * to zero (i.e., the expression is false), a message is written to the standard
  * device and the program execution is halted. Halting the program execution is
  * done by setting the CPU interrupt priority level to seven and entering an
  * infinite loop.
- *
+ * 
  * @note    This macro is disabled if, at the moment of including "MyAssert.h",
  * a macro with the name @ref NDEBUG has already been defined. This allows for a
  * coder to include as many assert calls as needed in a source code while
@@ -100,7 +100,7 @@ extern "C" {
  * debugging phase.
  * @param   expression Expression to be evaluated. If this expression evaluates
  * to zero, this causes an assertion failure that halts the program.
- *
+ * 
  */
 #define ASSERT(expr) {                                                        \
     if(!(expr)) {                                                              \
@@ -116,7 +116,7 @@ extern "C" {
 
 #else /* NDEBUG is defined */
 #ifdef DEBUG
-# warning "Both DEBUG and NDEBUG are defined!"
+#warning "Both DEBUG and NDEBUG are defined!"
 #endif
 /**
  * The ASSERT macro does not do anything, the device proceeds program execution

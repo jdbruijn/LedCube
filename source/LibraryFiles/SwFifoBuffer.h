@@ -21,9 +21,9 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
+ * 
  *~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~**/
-/** @file 
+/** @file
  * @brief Software FIFO buffer which can be used as storage for peripherals.
  * 
  * For example UART Tx and Rx data.
@@ -54,7 +54,7 @@ extern "C" {
  ******************************************************************************/
 /**
  * @brief Structure representing a software FIFO buffer.
- *
+ * 
  * @note    The bufferFullFlag is the only flag that is not automatically
  * cleared by the software FIFO buffer.
  * @example <code>// Declare a receive software FIFO buffer
@@ -85,7 +85,7 @@ typedef struct {
  ******************************************************************************/
 /**
  * @brief Put a single character in the FIFO buffer.
- *
+ * 
  * @param   _pBuffer Pointer to the buffer where the data is stored in.
  * @param   _inData Character to put in the buffer.
  */
@@ -94,7 +94,7 @@ swFifoBufferPut(pSwFifoBuffer_t _pBuffer, const char _inData);
 
 /**
  * @brief Get a single character in the FIFO buffer.
- *
+ * 
  * @param   _pBuffer Pointer to the buffer where the data is stored in.
  * @return  char The character gotten from the buffer.
  */
