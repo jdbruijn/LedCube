@@ -90,7 +90,7 @@ main(int argc, char** argv)
 
     LedCube_init();
     Buzzer_shortBeep();
-
+    
     uint8_t z, u;
     UNUSED(u);
     // Infinite loop for user code

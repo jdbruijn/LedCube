@@ -75,7 +75,7 @@ PanelControl_init(void);
  * three times.
  * 
  * @param   _pCubeControlData Pointer to @ref CubeControlData structure.
- * @param   _pCubeData[] Pointer to the first element of a CubeData structure
+ * @param   _pCubeData Pointer to the first element of a CubeData structure
  * array.
  * @param   _layer The layer to update.
  * @param   _panel The panel to update.

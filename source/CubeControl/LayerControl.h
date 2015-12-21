@@ -28,26 +28,6 @@
  * 
  ******************************************************************************/
 
-// <editor-fold defaultstate="collapsed" desc="Cube Layout">
-/** @todo this layout looks weird in Doxygen
- * Cube Layout:
- * 
- *                   Rear
- * Panel 1  01 02 03 04 05 06 07 08
- * Panel 2  09 10 11 12 13 14 15 16
- * Panel 3  17 18 19 20 21 22 23 24
- * Panel 4  25 26 27 28 29 30 31 32
- * Panel 5  33 34 35 36 37 38 39 40
- * Panel 6  41 42 43 44 45 46 47 48
- * Panel 7  49 50 51 52 53 54 55 56
- * Panel 8  57 58 59 60 61 62 63 64
- *                   Front
- * 
- * The 8x8x8 LedCube takes eight of these layers, where the bottom layer is
- * labeled layer 1 and the top layer layer 8.
- */
-// </editor-fold>
-
 #ifndef LAYERCONTROL_H
 #define LAYERCONTROL_H
 
@@ -74,19 +54,26 @@ extern "C" {
 /*******************************************************************************
  * Defines
  ******************************************************************************/
-/** @todo document defines and macros */
-#define N_PANELCONTROLS     4       /* Number of PanelControls in the cube */
-#define SPI2_PPRE           1       /* SPI2 Primary Prescale bits */
-#define SPI2_SPRE           2       /* SPI2 Secondary Prescale bits */
-#define SPI2_FSCK           FCY / (SPI2_PPRE * SPI2_SPRE)
+/** @brief Number of PanelControl PCBs in the LedCube. */
+#define N_PANELCONTROLS     4
+/** @brief SPI2 Primary Prescale bits. */
+#define SPI2_PPRE           1
+/** SPI2 Secondary Prescale bits. */
+#define SPI2_SPRE           2
+/** SPI2 clock speed. */
+#define SPI2_FSCK           (FCY / (SPI2_PPRE * SPI2_SPRE))
+/** Maximum z-coordinate for the LedCube. */
 #define LC_MAX_Z_C          (CUBEDATA_MAX_X_C - 1)
+/** Maximum BAM value for the LedCube. */
 #define LC_MAX_BAM_VAL      (CUBEDATA_N_BAM_BITS - 1)
 
 /*******************************************************************************
  * Macros
  ******************************************************************************/
-#define LAYERCONTROL_PULSE_LATCH PORT_PULSE_PIN(ANODE_LATCH)
-#define SPI2_WAIT_TILL_TX_BUFFER_IS_EMPTY while( SPI2STATbits.SPITBF == 1 )
+#define LAYERCONTROL_PULSE_LATCH                                               \
+    PORT_PULSE_PIN(ANODE_LATCH)
+#define SPI2_WAIT_TILL_TX_BUFFER_IS_EMPTY                                      \
+    while( SPI2STATbits.SPITBF == 1 )
 
 /*******************************************************************************
  * Function prototypes

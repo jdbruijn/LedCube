@@ -60,26 +60,26 @@ PanelControl_update(const pCubeControlData_t _pCubeControlData,
      * needs to be send last.
      */
     LedDriver_update(
-                     ((((_pCubeData + _layer * CUBEDATA_MAX_Z_C + _panel + 1)->blue &
-                        _pCubeControlData->BamRoundMask[_bamRound]) >>
-                       _pCubeControlData->BamRoundShift[_bamRound]) << 8) |
-                     (((_pCubeData + _layer * CUBEDATA_MAX_Z_C + _panel)->blue &
-                       _pCubeControlData->BamRoundMask[_bamRound]) >>
-                      _pCubeControlData->BamRoundShift[_bamRound]));
+        ((((_pCubeData + _layer * CUBEDATA_MAX_Z_C + _panel + 1)->blue         &
+        _pCubeControlData->BamRoundMask[_bamRound]) >>
+        _pCubeControlData->BamRoundShift[_bamRound]) << 8)                     |
+        (((_pCubeData + _layer * CUBEDATA_MAX_Z_C + _panel)->blue              &
+        _pCubeControlData->BamRoundMask[_bamRound]) >>
+        _pCubeControlData->BamRoundShift[_bamRound]));
     LedDriver_update(
-                     ((((_pCubeData + _layer * CUBEDATA_MAX_Z_C + _panel + 1)->green &
-                        _pCubeControlData->BamRoundMask[_bamRound]) >>
-                       _pCubeControlData->BamRoundShift[_bamRound]) << 8) |
-                     (((_pCubeData + _layer * CUBEDATA_MAX_Z_C + _panel)->green &
-                       _pCubeControlData->BamRoundMask[_bamRound]) >>
-                      _pCubeControlData->BamRoundShift[_bamRound]));
+        ((((_pCubeData + _layer * CUBEDATA_MAX_Z_C + _panel + 1)->green        &
+        _pCubeControlData->BamRoundMask[_bamRound]) >>
+        _pCubeControlData->BamRoundShift[_bamRound]) << 8)                     |
+        (((_pCubeData + _layer * CUBEDATA_MAX_Z_C + _panel)->green             &
+        _pCubeControlData->BamRoundMask[_bamRound]) >>
+        _pCubeControlData->BamRoundShift[_bamRound]));
     LedDriver_update(
-                     ((((_pCubeData + _layer * CUBEDATA_MAX_Z_C + _panel + 1)->red &
-                        _pCubeControlData->BamRoundMask[_bamRound]) >>
-                       _pCubeControlData->BamRoundShift[_bamRound]) << 8) |
-                     (((_pCubeData + _layer * CUBEDATA_MAX_Z_C + _panel)->red &
-                       _pCubeControlData->BamRoundMask[_bamRound]) >>
-                      _pCubeControlData->BamRoundShift[_bamRound]));
+        ((((_pCubeData + _layer * CUBEDATA_MAX_Z_C + _panel + 1)->red          &
+        _pCubeControlData->BamRoundMask[_bamRound]) >>
+        _pCubeControlData->BamRoundShift[_bamRound]) << 8)                     |
+        (((_pCubeData + _layer * CUBEDATA_MAX_Z_C + _panel)->red               &
+        _pCubeControlData->BamRoundMask[_bamRound]) >>
+        _pCubeControlData->BamRoundShift[_bamRound]));
 
     return;
 }

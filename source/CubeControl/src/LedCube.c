@@ -56,23 +56,23 @@ LedCube_setPixel(uint8_t const _x,
                  uint8_t const _green,
                  uint8_t const _blue)
 {
-    DEBUG_PRINTF_FUNCTION_CALL("%u, %u, %u, %u, %u, %u", \
+    DEBUG_PRINTF_FUNCTION_CALL("%u, %u, %u, %u, %u, %u",                       \
             _x, _y, _z, _red, _green, _blue);
 
     /********** Check conditions **********************************************/
     /* X, y, z positions within range */
-    ASSERT(LEDCUBE_MIN_XYZ <= _x && \
+    ASSERT(LEDCUBE_MIN_XYZ <= _x &&
             LEDCUBE_MAX_XYZ >= _x);
-    ASSERT(LEDCUBE_MIN_XYZ <= _y && \
+    ASSERT(LEDCUBE_MIN_XYZ <= _y &&
             LEDCUBE_MAX_XYZ >= _y);
-    ASSERT(LEDCUBE_MIN_XYZ <= _z && \
+    ASSERT(LEDCUBE_MIN_XYZ <= _z &&
             LEDCUBE_MAX_XYZ >= _z);
     /* Intensities within range */
-    ASSERT(LEDCUBE_MIN_INTENSITY <= _red && \
+    ASSERT(LEDCUBE_MIN_INTENSITY <= _red &&
             LEDCUBE_MAX_INTENSITY >= _red);
-    ASSERT(LEDCUBE_MIN_INTENSITY <= _green && \
+    ASSERT(LEDCUBE_MIN_INTENSITY <= _green &&
             LEDCUBE_MAX_INTENSITY >= _green);
-    ASSERT(LEDCUBE_MIN_INTENSITY <= _blue && \
+    ASSERT(LEDCUBE_MIN_INTENSITY <= _blue &&
             LEDCUBE_MAX_INTENSITY >= _blue);
 
     /********** Calculate position ********************************************/
@@ -108,21 +108,21 @@ LedCube_setPixel(uint8_t const _x,
      *                    |                    1    (21 positions to the left)
      */
     pCubeData_t const pCubeDataWrite = pCubeControlData->pCubeDataWrite;
-    (pCubeDataWrite + _z * CUBEDATA_MAX_Z_C + _x)->red |= \
-            ((_red & 0x01UL) << _y) |
-            ((_red & 0x02UL) << (_y + 7)) |
-            ((_red & 0x04UL) << (_y + 14)) |
-            ((_red & 0x08UL) << (_y + 21));
-    (pCubeDataWrite + _z * CUBEDATA_MAX_Z_C + _x)->green |= \
-            ((_green & 0x01UL) << _y) |
-            ((_green & 0x02UL) << (_y + 7)) |
-            ((_green & 0x04UL) << (_y + 14)) |
-            ((_green & 0x08UL) << (_y + 21));
-    (pCubeDataWrite + _z * CUBEDATA_MAX_Z_C + _x)->blue |= \
-            ((_blue & 0x01UL) << _y) |
-            ((_blue & 0x02UL) << (_y + 7)) |
-            ((_blue & 0x04UL) << (_y + 14)) |
-            ((_blue & 0x08UL) << (_y + 21));
+    (pCubeDataWrite + _z * CUBEDATA_MAX_Z_C + _x)->red |=                      \
+        ((_red & 0x01UL) << _y) |
+        ((_red & 0x02UL) << (_y + 7)) |
+        ((_red & 0x04UL) << (_y + 14)) |
+        ((_red & 0x08UL) << (_y + 21));
+    (pCubeDataWrite + _z * CUBEDATA_MAX_Z_C + _x)->green |=                    \
+        ((_green & 0x01UL) << _y) |
+        ((_green & 0x02UL) << (_y + 7)) |
+        ((_green & 0x04UL) << (_y + 14)) |
+        ((_green & 0x08UL) << (_y + 21));
+    (pCubeDataWrite + _z * CUBEDATA_MAX_Z_C + _x)->blue |=                     \
+        ((_blue & 0x01UL) << _y) |
+        ((_blue & 0x02UL) << (_y + 7)) |
+        ((_blue & 0x04UL) << (_y + 14)) |
+        ((_blue & 0x08UL) << (_y + 21));
 
     return;
 }

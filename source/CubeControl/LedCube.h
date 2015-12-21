@@ -60,14 +60,14 @@ extern "C" {
 /** Minimum value for the x-, y- and z-axis. */
 #define LEDCUBE_MIN_XYZ 0
 /** Maximum value for the x-, y- and z-axis. */
-#define LEDCUBE_MAX_XYZ         (CUBEDATA_MAX_X_C - 1)
+#define LEDCUBE_MAX_XYZ (CUBEDATA_MAX_X_C - 1)
 #if (CUBEDATA_N_BAM_BITS == 4)
 /** Minimum value for the LEDs intensity. */
-#define LEDCUBE_MIN_INTENSITY 0
+# define LEDCUBE_MIN_INTENSITY 0
 /** Maximum value for the LEDs intensity. */
-#define LEDCUBE_MAX_INTENSITY 15
+# define LEDCUBE_MAX_INTENSITY 15
 #else
-#error Unknown value of CUBEDATA_N_BAM_BITS in CubeControlData.h defined!
+# error Unknown value of CUBEDATA_N_BAM_BITS in CubeControlData.h defined!
 #endif
 
 /*******************************************************************************

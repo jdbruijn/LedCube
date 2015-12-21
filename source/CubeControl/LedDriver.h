@@ -56,10 +56,10 @@ extern "C" {
 /*******************************************************************************
  * Defines
  ******************************************************************************/
-/** @todo document defines and macros */
-#define SPI1_PPRE               1           /* SPI1 Primary Prescale bits */
-#define SPI1_SPRE               2           /* SPI1 Secondary Prescale bits */
-#define SPI1_FSCK               FCY / (SPI1_PPRE * SPI1_SPRE)
+#define SPI1_PPRE               1       /**< SPI1 Primary Prescale bits */
+#define SPI1_SPRE               2       /**< SPI1 Secondary Prescale bits */
+/** SPI1 clock speed. */
+#define SPI1_FSCK               (FCY / (SPI1_PPRE * SPI1_SPRE))
 
 /*******************************************************************************
  * Macros

@@ -44,12 +44,12 @@ LedDriver_init(void)
     SPI1CON2 = 0;
     Nop();
 
-    IFS0bits.SPI1IF = 0; // Clear the Interrupt flag
-    IEC0bits.SPI1IE = 0; // Disable the interrupt
+    IFS0bits.SPI1IF = 0;        // Clear the Interrupt flag
+    IEC0bits.SPI1IE = 0;        // Disable the interrupt
 
-    SPI1CON1bits.MSTEN = 1; // Master Mode
-    SPI1CON1bits.MODE16 = 1; // Communication is word-wide (16 bits)
-    SPI1CON1bits.SSEN = 0; // SSx pin is not used by the module
+    SPI1CON1bits.MSTEN = 1;     // Master Mode
+    SPI1CON1bits.MODE16 = 1;    // Communication is word-wide (16 bits)
+    SPI1CON1bits.SSEN = 0;      // SSx pin is not used by the module
     /* PPRE<1:0>: Primary Prescale bits (Master mode)
      * 11 = Primary prescale 1:1
      * 10 = Primary prescale 4:1
@@ -87,10 +87,10 @@ LedDriver_init(void)
 
     {
         uint16_t rData;
-        rData = SPI1BUF; // Clear the SPIx transmit/receive buffer
+        rData = SPI1BUF;        // Clear the SPIx transmit/receive buffer
     }
 
-    SPI1STATbits.SPIEN = 1; // Enable SPIx module
+    SPI1STATbits.SPIEN = 1;     // Enable SPIx module
     Nop();
 
     DEBUG_PRINTF_FUNCTION_INITIALIZE_COMPLETE;

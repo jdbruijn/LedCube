@@ -26,6 +26,8 @@
 /** @file
  * @brief Macros for printing debugging messages.
  * 
+ * If @ref DEBUG is not defined, printing debug messages will be disabled.
+ * 
  ******************************************************************************/
 
 #ifndef DEBUG_H
