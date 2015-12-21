@@ -190,8 +190,8 @@ _helperPrintByte(const uint8_t _b)
 
     uint8_t i;
     for (i = 8; i > 0; i--) {
-        Uart1_putc(((_b >> (i - 1)) & 0x01) + 48);
-        Uart1_puts("  ");
+        uputc(((_b >> (i - 1)) & 0x01) + 48);
+        uputs("  ");
     }
 
     return;

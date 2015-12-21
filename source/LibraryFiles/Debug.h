@@ -51,18 +51,11 @@ extern "C" {
  * Includes
  ******************************************************************************/
 # include <xc.h>
-# include <stdint.h>
 # include "Uart.h"
 
 /*******************************************************************************
  * Defines
  ******************************************************************************/
-/**
- * @brief Wrapper for PRINTF to an actual printf function, in this case @ref
- * Uart1_printf.
- */
-# define _DEBUG_PRINTF_FUNC Uart1_printf
-
 /** Flag for printing debug messages. */
 # define _DEBUG_FLAG 1
 
@@ -92,7 +85,7 @@ extern "C" {
 # define DEBUG_PRINTF(fmt, args...)                                            \
     do{                                                                        \
         if(_DEBUG_FLAG) {                                                      \
-            _DEBUG_PRINTF_FUNC(" DEBUG: %s:%d:%s(): " fmt "\n", __FILE__,      \
+            uprintf(" DEBUG: %s:%d:%s(): " fmt "\n", __FILE__,                 \
             __LINE__, __FUNCTION__, ##args);                                   \
         }                                                                      \
     } while (0)
@@ -108,7 +101,7 @@ extern "C" {
 # define DEBUG_PRINTF_FUNCTION(fmt, args...)                                   \
     do{                                                                        \
         if(_DEBUG_FLAG) {                                                      \
-                _DEBUG_PRINTF_FUNC(" DEBUG: %s(): " fmt "\n", __FUNCTION__ ,   \
+                uprintf(" DEBUG: %s(): " fmt "\n", __FUNCTION__ ,              \
                 ##args);                                                       \
         }                                                                      \
     } while (0)
@@ -125,7 +118,7 @@ extern "C" {
 # define DEBUG_PRINTF_FUNCTION_CALL(fmt, args...)                              \
     do{                                                                        \
         if(_DEBUG_FLAG) {                                                      \
-            _DEBUG_PRINTF_FUNC(" DEBUG: %s(" fmt ")\n", __FUNCTION__ , ##args);\
+            uprintf(" DEBUG: %s(" fmt ")\n", __FUNCTION__ , ##args);           \
         }                                                                      \
     }while(0)
 
@@ -144,7 +137,7 @@ extern "C" {
 # define DEBUG_PRINTF_INDENT_TEST(indent, fmt, args...)                        \
     do{                                                                        \
         if(_DEBUG_FLAG) {                                                      \
-            _DEBUG_PRINTF_FUNC("%*c DEBUG: %s:%d:%s(): " fmt "\n", indent, ' ',\
+            uprintf("%*c DEBUG: %s:%d:%s(): " fmt "\n", indent, ' ',           \
             __FILE__, __LINE__, __FUNCTION__, ##args);                         \
         }                                                                      \
     } while (0)

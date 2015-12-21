@@ -47,21 +47,13 @@ extern "C" {
  * Includes
  ******************************************************************************/
 # include <xc.h>
-# ifndef UART_H
-#  include "Uart.h"
-# endif
+# include "Uart.h"
 
 /*******************************************************************************
  * Defines
  ******************************************************************************/
-# ifndef PRINTF
-/**
- * @brief Wrapper for PRINTF to an actual printf function, in this case @ref
- * Uart1_printf.
- */
-#  define PRINTF Uart1_printf
-# endif
-# define _ASSERTION_FAILED_MSG " -- assertion failed, program halted..."
+/** Message on assertion faillure. */
+# define ASSERTION_FAILED_MSG " -- assertion failed, program halted..."
 
 /*******************************************************************************
  * Function macros
@@ -73,8 +65,8 @@ extern "C" {
  * defines.
  */
 # define _MYASSERT_ASSERT(expr)                                                \
-    PRINTF("DEBUG: %s:%d:%s(): " expr _ASSERTION_FAILED_MSG "\n",              \
-    __FILE__, __LINE__, __FUNCTION__)
+    uprintf("DEBUG: %s:%d:%s(): " expr ASSERTION_FAILED_MSG "\n",      \
+        __FILE__, __LINE__, __FUNCTION__)
 
 /**
  * @brief Evaluate an assertion.
@@ -94,7 +86,7 @@ extern "C" {
  * Therefore, this macro is designed to capture programming errors, not user or
  * run-time errors, since it is generally disabled after a program exits its
  * debugging phase.
- * @param   expression Expression to be evaluated. If this expression evaluates
+ * @param   expr Expression to be evaluated. If this expression evaluates
  * to zero, this causes an assertion failure that halts the program.
  * 
  */
@@ -104,7 +96,6 @@ extern "C" {
         SET_CPU_IPL(7);                                                        \
         while(1);                                                              \
                 } }(void) 0
-
 
 #else /* NDEBUG is defined */
 /* Disable the assert macro by a void 0 cast. */

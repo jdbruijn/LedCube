@@ -38,8 +38,7 @@
  * Global variables
  ******************************************************************************/
 /** Global UARTx receive software FIFO buffer. */
-swFifoBuffer_t rxBuffer = {0, 0, 0,
-    {0}, 0, 0, 0};
+swFifoBuffer_t rxBuffer = {0, 0, 0, {0}, 0, 0, 0};
 /** Global pointer to the UARTx receive software FIFO buffer. */
 pSwFifoBuffer_t const pRxBuffer = &rxBuffer;
 
@@ -103,11 +102,11 @@ Uart1_init(void)
     DELAY_US(105);
 
 #ifdef DEBUG
-    Uart1_printf(" DEBUG: %s(): Initialize complete...\n"
-                 " DEBUG: %s(): Baud Rate Error (must be below 5%%): %.2f%%\n",
-                 __FUNCTION__, __FUNCTION__, (UART1_BAUD_ERROR / 100.0));
+    uprintf(" DEBUG: %s(): Initialize complete...\n"
+            " DEBUG: %s(): Baud Rate Error (must be below 5%%): %.2f%%\n",
+            __FUNCTION__, __FUNCTION__, (UART1_BAUD_ERROR / 100.0));
 #endif
-
+    
     return;
 }
 
@@ -124,7 +123,7 @@ void
 Uart1_puts(const char* _s)
 {
     while (*_s) {
-        Uart1_putc(*_s++);
+        uputc(*_s++);
     }
 
     return;
@@ -176,13 +175,13 @@ Uart1_putNum(int32_t _num, uint8_t _base, bool _printBase)
         _num /= _base;
     } while (_num);
 
-    Uart1_puts(str);
+    uputs(str);
 
     return;
 }
 
 void
-Uart1_putBits(const uint64_t _v, uint8_t _nBits)
+Uart1_putBits(const uint64_t _num, uint8_t _nBits)
 {
     uint8_t i;
 
@@ -191,13 +190,13 @@ Uart1_putBits(const uint64_t _v, uint8_t _nBits)
         /* Output plus 48, since character '0' is in the 48th place of the
          * ASCII table.
          */
-        Uart1_putc(((_v >> (i - 1)) & 1) + 48);
+        uputc(((_num >> (i - 1)) & 1) + 48);
     }
 
     return;
 }
 
-#if defined(UART_USE_PRINTF_YES) || defined(DEBUG)
+#if (UART_USE_PRINTF_FLAG) || defined(DEBUG)
 uint16_t
 Uart1_printf(const char *format, ...)
 {
@@ -211,14 +210,14 @@ Uart1_printf(const char *format, ...)
     va_end(argptr);
 
     if ((len > 0) && (len < UART1_MAX_STR_LEN)) {
-        Uart1_puts(_dstr);
+        uputs(_dstr);
         Nop();
         while (U1STAbits.TRMT == 0); /* wait till finish */
     }
 
     return len;
 }
-#endif /* UART_USE_PRINTF_YES or DEBUG */
+#endif /* UART_USE_PRINTF_FLAG or DEBUG */
 
 void
 Uart1_gets(char *_str, uint8_t _num)
@@ -230,15 +229,15 @@ Uart1_gets(char *_str, uint8_t _num)
              * overflow.
              */
 #ifdef DEBUG
-            Uart1_printf("\n\n ERROR: %s:%d:%s(): " \
+            uprintf("\n\n ERROR: %s:%d:%s(): "                                 \
                     "UART1 FIFO software buffer overflow\n\n",
-                         __FILE__, __LINE__, __FUNCTION__);
+                     __FILE__, __LINE__, __FUNCTION__);
 #else /* DEBUG */
-            Uart1_puts("\n\n ERROR: ");
-            Uart1_puts(__FILE__);
-            Uart1_putNum(__LINE__, 10, false);
-            Uart1_puts(__FUNCTION__);
-            Uart1_puts("UART1 FIFO software buffer overflow\n\n");
+            uputs("\n\n ERROR: ");
+            uputs(__FILE__);
+            uputnum(__LINE__, 10, false);
+            uputs(__FUNCTION__);
+            uputs("UART1 FIFO software buffer overflow\n\n");
 #endif /* DEBUG */
 
             return;
@@ -272,15 +271,14 @@ _U1RXInterrupt(void)
     } else if (U1STAbits.OERR == 1) {
         U1STAbits.OERR = 0; // Clear the Overrun Error Status bit
 #ifdef DEBUG
-        Uart1_printf("\n\n ERROR: %s:%d:%s(): " \
-                    "UART1 hardware overrun\n\n",
-                     __FILE__, __LINE__, __FUNCTION__);
+        uprintf("\n\n ERROR: %s:%d:%s(): UART1 hardware overrun\n\n",
+                __FILE__, __LINE__, __FUNCTION__);
 #else /* DEBUG */
-        Uart1_puts("\n\n ERROR: ");
-        Uart1_puts(__FILE__);
-        Uart1_putNum(__LINE__, 10, false);
-        Uart1_puts(__FUNCTION__);
-        Uart1_puts("UART1 hardware overrun\n\n");
+        uputs("\n\n ERROR: ");
+        uputs(__FILE__);
+        uputnum(__LINE__, 10, false);
+        uputs(__FUNCTION__);
+        uputs("UART1 hardware overrun\n\n");
 #endif /* DEBUG */
     }
 

@@ -209,11 +209,11 @@ CubeControlData_printHexCubeData(pCubeData_t const _pCubeData)
     uint8_t x, z;
     for (z = 0; z < 8; z++) {
         for (x = 0; x < 8; x++) {
-            Uart1_printf("pCubeData[%u][%u].red  : 0x%.8lX\n", z, x,
+            uprintf("pCubeData[%u][%u].red  : 0x%.8lX\n", z, x,
             (_pCubeData + z * CUBEDATA_MAX_Z_C + x)->red);
-            Uart1_printf("pCubeData[%u][%u].green: 0x%.8lX\n", z, x,
+            uprintf("pCubeData[%u][%u].green: 0x%.8lX\n", z, x,
             (_pCubeData + z * CUBEDATA_MAX_Z_C + x)->green);
-            Uart1_printf("pCubeData[%u][%u].blue : 0x%.8lX\n", z, x,
+            uprintf("pCubeData[%u][%u].blue : 0x%.8lX\n", z, x,
             (_pCubeData + z * CUBEDATA_MAX_Z_C + x)->blue);
         }
     }

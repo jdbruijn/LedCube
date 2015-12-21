@@ -66,14 +66,6 @@ extern "C" {
 /*******************************************************************************
  * Defines
  ******************************************************************************/
-#ifndef PRINTF
-/**
- * @brief Wrapper for PRINTF to an actual printf function, in this case @ref
- * Uart1_printf.
- */
-# define PRINTF Uart1_printf
-#endif
-
 #ifdef __CONFIG1_BASE
 /** @brief Base address for Flash Configuration Word 1 */
 # define _CONFIG1_BASE_ADDRESS __CONFIG1_BASE

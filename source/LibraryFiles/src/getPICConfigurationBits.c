@@ -209,14 +209,14 @@ getPICConfigBits(void)
     CW2Addr.Val32 = _CONFIG2_BASE_ADDRESS;
 
     /********** Read and verify Flash Configuration Word 1 ********************/
-    PRINTF("\n\nReading Flash Configuration Word 1...\n");
+    uprintf("\n\nReading Flash Configuration Word 1...\n");
     CW1.Val32 = _GPCB_readLatch(CW1Addr.Word.HW,
                                 CW1Addr.Word.LW);
-    PRINTF("Binary read value:\n");
-    Uart1_putBits(CW1.Val32, 24);
+    uprintf("Binary read value:\n");
+    uputbits(CW1.Val32, 24);
 
     if (_GPCB_verifyConfigUpperByte(CW1.Val32) == true) {
-        PRINTF("\nSuccessfully verified the Flash Configuration Word 1"        \
+        uprintf("\nSuccessfully verified the Flash Configuration Word 1"       \
             " with address 0x%.2X%.4X\n", CW1Addr.Word.HW, CW1Addr.Word.LW);
 
         /********** Document Flash Configuration Word 1 results ***************/
@@ -275,8 +275,9 @@ getPICConfigBits(void)
                 PRINT_RESULT(WINDIS_0);
             } else {
                 PRINT_RESULT(WINDIS_0);
-                PRINTF("  DEBUG: %s:%d:%s(): WARNING: FWDTEN is not '1', this "\
-                    "setting has no effect!", __FILE__, __LINE__, __FUNCTION__);
+                uprintf("  DEBUG: %s:%d:%s(): WARNING: FWDTEN is not '1', "    \
+                        "this setting has no effect!",
+                        __FILE__, __LINE__, __FUNCTION__);
             }
 
         }
@@ -323,20 +324,20 @@ getPICConfigBits(void)
             PRINT_RESULT(WDTPS_0000);
         }
     } else {
-        PRINTF("\nVerifying Flash Configuration Word 1 with address"           \
+        uprintf("\nVerifying Flash Configuration Word 1 with address"          \
             " 0x%.2X %.4X failed...\n", CW1Addr.Word.HW, CW1Addr.Word.LW);
     }
-    PRINTF("Done Reading Flash Configuration Word 1.\n");
+    uprintf("Done Reading Flash Configuration Word 1.\n");
 
     /********** Read and verify Flash Configuration Word 2 ********************/
-    PRINTF("\nReading Flash Configuration Word 2...\n");
+    uprintf("\nReading Flash Configuration Word 2...\n");
     CW2.Val32 = _GPCB_readLatch(CW2Addr.Word.HW,
                                 CW2Addr.Word.LW);
-    PRINTF("Binary read value:\n");
-    Uart1_putBits(CW2.Val32, 24);
+    uprintf("Binary read value:\n");
+    uputbits(CW2.Val32, 24);
 
     if (_GPCB_verifyConfigUpperByte(CW2.Val32) == true) {
-        PRINTF("\nSuccessfully verified the Flash Configuration Word 2"        \
+        uprintf("\nSuccessfully verified the Flash Configuration Word 2"       \
             " with address 0x%.2X%.4X\n", CW2Addr.Word.HW, CW2Addr.Word.LW);
 
         /********** Document Flash Configuration Word 2 results ***************/
@@ -430,10 +431,10 @@ getPICConfigBits(void)
             PRINT_RESULT(POSCMD_00);
         }
     } else {
-        PRINTF("\nVerifying Flash Configuration Word 2 with address"           \
+        uprintf("\nVerifying Flash Configuration Word 2 with address"          \
             " 0x%.2X %.4X failed...\n", CW2Addr.Word.HW, CW2Addr.Word.LW);
     }
-    PRINTF("Done Reading Flash Configuration Word 2.\n\n\n");
+    uprintf("Done Reading Flash Configuration Word 2.\n\n\n");
 
     return;
 }

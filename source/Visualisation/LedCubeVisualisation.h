@@ -61,24 +61,24 @@ extern "C" {
  * Constant- and function macros
  ******************************************************************************/
 /** @brief Wrapper for LCV_SEND_CHAR to a actual function, in this case @ref
- * Uart1_putc.
+ * uputc.
  */
 #define LCV_SEND_CHAR(c)                                                       \
-    Uart1_putc((c))
+    uputc((c))
 
 /** @brief Wrapper for LCV_SEND_STR to a actual function, in this case @ref
- * Uart1_puts.
+ * uputs.
  */
 #define LCV_SEND_STR(s)                                                        \
-    Uart1_puts((s))
+    uputs((s))
 
 /** @brief Wrapper for LCV_SEND_HEX_NUM to a actual function, in this case @ref
- * Uart1_putNum.
+ * uputnum.
  * 
  * This does send the number in hexadecimal form without the 'h' suffix.
  */
 #define LCV_SEND_HEX_NUM(s)                                                    \
-    Uart1_putNum((s), 16, false)
+    uputnum((s), 16, false)
 
 /** @brief Macro for starting a transmission. */
 #define LCV_START_TRANSMISSION                                                 \
