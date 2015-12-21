@@ -27,10 +27,8 @@
  * @brief Macros to evaluate an assertion and wrapper to print the output to the
  * standard device.
  * 
- * If @ref DEBUG is not defined the standard assert is used. Otherwise a custom
- * assert is used which will halt the program and print the output of the
- * assertion to the standard device.
- * @todo Rewrite macros and maybe there is an easier way to use the NDEBUG and DEBUG..
+ * If @ref NDEBUG is defined, assertions will be disabled.
+ * 
  ******************************************************************************/
 
 #ifndef MYASSERT_H
@@ -40,32 +38,30 @@
 extern "C" {
 #endif
 
-#ifndef NDEBUG
+/*******************************************************************************
+ * Condition checks
+ ******************************************************************************/
+#if !defined(NDEBUG)
 
 /*******************************************************************************
  * Includes
  ******************************************************************************/
-#ifdef DEBUG
-#include <xc.h>
-#ifndef UART_H
-#include "Uart.h"
-#endif
-#else
-#include <assert.h>
-#endif
+# include <xc.h>
+# ifndef UART_H
+#  include "Uart.h"
+# endif
 
 /*******************************************************************************
  * Defines
  ******************************************************************************/
-#ifdef DEBUG
-#ifndef PRINTF
+# ifndef PRINTF
 /**
  * @brief Wrapper for PRINTF to an actual printf function, in this case @ref
  * Uart1_printf.
  */
-#define PRINTF Uart1_printf
-#endif
-#define _ASSERTION_FAILED_MSG " -- assertion failed, program halted..."
+#  define PRINTF Uart1_printf
+# endif
+# define _ASSERTION_FAILED_MSG " -- assertion failed, program halted..."
 
 /*******************************************************************************
  * Function macros
@@ -76,7 +72,7 @@ extern "C" {
  * @Note    The macros need a second helper macro in order to expand multiple
  * defines.
  */
-#define _HELPER_ASSERT(expr)                                                  \
+# define _MYASSERT_ASSERT(expr)                                                \
     PRINTF("DEBUG: %s:%d:%s(): " expr _ASSERTION_FAILED_MSG "\n",              \
     __FILE__, __LINE__, __FUNCTION__)
 
@@ -102,27 +98,17 @@ extern "C" {
  * to zero, this causes an assertion failure that halts the program.
  * 
  */
-#define ASSERT(expr) {                                                        \
+# define ASSERT(expr) {                                                        \
     if(!(expr)) {                                                              \
-        _HELPER_ASSERT(#expr);                                                 \
+        _MYASSERT_ASSERT(#expr);                                               \
         SET_CPU_IPL(7);                                                        \
         while(1);                                                              \
                 } }(void) 0
 
-#else /* DEBUG */
-/* Wrapper for ASSERT to the standard assert (from assert.h). */
-#define ASSERT(expr) assert(expr)
-#endif /* DEBUG */
 
 #else /* NDEBUG is defined */
-#ifdef DEBUG
-#warning "Both DEBUG and NDEBUG are defined!"
-#endif
-/**
- * The ASSERT macro does not do anything, the device proceeds program execution
- * as normal.
- */
-#define ASSERT(expr) ((void)0)
+/* Disable the assert macro by a void 0 cast. */
+# define ASSERT(expr) ((void)0)
 #endif /* NDEBUG */
 
 #ifdef __cplusplus
